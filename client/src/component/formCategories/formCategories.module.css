@@ -11,7 +11,7 @@
     padding-top: 20px;
     padding-bottom: 30px;
     background-color: #282C34; 
-    margin-top: 15%;
+    margin-top: 1%;
     border-radius: 30px;
 }
 .section{
@@ -39,4 +39,6 @@
     width:97%;
     height: 40px;
     border-radius: 10px;
+    background-color: #A29BFE;
+    color: white;
 }
