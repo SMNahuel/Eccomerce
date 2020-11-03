@@ -1,8 +1,8 @@
 //Declaramos componente Product como función con ES6
-const Product = ({ titulo, descripcion, precio, cantidad}) => {
+const Product = ({name, description, price, stock}) => {
     <div>
-        <div>{titulo}</div>
-        <div><h3>{descripcion}</h3><h4>{precio}</h4><h4>{cantidad}</h4></div>
+        <div>{name}</div>
+        <div><h3>{description}</h3><h4>{price}</h4><h4>{stock}</h4></div>
     </div>
 }
 
