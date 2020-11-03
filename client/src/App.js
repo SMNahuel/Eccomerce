@@ -6,18 +6,24 @@ import { Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Route path="/"
+      <Route 
+      path="/"
       render={() => <ProductCard/>}
       />
       <Route
-      path="/catalogo"
+      path="/home"
+      render={() => <h1>Home</h1>}
+      />
+      <Route
+      path="/catalog"
       render={() => <h1>catalogo</h1>}
       />
       <Route
-      path="/product/id"
+      path="/catalog/product/id"
       render={() => <h1>Detalles de los Productos segun id</h1>}
       />
-      {/* Utilizar Route para nuevas rutas */}
+      {/* Falta añadir Rutas de Log In y Sign In */}
+      {/* y crear sus componentes */}
     </div>
   );
 }
