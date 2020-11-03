@@ -7,7 +7,7 @@ server.post('/', (req, res, next) => {
         res.status(400).send('Body must have a name and description')
     }
 	Category.create({name:name, description:description})
-	.then(category => res.sendStatus(category));
+	.then(category => res.send(category));
 })
 
 module.exports = server;
