@@ -1,28 +1,18 @@
-import React, { useState } from 'react';
-import AppsIcon from '@material-ui/icons/Apps';
-import CatalogCourse from './course catalog/CatalogCourse';
+import React from 'react';
+import s from './Catalog.module.css'
 
 function Catalog (){
 
-    const [ catalog, setCatalog ] = useState(false);
-
-    const toogle = e =>{
-        e.preventDefault();
-        setCatalog(!catalog);
-    }
+    const arrayCourse = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"]
     return (
-        <div>
-            {
-                !catalog &&
-                <button onClick={toogle}>
-                    <AppsIcon />
-                </button>
-            }
+        <div className={s.container_catalog}>
 
-            {
-                catalog &&
-                <CatalogCourse />
-            }
+            {arrayCourse.map(e => (
+                <div className={s.container_catalog_button}>
+                    <button>{e}</button>
+                </div>
+            ))}
+
 
         </div>
     )
