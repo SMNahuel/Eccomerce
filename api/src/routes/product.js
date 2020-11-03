@@ -7,6 +7,20 @@ server.get('/', (req, res, next) => {
 	.catch(next);
 });
 
+server.delete('/', (req, res, next) => {
+    const { name } = req.body
+    if (!name) {
+        throw 'Body must have a name'
+    }
+    Product.destroy({ 
+		where: { 
+			name: name 
+		} 
+	}).then(products => {
+        res.status(200).json(products)
+    }).catch(next)
+});
+
 server.post('/', (req, res, next) => {
 	const {name, description, price, stock, categories} = req.body;
 	if (!name) return res.status(400).send('Body must have a product name');
@@ -34,7 +48,7 @@ server.post('/', (req, res, next) => {
 		})
 	})
 	.then(product => res.send(product))
-	.catch(err => res.status(400).send(err))
+	.catch(next)
 });
 
 module.exports = server;
