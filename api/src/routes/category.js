@@ -16,4 +16,16 @@ server.post('/', (req, res, next) => {
     }).then(category => res.send(category));
 })
 
+server.delete('/', (req, res, next) => {
+    const {name} = req.body
+    if (!name) {
+        return res.status(400).send('Body must have a name')
+    }
+    Category.destroy({ where: { name: name } })
+    .then(category => {
+        res.status(200).json(category)
+    })
+    .catch(err => console.log(err))
+});
+
 module.exports = server;
