@@ -10,7 +10,7 @@ export default function SearchBar(){
     return(
         <div>
             <input type="text" value={search} onChange ={changeInput} placeholder="Seach..." className={Styles.search}/>
-            <button className="button"></button>
+            <button className={Styles.button}>.</button>
         </div>
     )
 }
