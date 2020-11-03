@@ -6,11 +6,14 @@ export default function SearchBar(){
     const changeInput = function(e){
         setSearch(e.target.value)
     }
-
+    const seachInDB = function (){
+        //busca con el estado actual
+        //search
+    }
     return(
-        <div>
+        <div className={Styles.searchBar}>
             <input type="text" value={search} onChange ={changeInput} placeholder="Seach..." className={Styles.search}/>
-            <button className={Styles.button}>.</button>
+            <button className={Styles.button} onClick={seachInDB}>.</button>
         </div>
     )
 }
