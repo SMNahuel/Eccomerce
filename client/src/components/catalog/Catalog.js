@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Catalog.module.css'
 
-function Catalog (){
+function Catalog() {
 
     const arrayCourse = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"]
     return (
