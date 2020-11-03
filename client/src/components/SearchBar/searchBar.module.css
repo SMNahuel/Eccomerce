@@ -1,0 +1,10 @@
+.search{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    outline: none;
+}
+*{
+    background-color: black;
+}
