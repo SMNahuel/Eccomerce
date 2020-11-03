@@ -1,0 +1,46 @@
+.container_catalog{
+    max-width: 350px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+}
+.container_main_catalog{
+    width: 100%;
+    padding: 10px 10px;
+}
+.container_course_catalog{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px;
+    width: 100%;
+}
+.container_course_catalog button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.container_catalog_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+.container_catalog_button button{
+    background-color: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AppsIcon from '@material-ui/icons/Apps';
+import CatalogCourse from './course catalog/CatalogCourse';
 
 function Catalog (){
 
@@ -11,9 +12,17 @@ function Catalog (){
     }
     return (
         <div>
-            <button onClick={toggle}>
-                <AppsIcon/>
-            </button>
+            {
+                !catalog &&
+                <button onClick={toogle}>
+                    <AppsIcon />
+                </button>
+            }
+
+            {
+                catalog &&
+                <CatalogCourse />
+            }
 
         </div>
     )
