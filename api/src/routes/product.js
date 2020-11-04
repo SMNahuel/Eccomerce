@@ -22,7 +22,7 @@ server.delete('/', (req, res, next) => {
 });
 
 server.post('/', (req, res, next) => {
-	const {name, description, price, stock, categories} = req.body;
+	var {name, description, price, stock, categories} = req.body;
 	if (!name) return res.status(400).send('Body must have a product name');
 	if (!categories) categories = [];
 	Product.findOne({ where: { name: name }})
