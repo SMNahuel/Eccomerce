@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Styles from './formCategories.module.css'
+import S from './formCategories.module.css'
 
 export default function FormCategories(){
     const[input, setInput] = useState({
@@ -18,17 +18,17 @@ export default function FormCategories(){
     }
     return(
         <div>
-            <h1 className={Styles.title}>Categories</h1>
-            <form className={Styles.form}>
-                <div className={Styles.section}>
-                    <label className={Styles.label}>Name:</label><br/>
-                    <input className={Styles.input} name="name" value={input.name} onChange={changeState}></input>
+            <h1 className={S.title}>Categories</h1>
+            <form className={S.form}>
+                <div className={S.section}>
+                    <label className={S.label}>Name:</label><br/>
+                    <input className={S.input} name="name" value={input.name} onChange={changeState}></input>
                 </div>
-                <div className={Styles.section}>
-                    <label className={Styles.label}>Description:</label>
-                    <textarea className={Styles.input, Styles.area}  name="description" value={input.description} onChange={changeState}></textarea>
+                <div className={S.section}>
+                    <label className={S.label}>Description:</label>
+                    <textarea className={S.input, S.area}  name="description" value={input.description} onChange={changeState}></textarea>
                 </div>
-                <button className={Styles.btn} onClick={createCategory}>Create new categorie</button>
+                <button className={S.btn} onClick={createCategory}>Create new categorie</button>
             </form>
         </div>
     )
