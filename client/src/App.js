@@ -6,6 +6,7 @@ import SearchBar from './components/search bar/SearchBar';
 import ProductCard from './components/product card/ProductCard';
 import FormCategories from './components/form category/FormCategories'
 import Catalog from './components/categories/Categories';
+import SideBar from './components/sideBar'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/home" render={() => (
 
         <div className={s.container_path_home}>
+          <SideBar />
           <SearchBar />
           <Catalog/>
           <div className={s.container_productCard}>
