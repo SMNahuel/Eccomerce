@@ -64,4 +64,32 @@ server.post('/', (req, res, next) => {
 	.catch(next)
 });
 
+server.put('/', (req, res, next) => {
+	const { name, description, price, stock } = req.body;
+
+	if (!name) {
+		return res.status(400).send('Error !name');
+	}
+	if (!description && !price && !stock) {
+		return res.status(400).send('At least one attribute (description, price or stock) of product is needed to modify it');
+	}
+
+	let atributesToUpdate = {};
+	if (description) {
+		atributesToUpdate.description = description;
+	}
+	if (price) {
+		atributesToUpdate.price = price;
+	}
+	if (stock) {
+		atributesToUpdate.stock = stock;
+	}
+
+	Product.update(
+		atributesToUpdate,
+		{ where: { name: name } }
+	).then(product => res.send(product))
+	.catch (next);
+});
+
 module.exports = server;
