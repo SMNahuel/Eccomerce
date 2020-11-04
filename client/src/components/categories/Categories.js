@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Categories.module.css'
 
 function Catalog() {
 
-    const arrayCourse = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"]
-    return (
-        <div className={s.container_catalog}>
-            {arrayCourse.map(e => (
+    const [ categories, setCategories ] = useState([])
+    fetch('https://localhost:3001/category')
+        .then(res => res.json())
+        .then(result => (
+            setCategories(result)
+
+        ))
+        .catch(err => alert("Error!!" + err))
+    
+    return(
+        <div>
+            {categories.map(e => (
+
                 <div className={s.container_catalog_button}>
-                    <button>{e}</button>
+                    <button>{e.name}</button>
                 </div>
             ))}
         </div>
