@@ -23,3 +23,9 @@
     background-color: rgba(255,255, 255, .2);
     border-radius: 10px;
   }
+  .container_register{
+    display: flex;
+    justify-content: center;
+    background-color: #282C34;
+    height: 100vh;
+  }

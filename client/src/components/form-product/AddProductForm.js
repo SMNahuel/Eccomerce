@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
+import style from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 const AddProductForm = (props) =>{
 
@@ -17,10 +18,10 @@ const AddProductForm = (props) =>{
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} >
         <div>
-            <label>Name</label>
-            <input type="text" name="name" ref={
+        <form onSubmit={handleSubmit(onSubmit)} >
+            <h4>Agregar producto</h4>
+            <input className={style.controls} type="text" name="name" placeholder= "Ingrese el nombre"ref={
                 register({
                     required: {value: true, message: 'Campo requerido'}
                 })
@@ -28,8 +29,7 @@ const AddProductForm = (props) =>{
                 <div>
                     {errors?.name?.message}
                 </div>
-            <label>Description</label>
-            <input type="text" name="description"ref={
+            <input className={style.controls} type="text" name="description" placeholder= "Ingrese descripcion" ref={
                 register({
                     required: {value: true, message: 'Campo requerido'}
                 })
@@ -37,8 +37,7 @@ const AddProductForm = (props) =>{
                 <div>
                     {errors?.name?.message}
                 </div>
-            <label>Price</label>
-            <input type="text" name="price"ref={
+            <input className={style.controls} type="text" name="price" placeholder= "Ingrese el precio"ref={
                 register({
                     required: {value: true, message: 'Campo requerido'}
                 })
@@ -46,8 +45,7 @@ const AddProductForm = (props) =>{
                 <div>
                     {errors?.name?.message}
                 </div>
-            <label>Stock</label>
-            <input type="text" name="stock"ref={
+            <input className={style.controls} type="text" name="stock" placeholder= "Ingrese el stock"ref={
                 register({
                     required: {value: true, message: 'Campo requerido'}
                 })
@@ -55,9 +53,9 @@ const AddProductForm = (props) =>{
                 <div>
                     {errors?.name?.message}
                 </div>
-            <button>Add new product</button>
-        </div>
+            <button className={style.botones} variant="primary" type="submit">Add new product</button>
       </form>
+      </div>
     );
 }
 
