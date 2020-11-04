@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Styles from './searchBar.module.css'
+import S from './searchBar.module.css'
 
 export default function SearchBar(){
     const [search, setSearch] = useState("")
@@ -11,9 +11,9 @@ export default function SearchBar(){
         //search
     }
     return(
-        <div className={Styles.searchBar}>
-            <input type="text" value={search} onChange ={changeInput} placeholder="Seach..." className={Styles.search}/>
-            <button className={Styles.button} onClick={seachInDB}>.</button>
+        <div className={S.searchBar}>
+            <input type="text" value={search} onChange ={changeInput} placeholder="Seach..." className={S.search}/>
+            <button className={S.button} onClick={seachInDB}>.</button>
         </div>
     )
 }
