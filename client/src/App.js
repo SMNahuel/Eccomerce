@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import SearchBar from './components/search bar/SearchBar';
 import ProductCard from './components/product card/ProductCard';
 import FormCategories from './components/form category/FormCategories'
+import SideBar from './components/sideBar'
 import Categories from './components/categories/Categories';
 import SignIn from './components/register/sign in/SignIn';
 import LogIn from './components/register/log in/LogIn';
@@ -26,6 +27,7 @@ function App() {
       <Route exact path="/home" render={() => (
 
         <div className={s.container_path_home}>
+          <SideBar />
           <SearchBar />
           <Categories/>
           <div className={s.container_productCard}>
