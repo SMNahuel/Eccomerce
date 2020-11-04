@@ -7,6 +7,15 @@ server.get('/', (req, res, next) => {
 	.catch(next);
 });
 
+server.get('/:id', (req, res, next) => {
+	const {products, description, id} = req.params
+	Product.findAll ({
+		where: {
+			name: products
+		}
+	}).then(products => res.products)
+});
+
 server.get('/:category', (req, res, next) => {
 	const { category } = req.params
 	Category.findAll({
