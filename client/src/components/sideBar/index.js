@@ -21,7 +21,7 @@ export default function SideBar(){
                     <div className={S.line}>Perfil</div>
                     <div className={S.line}>Opciones</div>
                     <hr className={S.line}/>
-                    <Link to="/">
+                    <Link to="/addCategory">
                         <div className={S.line}>Crear categoria</div>
                     </Link>
                     <Link to="/">
