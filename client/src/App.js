@@ -12,14 +12,10 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/register" render={() => 
-      <div className={s.container_register}>
-        <SignIn/>
-
+        <div className={s.container_register}>
+          <SignIn />
         </div>
-      
       }/>
-
-
       <Route exact path="/" render={() => <h1>ir a /home</h1>}/>
       <Route exact path="/home" render={() => (
 
@@ -35,14 +31,12 @@ function App() {
             {/* modo de prueba. */}
           </div>
         </div>
-      )}
-      />
+      )}/>
+      
       <Route path="/products/id" render={() => <h1>Detalles de los Productos segun id</h1>} />
       <Route exact path="/addCategory" render={() => <FormCategories/>}/>
       
       {/* y crear sus componentes */}
-      
-      
     </div>
   );
 }
