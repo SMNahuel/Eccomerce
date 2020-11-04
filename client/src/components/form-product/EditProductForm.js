@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
+import style from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 const EditProductForm = (props) =>{
     console.log(props)
@@ -22,9 +23,10 @@ const EditProductForm = (props) =>{
     }
 
     return (
+        <div>
+        <h4>Editar producto</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Name</label>
-        <input type="text" name="name" ref={
+        <input className={style.controls} type="text" name="name" ref={
             register({
                 required: {value: true, message: 'Campo requerido'}
             })
@@ -32,26 +34,33 @@ const EditProductForm = (props) =>{
         <div>
             {errors?.name?.message}
         </div>
-        <label>Description</label>
-        <input type="text" name="description" ref={
+        <input className={style.controls} type="text" name="description" ref={
             register({
                 required: {value: true, message: 'Campo requerido'}
             })
         }/>
-        <label>Price</label>
-        <input type="text" name="price"ref={
+        <div>
+            {errors?.name?.message}
+        </div>
+        <input className={style.controls} type="text" name="price"ref={
             register({
                 required: {value: true, message: 'Campo requerido'}
             })
         }/>
-        <label>Stock</label>
-        <input type="text" name="stock"ref={
+        <div>
+            {errors?.name?.message}
+        </div>        
+        <input className={style.controls} type="text" name="stock"ref={
             register({
                 required: {value: true, message: 'Campo requerido'}
             })
         }/>
-        <button>Edit product</button>
+        <div>
+            {errors?.name?.message}
+        </div>        
+        <button className={style.botones}>Edit product</button>
       </form>
+      </div>
     );
 }
 
