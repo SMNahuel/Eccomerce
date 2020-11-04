@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Product from '../Product';
+import ProductTable from './ProductTable';
 import EditProductForm from './EditProductForm';
 import AddProductForm from './AddProductForm';
 import style from './FormProduct.module.css';
@@ -9,10 +9,10 @@ import {v4 as uuidv4} from 'uuid';
 function FormProduct(){
   const productData = [
     //Utilizamos esta funcion para tener valores de id unicos 
-    {id: uuidv4(), name: 'Nahuel', description: 'EAMEO', price: 200, stock: 4},
-    {id: uuidv4(), name: 'Javier', description: 'Javi', price: 200, stock: 4},
-    {id: uuidv4(), name: 'Ignacio', description: 'Nacho', price: 200, stock: 4},
-    {id: uuidv4(), name: 'Leo', description: 'Leo', price: 200, stock: 4}
+    {id: uuidv4(), name: 'JavaScript', description: 'lorem ipsum dolor ads cuant bat fly on the flasdasdsadsadsaoor', price: 200, stock: 4},
+    {id: uuidv4(), name: 'NodeJS', description: 'lorem ipsum dolor ads cuant ', price: 200, stock: 4},
+    {id: uuidv4(), name: 'VUE', description: 'lorem ipsum dolor ads cuant ', price: 200, stock: 4},
+    {id: uuidv4(), name: 'JAVA', description: 'lorem ipsum dolor ads cuant ', price: 200, stock: 4}
   ]
 
 
@@ -56,39 +56,34 @@ function FormProduct(){
     setProduct(products.map(product=> (product.id === id ? updateProduct: product))) 
   }
   return (
+  <div className={style.form}>
     <div>
-      <h1>Formulario CRUD</h1>
-      <div>
+      {
+        editing ? (
         <div>
-
-          {
-            editing ? (
-              <div>
-                <h2>Edit product</h2>
-                <EditProductForm
-                  currentProduct={currentProduct}
-                  updateProduct= {updateProduct}
-                />
-              </div>
-            ) : (
-              <div>
-                <h2>Add product</h2>
-                <AddProductForm addProduct={addProduct}/>
-              </div>
-            )
-          }
-
-        </div>
-        <div>
-          <h2>View Product</h2>
-          <Product
-            product={products} 
-            deletedProduct={deletedProduct} 
-            editRow={editRow}
+            <EditProductForm className={style.controls}
+              currentProduct={currentProduct}
+              updateProduct= {updateProduct}
             />
         </div>
-      </div>
+        ) : (
+        <div>
+          <AddProductForm 
+            className={style.controls} 
+            addProduct={addProduct}/>
+        </div>
+        )
+      }
     </div>
+    <div>
+      <h2>View Product</h2>
+      <ProductTable
+        product={products} 
+        deletedProduct={deletedProduct} 
+        editRow={editRow}
+      />
+    </div>
+  </div>
   )
 }
 
