@@ -7,6 +7,18 @@ server.get('/', (req, res, next) => {
 	.catch(next);
 });
 
+server.get('/:category', (req, res, next) => {
+	const { category } = req.params
+	Category.findAll({
+		where: {
+			name: category
+		},
+		include: Product
+	})
+	.then (products => res.send(products))
+	.catch(next)
+})
+
 server.delete('/', (req, res, next) => {
     const { name } = req.body
     if (!name) {
