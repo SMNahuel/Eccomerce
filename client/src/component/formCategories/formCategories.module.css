@@ -1,0 +1,44 @@
+.title{
+    text-align: center;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: #282C34; 
+    margin-top: 1%;
+    border-radius: 30px;
+}
+.section{
+    margin-top: 10px;
+}
+.input{
+    width: 90%;
+    margin: auto;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+.label{
+    align-self: center;
+    color: white;
+}
+.area{
+    height: 100px;
+    width: 93%;
+    border-radius: 10px;
+}
+.btn{
+    margin-top: 10px;
+    width:97%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #A29BFE;
+    color: white;
+}
