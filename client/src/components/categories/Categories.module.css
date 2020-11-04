@@ -3,11 +3,13 @@
     height: 35px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 5px 0px;
+    margin-bottom: 20px;
+    overflow-y: hidden;
 }
 .container_catalog_button button{
     background-color: #00B894;
@@ -26,6 +28,6 @@
 }
 .container_catalog::-webkit-scrollbar{
     /* Cambiar a 0 en mobile y > 0 en desktop */
-    height: 0px;
+    height: 3px;
     background-color: #333;
 }
