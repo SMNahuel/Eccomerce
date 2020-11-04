@@ -11,7 +11,7 @@ server.get('/:category', (req, res, next) => {
 	const { category } = req.params
 	Category.findAll({
 		where: {
-			category: category
+			name: category
 		},
 		include: Product
 	})
