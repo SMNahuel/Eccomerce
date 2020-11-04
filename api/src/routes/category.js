@@ -1,6 +1,12 @@
 const server = require('express').Router();
 const { Category } = require('../db.js');
 
+server.get('/', (req, res, next) => {
+	Category.findAll()
+	.then(category => res.send(category))
+	.catch(next);
+})
+
 server.post('/', (req, res, next) => {
     const { name, description } = req.body
     if (!name || !description) {
@@ -16,7 +22,6 @@ server.post('/', (req, res, next) => {
     }).then(category => res.send(category));
 })
 
-
 server.put('/', (req, res, next) => {
     const { name, description } = req.body;
     if (!name || !description) {
@@ -27,8 +32,6 @@ server.put('/', (req, res, next) => {
         { where: { name: name } }
     ).then(category => res.send(category));
 });
-
-
 
 server.delete('/', (req, res, next) => {
     const { name } = req.body
