@@ -44,7 +44,7 @@ function SignIn(){
                         />
                     </div>
                     <div className={s.container_button}>
-                        <button type="submit" onClick={() => console.log(input)}>Sign In</button>
+                        <button type="submit">Sign In</button>
                     </div>
                 </div>
             </form>

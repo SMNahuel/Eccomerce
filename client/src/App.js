@@ -7,13 +7,19 @@ import ProductCard from './components/product card/ProductCard';
 import FormCategories from './components/form category/FormCategories'
 import Categories from './components/categories/Categories';
 import SignIn from './components/register/sign in/SignIn';
+import LogIn from './components/register/log in/LogIn';
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/register" render={() => 
         <div className={s.container_register}>
-          <SignIn />
+          <SignIn/>
+        </div>
+      }/>
+      <Route exact path="/login" render={() =>
+        <div className={s.container_register}>
+          <LogIn/>
         </div>
       }/>
       <Route exact path="/" render={() => <h1>ir a /home</h1>}/>
