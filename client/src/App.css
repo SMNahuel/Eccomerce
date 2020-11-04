@@ -2,28 +2,8 @@
 *{
   margin: 0;
   padding: 0;
+
 }
-.container_path_home{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: #282C34;
-}
-.container_productCard{
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 20px;
-  width: 100%;
-}
-.container_productCard::-webkit-scrollbar{
-  background-color: rgba(255,255, 255, .1);
-  height: 7px;
-}
-.container_productCard::-webkit-scrollbar-thumb{
-  background-color: rgba(255,255, 255, .2);
-  border-radius: 10px;
+.App{
+  overflow-x: hidden;
 }
