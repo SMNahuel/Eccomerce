@@ -14,7 +14,17 @@ function App() {
         <div className="container_path_home">
           <SearchBar />
           <Catalog/>
-          <ProductCard />
+          <div className="container_productCard">
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            {/* modo de prueba. */}
+          </div>
         </div>
 
       )}
