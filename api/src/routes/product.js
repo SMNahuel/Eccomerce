@@ -7,6 +7,21 @@ server.get('/', (req, res, next) => {
 	.catch(next);
 });
 
+server.get('/:id', (req, res, next) => {
+	const {id} = req.params
+	Product.findOne({
+		where:{
+			id: id
+		},
+		include: Category
+	})
+	.then(product => {
+		if(!product) throw `product id: ${id} does not exist`
+		res.send(product)
+	})
+	.catch(next)
+});
+
 server.get('/:category', (req, res, next) => {
 	const { category } = req.params
 	Category.findAll({
