@@ -22,12 +22,10 @@ server.get('/:id', (req, res, next) => {
 	.catch(next)
 });
 
-server.get('/:category', (req, res, next) => {
-	const { category } = req.params
-	Category.findAll({
-		where: {
-			name: category
-		},
+server.get('/category/:id', (req, res, next) => {
+	const { id } = req.params
+	Category.findOne({
+		where: { id: id },
 		include: Product
 	})
 	.then (products => res.send(products))
