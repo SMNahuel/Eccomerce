@@ -1,0 +1,31 @@
+.container_catalog{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 5px 0px;
+}
+.container_catalog_button button{
+    background-color: #00B894;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    color: #DFE6E9;
+    cursor: pointer;
+    margin: 0px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    height: 30px;
+}
+.container_catalog button:hover{
+    background-color: #00B084;
+}
+.container_catalog::-webkit-scrollbar{
+    /* Cambiar a 0 en mobile y > 0 en desktop */
+    height: 0px;
+    background-color: #333;
+}
