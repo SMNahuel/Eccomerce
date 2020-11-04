@@ -17,7 +17,7 @@ function Catalog() {
     }, [])
 
     return(
-        <div>
+        <div className={s.container_catalog}>
             {categories && categories.map(e => (
                 <div className={s.container_catalog_button}>
                     <button>{e.name}</button>
