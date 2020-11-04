@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import S from './formCategories.module.css'
+import S from './FormCategories.module.css'
 
 export default function FormCategories(){
     const[input, setInput] = useState({
