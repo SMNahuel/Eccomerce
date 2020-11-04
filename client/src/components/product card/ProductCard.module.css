@@ -85,3 +85,6 @@
     color: #DFE6E9;
     cursor: pointer;
 }
+.container_button_add_to_card button:hover{
+    background-color: #00B084;
+}
