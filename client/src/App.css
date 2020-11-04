@@ -2,11 +2,8 @@
 *{
   margin: 0;
   padding: 0;
+
 }
-.container_path_home{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.App{
+  overflow-x: hidden;
 }
