@@ -25,7 +25,7 @@ server.put('/', (req, res, next) => {
     Category.update(
         { description: description },
         { where: { name: name } }
-    ).then(Category => res.send(Category));
+    ).then(category => res.send(category));
 });
 
 
