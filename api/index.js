@@ -19,15 +19,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn, Category } = require('./src/db.js');
+const preload = require('./databasePreload')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
-    // precargamos algunos datos para trabajar en modo development
-    let arrayCourse = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"]
-    let promises = arrayCourse.map(category => Category.create({name: category, description: "Cursos de " + category}))
-    Promise.all(promises).then(r => console.log('categories pre-charged'))
-
+    preload();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
