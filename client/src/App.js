@@ -15,11 +15,11 @@ function App() {
       render={() => <h1>Home</h1>}
       />
       <Route
-      path="/catalog"
+      path="/category"
       render={() => <h1>catalogo</h1>}
       />
       <Route
-      path="/catalog/product/id"
+      path="/category/products/id"
       render={() => <h1>Detalles de los Productos segun id</h1>}
       />
       {/* Falta añadir Rutas de Log In y Sign In */}
