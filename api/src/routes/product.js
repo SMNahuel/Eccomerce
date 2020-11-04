@@ -15,7 +15,10 @@ server.get('/:id', (req, res, next) => {
 		},
 		include: Category
 	})
-	.then(product => res.send(product))
+	.then(product => {
+		if(!product) throw `product id: ${id} does not exist`
+		res.send(product)
+	})
 	.catch(next)
 });
 
