@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Categories.module.css'
+
 
 function Catalog() {
 
     const [ categories, setCategories ] = useState([])
-    fetch('https://localhost:3001/category')
-        .then(res => res.json())
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/category`)
+        .then(r => r.json())
         .then(result => (
             setCategories(result)
 
         ))
-        .catch(err => alert("Error!!" + err))
-    
-    return(
-        <div>
-            {categories.map(e => (
+        .catch(err => alert("Error!! " + err))
+    }, [])
 
+    return(
+        <div className={s.container_catalog}>
+            {categories && categories.map(e => (
                 <div className={s.container_catalog_button}>
                     <button>{e.name}</button>
                 </div>

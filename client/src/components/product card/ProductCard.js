@@ -5,7 +5,7 @@ function ProductCard(){
     return(
         <div className={s.container_product_card}>
             <div className={s.container_img}>
-                <img src="https://i.ytimg.com/vi/z95mZVUcJ-E/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLACmaQFGOIHTRS7kqUsWUAuM4tvKA"/>
+                <img src="https://i.ytimg.com/vi/z95mZVUcJ-E/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLACmaQFGOIHTRS7kqUsWUAuM4tvKA" alt="imagen curso javascript"/>
             </div>
             <div className={s.container_details}>
                 <div className={s.container_title}>

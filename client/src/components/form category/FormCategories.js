@@ -26,7 +26,7 @@ export default function FormCategories(){
                 </div>
                 <div className={S.section}>
                     <label className={S.label}>Description:</label>
-                    <textarea className={S.input, S.area}  name="description" value={input.description} onChange={changeState}></textarea>
+                    <textarea className={`${S.input} ${S.area}`}  name="description" value={input.description} onChange={changeState}></textarea>
                 </div>
                 <button className={S.btn} onClick={createCategory}>Create new categorie</button>
             </form>
