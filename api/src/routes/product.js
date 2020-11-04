@@ -8,12 +8,14 @@ server.get('/', (req, res, next) => {
 });
 
 server.get('/:id', (req, res, next) => {
-	const {products, description, id} = req.params
-	Product.findAll ({
-		where: {
+	const {products, description} = req.params
+	Product.findAll({
+		where:{
 			name: products
-		}
-	}).then(products => res.products)
+		},
+		include: description
+	})
+	.then(description => res.send(description))
 });
 
 server.get('/:category', (req, res, next) => {
