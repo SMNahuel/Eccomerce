@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import SearchBar from './components/search bar/SearchBar';
 import ProductCard from './components/product card/ProductCard';
 import FormCategories from './components/form category/FormCategories'
-import Catalog from './components/catalog/Catalog';
+import Catalog from './components/category/Category';
 
 function App() {
   return (

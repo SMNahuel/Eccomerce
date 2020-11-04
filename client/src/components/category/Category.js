@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Catalog.module.css'
+import s from './Category.module.css'
 
 function Catalog() {
 
