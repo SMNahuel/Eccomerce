@@ -1,7 +1,6 @@
 .container_signIn{
     max-width: 600px;
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 10px 15px;
@@ -16,15 +15,20 @@
     border-radius: 7px;
     background-color: #DFE6E9;
     margin-bottom: 15px;
+    border: 1px solid transparent;
 }
+
 .container_inputs input{
     padding: 5px 10px;
     line-height: 1.5em;
+    border-radius: 7px;
     width: 100%;
     background-color: transparent;
     outline: none;
     border: none;
+    box-sizing: border-box;
 }
+
 .container_button{
     display: flex;
     justify-content: center;
