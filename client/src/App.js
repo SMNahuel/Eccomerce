@@ -9,12 +9,21 @@ import Catalog from './components/catalog/Catalog';
 function App() {
   return (
     <div className="App">
-      <Route path="/" render={() => <ProductCard/>}/>
-      <Route path="/home" render={() => <h1>Home</h1>} />
+      <Route exact path="/" render={() => (
+
+        <div className="container_path_home">
+          <SearchBar />
+          <Catalog/>
+          <ProductCard />
+        </div>
+
+      )}
+      />
       <Route path="/category" render={() => <Catalog/>} />
       <Route path="/category/products/id" render={() => <h1>Detalles de los Productos segun id</h1>} />
       {/* Falta añadir Rutas de Log In y Sign In */}
       {/* y crear sus componentes */}
+      
       
     </div>
   );

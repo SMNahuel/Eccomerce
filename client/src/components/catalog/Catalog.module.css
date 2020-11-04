@@ -8,6 +8,7 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 5px 0px;
+    margin-bottom: 15px;
 }
 .container_catalog_button button{
     background-color: #00B894;
