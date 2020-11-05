@@ -3,6 +3,7 @@ import s from './Home.module.css'
 import SearchBar from '../search bar/SearchBar';
 import Categories from './categories/Categories';
 import Catalog from './catalog/Catalog';
+import SideBar from '../sideBar/SideBar'
 
 export default function Home() {
     const [ state, setState ] = useState({
@@ -43,6 +44,7 @@ export default function Home() {
 
     return(
         <div className={s.container_path_home}>
+            <SideBar />
             <SearchBar />
             <Categories categories={state.categories} onSelect={onSelect} />
             <Catalog catalog={state.catalog} />
