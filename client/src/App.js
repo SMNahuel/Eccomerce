@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 import Home from './components/home/Home';
 import FormCategories from './components/form category/FormCategories'
-import SideBar from './components/sideBar'
+import SideBar from './components/sideBar/SideBar'
 import SignIn from './components/register/sign in/SignIn';
 import LogIn from './components/register/log in/LogIn';
 

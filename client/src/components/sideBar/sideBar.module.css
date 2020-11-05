@@ -1,41 +1,34 @@
-.SideBar{
+.container.dehaseIcon{
+    position: absolute;
     height: 100%;
-    width: 80%;
-    position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 1;
-    position: absolute;
-    max-width: 300px;
+    z-index: 30;
+    max-width: 350px;
 }
 .icon{
-    background-color: gray;
-    height: 40px;
-    width: 40px;
-    color: white;
-    display:flex;
+    position: absolute;
+    display: flex;
     justify-content: center;
     align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
-.menu{
-    background-color: gray;
-    height: 100%;
+.container_sideBarProfile{
+    max-width: 310px;
     width: 100%;
-    color:white;
+    position: absolute;
+    z-index: 50;
+    background-color: #6C5CE7;
+    height: 100%;
+    overflow-y: hidden;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    left: -350px;
+    transition: .3s;
+    padding: 0 20px;
 }
-.button{
-    font-size: 25px;
-    height: 30px;
-    width: 30px;
-    position: relative;
-    left: 88%;
-    top: 5px; 
-    background-color: gray;
-    color: white;
-    outline: none;
-    border: none;
-}
-.line{
-    margin-top: 10px;
-    margin-bottom: 10px;
+.prueba{
+    left: 0;
 }
