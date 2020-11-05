@@ -105,4 +105,25 @@ server.put('/', (req, res, next) => {
 	.catch (next);
 });
 
+server.put('/categories/:id', (req, res, next) => {
+	const {id} = req.params;	
+	const {categories} = req.body;	
+	if (!id) return res.status(400).send('Error !ID');
+	if (!categories) return res.status(400).send('Error !categories');	
+	let producto;
+	Product.findByPk(id)
+	.then(product=>{
+		if(!product) throw `Error !product`
+		producto=product;
+		return Category.findAll();
+	})	
+	.then(DBCategories => {
+		const DBCategoriesIds = DBCategories.map(c => c.id) || [];
+		const CategoryNotInDB = categories.some(id => !DBCategoriesIds.includes(id));
+		if (CategoryNotInDB) throw 'all categories must be loaded first';
+		return producto.setCategories(categories)
+	})
+	.then(product => res.send(product))
+	.catch(next)
+})
 module.exports = server;
