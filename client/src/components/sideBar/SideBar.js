@@ -13,7 +13,7 @@ export default function SideBar() {
         <>
             <div className={s.container.dehaseIcon}>
                 <div className={s.icon} onClick={toogleState}>
-                    <DehazeIcon />
+                    <DehazeIcon className={s.icon_DehazeIcon}/>
                 </div>
             </div>
 
