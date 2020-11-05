@@ -8,6 +8,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import ViewListIcon from '@material-ui/icons/ViewList';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import AddIcon from '@material-ui/icons/Add';
 
 function SideBarProfile({ toogleState }){
     return (
@@ -16,7 +18,7 @@ function SideBarProfile({ toogleState }){
                 <button onClick={toogleState}>X</button>
             </div>
             <div className={s.container_profile}>
-                <Avatar />
+                <Avatar src="https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
                 <div className={s.container_user}>
                     <h3>Nombre usuario</h3>
                     <p>emailDeEjemplo@gmail.com</p>
@@ -80,26 +82,45 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </div>
                     </Link>
-                    <Link to="/catalog" className={s.link}>
+                </div>
+                <div className={s.container_empty}></div>
+                <div>
+                    {/* Esta parte dependera del estado del usuario, si esta logeado, no logeado o si es un admin */}
+                    <h4 className={s.title_h4}>Admin</h4>
+                    <Link to="/addCategory" className={s.link}>
                         <div className={s.container_icons_title}>
                             <div className={s.container_icons}>
-                                <ViewListIcon className={s.icon} />
-                                <p>Catalog</p>
+                                <AddIcon className={s.icon}/>
+                                <p>Create category</p>
                             </div>
                             <div>
                                 <ArrowRightIcon />
                             </div>
                         </div>
                     </Link>
-                </div>
-                <div className={s.container_empty}></div>
-                <div>
-                    <Link to="/addCategory">
-                        <div className={s.line}>Crear categoria</div>
+                    <Link to="/" className={s.link}>
+                        <div className={s.container_icons_title}>
+                            <div className={s.container_icons}>
+                                <AddIcon className={s.icon}/>
+                                <p>Create | Modify product</p>
+                            </div>
+                            <div>
+                                <ArrowRightIcon />
+                            </div>
+                        </div>
                     </Link>
-                    <Link to="/">
-                        <div className={s.line}>Crear/modificar producto</div>
+                    <Link to="/login" className={s.link}>
+                        <div className={s.container_icons_title}>
+                            <div className={s.container_icons}>
+                                <MeetingRoomIcon className={s.icon} />
+                                <p>Log Out</p>
+                            </div>
+                            <div>
+                                <ArrowRightIcon />
+                            </div>
+                        </div>
                     </Link>
+                    
                 </div>
             </div>
 

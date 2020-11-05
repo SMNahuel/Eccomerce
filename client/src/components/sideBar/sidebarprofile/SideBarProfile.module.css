@@ -18,12 +18,15 @@
 .container_button button{
     width: 35px;
     height: 35px;
-    background-color: #A29BFE;
-    color: #DFE6E9;
+    background-color: #55EFC4;
+    color: #000000;
     outline: none;
     border: none;
     border-radius: 50%;
     cursor: pointer;
+}
+.container_button button:hover{
+    background-color: #44deb3;
 }
 .container_profile{
     width: 100%;
@@ -84,8 +87,6 @@
 .container_icons p{
     margin-left: 10px;
 }
-
-.line{
-    margin-top: 10px;
-    margin-bottom: 10px;
+.title_h4{
+    color: #DFE6E9;
 }
