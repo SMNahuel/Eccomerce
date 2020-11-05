@@ -4,7 +4,7 @@
     top: 0px;
     left: 0px;
     z-index: 30;
-    max-width: 350px;
+    max-width: 320px;
 }
 .icon{
     position: absolute;
@@ -16,7 +16,7 @@
     cursor: pointer;
 }
 .container_sideBarProfile{
-    max-width: 310px;
+    max-width: 280px;
     width: 100%;
     position: absolute;
     z-index: 50;
