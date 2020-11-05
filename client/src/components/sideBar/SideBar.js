@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './SideBar.module.css'
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import SideBarProfile from './sidebar profile/SideBarProfile';
+import SideBarProfile from './sidebarprofile/SideBarProfile';
 
 
 export default function SideBar() {
