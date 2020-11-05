@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from './SideBar.module.css'
+import s from './sideBar.module.css'
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import SideBarProfile from './sidebarprofile/SideBarProfile';
 
