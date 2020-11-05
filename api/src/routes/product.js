@@ -8,42 +8,39 @@ server.get('/', (req, res, next) => {
 });
 
 server.get('/:id', (req, res, next) => {
-	const {id} = req.params
+	const {id} = req.params;
 	Product.findOne({
-		where:{
-			id: id
-		},
+		where:{id: id},
 		include: Category
 	})
 	.then(product => {
 		if(!product) throw `product id: ${id} does not exist`
 		res.send(product)
 	})
-	.catch(next)
+	.catch(next);
 });
 
 server.get('/category/:id', (req, res, next) => {
-	const { id } = req.params
+	const { id } = req.params;
 	Category.findOne({
 		where: { id: id },
 		include: Product
 	})
 	.then (products => res.send(products))
-	.catch(next)
+	.catch(next);
 })
 
-server.delete('/', (req, res, next) => {
-    const { name } = req.body
+server.delete('/:id', (req, res, next) => {
+	const { id } = req.params;
+    const { name } = req.body;
     if (!name) {
-        throw 'Body must have a name'
+        throw 'Body must have a name';
     }
     Product.destroy({ 
-		where: { 
-			name: name 
-		} 
+		where: {id: id} 
 	}).then(products => {
         res.status(200).json(products)
-    }).catch(next)
+    }).catch(next);
 });
 
 server.post('/', (req, res, next) => {
@@ -77,7 +74,8 @@ server.post('/', (req, res, next) => {
 	.catch(next)
 });
 
-server.put('/', (req, res, next) => {
+server.put('/:id', (req, res, next) => {
+	const id = req.params
 	const { name, description, price, stock } = req.body;
 
 	if (!name) {
@@ -100,7 +98,7 @@ server.put('/', (req, res, next) => {
 
 	Product.update(
 		atributesToUpdate,
-		{ where: { name: name } }
+		{ where: { id: id } }
 	).then(product => res.send(product))
 	.catch (next);
 });
