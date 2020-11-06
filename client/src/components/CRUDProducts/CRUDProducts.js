@@ -36,19 +36,9 @@ export default function CRUDProducts(){
             })
         })
     }
-    
+
     //Funcion deleted a la base de datos
     function deletedProduct(id){
-        // fetch(`http://localhost:3001/products/${name}`, {
-        //     method: 'DELETE'
-        // })
-        //  .catch(err => console.error(err))
-        //  .then(() => {
-        //     
-        //     setState({
-        //         products: arrayFiltrado
-        //     })
-        //  })
         const arrayFiltrado = state.products.filter(product => product.id !== id)
         console.log(id);
         axios.delete(`http://localhost:3001/products/${id}`)
@@ -59,9 +49,8 @@ export default function CRUDProducts(){
                 products: arrayFiltrado
             })
         })
-
-
     }
+
     //Funcion agregar un nuevo productos directamente en el componente AddProductForm
     
     //Funcion editar
@@ -93,8 +82,13 @@ export default function CRUDProducts(){
         //     .then(res => res.json())
         //     // .then(item => props.updateItem(item))
         //     .catch(err => console.error(err))
-
+        axios.put(`http://localhost:3001/products/${id}`, data)
+        .then(({data}) => setState({
+            ...state,
+            products: data
+        }))
     }
+
     return(
         <div className={s.form}>
            <div>
