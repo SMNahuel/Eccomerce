@@ -1,5 +1,6 @@
 const server = require('express').Router();
 const multer = require('multer');
+var upload = multer({ storage: storage }).single('Image')
 
 
 var storage = multer.diskStorage({
@@ -13,7 +14,6 @@ var storage = multer.diskStorage({
 
 
 server.post('/', (req, res, next)=> {
-    var upload = multer({ storage: storage }).single('Image')
     upload(req, res, (err) => {
         console.log(req.file)
         if (err ) {
