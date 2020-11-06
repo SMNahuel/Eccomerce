@@ -15,21 +15,21 @@ export default function Home() {
 
     useEffect(() => {
         axios.get(`http://localhost:3001/category`)
-        .then(({data}) => setState({
+        .then(({data}) => setState(state => ({
             ...state, 
             categories: data,
             selectedCategory: data[0].id
-        }))
+        })))
         .catch(err => alert("Error!! " + err))
     }, [])
 
     useEffect(() => {
         if (state.selectedCategory) {
             axios.get(`http://localhost:3001/products/category/${state.selectedCategory}`)
-            .then(({data}) => setState({
+            .then(({data}) => setState(state => ({
                 ...state, 
                 catalog: data.products
-            }))
+            })))
             .catch(err => alert("Error!! " + err))
         }
     }, [state.selectedCategory])

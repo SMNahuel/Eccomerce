@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './RowCategory.module.css';
+/* import s from './RowCategory.module.css'; */
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
