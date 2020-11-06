@@ -10,7 +10,6 @@ server.get('/', (req, res, next) => {
 
 server.get('/search', (req, res, next) => {
 	const { key } = req.query;
-	console.log(key);
 	Product.findAll({ 
 		where:{[Op.or]: [
 			{name: {[Op.substring]: key}},
@@ -46,15 +45,12 @@ server.get('/category/:id', (req, res, next) => {
 
 server.delete('/:id', (req, res, next) => {
 	const { id } = req.params;
-    const { name } = req.body;
-    if (!name) {
-        throw 'Body must have a name';
-    }
     Product.destroy({ 
 		where: {id: id} 
-	}).then(products => {
-        res.status(200).json(products)
-    }).catch(next);
+	})
+	.then(product => Product.findAll({ include: Category }))
+	.then(products => res.send(products))
+	.catch(next);
 });
 
 server.post('/', (req, res, next) => {
@@ -79,47 +75,37 @@ server.post('/', (req, res, next) => {
 	})
 	.then(product => product.setCategories(categories))
 	.then(res => {
-		return Product.findOne({
-			include: Category ,
-			where: { name: name }
-		})
+		return  Product.findAll({ include: Category })
 	})
-	.then(product => res.send(product))
-	.catch(next)
+	.then(products => res.send(products))
+	.catch(next);
 });
 
 server.put('/:id', (req, res, next) => {
-	const id = req.params
+	const { id } = req.params
 	const { name, description, price, stock } = req.body;
-
-	if (!name) {
-		return res.status(400).send('Error !name');
-	}
-	if (!description && !price && !stock) {
-		return res.status(400).send('At least one attribute (description, price or stock) of product is needed to modify it');
+	if (!name && !description && !price && !stock) {
+		return res.status(400).send('At least one attribute (name, description, price or stock) of product is needed to modify it');
 	}
 
 	let atributesToUpdate = {};
-	if (description) {
-		atributesToUpdate.description = description;
-	}
-	if (price) {
-		atributesToUpdate.price = price;
-	}
-	if (stock) {
-		atributesToUpdate.stock = stock;
-	}
-
+	if (name) atributesToUpdate.name = name;
+	if (description) atributesToUpdate.description = description;
+	if (price) atributesToUpdate.price = price;
+	if (stock) atributesToUpdate.stock = stock;
+	
 	Product.update(
 		atributesToUpdate,
 		{ where: { id: id } }
-	).then(product => res.send(product))
-	.catch (next);
+	)
+	.then(product => Product.findAll({ include: Category }))
+	.then(products => res.send(products))
+	.catch(next);
 });
 
 server.put('/categories/:id', (req, res, next) => {
 	const {id} = req.params;	
-	const {categories} = req.body;	
+	const {categories} = req.body;
 	if (!id) return res.status(400).send('Error !ID');
 	if (!categories) return res.status(400).send('Error !categories');	
 	let producto;

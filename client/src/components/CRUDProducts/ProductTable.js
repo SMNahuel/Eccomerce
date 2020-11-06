@@ -2,6 +2,7 @@ import React from 'react';
 import style from './FormProduct.module.css';
 //Declaramos componente Product como función con ES6
 const ProductTable = (props) => {
+    
     return(
         <table className={style.product}>
         <thead>
@@ -24,7 +25,7 @@ const ProductTable = (props) => {
                 <td>
                   <button 
                     className={style.botones}
-                    onClick = {()=>{props.editRow(product)}}>
+                    onClick = {()=>{ props.editRow(product)}}>
                     Edit
                   </button>
                   <button 

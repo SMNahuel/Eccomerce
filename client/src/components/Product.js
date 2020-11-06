@@ -1,48 +1,10 @@
 import React from 'react';
 //Declaramos componente Product como función con ES6
-const Product = (props) => {
-    return(
-        <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.product.length > 0 ? (
-            props.product.map((product) => (
-              <tr key={product.id}>
-                <td>{product.name}</td>
-                <td>{product.description}</td>
-                <td>{product.price}</td>
-                <td>{product.stock}</td>
-                <td>
-                  <button 
-     
-                    onClick = {()=>{props.editRow(product)}}>
-                    Edit
-                  </button>
-                  <button 
-                    className="button muted-button"
-                    onClick={() => {props.deletedProduct(product.id)}}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            )) 
-            ) : (
-              <tr>
-                <td colSpan={3}>No users</td>
-              </tr>
-            )}
-    
-        </tbody>
-      </table>)
+const Product = ({ titulo, descripcion, precio, cantidad}) => {
+  <div>
+      <div>{titulo}</div>
+      <div><h3>{descripcion}</h3><h4>{precio}</h4><h4>{cantidad}</h4></div>
+  </div>
 }
 export default Product;
 //Este un componente presentacional 

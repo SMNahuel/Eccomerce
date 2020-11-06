@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductTable from './ProductTable';
 import EditProductForm from './EditProductForm';
 import AddProductForm from './AddProductForm';
@@ -9,32 +9,27 @@ import {v4 as uuidv4} from 'uuid';
 function FormProduct(){
   const productData = [
     //Utilizamos esta funcion para tener valores de id unicos 
-    {id: uuidv4(), name: 'JavaScript', description: 'lorem ipsum dolor ads cuant bat fly on the flasdasdsadsadsaoor', price: 200, stock: 4},
-    {id: uuidv4(), name: 'NodeJS', description: 'lorem ipsum dolor ads cuant ', price: 200, stock: 4},
-    {id: uuidv4(), name: 'VUE', description: 'lorem ipsum dolor ads cuant ', price: 200, stock: 4},
-    {id: uuidv4(), name: 'JAVA', description: 'lorem ipsum dolor ads cuant ', price: 200, stock: 4}
+    {id: 'soy una prueba', name: 'soy una prueba', description: 'soy una prueba', price: 1 , stock: 1}
   ]
+    //State
+    const [products, setProduct] = useState(productData);
+  useEffect(() => {
+    fetch(`http://localhost:3000/products`)
+    .then(r => r.json())
+    .then(result => (
+        setProduct(result)
+    ))
+    .catch(err => alert("Error!! " + err))
+  }, [])
 
 
-  //State
-  const [products, setProduct] = useState(productData);
   
   //Created
-  const addProduct = (product) =>{
-    product.id = uuidv4()
-    setProduct([
-      ...products,
-      product
 
-    ])
-  }
 
   //Remove
   
-  const deletedProduct = (id) =>{
-    const arrayFiltrado = products.filter(product => product.id !== id)
-    setProduct(arrayFiltrado);
-  }
+
 
   //Update
   const [editing, setEditing] = useState(false);
