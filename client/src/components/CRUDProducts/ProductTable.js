@@ -25,12 +25,12 @@ const ProductTable = (props) => {
                 <td>
                   <button 
                     className={style.botones}
-                    onClick = {()=>{ props.editRow(product) }}>
+                    onClick = {()=>{ props.editRow(product)}}>
                     Edit
                   </button>
                   <button 
                     className={style.botonesDeleted}
-                    onClick={() => {props.deletedProduct(product.name)}}
+                    onClick={() => {props.deletedProduct(product.id)}}
                   >
                     Delete
                   </button>

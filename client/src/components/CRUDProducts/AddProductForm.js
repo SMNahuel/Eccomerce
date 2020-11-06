@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
 import style from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
-const AddProductForm = () =>{
+const AddProductForm = ({handleCreate}) =>{
 
     const {register, errors} = useForm();
     const [state, setState] = useState({
-        product: []
+       name: '',
+       description: '',
+       price: '',
+       stock: ''
     });
 
     const sendProduct = (e) =>{
-        e.preventDefault()
-
-        fetch('http://localhost:3001/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(state.product)
-        })
-            .catch(err => console.log(err))
-            .then(res => res.json())
-            .then(thing => console.log(thing))
+        handleCreate(state)
     }
 
     return (
         <div>
-        <form >
+        <form onSubmit={sendProduct}>
             <h4>Agregar producto</h4>
             <input 
             className={style.controls} 
@@ -39,10 +32,8 @@ const AddProductForm = () =>{
             }
             onChange={(e)=>{
                 setState({
-                    product: {
-                        ...state.product,
-                        name: e.target.value
-                    }
+                    ...state,
+                    [e.target.name]: e.target.value
                 })
             }}
             />
@@ -60,10 +51,8 @@ const AddProductForm = () =>{
             }
             onChange={(e)=>{
                 setState({
-                    product: {
-                        ...state.products,
-                        description: e.target.value
-                    }
+                        ...state,
+                        [e.target.name]: e.target.value
                 })
             }}
             />
@@ -82,10 +71,8 @@ const AddProductForm = () =>{
             }
             onChange={(e)=>{
                 setState({
-                    product: {
-                        ...state.products,
-                        price: e.target.value
-                    }
+                    ...state,
+                    [e.target.name]: e.target.value
                 })
             }}
             />
@@ -103,18 +90,16 @@ const AddProductForm = () =>{
                 })
             }
             onChange={(e)=>{
-                setState({
-                    product: {
-                        ...state.products,
-                        stock: e.target.value
-                    }
+                setState({                  
+                    ...state,
+                    [e.target.name]: e.target.value
                 })
             }}
             />
                 <div>
                     {errors?.name?.message}
                 </div>
-            <button className={style.botones} onSubmit={sendProduct}>Add new product</button>
+            <button className={style.botones} >Add new product</button>
       </form>
       </div>
     );

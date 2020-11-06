@@ -18,8 +18,7 @@ const EditProductForm = (props) =>{
     
 
     const onSubmit = (data, e) =>{
-    //console.log(data);
-    data.id = props.currentProduct
+    //console.log(data)
     props.updateProduct(props.currentProduct.id, data)
     
     //Limpiar campos

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from './FormProduct.module.css';
+import axios from 'axios';
 import EditProductForm from './EditProductForm';
 import AddProductForm from './AddProductForm';
 import ProductTable from './ProductTable';
@@ -9,35 +10,57 @@ export default function CRUDProducts(){
 
     
     const [state, setState] = useState({
-        products: []
+        products: [],
+        product: {}
     })
     //Pedimos los productos a la base de datos 
     //Y mostramos
     useEffect(() => {
-        fetch(`http://localhost:3001/products`)
-        .then(r => r.json())
-        .then(result => (
+        let res = axios.get(`http://localhost:3001/products`)
+        .then(({data}) => 
             //Seteamos los productos a nuestro estado
             setState({
                 ...state,
-                products: result
+                products: data
             })
-        ))
-        .catch(err => alert("Error!! " + err))
+        )
     }, [])
 
-    //Funcion deleted a la base de datos
-    function deletedProduct(name){
-        fetch(`http://localhost:3001/products/${name}`, {
-            method: 'DELETE'
-        })
-         .catch(err => console.error(err))
-         .then(() => {
-            const arrayFiltrado = state.products.filter(product => product.name !== name)
+    //Funcionando
+    const handleCreate = (product) =>{
+        axios.post('http://localhost:3001/products', product)
+        .then(({data}) => {
             setState({
+                ...state,
+                products: data
+            })
+        })
+    }
+    
+    //Funcion deleted a la base de datos
+    function deletedProduct(id){
+        // fetch(`http://localhost:3001/products/${name}`, {
+        //     method: 'DELETE'
+        // })
+        //  .catch(err => console.error(err))
+        //  .then(() => {
+        //     
+        //     setState({
+        //         products: arrayFiltrado
+        //     })
+        //  })
+        const arrayFiltrado = state.products.filter(product => product.id !== id)
+        console.log(id);
+        axios.delete(`http://localhost:3001/products/${id}`)
+        .then(({data}) =>{
+            console.log(data);
+            setState({
+                ...state,
                 products: arrayFiltrado
             })
-         })
+        })
+
+
     }
     //Funcion agregar un nuevo productos directamente en el componente AddProductForm
     
@@ -56,20 +79,20 @@ export default function CRUDProducts(){
             stock: product.stock
         })
     }
-    const updateProduct = (id) =>{
+    const updateProduct = (id, data) =>{
         setEditing(false);
         console.log(id);
-
-        fetch(`http://localhost:3001/products/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updateProduct)
-          })
-            .catch(err => console.error(err))
-            .then(res => res.json())
-            .then(item => this.props.updateItem(item))
+        console.log(data);
+        // fetch(`http://localhost:3001/products/`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        //   })
+        //     .then(res => res.json())
+        //     // .then(item => props.updateItem(item))
+        //     .catch(err => console.error(err))
 
     }
     return(
@@ -88,6 +111,7 @@ export default function CRUDProducts(){
                 <div>
                 <AddProductForm 
                     className={s.controls}
+                    handleCreate = {handleCreate}
                     />
                 </div>
                 )
