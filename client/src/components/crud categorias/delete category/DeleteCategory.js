@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './DeleteCategory.module.css';
+/* import s from './DeleteCategory.module.css'; */
 
 export default function DeleteCategory( { handleDelete, category, onNotSure } ){
     return (
@@ -16,4 +16,3 @@ export default function DeleteCategory( { handleDelete, category, onNotSure } ){
         </div>
     )
 }
- 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from './ModifyCategory.module.css';
+/* import s from './ModifyCategory.module.css'; */
 
 function ModifyCategory({handleUpdate, category}){
     const [ input, setInput ] = useState({
