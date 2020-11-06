@@ -4,10 +4,10 @@ import s from './App.module.css'
 import { Route } from 'react-router-dom';
 
 import Home from './components/home/Home';
-import FormCategories from './components/form category/FormCategories'
 import SignIn from './components/register/sign in/SignIn';
 import LogIn from './components/register/log in/LogIn';
 import SideBar from './components/sideBar/SideBar';
+import CrudCategory from './components/crud categorias/CrudCategory';
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
       <Route exact path="/addCategory" render={() => (
         <>
           <SideBar />
-          <FormCategories />
+          <CrudCategory/>
         </>
       )}/>
     </div>
