@@ -4,7 +4,7 @@ import style from './FormProduct.module.css';
 const ProductTable = (props) => {
     
     return(
-        <table className={style.product}>
+        <table name="arribas" className={style.product}>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -24,6 +24,7 @@ const ProductTable = (props) => {
                 <td>{product.stock}</td>
                 <td>
                   <button 
+                    href="#arriba"
                     className={style.botones}
                     onClick = {()=>{ props.editRow(product)}}>
                     Edit
