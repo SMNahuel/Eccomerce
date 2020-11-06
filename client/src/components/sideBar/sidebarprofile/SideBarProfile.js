@@ -87,7 +87,7 @@ function SideBarProfile({ toogleState }){
                 <div>
                     {/* Esta parte dependera del estado del usuario, si esta logeado, no logeado o si es un admin */}
                     <h4 className={s.title_h4}>Admin</h4>
-                    <Link to="/addCategory" className={s.link}>
+                    <Link to="/categories" className={s.link}>
                         <div className={s.container_icons_title}>
                             <div className={s.container_icons}>
                                 <AddIcon className={s.icon}/>
@@ -98,7 +98,7 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </div>
                     </Link>
-                    <Link to="/" className={s.link}>
+                    <Link to="/products" className={s.link}>
                         <div className={s.container_icons_title}>
                             <div className={s.container_icons}>
                                 <AddIcon className={s.icon}/>
