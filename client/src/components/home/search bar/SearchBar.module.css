@@ -29,8 +29,4 @@
     border: none;
     cursor: pointer;
 }
-.button_none{
-    outline: none;
-    border: none;
-    visibility: hidden;
-}
+
