@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import s from './CrudCategory.module.css';
+/* import s from './CrudCategory.module.css'; */
 import axios from 'axios';
 import TableCategory from './table category/TableCategory'
 import CreateCategory from './create category/CreateCategory';
@@ -17,10 +17,10 @@ function CrudCategory(){
     useEffect(() => {
         axios.get('http://localhost:3001/category')
         .then(({data}) => 
-            setState({
+            setState(state => ({
                 ...state, 
                 categories: data
-            })
+            }))
         )
     }, [])
 
@@ -47,14 +47,11 @@ function CrudCategory(){
     }
     const handleUpdate = (id, category) => {
         axios.put(`http://localhost:3001/category/${id}`, category)
-        .then(({data}) => {
-            console.log(data)
-            setState({
-                ...state,
-                categories: data,
-                action: null,
-            })
-        })
+        .then(({data}) => setState({
+            ...state,
+            categories: data,
+            action: null,
+        }))
     }
 
     const onDelete = (id) => {
