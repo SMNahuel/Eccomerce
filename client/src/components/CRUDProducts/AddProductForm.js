@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import {useForm} from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {useForm} from 'react-hook-form';
 import style from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 const AddProductForm = ({handleCreate}) =>{
@@ -10,12 +10,28 @@ const AddProductForm = ({handleCreate}) =>{
        name: '',
        description: '',
        price: '',
-       stock: ''
+       stock: '',
+       categories: ''
     });
+
+    const [categories, setCategory] = useState({
+        categories: ''
+    })
+    useEffect(() => {
+        axios.get(`http://localhost:3001/category`)
+        .then(({data}) => 
+            //Seteamos las categorias a nuestro estado
+            setCategory(state =>({
+                ...state,
+                categories: data.categories
+            }))
+        )
+    }, [])
 
     const sendProduct = (e) =>{
         handleCreate(state)
     }
+
 
     return (
         <div>
@@ -96,6 +112,15 @@ const AddProductForm = ({handleCreate}) =>{
                 })
             }}
             />
+            {/* @Nahuel */}
+            {/* Estoy tratando de mapear categories con un input*/}
+            
+            {console.log(categories.categories)}
+            {/* <input 
+            type="checkbox"
+            name={categories.name}
+            /> */}
+
                 <div>
                     {errors?.name?.message}
                 </div>

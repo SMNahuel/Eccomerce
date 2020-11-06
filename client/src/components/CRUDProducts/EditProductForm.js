@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
 import style from './FormProduct.module.css';
 
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 
 const EditProductForm = (props) =>{
+    
     const {register, errors, handleSubmit, setValue} = useForm({
         defaultValues: props.currentProduct
     });
-    const [state, setState] = useState({
-        product: []
-    })
+
+    //Usamos setValue para setear en el input los valores del producto a modificar
     setValue('name', props.currentProduct.name);
     setValue('description', props.currentProduct.description);
     setValue('price', props.currentProduct.price);
@@ -24,8 +24,7 @@ const EditProductForm = (props) =>{
     //Limpiar campos
     e.target.reset();
     }
-    //linea 46
-    //<form onSubmit={handleSubmit(onSubmit)}></form>
+
     return (
         <div>
         <h4>Editar producto</h4>
