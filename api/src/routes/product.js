@@ -1,11 +1,25 @@
 const server = require('express').Router();
 const { Product, Category } = require('../db.js');
+const { Op } = require("sequelize");
 
 server.get('/', (req, res, next) => {
 	Product.findAll({ include: Category })
 	.then(products => res.send(products))
 	.catch(next);
 });
+
+server.get('/search', (req, res, next) => {
+	const { key } = req.query;
+	console.log(key);
+	Product.findAll({ 
+		where:{[Op.or]: [
+			{name: {[Op.substring]: key}},
+			{description: {[Op.substring]: key}}
+		]}
+	})
+	.then(r => res.send(r))
+	.catch(next);
+})
 
 server.get('/:id', (req, res, next) => {
 	const {id} = req.params;
@@ -124,4 +138,5 @@ server.put('/categories/:id', (req, res, next) => {
 	.then(product => res.send(product))
 	.catch(next)
 })
+
 module.exports = server;
