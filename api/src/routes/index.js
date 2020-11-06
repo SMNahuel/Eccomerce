@@ -11,6 +11,6 @@ const router = Router();
 // router.use('/auth', authRouter);
 router.use('/products', productRouter);
 router.use('/category', categoryRouter);
-router.use('/profile', imageRouter);
+router.use('/image', imageRouter);
 
 module.exports = router;

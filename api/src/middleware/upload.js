@@ -1,4 +1,4 @@
-const server = require('express').Router();
+
 const multer = require("multer");
 
 const imageFilter = (req, file, cb) => {
