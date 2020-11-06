@@ -32,5 +32,5 @@ const uploadFiles = async (req, res) => {
 };
 
 module.exports = {
-  uploadFiles,
+  uploadFiles
 };
