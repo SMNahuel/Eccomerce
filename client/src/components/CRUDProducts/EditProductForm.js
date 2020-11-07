@@ -14,7 +14,7 @@ const EditProductForm = (props) =>{
         description: props.currentProduct.description,
         price: props.currentProduct.price,
         stock: props.currentProduct.stock,
-        categories: props.currentProduct.categories
+        categories: props.currentProduct.categories.map(c => c.id)
     });
 
     //Usamos setValue para setear en el input los valores del producto a modificar
@@ -34,7 +34,7 @@ const EditProductForm = (props) =>{
 
     const onSubmit = (data, e) =>{
     //console.log(data)
-    props.updateProduct(props.currentProduct.id, data)
+    props.updateProduct(props.currentProduct.id, state)
     
     //Limpiar campos
     e.target.reset();
@@ -44,18 +44,18 @@ const EditProductForm = (props) =>{
         if(e.target.checked){
             setState({
                 ...state,
-                categories: state.categories.concat(e.target.name)
+                categories: state.categories.concat(Number(e.target.name))
             })
         }else{
             setState({
                 ...state,
-                categories: state.categories.filter( id => id !== e.target.name)
+                categories: state.categories.filter( id => id !== Number(e.target.name))
             })
         }
     }
     const verificarCheck = (id) =>{
         for(var i= 0;state.categories.length >i; i++){
-            if(state.categories[i].id === id){
+            if(state.categories[i] === id){
                 return true
             }
         }
@@ -127,14 +127,14 @@ const EditProductForm = (props) =>{
                 <label 
                 className={style.checkbox} 
                 key={e.id}>
-                    
-                    <input 
-                    type="checkbox"
-                    name={e.id}
-                    id={e.name}
-                    checked={verificarCheck(e.id)}
-                    onClick={onCheck}
-                    /> 
+
+                    <input
+                        type="checkbox"
+                        name={e.id}
+                        id={e.name}
+                        checked={verificarCheck(e.id)}
+                        onChange={onCheck}
+                    />
                     
                         <label for={e.name}>
                             {e.name}

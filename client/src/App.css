@@ -19,3 +19,7 @@
   background-color: var(--background);
   min-height: 100vh;
 }
+tr{
+  max-height: 5px;
+  line-height: 20px;
+}
