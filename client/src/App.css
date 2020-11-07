@@ -1,11 +1,21 @@
-
+:root {
+  --background: #282C34;
+  --green-primary: #00CEC9;
+  --green-secundary: #00B894;
+  --red-primary: #d63031;
+  --red-secundary: #ff7675;
+  --background-ligth: #DFE6E9;
+  --green-primary-ligth: #81ECEC;
+  --green-secundary-ligth: #55EFC4;
+  --red-primary-ligth: #e17055;
+  --red-secundary-ligth: #fab1a0;
+}
 *{
   margin: 0;
   padding: 0;
-
 }
 .App{
   overflow-x: hidden;
-  background-color: #282C34;
+  background-color: var(--background);
   min-height: 100vh;
 }

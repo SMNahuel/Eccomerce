@@ -1,8 +1,8 @@
 .container_searchBar{
     display: flex;
     justify-content: center;
-    min-width: 250px;
-    max-width: 650px;
+    width: 60vw;
+    height: 30px;
     margin: 10px auto;
 }
 .container_input_buttons{
@@ -11,9 +11,8 @@
     width: 100%;
     background-color: #DFE6E9;
     padding: 0 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     margin: 0px 10px;
-    
 }
 .container_input_buttons input{
     width: 100%;
