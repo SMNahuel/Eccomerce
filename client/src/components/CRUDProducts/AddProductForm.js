@@ -43,110 +43,110 @@ const AddProductForm = ({handleCreate}) =>{
 
     return (
         <div>
-        <form 
-        className = {style.formulario}
-        onSubmit={sendProduct}>
-            <h4>Agregar producto</h4>
-            <input 
-            className={style.controls} 
-            type="text" name="name" 
-            placeholder= "Ingrese el nombre"
-            ref={
-                register({
-                    required: {value: true, message: 'Campo requerido'}
-                })
-            }
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
-            />
+            <form
+                className={style.formulario}
+                onSubmit={sendProduct}>
+                <h4>Agregar producto</h4>
+                <input
+                    className={style.controls}
+                    type="text" name="name"
+                    placeholder="Ingrese el nombre"
+                    ref={
+                        register({
+                            required: { value: true, message: 'Campo requerido' }
+                        })
+                    }
+                    onChange={(e) => {
+                        setState({
+                            ...state,
+                            [e.target.name]: e.target.value
+                        })
+                    }}
+                />
                 <div>
                     {errors?.name?.message}
                 </div>
-            <input 
-            className={style.controls} 
-            type="text" name="description" 
-            placeholder= "Ingrese descripcion" 
-            ref={
-                register({
-                    required: {value: true, message: 'Campo requerido'}
-                })
-            }
-            onChange={(e)=>{
-                setState({
-                        ...state,
-                        [e.target.name]: e.target.value
-                })
-            }}
-            />
+                <input
+                    className={style.controls}
+                    type="text" name="description"
+                    placeholder="Ingrese descripcion"
+                    ref={
+                        register({
+                            required: { value: true, message: 'Campo requerido' }
+                        })
+                    }
+                    onChange={(e) => {
+                        setState({
+                            ...state,
+                            [e.target.name]: e.target.value
+                        })
+                    }}
+                />
                 <div>
                     {errors?.name?.message}
                 </div>
-            <input 
-            className={style.controls} 
-            type="text"  
-            name="price" 
-            placeholder= "Ingrese el precio"
-            ref={
-                register({
-                    required: {value: true, message: 'Campo requerido'}
-                })
-            }
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
-            />
+                <input
+                    className={style.controls}
+                    type="text"
+                    name="price"
+                    placeholder="Ingrese el precio"
+                    ref={
+                        register({
+                            required: { value: true, message: 'Campo requerido' }
+                        })
+                    }
+                    onChange={(e) => {
+                        setState({
+                            ...state,
+                            [e.target.name]: e.target.value
+                        })
+                    }}
+                />
                 <div>
                     {errors?.name?.message}
                 </div>
-            <input 
-            className={style.controls} 
-            type="text" 
-            name="stock" 
-            placeholder= "Ingrese el stock"
-            ref={
-                register({
-                    required: {value: true, message: 'Campo requerido'}
-                })
-            }
-            onChange={(e)=>{
-                setState({                  
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
-            />
-            <div >
-            {/* @Nahuel */}
-            {categories.map(c =>
-                    <label 
-                    className={style.checkbox} 
-                    key={c.id}>
-                        <input
-                        type="checkbox"
-                        name={c.id}
-                        id={c.name}
-                        onChange={onCheck}
-                        /> 
+                <input
+                    className={style.controls}
+                    type="text"
+                    name="stock"
+                    placeholder="Ingrese el stock"
+                    ref={
+                        register({
+                            required: { value: true, message: 'Campo requerido' }
+                        })
+                    }
+                    onChange={(e) => {
+                        setState({
+                            ...state,
+                            [e.target.name]: e.target.value
+                        })
+                    }}
+                />
+                <div >
+                    {/* @Nahuel */}
+                    {categories.map(c =>
+                        <label
+                            className={style.checkbox}
+                            key={c.id}>
+                            <input
+                                type="checkbox"
+                                name={c.id}
+                                id={c.name}
+                                onChange={onCheck}
+                            />
 
-                        <label for={c.name}>
-                            {c.name}
+                            <label for={c.name}>
+                                {c.name}
+                            </label>
                         </label>
-                    </label>
-            )}
-            </div>
+                    )}
+                </div>
                 <div>
                     {errors?.name?.message}
                 </div>
-            <button className={style.botones} >Add new product</button>
-      </form>
-      </div>
+                <button className={style.botones} >Add new product</button>
+            </form>
+        </div>
     );
 }
 

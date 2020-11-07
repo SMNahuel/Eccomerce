@@ -6,12 +6,10 @@
 
 .form{
     color: white;
-    width: 800px;
+    max-width: 800px;
     background-color: #24303c;
-    padding: 30px;
+    padding: 11px;
     margin: auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
     line-height: 40px;
     text-align: center;
     box-shadow: 7px 13px 37px  #000;
@@ -20,6 +18,10 @@
 .form h4{
     font-size: 22px;
     margin-bottom: 20px;
+}
+.form input{
+    outline: none;
+    border-radius: 8px;
 }
 
 .controls{
@@ -42,22 +44,26 @@
     color: white;
     margin: 16px 0;
     font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
 }
 
 .product{
     width: 100%;
 }
-.product .botones{
-    width: 40%;
-}
+
 .product .botonesDeleted {
-    width: 40%;
+    width: 100%;
     background-color: red;
     border: none;
     padding: 12px;
     color: white;
     margin: 16px 0;
     font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
 }
 
 .description{
