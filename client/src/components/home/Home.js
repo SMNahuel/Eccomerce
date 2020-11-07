@@ -5,12 +5,14 @@ import SearchBar from './search bar/SearchBar';
 import Categories from './categories/Categories';
 import Catalog from './catalog/Catalog';
 import SideBar from '../sideBar/SideBar';
+import Product from './Product/Product';
 
 export default function Home() {
     const [ state, setState ] = useState({
         categories: [],
         selectedCategory: null,
-        catalog: []
+        catalog: [],
+        product: null
     })
 
     useEffect(() => {
@@ -50,12 +52,27 @@ export default function Home() {
         .catch(err => alert("Error!! " + err))
     }
 
+    const handleDetail = (product)=>{
+        setState({
+            ...state, 
+            product: product
+        })
+    }
+
+    const handleBack = ()=>{
+        setState({
+            ...state, 
+            product: null
+        })
+    }
+
     return(
         <div className={s.container_path_home}>
             <SideBar />
+            {state.product && <Product product={state.product} onBack={handleBack} />}
             <SearchBar handleSearch={handleSearch} />
             <Categories categories={state.categories} onSelect={onSelect} />
-            <Catalog catalog={state.catalog} />
+            <Catalog catalog={state.catalog} handleDetail={handleDetail} />
         </div>
     )
 }
