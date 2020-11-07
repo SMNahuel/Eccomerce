@@ -35,6 +35,7 @@ export default function CRUDProducts(){
                 ...state,
                 products: data
             })
+            console.log(data);
         })
     }
 
@@ -69,7 +70,8 @@ export default function CRUDProducts(){
             name: product.name,
             description: product.description,
             price: product.price,
-            stock: product.stock
+            stock: product.stock,
+            categories: product.categories
         })
     }
 

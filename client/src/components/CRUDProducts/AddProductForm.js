@@ -11,31 +11,41 @@ const AddProductForm = ({handleCreate}) =>{
        description: '',
        price: '',
        stock: '',
-       categories: ''
+       categories: []
     });
 
-    const [categories, setCategory] = useState({
-        categories: ''
-    })
+    const [categories, setCategory] = useState([])
     useEffect(() => {
         axios.get(`http://${window.location.hostname}:3001/category`)
         .then(({data}) => 
             //Seteamos las categorias a nuestro estado
-            setCategory(state =>({
-                ...state,
-                categories: data.categories
-            }))
+            setCategory(data)
         )
     }, [])
 
     const sendProduct = (e) =>{
         handleCreate(state)
     }
-
+    const onCheck = (e) => {
+        if(e.target.checked){
+            setState({
+                ...state,
+                categories: state.categories.concat(e.target.name)
+            })
+        }else{
+            setState({
+                ...state,
+                categories: state.categories.filter( id => id !== e.target.name)
+            })
+        }
+        
+    }   
 
     return (
         <div>
-        <form onSubmit={sendProduct}>
+        <form 
+        className = {style.formulario}
+        onSubmit={sendProduct}>
             <h4>Agregar producto</h4>
             <input 
             className={style.controls} 
@@ -112,15 +122,25 @@ const AddProductForm = ({handleCreate}) =>{
                 })
             }}
             />
+            <div >
             {/* @Nahuel */}
-            {/* Estoy tratando de mapear categories con un input*/}
-            
-            {console.log(categories.categories)}
-            {/* <input 
-            type="checkbox"
-            name={categories.name}
-            /> */}
+            {categories.map(c =>
+                    <label 
+                    className={style.checkbox} 
+                    key={c.id}>
+                        <input
+                        type="checkbox"
+                        name={c.id}
+                        id={c.name}
+                        onChange={onCheck}
+                        /> 
 
+                        <label for={c.name}>
+                            {c.name}
+                        </label>
+                    </label>
+            )}
+            </div>
                 <div>
                     {errors?.name?.message}
                 </div>
