@@ -1,9 +1,12 @@
-.container_catalog{
+.container_main{
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container_catalog{
     height: 35px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
