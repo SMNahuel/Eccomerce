@@ -110,3 +110,10 @@
 .formulario input[type="checkbox"]:checked + label:before{
     display: none
 } 
+tr{
+    max-height: 5px;
+    line-height: 20px;
+}
+.formulario textarea{
+    height: 10vh;
+}

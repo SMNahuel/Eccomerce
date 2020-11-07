@@ -83,9 +83,9 @@ server.post('/', (req, res, next) => {
 
 server.put('/:id', (req, res, next) => {
 	const { id } = req.params
-	const { name, description, price, stock } = req.body;
-	if (!name && !description && !price && !stock) {
-		return res.status(400).send('At least one attribute (name, description, price or stock) of product is needed to modify it');
+	const { name, description, price, stock, categories } = req.body;
+	if (!name && !description && !price && !stock && !categories) {
+		return res.status(400).send('At least one attribute (name, description, price, stock or categories) of product is needed to modify it');
 	}
 
 	let atributesToUpdate = {};
@@ -93,11 +93,20 @@ server.put('/:id', (req, res, next) => {
 	if (description) atributesToUpdate.description = description;
 	if (price) atributesToUpdate.price = price;
 	if (stock) atributesToUpdate.stock = stock;
+	if (!categories) categories = [];
 	
-	Product.update(
+	return Product.update(
 		atributesToUpdate,
 		{ where: { id: id } }
 	)
+	.then(product => Category.findAll())
+	.then(DBCategories => {
+		const DBCategoriesIds = DBCategories.map(c => c.id) || [];
+		const CategoryNotInDB = categories.some(id => !DBCategoriesIds.includes(id));
+		if (CategoryNotInDB) throw 'all categories must be loaded first';
+		return Product.findByPk(id)
+	})
+	.then(product => product.setCategories(categories))
 	.then(product => Product.findAll({ include: Category }))
 	.then(products => res.send(products))
 	.catch(next);

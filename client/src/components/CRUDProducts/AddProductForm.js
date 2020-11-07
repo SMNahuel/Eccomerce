@@ -68,25 +68,6 @@ const AddProductForm = ({handleCreate}) =>{
                 </div>
                 <input
                     className={s.controls}
-                    type="text" name="description"
-                    placeholder="Ingrese descripcion"
-                    ref={
-                        register({
-                            required: { value: true, message: 'Campo requerido' }
-                        })
-                    }
-                    onChange={(e) => {
-                        setState({
-                            ...state,
-                            [e.target.name]: e.target.value
-                        })
-                    }}
-                />
-                <div>
-                    {errors?.name?.message}
-                </div>
-                <input
-                    className={s.controls}
                     type="text"
                     name="price"
                     placeholder="Ingrese el precio"
@@ -122,6 +103,25 @@ const AddProductForm = ({handleCreate}) =>{
                         })
                     }}
                 />
+                <textarea
+                    className={s.controls}
+                    type="text" name="description"
+                    placeholder="Ingrese descripcion"
+                    ref={
+                        register({
+                            required: { value: true, message: 'Campo requerido' }
+                        })
+                    }
+                    onChange={(e) => {
+                        setState({
+                            ...state,
+                            [e.target.name]: e.target.value
+                        })
+                    }}
+                />
+                <div>
+                    {errors?.name?.message}
+                </div>
                 <div >
                     {/* @Nahuel */}
                     {categories.map(c =>

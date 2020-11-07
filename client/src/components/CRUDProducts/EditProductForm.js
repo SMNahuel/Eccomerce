@@ -14,8 +14,13 @@ const EditProductForm = (props) =>{
         description: props.currentProduct.description,
         price: props.currentProduct.price,
         stock: props.currentProduct.stock,
-        categories: props.currentProduct.categories
+        categories: props.currentProduct.categories.map(c => c.id)
     });
+    const onChange = ({target}) => {
+        var newState = {...state};
+        newState[target.name] = target.value
+        setState(newState)
+    }
 
     //Usamos setValue para setear en el input los valores del producto a modificar
     setValue('name', props.currentProduct.name);
@@ -34,7 +39,7 @@ const EditProductForm = (props) =>{
 
     const onSubmit = (data, e) =>{
     //console.log(data)
-    props.updateProduct(props.currentProduct.id, data)
+    props.updateProduct(props.currentProduct.id, state)
     
     //Limpiar campos
     e.target.reset();
@@ -44,18 +49,18 @@ const EditProductForm = (props) =>{
         if(e.target.checked){
             setState({
                 ...state,
-                categories: state.categories.concat(e.target.name)
+                categories: state.categories.concat(Number(e.target.name))
             })
         }else{
             setState({
                 ...state,
-                categories: state.categories.filter( id => id !== e.target.name)
+                categories: state.categories.filter( id => id !== Number(e.target.name))
             })
         }
     }
     const verificarCheck = (id) =>{
         for(var i= 0;state.categories.length >i; i++){
-            if(state.categories[i].id === id){
+            if(state.categories[i] === id){
                 return true
             }
         }
@@ -68,79 +73,41 @@ const EditProductForm = (props) =>{
         <form  
         className = {style.formulario}
         onSubmit={handleSubmit(onSubmit)}>
-        <input className={style.controls} type="text" name="name" ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
+        <input className={style.controls} type="text" name="name" value={state.name}
+            onChange={onChange}
         />
         <div>
             {errors?.name?.message}
         </div>
-        <input className={style.controls} type="text" name="description" ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
-        />
         <div>
             {errors?.name?.message}
         </div>
-        <input className={style.controls} type="text" name="price"ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
+        <input className={style.controls} type="text" name="price" value={state.price}
+            onChange={onChange}
         />
         <div>
             {errors?.name?.message}
         </div>        
-        <input className={style.controls} type="text" name="stock"ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-                        onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
+        <input className={style.controls} type="text" name="stock" value={state.stock}
+            onChange={onChange}
+        />
+        <textarea className={style.controls} type="text" name="description" value={state.description}
+            onChange={onChange}
         />
         {/*@Nahuel  */}
         {categories.map(e =>
-                
                 <label 
                 className={style.checkbox} 
                 key={e.id}>
-                    
-                    <input 
-                    type="checkbox"
-                    name={e.id}
-                    id={e.name}
-                    checked={verificarCheck(e.id)}
-                    onClick={onCheck}
-                    /> 
-                    
-                        <label for={e.name}>
-                            {e.name}
-                        </label> 
+                    <input
+                        type="checkbox"
+                        name={e.id}
+                        id={e.name}
+                        checked={verificarCheck(e.id)}
+                        onChange={onCheck}
+                    />
+                    <label for={e.name}> {e.name} </label> 
                 </label>
-                
         )}
         <div>
             {errors?.name?.message}

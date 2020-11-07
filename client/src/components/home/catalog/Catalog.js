@@ -29,7 +29,7 @@ export default function Catlaog({catalog, handleDetail}) {
     return(
         <div className={s.container} onScroll={onScroll} ref={ref}>
             {catalog[0] && 
-                catalog.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail} centered={centeredId == product.id} />)
+                catalog.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail} centered={centeredId === product.id} />)
             }
         </div>
     )
