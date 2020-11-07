@@ -32,3 +32,27 @@
     font-size: 20px;
     margin: 10px;
 }
+@media(min-width: 992px){
+    .container,.centered{
+        min-width: 20vw;
+        max-width: 20vw;
+        height: 44vh;
+        border-radius: 15px;
+        margin: -5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        color: white;
+        transition: .2s;
+        scroll-snap-align: center;
+        transform-style: preserve-3d;
+        transform-origin: center;
+        transform: perspective(800px) translateZ(-200px);
+        filter: grayscale(70%);
+    }
+    .container:hover,.centered:hover{
+        transform: perspective(800px);
+        filter: grayscale(0%);
+    }
+}

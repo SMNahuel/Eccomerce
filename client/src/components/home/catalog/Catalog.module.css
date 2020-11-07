@@ -10,3 +10,24 @@
     padding-right: 40%;
     scroll-snap-type: x mandatory;
 }
+@media(min-width: 992px){
+    .container{
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        overflow-x: visible;
+        overflow-y: auto;
+        height: 84vh;
+        width: 100%;
+        padding: 1%;
+        scroll-snap-type: none;
+    }
+    .container::-webkit-scrollbar {
+        background: var(--background);
+        width: 10px;
+    }
+    .container::-webkit-scrollbar-thumb {
+        background: #DFE6E9;
+        border-radius: 5px;
+    }
+}
