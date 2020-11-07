@@ -18,7 +18,7 @@ const AddProductForm = ({handleCreate}) =>{
         categories: ''
     })
     useEffect(() => {
-        axios.get(`http://localhost:3001/category`)
+        axios.get(`http://${window.location.hostname}:3001/category`)
         .then(({data}) => 
             //Seteamos las categorias a nuestro estado
             setCategory(state =>({
