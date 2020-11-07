@@ -133,7 +133,7 @@ const EditProductForm = (props) =>{
                     name={e.id}
                     id={e.name}
                     checked={verificarCheck(e.id)}
-                    onChange={onCheck}
+                    onClick={onCheck}
                     /> 
                     
                         <label for={e.name}>

@@ -1,0 +1,105 @@
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    animation: containerMount .4s linear;
+}
+@keyframes containerMount{
+    0%   { opacity: 0; transform: scale(.5);}
+    50%  { opacity: 0;}
+    100% { opacity: 1; transform: scale(1);}
+}
+@keyframes containerUnmount{
+    0%   { opacity: 1; transform: scale(1);}
+    50%  { opacity: 0;}
+    100% { opacity: 0; transform: scale(.5);}
+}
+.card{
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.back{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    animation: info .8s linear;
+    color: white;
+}
+.info{
+    width: 90%;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 20px;
+    animation: info 1s linear;
+    backdrop-filter: blur(4px);
+}
+@keyframes info{
+    0%   { opacity: 0; position: absolute; left: 50%;}
+    75%  { opacity: 0;}
+    100% { opacity: 1; position: absolute; left: 0%;}
+}
+.name{
+    margin: 10px;
+}
+@media(min-width: 992px){
+    .container{
+        height: 100vh;
+        width: 100vw;
+        padding: 5%;
+        padding-left: 15%;
+        padding-right: 15%;
+        backdrop-filter: blur(5px) brightness(70%);
+    }
+    .card{
+        border-radius: 10px;
+        height: 100%;
+        width: 100%;
+        padding: 5%;
+        padding-left: 15%;
+        padding-right: 15%;
+        background-color: var(--background-ligth);
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: 10% 10%;
+    }
+    .info{
+        background-color: transparent;
+        backdrop-filter: none;
+        animation: none;
+    }
+    .name{
+        position: absolute;
+        top: 12vh;
+        left: 65vw;
+    }
+    .price{
+        position: absolute;
+        top: 20vh;
+        left: 67vw;
+    }
+    .stock{
+        position: absolute;
+        top: 23vh;
+        left: 67vw;
+    }
+    .ranking{
+        position: absolute;
+        top: 26vh;
+        left: 67vw;
+    }
+    .description{
+        position: absolute;
+        bottom: 20vh;
+        left: 20vw;
+        width: 60vw;
+    }
+}
