@@ -28,6 +28,7 @@ export default function CRUDProducts(){
     //Funcionando
     const handleCreate = (product) =>{
         //Hacemos la peticion post con nuesto product que recibimos como parametro 
+        console.log(product)
         axios.post('http://localhost:3001/products', product)
         .then(({data}) => {
             setState({
@@ -37,7 +38,7 @@ export default function CRUDProducts(){
                 products: data
             })
             console.log(data);
-        })
+        }) 
     }
 
     //Funcion deleted a la base de datos

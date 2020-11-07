@@ -30,7 +30,7 @@ const AddProductForm = ({handleCreate}) =>{
         if(e.target.checked){
             setState({
                 ...state,
-                categories: state.categories.concat(e.target.name)
+                categories: state.categories.concat(Number(e.target.name))
             })
         }else{
             setState({

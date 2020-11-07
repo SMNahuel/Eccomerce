@@ -6,7 +6,6 @@ import style from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 
 const EditProductForm = (props) =>{
-    var i = 0;
     const {register, errors, handleSubmit, setValue} = useForm({
         defaultValues: props.currentProduct
     });
@@ -53,7 +52,15 @@ const EditProductForm = (props) =>{
                 categories: state.categories.filter( id => id !== e.target.name)
             })
         }
-    }   
+    }
+    const verificarCheck = (id) =>{
+        for(var i= 0;state.categories.length >i; i++){
+            if(state.categories[i].id === id){
+                return true
+            }
+        }
+        return false;
+    }
     return (
         <div name="arriba">
         
@@ -125,7 +132,7 @@ const EditProductForm = (props) =>{
                     type="checkbox"
                     name={e.id}
                     id={e.name}
-
+                    checked={verificarCheck(e.id)}
                     onChange={onCheck}
                     /> 
                     
