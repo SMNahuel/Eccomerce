@@ -1,5 +1,4 @@
 .container{
-    z-index: 1;
     animation: containerMount .4s linear;
 }
 @keyframes containerMount{
@@ -23,6 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 .back{
     position: absolute;
