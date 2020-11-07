@@ -12,15 +12,14 @@ export default function Home() {
         categories: [],
         selectedCategory: null,
         catalog: [],
-        product: null
+        detailedProduct: null
     })
 
     useEffect(() => {
         axios.get(`http://localhost:3001/category`)
         .then(({data}) => setState(state => ({
             ...state, 
-            categories: data,
-            selectedCategory: data[0].id
+            categories: data
         })))
         .catch(err => alert("Error!! " + err))
     }, [])
@@ -33,13 +32,27 @@ export default function Home() {
                 catalog: data.products
             })))
             .catch(err => alert("Error!! " + err))
+        } else {
+            axios.get(`http://localhost:3001/products`)
+            .then(({data}) => setState(state => ({
+                ...state, 
+                catalog: data
+            })))
+            .catch(err => alert("Error!! " + err))
         }
     }, [state.selectedCategory])
 
     const onSelect = (e) => {
         setState({
             ...state, 
-            selectedCategory: e.target.value
+            selectedCategory: Number(e.target.value)
+        })
+    }
+
+    const onClear = (e) => {
+        setState({
+            ...state, 
+            selectedCategory: null
         })
     }
 
@@ -55,23 +68,23 @@ export default function Home() {
     const handleDetail = (product)=>{
         setState({
             ...state, 
-            product: product
+            detailedProduct: product
         })
     }
 
     const handleBack = ()=>{
         setState({
             ...state, 
-            product: null
+            detailedProduct: null
         })
     }
 
     return(
         <div className={s.container_path_home}>
             <SideBar />
-            {state.product && <Product product={state.product} onBack={handleBack} />}
+            {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
             <SearchBar handleSearch={handleSearch} />
-            <Categories categories={state.categories} onSelect={onSelect} />
+            <Categories categories={state.categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
             <Catalog catalog={state.catalog} handleDetail={handleDetail} />
         </div>
     )
