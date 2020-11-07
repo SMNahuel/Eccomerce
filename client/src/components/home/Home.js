@@ -15,7 +15,7 @@ export default function Home() {
     })
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/category`)
+        axios.get(`http://${window.location.hostname}:3001/category`)
         .then(({data}) => setState(state => ({
             ...state, 
             categories: data
@@ -25,14 +25,14 @@ export default function Home() {
 
     useEffect(() => {
         if (state.selectedCategory) {
-            axios.get(`http://localhost:3001/products/category/${state.selectedCategory}`)
+            axios.get(`http://${window.location.hostname}:3001/products/category/${state.selectedCategory}`)
             .then(({data}) => setState(state => ({
                 ...state, 
                 catalog: data.products
             })))
             .catch(err => alert("Error!! " + err))
         } else {
-            axios.get(`http://localhost:3001/products`)
+            axios.get(`http://${window.location.hostname}:3001/products`)
             .then(({data}) => setState(state => ({
                 ...state, 
                 catalog: data
@@ -56,7 +56,7 @@ export default function Home() {
     }
 
     const handleSearch = (key)=>{
-        axios.get(`http://localhost:3001/products/search?key=${key}`)
+        axios.get(`http://${window.location.hostname}:3001/products/search?key=${key}`)
         .then(({data}) =>  setState({
             ...state, 
             catalog: data

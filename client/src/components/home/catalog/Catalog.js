@@ -7,9 +7,7 @@ export default function Catlaog({catalog, handleDetail}) {
     const [centeredId, setCenteredId] = useState(1)
     const ref = useRef(null)
 
-    var timeoutId;
     const windowXCenter = window.innerWidth / 2
-
     const setCenteredChildren = e => {
         let children = Array.from(ref.current.children);
         for (let i = 0; i < children.length; i++) {
@@ -20,6 +18,7 @@ export default function Catlaog({catalog, handleDetail}) {
         }
     }
     
+    var timeoutId;
     const onScroll = event => {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(setCenteredChildren, 200)
