@@ -9,8 +9,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       data: {
-        type: DataTypes.BLOB("long"),
-      },
+        type: DataTypes.INTEGER,
+      }
     });
   
     return Image;
