@@ -13,7 +13,7 @@ export default function Catlaog({catalog, handleDetail}) {
         for (let i = 0; i < children.length; i++) {
             let data = children[i].getBoundingClientRect();
             if (Math.abs((data.x + data.width / 2) - windowXCenter) < 100) {
-                return setCenteredId(children[i].id)
+                return setCenteredId(Number(children[i].id))
             }
         }
     }
