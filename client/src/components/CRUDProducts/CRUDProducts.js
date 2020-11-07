@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from './FormProduct.module.css';
 import axios from 'axios';
-import SideBar from '../sideBar/SideBar';
 import EditProductForm from './EditProductForm';
 import AddProductForm from './AddProductForm';
 import ProductTable from './ProductTable';
@@ -90,9 +89,7 @@ export default function CRUDProducts(){
     }
 
     return(
-        <>
-            <SideBar />
-            <div className={s.form}>
+        <div className={s.form}>
             <div>
                 {
                     /* Usamos editing para mostrar un componente u otro dependiendo de su estado */
@@ -125,8 +122,7 @@ export default function CRUDProducts(){
                 deletedProduct={deletedProduct}
                 editRow={editRow}
                 />
-                </div>
             </div>
-        </>
+        </div>
     );
 };

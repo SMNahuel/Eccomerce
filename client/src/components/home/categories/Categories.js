@@ -3,7 +3,6 @@ import s from './Categories.module.css'
 
 
 export default function Categories({categories, onSelect, onClear, selectedCategory}) {
-
     return(
         <div className={s.container_catalog}>
             {categories && 
@@ -12,7 +11,7 @@ export default function Categories({categories, onSelect, onClear, selectedCateg
                         <button 
                             onClick={category.id === selectedCategory ? onClear : onSelect} 
                             value={category.id} 
-                            style={category.id === selectedCategory ? {background: 'blue'} : {background: 'green'}} 
+                            style={category.id === selectedCategory ? {backgroundColor: 'aqua', color: 'black'} : {backgroundColor: '#00B894', color: 'white'}} 
                         >
                             {category.name}
                         </button>

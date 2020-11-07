@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import s from './Home.module.css';
+/* import s from './Home.module.css'; */
 import axios from 'axios';
 import SearchBar from './search bar/SearchBar';
 import Categories from './categories/Categories';
-import Catalog from './catalog/Catalog';
-import SideBar from '../sideBar/SideBar';
+import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
 
 export default function Home() {
@@ -80,12 +79,11 @@ export default function Home() {
     }
 
     return(
-        <div className={s.container_path_home}>
-            <SideBar />
+        <>
             {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
             <SearchBar handleSearch={handleSearch} />
             <Categories categories={state.categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
             <Catalog catalog={state.catalog} handleDetail={handleDetail} />
-        </div>
+        </>
     )
 }
