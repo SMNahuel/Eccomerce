@@ -15,7 +15,7 @@ function CrudCategory(){
     })
     
     useEffect(() => {
-        axios.get('http://${window.location.hostname}:3001/category')
+        axios.get(`http://${window.location.hostname}:3001/category`)
         .then(({data}) => 
             setState(state => ({
                 ...state, 
@@ -28,7 +28,7 @@ function CrudCategory(){
         setState({...state, action: 'create'})
     }
     const handleCreate = (category) => {
-        axios.post('http://${window.location.hostname}:3001/category', category)
+        axios.post(`http://${window.location.hostname}:3001/category`, category)
         .then(({data}) => {
             setState({
                 ...state,

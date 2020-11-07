@@ -16,6 +16,11 @@ const EditProductForm = (props) =>{
         stock: props.currentProduct.stock,
         categories: props.currentProduct.categories.map(c => c.id)
     });
+    const onChange = ({target}) => {
+        var newState = {...state};
+        newState[target.name] = target.value
+        setState(newState)
+    }
 
     //Usamos setValue para setear en el input los valores del producto a modificar
     setValue('name', props.currentProduct.name);
@@ -68,66 +73,32 @@ const EditProductForm = (props) =>{
         <form  
         className = {style.formulario}
         onSubmit={handleSubmit(onSubmit)}>
-        <input className={style.controls} type="text" name="name" ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
+        <input className={style.controls} type="text" name="name" value={state.name}
+            onChange={onChange}
         />
         <div>
             {errors?.name?.message}
         </div>
-        <input className={style.controls} type="text" name="description" ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
-        />
         <div>
             {errors?.name?.message}
         </div>
-        <input className={style.controls} type="text" name="price"ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-            onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
+        <input className={style.controls} type="text" name="price" value={state.price}
+            onChange={onChange}
         />
         <div>
             {errors?.name?.message}
         </div>        
-        <input className={style.controls} type="text" name="stock"ref={
-            register({
-                required: {value: true, message: 'Campo requerido'}
-            })}
-                        onChange={(e)=>{
-                setState({
-                    ...state,
-                    [e.target.name]: e.target.value
-                })
-            }}
+        <input className={style.controls} type="text" name="stock" value={state.stock}
+            onChange={onChange}
+        />
+        <textarea className={style.controls} type="text" name="description" value={state.description}
+            onChange={onChange}
         />
         {/*@Nahuel  */}
         {categories.map(e =>
-                
                 <label 
                 className={style.checkbox} 
                 key={e.id}>
-
                     <input
                         type="checkbox"
                         name={e.id}
@@ -135,12 +106,8 @@ const EditProductForm = (props) =>{
                         checked={verificarCheck(e.id)}
                         onChange={onCheck}
                     />
-                    
-                        <label for={e.name}>
-                            {e.name}
-                        </label> 
+                    <label for={e.name}> {e.name} </label> 
                 </label>
-                
         )}
         <div>
             {errors?.name?.message}
