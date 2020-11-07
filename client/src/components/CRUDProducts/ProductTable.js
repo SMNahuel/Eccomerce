@@ -1,14 +1,14 @@
 import React from 'react';
-import style from './FormProduct.module.css';
+import s from './FormProduct.module.css';
 //Declaramos componente Product como función con ES6
 const ProductTable = (props) => {
     
   return (
-    <table name="arribas" className={style.product}>
+    <table name="arribas" className={s.product}>
       <thead>
         <tr>
           <th>Nombre</th>
-          <th className={style.description}>Descricion</th>
+          <th className={s.description}>Descricion</th>
           <th>Precio</th>
           <th>Cantidades</th>
           <th>Acciones</th>
@@ -25,12 +25,12 @@ const ProductTable = (props) => {
               <td>
                 <button
                   href="#arriba"
-                  className={style.botones}
+                  className={s.botones}
                   onClick={() => { props.editRow(product) }}>
                   Edit
                   </button>
                 <button
-                  className={style.botonesDeleted}
+                  className={s.botonesDeleted}
                   onClick={() => { props.deletedProduct(product.id) }}
                 >
                   Delete

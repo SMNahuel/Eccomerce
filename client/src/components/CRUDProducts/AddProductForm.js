@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
-import style from './FormProduct.module.css';
+import s from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 const AddProductForm = ({handleCreate}) =>{
 
@@ -44,11 +44,11 @@ const AddProductForm = ({handleCreate}) =>{
     return (
         <div>
             <form
-                className={style.formulario}
+                className={s.formulario}
                 onSubmit={sendProduct}>
                 <h4>Agregar producto</h4>
                 <input
-                    className={style.controls}
+                    className={s.controls}
                     type="text" name="name"
                     placeholder="Ingrese el nombre"
                     ref={
@@ -67,7 +67,7 @@ const AddProductForm = ({handleCreate}) =>{
                     {errors?.name?.message}
                 </div>
                 <input
-                    className={style.controls}
+                    className={s.controls}
                     type="text" name="description"
                     placeholder="Ingrese descripcion"
                     ref={
@@ -86,7 +86,7 @@ const AddProductForm = ({handleCreate}) =>{
                     {errors?.name?.message}
                 </div>
                 <input
-                    className={style.controls}
+                    className={s.controls}
                     type="text"
                     name="price"
                     placeholder="Ingrese el precio"
@@ -106,7 +106,7 @@ const AddProductForm = ({handleCreate}) =>{
                     {errors?.name?.message}
                 </div>
                 <input
-                    className={style.controls}
+                    className={s.controls}
                     type="text"
                     name="stock"
                     placeholder="Ingrese el stock"
@@ -126,7 +126,7 @@ const AddProductForm = ({handleCreate}) =>{
                     {/* @Nahuel */}
                     {categories.map(c =>
                         <label
-                            className={style.checkbox}
+                            className={s.checkbox}
                             key={c.id}>
                             <input
                                 type="checkbox"
@@ -144,7 +144,7 @@ const AddProductForm = ({handleCreate}) =>{
                 <div>
                     {errors?.name?.message}
                 </div>
-                <button className={style.botones} >Add new product</button>
+                <button className={s.botones} >Add new product</button>
             </form>
         </div>
     );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductTable from './ProductTable';
 import EditProductForm from './EditProductForm';
 import AddProductForm from './AddProductForm';
-import style from './FormProduct.module.css';
+import s from './FormProduct.module.css';
 //Instalamos con npm install uuid
 import {v4 as uuidv4} from 'uuid';
 //Falta añadir algunos comentarios para explicar su funcionamiento y css para mejorar la vista 
@@ -51,12 +51,12 @@ function FormProduct(){
     setProduct(products.map(product=> (product.id === id ? updateProduct: product))) 
   }
   return (
-  <div className={style.form}>
+  <div className={s.form}>
     <div>
       {
         editing ? (
         <div>
-            <EditProductForm className={style.controls}
+            <EditProductForm className={s.controls}
               currentProduct={currentProduct}
               updateProduct= {updateProduct}
             />
@@ -64,7 +64,7 @@ function FormProduct(){
         ) : (
         <div>
           <AddProductForm 
-            className={style.controls} 
+            className={s.controls} 
             addProduct={addProduct}/>
         </div>
         )
