@@ -98,7 +98,7 @@
     }
     .description{
         position: absolute;
-        top: 50vh;
+        bottom: 20vh;
         left: 20vw;
         width: 60vw;
     }
