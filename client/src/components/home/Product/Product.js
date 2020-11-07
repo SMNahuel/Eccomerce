@@ -18,7 +18,11 @@ export default ({product, onBack}) => {
           <h1 className={s.name} >{product.name}</h1>
           <h4 className={s.price} >Precio: {product.price}</h4>
           <h4 className={s.stock} >Cupo: {product.stock}</h4>
-          <h3 className={s.description} >{product.description}</h3>
+          <div className={s.description}>
+            <h1>Descipcion:</h1>
+            <h2>{product.description}</h2>
+          </div>
+          <h3 className={s.ranking}>Reviews: ★★★★☆</h3>
         </div>
       </div>
     </div>
