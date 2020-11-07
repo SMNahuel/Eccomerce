@@ -29,6 +29,7 @@
     top: 30px;
     left: 30px;
     animation: info .8s linear;
+    color: white;
 }
 .info{
     width: 90%;
