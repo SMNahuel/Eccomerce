@@ -16,6 +16,6 @@ server.post('/:id', upload , (req, res, next) => {
     .then(r => Product.findAll({ include: Image }))
     .then(r => res.send(r))
     .catch(next)
-})
+});
 
 module.exports = server;
