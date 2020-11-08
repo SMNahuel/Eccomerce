@@ -1,5 +1,5 @@
 import React from 'react';
-/* import s from './DeleteCategory.module.css'; */
+import s from '../CRUDCategory.module.css';
 
 export default function DeleteCategory( { handleDelete, category, onNotSure } ){
     return (
@@ -10,8 +10,8 @@ export default function DeleteCategory( { handleDelete, category, onNotSure } ){
                 <h3>Seguro que desea eleminar la categoria?</h3>
             </div>
             <div>
-                <button onClick={()=>handleDelete(category.id)}>Si</button>
-                <button onClick={onNotSure}>No</button>
+                <button className={s.botonesSi} onClick={()=>handleDelete(category.id)}>Si</button>
+                <button className={s.botonesNo} onClick={onNotSure} >No</button>
             </div>
         </div>
     )

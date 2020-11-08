@@ -3,7 +3,7 @@ import s from './Catalog.module.css'
 import ProductCard from './product card/ProductCard';
 
 
-export default function Catlaog({catalog, handleDetail}) {
+export default function Catalog({catalog, handleDetail}) {
     const [centeredId, setCenteredId] = useState(1)
     const ref = useRef(null)
 

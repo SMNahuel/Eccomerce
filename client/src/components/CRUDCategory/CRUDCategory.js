@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-/* import s from './CRUDCategory.module.css'; */
+import s from './CRUDCategory.module.css';
 import axios from 'axios';
 import TableCategory from './table category/TableCategory'
 import CreateCategory from './create category/CreateCategory';
@@ -76,18 +76,19 @@ function CrudCategory(){
     }
 
     return (
-        <div>
+        <div className={s.form}>
+            <h4>Categorias</h4>
             {
                 state.action === null &&
-                <button onClick={onCreate}>Crear Categoria</button>
+                <button onClick={onCreate} className={s.botones}>Crear Categoria</button>
             }
             {
                 state.action === 'create' &&
-                <CreateCategory handleCreate={handleCreate} />
+                <CreateCategory className={s.controls} handleCreate={handleCreate} />
             }
             {
                 state.action === 'edit' &&
-                <ModifyCategory handleUpdate={handleUpdate} category={state.category} />
+                <ModifyCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
             }
             {
                 state.action === 'delete' &&
