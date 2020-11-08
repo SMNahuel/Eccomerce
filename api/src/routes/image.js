@@ -1,29 +1,21 @@
 const server = require("express").Router();
-const upload = require("../middleware/upload");
-var multer = require('multer');
+const { Product, Image } = require('../db.js');
+const upload = require('../middlewares/uploadImg')
 
-server.post('/', upload, (req, res, next) => {
-    //console.log(req.file)
-    // const {id} = req.params
-    // const {path, size, mimetype} = req.file
+server.post('/:id', upload , (req, res, next) => {
+    const {id} = req.params
 
-    // let product = Product.findByPk(id)
-    // let image = Image.create({path: path})
-    // Promise.all([product, image])
-    // .then(([product, image]) => {
-    //     //console.log(product)
-    //     console.log(image)
-    //     product.setImage(image)
-    // })
-    // .then(r => res.send(r))
-    // .catch(next)
-
-    // const filetypes = /jpeg|jpg|png|svg/;
-    // if(size >= 3000000) return res.status(400).send('images must be lighter than 3mb')
-
-    // if(!filetypes.test(mimetype)) return res.status(400).send('only extensions [.jpeg, .jpg, .png, .svg] are supported')
-
-    res.send('Image uploaded!')
+    let product = Product.findByPk(id)
+    let images = req.files.map(file => (
+        Image.create({
+            path: `${file.destination}/${file.filename}`
+        })
+    )) 
+    Promise.all([product, ...images])
+    .then(([product, ...images]) => product.setImages(images))
+    .then(r => Product.findAll({ include: Image }))
+    .then(r => res.send(r))
+    .catch(next)
 })
 
 module.exports = server;
