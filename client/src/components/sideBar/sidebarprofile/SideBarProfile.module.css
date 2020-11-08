@@ -72,6 +72,7 @@
 .container_icons_title{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 10px;
     border-radius: 8px;
 }
@@ -83,10 +84,19 @@
 }
 .container_icons{
     display: flex;
+    align-items: center;
 }
 .container_icons p{
     margin-left: 10px;
 }
 .title_h4{
+    color: #DFE6E9;
+}
+.button{
+    vertical-align: middle;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
     color: #DFE6E9;
 }
