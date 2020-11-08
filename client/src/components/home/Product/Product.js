@@ -2,14 +2,15 @@ import React, { useRef } from 'react';
 import s from './Product.module.css';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-const image = "https://pixelmechanics.com.sg/wp-content/uploads/2019/04/css.jpg";
-
 export default ({product, onBack}) => {
+  const image = `http://${window.location.hostname}:3001${product.images[0].url}`;
+
   const ref = useRef(null)
   const onUnmount = () => {
     ref.current.style.animation = s.containerUnmount + ' 450ms linear'
     setTimeout(onBack, 400);
   };
+
   return (
     <div className={s.container} ref={ref}>
       <div className={s.card} style={{backgroundImage:`url(${image})`}}>

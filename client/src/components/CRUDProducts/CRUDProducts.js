@@ -35,7 +35,6 @@ export default function CRUDProducts(){
                 ...state,
                 products: data
             })
-            console.log(data);
         }) 
     }
 

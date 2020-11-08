@@ -19,10 +19,11 @@
     transform: perspective(800px) translateZ(-200px);
 }
 .container{
-    filter: grayscale(70%);
+    filter: brightness(50%);
 }
 .centered{
     transform: perspective(800px);
+    filter: brightness(130%);
 }
 .name{
     font-size: 30px;
@@ -49,10 +50,10 @@
         transform-style: preserve-3d;
         transform-origin: center;
         transform: perspective(800px) translateZ(-200px);
-        filter: grayscale(70%);
+        filter: brightness(90%);
     }
     .container:hover,.centered:hover{
         transform: perspective(800px);
-        filter: grayscale(0%);
+        filter: brightness(130%);
     }
 }

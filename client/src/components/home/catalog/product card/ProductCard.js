@@ -1,10 +1,9 @@
 import React from 'react';
 import s from './ProductCard.module.css';
 
-const image = "https://pixelmechanics.com.sg/wp-content/uploads/2019/04/css.jpg";
-
 var lastClickTime = new Date().getTime();
 export default ({product, onDetail, centered}) => {
+    const image = `http://${window.location.hostname}:3001${product.images[0].url}`;
 
     const onClick = e => {
         var timesince = new Date().getTime() - lastClickTime;
