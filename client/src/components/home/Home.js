@@ -3,7 +3,7 @@ import s from './Home.module.css';
 import axios from 'axios';
 import SearchBar from './search bar/SearchBar';
 import Categories from './categories/Categories';
-import Catalog from './Catalog/Catalog';
+import Catalog from './catalog/Catalog';
 import Product from './Product/Product';
 
 export default function Home() {

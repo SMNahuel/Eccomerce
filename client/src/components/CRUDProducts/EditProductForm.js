@@ -6,7 +6,7 @@ import style from './FormProduct.module.css';
 //Instalamos Hook para hacer uso de la funciones de register errors y handleSubmit
 
 const EditProductForm = (props) =>{
-    const {register, errors, handleSubmit, setValue} = useForm({
+    const {errors, handleSubmit, setValue} = useForm({
         defaultValues: props.currentProduct
     });
     const [state, setState] = useState({

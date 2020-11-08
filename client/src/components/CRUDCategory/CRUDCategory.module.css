@@ -1,0 +1,102 @@
+*{
+    margin: 0;  
+    padding: 0;
+    box-sizing:  border-box;
+}
+
+.form{
+    color: white;
+    max-width: 800px;
+    background-color: #24303c;
+    padding: 11px;
+    margin: auto;
+    line-height: 40px;
+    text-align: center;
+    box-shadow: 7px 13px 37px  #000;
+}
+
+.form h4{
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.form input{
+    outline: none;
+    border-radius: 8px;
+}
+.controls{
+    width: 100%;
+    background-color: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: 'calibri';
+    font-size: 18px;
+    color:white;
+}
+
+.botones{
+    width: 25%;
+    background-color: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.botonesSi {
+    width: 25%;
+    background-color: #1f53c5;
+    border: none;
+    padding: 8px;
+    color: white;
+    margin: 16px 0;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.botonesNo {
+    width: 25%;
+    background-color: red;
+    border: none;
+    padding: 8px;
+    color: white;
+    margin: 16px 0;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.botonesEditar{
+    width: 15%;
+    background-color: #1f53c5;
+    border: none;
+    padding: 8px;
+    color: white;
+    margin: 16px 5px;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+
+.botonesDeleted {
+    width: 10%;
+    background-color: red;
+    border: none;
+    padding: 8px;
+    color: white;
+    margin: 16px 0;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+
+.formulario textarea{
+    height: 10vh;
+}
