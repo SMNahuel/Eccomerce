@@ -2,16 +2,10 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     const Image = sequelize.define("image", {
-      type: {
+      path: {
         type: DataTypes.STRING,
       },
-      name: {
-        type: DataTypes.STRING,
-      },
-      data: {
-        type: DataTypes.INTEGER,
-      }
     });
   
     return Image;
-  };
+};
