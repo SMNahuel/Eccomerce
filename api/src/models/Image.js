@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       data: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BLOB,
       }
     });
   
