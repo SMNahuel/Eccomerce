@@ -15,7 +15,7 @@ function CrudCategory(){
     })
     
     useEffect(() => {
-        axios.get(`https://${process.env.REACT_APP_API_URL}/category`)
+        axios.get(`http://${process.env.REACT_APP_API_URL}/category`)
         .then(({data}) => 
             setState(state => ({
                 ...state, 
@@ -28,7 +28,7 @@ function CrudCategory(){
         setState({...state, action: 'create'})
     }
     const handleCreate = (category) => {
-        axios.post(`https://${process.env.REACT_APP_API_URL}/category`, category)
+        axios.post(`http://${process.env.REACT_APP_API_URL}/category`, category)
         .then(({data}) => {
             setState({
                 ...state,
@@ -46,7 +46,7 @@ function CrudCategory(){
         })
     }
     const handleUpdate = (id, category) => {
-        axios.put(`https://${process.env.REACT_APP_API_URL}/category/${id}`, category)
+        axios.put(`http://${process.env.REACT_APP_API_URL}/category/${id}`, category)
         .then(({data}) => setState({
             ...state,
             categories: data,
@@ -62,7 +62,7 @@ function CrudCategory(){
         })
     }
     const handleDelete = (id) => {
-        axios.delete(`https://${process.env.REACT_APP_API_URL}/category/${id}`)
+        axios.delete(`http://${process.env.REACT_APP_API_URL}/category/${id}`)
         .then(({data}) => {
             setState({
                 ...state,

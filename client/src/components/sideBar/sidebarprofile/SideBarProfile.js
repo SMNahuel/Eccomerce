@@ -18,7 +18,7 @@ function SideBarProfile({ toogleState }){
                 <button onClick={toogleState}>X</button>
             </div>
             <div className={s.container_profile}>
-                <Avatar src="https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
+                <Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
                 <div className={s.container_user}>
                     <h3>Nombre usuario</h3>
                     <p>emailDeEjemplo@gmail.com</p>

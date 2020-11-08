@@ -5,7 +5,7 @@ import imgNotFound from '../../../../img/img404.jpg';
 var lastClickTime = new Date().getTime();
 export default ({product, onDetail, centered}) => {
     const image = product.images[0] ?
-    `https://${process.env.REACT_APP_API_URL}${product.images[0].url}`:
+    `http://${process.env.REACT_APP_API_URL}${product.images[0].url}`:
     imgNotFound
 
     const onClick = e => {

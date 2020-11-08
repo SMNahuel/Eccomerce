@@ -15,7 +15,7 @@ export default function Home() {
     })
 
     useEffect(() => {
-        axios.get(`https://${process.env.REACT_APP_API_URL}/category`)
+        axios.get(`http://${process.env.REACT_APP_API_URL}/category`)
         .then(({data}) => setState(state => ({
             ...state, 
             categories: data
@@ -25,14 +25,14 @@ export default function Home() {
 
     useEffect(() => {
         if (state.selectedCategory) {
-            axios.get(`https://${process.env.REACT_APP_API_URL}/products/category/${state.selectedCategory}`)
+            axios.get(`http://${process.env.REACT_APP_API_URL}/products/category/${state.selectedCategory}`)
             .then(({data}) => setState(state => ({
                 ...state, 
                 catalog: data.products
             })))
             .catch(err => alert("Error!! " + err))
         } else {
-            axios.get(`https://${process.env.REACT_APP_API_URL}/products`)
+            axios.get(`http://${process.env.REACT_APP_API_URL}/products`)
             .then(({data}) => setState(state => ({
                 ...state, 
                 catalog: data
@@ -56,7 +56,7 @@ export default function Home() {
     }
 
     const handleSearch = (key)=>{
-        axios.get(`https://${process.env.REACT_APP_API_URL}/products/search?key=${key}`)
+        axios.get(`http://${process.env.REACT_APP_API_URL}/products/search?key=${key}`)
         .then(({data}) =>  setState({
             ...state, 
             catalog: data
