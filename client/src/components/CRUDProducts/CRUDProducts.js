@@ -14,7 +14,7 @@ export default function CRUDProducts(){
 
     //Pedimos los productos a la base de datos 
     useEffect(() => {
-        axios.get(`http://${process.env.REACT_APP_API_URL}/products`)
+        axios.get(`${process.env.REACT_APP_API_URL}/products`)
         .then(({data}) => 
             //Seteamos los productos a nuestro estado
             setState(state =>({
@@ -27,7 +27,7 @@ export default function CRUDProducts(){
     //Funcionando
     const handleCreate = (product) =>{
         //Hacemos la peticion post con nuesto product que recibimos como parametro 
-        axios.post(`http://${process.env.REACT_APP_API_URL}/products`, product)
+        axios.post(`${process.env.REACT_APP_API_URL}/products`, product)
         .then(({data}) => {
             setState({
                 //Lo seteamos con lo que devuelve ya que vuelve todos los post
@@ -41,7 +41,7 @@ export default function CRUDProducts(){
     //Funcion deleted a la base de datos
     function deletedProduct(id){
         //Hacemos request de deleted al server
-        axios.delete(`http://${process.env.REACT_APP_API_URL}/products/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`)
         .then(({data}) =>{
             //Seteamos el estado con lo que devuelve el axios ya que devuelve todos los datos 
             //sin el que borramos
@@ -80,7 +80,7 @@ export default function CRUDProducts(){
         setEditing(false);
         //Hacemos el pedido put al server pasando como segundo parametro el producto que recibimos
         //y Su id
-        axios.put(`http://${process.env.REACT_APP_API_URL}/products/${id}`, product)
+        axios.put(`${process.env.REACT_APP_API_URL}/products/${id}`, product)
         .then(({data}) => setState({
             //El servidor nos devuelve todos los productos y el producto modificaod
             //Y lo seteamos a nuestro estado
