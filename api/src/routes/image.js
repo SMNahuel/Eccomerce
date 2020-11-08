@@ -7,12 +7,14 @@ server.post('/:id', upload , (req, res, next) => {
 
     let product = Product.findByPk(id)
     let images = req.files.map(file => (
-        Image.create({
-            path: `${file.destination}/${file.filename}`
+        Image.findOrCreate({
+            where: {
+                path: `${file.destination}/${file.filename}`
+            }
         })
     )) 
     Promise.all([product, ...images])
-    .then(([product, ...images]) => product.setImages(images))
+    .then(([product, ...images]) => product.setImages(images.map(i => i[0])))
     .then(r => Product.findAll({ include: Image }))
     .then(r => res.send(r))
     .catch(next)

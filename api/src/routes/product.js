@@ -43,18 +43,9 @@ server.get('/category/:id', (req, res, next) => {
 	.catch(next);
 })
 
-server.delete('/:id', (req, res, next) => {
-	const { id } = req.params;
-    Product.destroy({ 
-		where: {id: id} 
-	})
-	.then(product => Product.findAll({ include: Category }))
-	.then(products => res.send(products))
-	.catch(next);
-});
-
 server.post('/', (req, res, next) => {
-	var {name, description, price, stock, categories} = req.body;
+	const { name, description, price, stock } = req.body;
+	var { categories } = req.body;
 	if (!name) return res.status(400).send('Body must have a product name');
 	if (!categories) categories = [];
 	Product.findOne({ where: { name: name }})
@@ -83,7 +74,8 @@ server.post('/', (req, res, next) => {
 
 server.put('/:id', (req, res, next) => {
 	const { id } = req.params
-	const { name, description, price, stock, categories } = req.body;
+	const { name, description, price, stock } = req.body;
+	var { categories } = req.body;
 	if (!name && !description && !price && !stock && !categories) {
 		return res.status(400).send('At least one attribute (name, description, price, stock or categories) of product is needed to modify it');
 	}
@@ -133,5 +125,15 @@ server.put('/categories/:id', (req, res, next) => {
 	.then(product => res.send(product))
 	.catch(next)
 })
+
+server.delete('/:id', (req, res, next) => {
+	const { id } = req.params;
+    Product.destroy({ 
+		where: {id: id} 
+	})
+	.then(product => Product.findAll({ include: Category }))
+	.then(products => res.send(products))
+	.catch(next);
+});
 
 module.exports = server;

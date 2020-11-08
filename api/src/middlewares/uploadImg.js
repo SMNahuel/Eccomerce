@@ -1,4 +1,4 @@
-const { Image } = require('../db.js');
+const { Image, Product } = require('../db.js');
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -6,25 +6,25 @@ var storage = multer.diskStorage({
         cb(null, 'src/media/img')
     },
     filename: function (req, file, cb) {
-        cb(null, req.params.id + '-' + file.originalname)
+        cb(null, file.originalname)
     }
 })
 
 var upload = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
-        const extensionSuported = /jpg|jpeg|png|svg/.test(file.mimetype);
+        const { id } = req.params
+        const { mimetype, originalname} = file
+
+        const extensionSuported = /jpg|jpeg|png|svg/.test(mimetype);
         if (!extensionSuported) cb(new Error('only extensions [.jpeg, .jpg, .png, .svg] are supported'))
 
-        const path = "src/media/img/" + req.params.id + '-' + file.originalname;
-        Image.findOne({ where:{path: path} })
-        .then(img => {
-            if (img) {
-                cb(new Error('that img already exist'))
-            } else {
-                cb(null, true)
-            }
+        Product.findByPk(id)
+        .then(product => {
+            if (!product) throw `product id: ${id} does not exist`
+            cb(null, true)
         })
+        .catch(cb)
     }
 })
 
