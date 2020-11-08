@@ -35,8 +35,8 @@
 }
 @media(min-width: 992px){
     .container,.centered{
-        min-width: 20vw;
-        max-width: 20vw;
+        min-width: 13vw;
+        max-width: 13vw;
         height: 44vh;
         border-radius: 15px;
         margin: -5px;
