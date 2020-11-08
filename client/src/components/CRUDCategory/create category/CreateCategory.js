@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from '../CRUDCategory.module.css';
+import s from './CreateCategory.module.css';
 function CreateCategory({ handleCreate }){
     const[input, setInput] = useState({
         name: "",
@@ -15,16 +15,18 @@ function CreateCategory({ handleCreate }){
         handleCreate(input)
     }
     return(
-        <div className>
+        <div className={s.container_create_category}>
             <h4>Crear una categoria</h4>
             <form  onSubmit={onSubmit} >
-                <div >
-                    <input  className={s.controls} name="name" value={input.name} onChange={changeState} placeholder="Nombre"></input>
+                <div className={s.container_input_textarea}>
+                    <input name="name" value={input.name} onChange={changeState} placeholder="Nombre"></input>
                 </div>
-                <div >
-                    <textarea   className={s.controls} name="description" value={input.description} onChange={changeState} placeholder="Descripcion"></textarea>
+                <div className={s.container_input_textarea}>
+                    <textarea name="description" value={input.description} onChange={changeState} placeholder="Descripcion"></textarea>
                 </div>
-                <input className={s.botones}  type="submit"  value={'Create new categorie'}/>
+                <div className={s.container_button_create}>
+                    <button type="submit">Create new Category</button>
+                </div>
             </form>
         </div>
     )

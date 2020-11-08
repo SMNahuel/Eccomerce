@@ -1,0 +1,37 @@
+.botonesEditar{
+    background-color: #1f53c5;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.botonesEditar:hover{
+    background-color: #1f53e7;
+}
+.botonesDeleted{
+    background-color: #e7231f;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.botonesDeleted:hover{
+    background-color: #f7231f;
+}
+th{
+    line-height: 40px;
+}
+.container_edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100px;
+    min-width: 30px;
+    height: 30px;
+    margin: 5px 5px;
+}
+.container_delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100px;
+    min-width: 30px;
+    height: 30px;
+    margin: 5px 5px;
+}
