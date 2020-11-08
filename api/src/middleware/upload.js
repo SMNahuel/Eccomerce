@@ -2,24 +2,25 @@ var multer = require('multer');
 
 //configMulter
 var storage = multer.diskStorage({
-    destination: './uploads/',
-    limits: {fileSize: 3000000},
-    fileFilter: (req, res, cd) => {
-        const filetypes = /jpeg|jpg|png|svg/;
-        if(filetypes.test(file.mimetype)) return cb (null, true)
-        cb('only extensions [.jpeg, .jpg, .png, .svg] are supported')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname) 
-    }
+  destination: './uploads/',
+  limits: {fileSize: 3000000},
+  fileFilter: (req, res, cd) => {
+      const filetypes = /jpeg|jpg|png|svg/;
+      if(filetypes.test(file.mimetype)) return cb (null, true)
+      cb('only extensions [.jpeg, .jpg, .png, .svg] are supported')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname) 
+  }
 })
-
 //middleware
 const upload = multer({
-    storage,
-    dest: './uploads/'
+  storage,
+  dest: './uploads/'
 
 }).single('image')
+
+
 
 module.exports = upload;
 

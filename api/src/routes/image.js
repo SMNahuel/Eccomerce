@@ -1,7 +1,8 @@
 const server = require("express").Router();
 const upload = require("../middleware/upload");
+var multer = require('multer');
 
-server.post('/:id', upload, (req, res, next) => {
+server.post('/', upload, (req, res, next) => {
     //console.log(req.file)
     // const {id} = req.params
     // const {path, size, mimetype} = req.file
