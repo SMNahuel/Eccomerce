@@ -14,7 +14,7 @@ function FormProduct(){
     //State
     const [products, setProduct] = useState(productData);
   useEffect(() => {
-    fetch(`http://localhost:3000/products`)
+    fetch(`https://${process.env.REACT_APP_API_URL}/products`)
     .then(r => r.json())
     .then(result => (
         setProduct(result)

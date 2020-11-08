@@ -29,7 +29,7 @@ function App() {
           </div>
         }/>
         <Route render={() =>
-          <div>404</div>
+          <div> 404 </div>
         }/>
       </Switch>
     </div>

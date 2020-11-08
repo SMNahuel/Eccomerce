@@ -5,7 +5,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 export default ({product, onBack}) => {
   const image = product.images[0] ?
-  `http://${window.location.hostname}:3001${product.images[0].url}`:
+  `https://${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
 
   const ref = useRef(null)
