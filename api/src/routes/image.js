@@ -7,8 +7,9 @@ server.get('/:imageFilename', (req, res, next) => {
     if (!imageFilename) {
         return next(new Error('A filename is required to show the image'));
     }
-    const path = __dirname.split('\\').slice(0,6).join('\\')
-    res.sendFile(path + '\\media\\img\\' + imageFilename)
+    var splitedPath = __dirname.split(/\/|\\/)
+    splitedPath.pop()
+    res.sendFile(splitedPath.join('/') + '/media/img/' + imageFilename)
 })
 
 module.exports = server;
