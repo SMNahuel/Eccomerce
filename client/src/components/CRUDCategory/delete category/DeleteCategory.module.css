@@ -1,0 +1,43 @@
+.container_h3{
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+.container_buttons_yes_no{
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    min-width: 250px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+.botonesSi {
+    max-width: 200px;
+    min-width: 100px;
+    background-color: #1f53c5;
+    border: none;
+    padding: 8px;
+    color: #fff;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.botonesSi:hover{
+    background-color: #1f53e7;
+}
+.botonesNo {
+    max-width: 200px;
+    min-width: 100px;
+    background-color: #e7231f;
+    border: none;
+    padding: 8px;
+    color: #fff;
+    font-size:16px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.botonesNo:hover {
+    background-color: #f7231f;
+}
