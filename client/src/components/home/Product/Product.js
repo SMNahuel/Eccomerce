@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
 import s from './Product.module.css';
+import imgNotFound from '../../../img/img404.jpg';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 export default ({product, onBack}) => {
-  const image = `http://${window.location.hostname}:3001${product.images[0].url}`;
+  const image = product.images[0] ?
+  `http://${window.location.hostname}:3001${product.images[0].url}`:
+  imgNotFound
 
   const ref = useRef(null)
   const onUnmount = () => {

@@ -23,8 +23,8 @@ const preload = require('./databasePreload')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(process.env.PORT || 3001, () => {
     preload();
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    console.log('%s listening at ' + process.env.PORT || 3001); // eslint-disable-line no-console
   });
 });
