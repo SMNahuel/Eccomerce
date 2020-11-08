@@ -81,8 +81,8 @@ export default function Home() {
 
     return(
         <>
-            <div className={s.container_main}>
-                <h1 className={s.container_title_h1}>Pagina</h1>
+            <div className={s.container}>
+                <h1 className={s.title}>Pagina</h1>
             </div>
             {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
             <SearchBar handleSearch={handleSearch} />

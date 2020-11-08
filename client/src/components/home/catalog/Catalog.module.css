@@ -17,9 +17,11 @@
         align-items: center;
         overflow-x: visible;
         overflow-y: auto;
-        height: 84vh;
+        height: 85vh;
         width: 100%;
-        padding: 1%;
+        padding: .7%;
+        padding-left: 15%;
+        padding-right: 15%;
         scroll-snap-type: none;
     }
     .container::-webkit-scrollbar {

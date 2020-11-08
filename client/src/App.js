@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import s from './App.module.css'
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/home/Home';
 import CRUDCategory from './components/CRUDCategory/CRUDCategory';
@@ -14,19 +14,24 @@ function App() {
   return (
     <div className="App">
       <SideBar/>
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/categories" component={CRUDCategory}/>
-      <Route exact path="/products" component={CRUDProducts}/>
-      <Route exact path="/register" render={() => 
-        <div className={s.container_register}>
-          <SignIn/>
-        </div>
-      }/>
-      <Route exact path="/login" render={() =>
-        <div className={s.container_register}>
-          <LogIn/>
-        </div>
-      }/>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/categories" component={CRUDCategory}/>
+        <Route exact path="/products" component={CRUDProducts}/>
+        <Route exact path="/register" render={() => 
+          <div className={s.container_register}>
+            <SignIn/>
+          </div>
+        }/>
+        <Route exact path="/login" render={() =>
+          <div className={s.container_register}>
+            <LogIn/>
+          </div>
+        }/>
+        <Route render={() =>
+          <div>404</div>
+        }/>
+      </Switch>
     </div>
   );
 }
