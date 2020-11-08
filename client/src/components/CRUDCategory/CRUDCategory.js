@@ -80,7 +80,9 @@ function CrudCategory(){
             <h4>Categorias</h4>
             {
                 state.action === null &&
-                <button onClick={onCreate} className={s.botones}>Crear Categoria</button>
+                <div className={s.container_button_create_category}>
+                    <button onClick={onCreate} className={s.button_create_category}>Crear Categoria</button>
+                </div>
             }
             {
                 state.action === 'create' &&

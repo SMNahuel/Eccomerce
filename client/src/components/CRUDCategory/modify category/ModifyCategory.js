@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from '../CRUDCategory.module.css';
+import s from './ModifyCategory.module.css';
 
 function ModifyCategory({handleUpdate, category}){
     const [ input, setInput ] = useState({
@@ -18,28 +18,26 @@ function ModifyCategory({handleUpdate, category}){
     }
 
     return (    
-        <div>
+        <div className={s.container_main}>
             <h4>Editar categoria</h4>
-            <div>
+            <div className={s.container_input_textarea}>
                 <input 
-                    className={s.controls}
                     type="text" 
                     name="name"
                     value={input.name}
                     onChange={onChange}
                 />
             </div>
-            <div>
+            <div className={s.container_input_textarea}>
                 <textarea 
-                    className={s.controls}
                     type="text"
                     name="description"
                     value={input.description}
                     onChange={onChange}
                 />
             </div>
-            <div>
-                <button className={s.botones} onClick={onClick}>Modificar</button>
+            <div className={s.container_button_modify}>
+                <button onClick={onClick}>Modificar</button>
             </div> 
         </div>
     )

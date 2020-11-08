@@ -1,0 +1,61 @@
+.container_create_category{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    min-width: 320px;
+    margin: 0 auto;
+}
+.container_create_category h4{
+    font-size: 18px;
+    font-weight: 500;
+}
+.container_input_textarea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+.container_input_textarea input{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #DFE6E9;
+    outline: none;
+    border: 1px solid #1f53e7;
+    color: #232323;
+    border-radius: 8px;
+    font-size: 12px;
+}
+.container_input_textarea textarea{
+    resize: none;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #DFE6E9;
+    border: 1px solid #1f53e7;
+    padding: 5px 10px;
+    outline: none;
+    font-size: 12px;
+}
+.container_button_create{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    min-width: 200px;
+    padding: 0px 10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.container_button_create button{
+    width: 100%;
+    line-height: 2em;
+    background-color: #1f53c5;
+    border: none;
+    color: #DFE6E9;
+    margin-bottom: 10px;
+    font-size:14px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
