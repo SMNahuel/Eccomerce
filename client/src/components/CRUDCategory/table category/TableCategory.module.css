@@ -12,3 +12,8 @@ table{
     width: 100%;
     font-size: 13px;
 }
+@media (max-width: 500px){
+    .description{
+        display: none;
+    }
+}

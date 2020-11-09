@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './FormProduct.module.css';
-//Declaramos componente Product como función con ES6
+import Edit from '@material-ui/icons/Build';
+import Deleted from '@material-ui/icons/DeleteForever';
 const ProductTable = (props) => {
     
   return (
@@ -8,10 +9,11 @@ const ProductTable = (props) => {
       <thead>
         <tr>
           <th>Nombre</th>
-          <th className={s.description}>Descricion</th>
+          <th className={s.description_td}>Descricion</th>
           <th>Precio</th>
           <th>Cantidades</th>
-          <th>Acciones</th>
+          <th>Modificar</th>
+          <th>Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -19,22 +21,29 @@ const ProductTable = (props) => {
           props.product.map((product) => (
             <tr key={product.id}>
               <td>{product.name}</td>
-              <td>{product.description}</td>
+              <td className={s.description_td}>{product.description}</td>
               <td>{product.price}</td>
               <td>{product.stock}</td>
-              <td>
+              <td className={s.acciones_td}>
                 <button
                   href="#arriba"
-                  className={s.botones}
+                  className={s.boton_modificar}
                   onClick={() => { props.editRow(product) }}>
-                  Edit
-                  </button>
+                    
+                  <div className={s.container_edit}>
+                    <Edit fontSize="small" />
+                  </div>
+                </button>
+              </td>
+              <td className={s.acciones_td}>
                 <button
                   className={s.botonesDeleted}
                   onClick={() => { props.deletedProduct(product.id) }}
                 >
-                  Delete
-                  </button>
+                  <div className={s.container_delete}>
+                    <Deleted fontSize="small" />
+                  </div>
+                </button>
               </td>
             </tr>
           ))
@@ -45,8 +54,9 @@ const ProductTable = (props) => {
           )}
 
       </tbody>
-    </table>)
-
+    </table>
+    
+    )
 }
 
 export default ProductTable;

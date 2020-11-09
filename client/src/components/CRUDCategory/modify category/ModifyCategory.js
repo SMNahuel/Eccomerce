@@ -34,6 +34,7 @@ function ModifyCategory({handleUpdate, category}){
                     name="description"
                     value={input.description}
                     onChange={onChange}
+                    maxLength="50"
                 />
             </div>
             <div className={s.container_button_modify}>

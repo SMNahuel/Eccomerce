@@ -33,8 +33,9 @@
     border: 1px solid #1f53c5;
     font-family: 'calibri';
     font-size: 18px;
-    color:white;
+    color:#fff;
     resize: none;
+    outline: none;
 }
 
 .botones{
@@ -44,7 +45,7 @@
     padding: 12px;
     color: white;
     margin: 16px 0;
-    font-size:16px;
+    font-size:12px;
     border-radius: 8px;
     cursor: pointer;
     outline: none;
@@ -55,23 +56,30 @@
 }
 
 .product .botonesDeleted {
-    width: 100%;
-    background-color: red;
+    background-color: #e7231f;
     border: none;
     padding: 12px;
     color: white;
     margin: 16px 0;
-    font-size:16px;
+    font-size:12px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.product .boton_modificar{
+    background-color: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size:12px;
     border-radius: 8px;
     cursor: pointer;
     outline: none;
 }
 
-.description{
-    width: 40%;
-}
 .formulario input[type="checkbox"]{
-    display: none
+    display: none;
 }
 .formulario .checkbox label{
     color: #0074d9;
@@ -112,9 +120,44 @@
     display: none
 } 
 tr{
-    max-height: 5px;
     line-height: 20px;
 }
 .formulario textarea{
     height: 10vh;
+}
+.description_td{
+    width: 40%;
+
+}
+td{
+    padding: 10px 0px;
+}
+@media (max-width: 500px){
+    .description_td{
+        display: none;
+    }
+}
+table{
+    border-collapse: collapse;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #34404c; 
+       
+}
+
+.container_edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.container_delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.acciones_td{
+    width: 10%;
 }
