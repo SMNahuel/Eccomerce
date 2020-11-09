@@ -107,6 +107,7 @@ const AddProductForm = ({handleCreate}) =>{
                     className={s.controls}
                     type="text" name="description"
                     placeholder="Ingrese descripcion"
+                    maxLength="250"
                     ref={
                         register({
                             required: { value: true, message: 'Campo requerido' }
