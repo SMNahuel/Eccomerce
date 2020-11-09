@@ -16,7 +16,7 @@ const AddProductForm = ({handleCreate}) =>{
 
     const [categories, setCategory] = useState([])
     useEffect(() => {
-        axios.get(`http://${process.env.REACT_APP_API_URL}/category`)
+        axios.get(`${process.env.REACT_APP_API_URL}/category`)
         .then(({data}) => 
             //Seteamos las categorias a nuestro estado
             setCategory(data)
