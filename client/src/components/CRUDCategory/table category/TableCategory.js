@@ -11,7 +11,7 @@ export default function TableCategory({categories, onEdit, onDelete}){
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
-                        <th>Descripcion</th>
+                        <th className={s.description}>Descripcion</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>

@@ -79,14 +79,17 @@ export default function Home() {
     }
 
     return(
-        <>
+        
+        <div className={s.container_home}>
             <div className={s.container}>
                 <h1 className={s.title}>Pagina</h1>
             </div>
             {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
             <SearchBar handleSearch={handleSearch} />
             <Categories categories={state.categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
+
             <Catalog catalog={state.catalog} handleDetail={handleDetail} />
-        </>
+        </div>
+        
     )
 }

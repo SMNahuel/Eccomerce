@@ -22,7 +22,14 @@ function CreateCategory({ handleCreate }){
                     <input name="name" value={input.name} onChange={changeState} placeholder="Nombre"></input>
                 </div>
                 <div className={s.container_input_textarea}>
-                    <textarea name="description" value={input.description} onChange={changeState} placeholder="Descripcion"></textarea>
+                    <textarea 
+                    name="description" 
+                    value={input.description} 
+                    onChange={changeState} 
+                    placeholder="Descripcion"
+                    maxLength="50"
+                    >
+                    </textarea>
                 </div>
                 <div className={s.container_button_create}>
                     <button type="submit">Create new Category</button>

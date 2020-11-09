@@ -90,7 +90,7 @@ const EditProductForm = (props) =>{
         <input className={style.controls} type="text" name="stock" value={state.stock}
             onChange={onChange}
         />
-        <textarea className={style.controls} type="text" name="description" value={state.description}
+        <textarea className={style.controls} type="text" maxLength="250" name="description" value={state.description}
             onChange={onChange}
         />
         {/*@Nahuel  */}

@@ -19,7 +19,7 @@
 }
 .container_input_textarea input{
     width: 100%;
-    padding: 5px 10px;
+    padding: 9px 10px;
     background-color: #DFE6E9;
     outline: none;
     border: 1px solid #1f53e7;
@@ -33,7 +33,7 @@
     border-radius: 8px;
     background-color: #DFE6E9;
     border: 1px solid #1f53e7;
-    padding: 5px 10px;
+    padding: 9px 10px;
     outline: none;
     font-size: 12px;
 }
@@ -41,8 +41,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 300px;
-    min-width: 200px;
+    max-width: 250px;
+    min-width: 150px;
     padding: 0px 10px;
     margin: 0 auto;
     margin-bottom: 10px;

@@ -8,16 +8,20 @@ export default ({category, onEdit, onDelete}) => (
     <tr>
         <th>{category.id}</th>
         <th>{category.name}</th>
-        <th>{category.description}</th>
-        <th className={s.botonesEditar} onClick={() => onEdit(category.id)}>
-            <div className={s.container_edit}>
-                <Edit fontSize="inherit"/>
-            </div>
+        <th className={s.description}>{category.description}</th>
+        <th>
+            <button className={s.button_edit} onClick={() => onEdit(category.id)}>
+                <div className={s.container_edit}>
+                    <Edit fontSize="small"/>
+                </div>
+            </button>
         </th>
-        <th className={s.botonesDeleted} onClick={() => onDelete(category.id) }>
-            <div className={s.container_delete}>
-                <Deleted fontSize="small"/>
-            </div>
+        <th>
+            <button className={s.button_delete} onClick={() => onDelete(category.id)}>
+                <div className={s.container_delete}>
+                    <Deleted fontSize="small"/>
+                </div>
+            </button>
         </th>
     </tr>
 )

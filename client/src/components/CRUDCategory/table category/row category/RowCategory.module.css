@@ -1,37 +1,52 @@
-.botonesEditar{
-    background-color: #1f53c5;
-    border-radius: 8px;
-    cursor: pointer;
-}
-.botonesEditar:hover{
-    background-color: #1f53e7;
-}
-.botonesDeleted{
-    background-color: #e7231f;
-    border-radius: 8px;
-    cursor: pointer;
-}
-.botonesDeleted:hover{
-    background-color: #f7231f;
-}
 th{
-    line-height: 40px;
+    line-height: 25px;
+    padding: 10px 4px;
 }
 .container_edit{
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 100px;
-    min-width: 30px;
-    height: 30px;
-    margin: 5px 5px;
 }
 .container_delete{
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 100px;
-    min-width: 30px;
-    height: 30px;
-    margin: 5px 5px;
+    
+}
+.description{
+    width: 55%;
+}
+@media (max-width: 500px){
+    .description{
+        display: none;
+    }
+}
+.button_edit{
+    background-color: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    margin: 16px 0;
+    font-size:12px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.button_edit:hover{
+   
+    background-color: #1f53e7;
+}
+.button_delete{
+    background-color: #e7231f;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    margin: 16px 0;
+    font-size:12px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+.button_delete:hover{
+    background-color: #f7231f;
 }
