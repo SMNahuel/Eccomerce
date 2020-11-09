@@ -135,7 +135,7 @@ const AddProductForm = ({handleCreate}) =>{
                                 onChange={onCheck}
                             />
 
-                            <label for={c.name}>
+                            <label htmlFor={c.name}>
                                 {c.name}
                             </label>
                         </label>
