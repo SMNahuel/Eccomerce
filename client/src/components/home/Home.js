@@ -5,6 +5,7 @@ import SearchBar from './search bar/SearchBar';
 import Categories from './categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
+import SideBar from '../sideBar/SideBar';
 
 export default function Home() {
     const [ state, setState ] = useState({
@@ -79,17 +80,20 @@ export default function Home() {
     }
 
     return(
-        
-        <div className={s.container_home}>
-            <div className={s.container}>
-                <h1 className={s.title}>Pagina</h1>
+        <>
+            <div className={s.container_home_sticky}>
+                <div className={s.container_home}>
+                    <div className={s.container}>
+                        {/* <SideBar/> */}
+                        <h1 className={s.title}>Pagina</h1>
+                    </div>
+                    {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
+                    <SearchBar handleSearch={handleSearch} />
+                    <Categories categories={state.categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
+                </div>
+                    <Catalog catalog={state.catalog} handleDetail={handleDetail}/>
             </div>
-            {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
-            <SearchBar handleSearch={handleSearch} />
-            <Categories categories={state.categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
-
-            <Catalog catalog={state.catalog} handleDetail={handleDetail} />
-        </div>
-        
+        </>
     )
+
 }

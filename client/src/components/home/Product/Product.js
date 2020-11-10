@@ -16,19 +16,29 @@ export default ({product, onBack}) => {
 
   return (
     <div className={s.container} ref={ref}>
-      <div className={s.card} style={{backgroundImage:`url(${image})`}}>
-        <ArrowBackIcon className={s.back} onClick={onUnmount} />
-        <div className={s.info} >
-          <h1 className={s.name} >{product.name}</h1>
-          <h4 className={s.price} >Precio: {product.price}</h4>
-          <h4 className={s.stock} >Cupo: {product.stock}</h4>
-          <div className={s.description}>
-            <h1>Descipcion:</h1>
-            <h2>{product.description}</h2>
+      <ArrowBackIcon className={s.back} onClick={onUnmount} />
+      <div className={s.container_main}>
+        <div className={s.container_flex}>
+          <div className={s.card} style={{ backgroundImage: `url(${image})` }}>
           </div>
-          <h3 className={s.ranking}>Reviews: ★★★★☆</h3>
+          <div className={s.container_title_price_stock_ranking}>
+            <div className={s.container_title}>
+              <h1 className={s.name} >{product.name}</h1>
+            </div>
+            <p>Author: Lorem impsum</p>
+            <p>Cupo: {product.stock}</p>
+            <p>Precio: {product.price}$</p>
+            <p>Reviews: ★★★★☆</p>
+          </div>
+          <div className={s.container_description}>
+            <p>Description:</p>
+            <p>{product.description}</p>
+          </div>
         </div>
-      </div>
+        <div className={s.container_button}>
+          <button>Add to Cart</button>
+        </div>
+      </div> 
     </div>
   )
 }
