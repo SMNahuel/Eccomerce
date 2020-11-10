@@ -1,7 +1,7 @@
-const { Cart, Order, Product } = require('../db.js');
+const { Cart, Order, Product, User } = require('../db.js');
 
 module.exports = {
-    read: function(){
+    read: function(idUser){
         return Cart.findAll({
             attributes:['id'],
             include:[
@@ -15,6 +15,16 @@ module.exports = {
                 {
                     model: Product,
                     attributes:['id', 'name', 'price'],
+                    through:{
+                        attributes:[]
+                    }
+                },
+                {
+                    model: User,
+                    where:{
+                        id: idUser
+                    },
+                    attributes:['id'],
                     through:{
                         attributes:[]
                     }
