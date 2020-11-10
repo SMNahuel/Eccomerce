@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         password: {
             type: DataTypes.STRING(30),
             allowNull: false,
-            is: /^[0-9a-zA-Z]{30}$/i
+            is: /^[0-9a-zA-Z]{7,30}$/i
         }
     })
 }
