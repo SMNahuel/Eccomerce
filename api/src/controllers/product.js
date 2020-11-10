@@ -5,6 +5,7 @@ module.exports = {
     read: function() {
         return Product.findAll({
             attributes: ['id', 'name', 'description', 'price', 'stock'],
+            order: ["id"],
             include: [
                 {
                     model: Category,

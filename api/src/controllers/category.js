@@ -3,7 +3,8 @@ const { Category } = require('../db.js');
 module.exports = {
     read: function() {
         return Category.findAll({
-            attributes: ['id', 'name', 'description']
+            attributes: ['id', 'name', 'description'],
+            order: ["id"]
         })
     },
 
