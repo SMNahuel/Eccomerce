@@ -5,13 +5,14 @@ function CreateCategory({ handleCreate }){
         name: "",
         description: ""
     })
-    const changeState = function (e){
+    const onChange = function (e){
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
     }
     const onSubmit = (e) => {
+        e.preventdefault()
         handleCreate(input)
     }
     return(
@@ -19,13 +20,13 @@ function CreateCategory({ handleCreate }){
             <h4>Crear una categoria</h4>
             <form  onSubmit={onSubmit} >
                 <div className={s.container_input_textarea}>
-                    <input name="name" value={input.name} onChange={changeState} placeholder="Nombre"></input>
+                    <input name="name" value={input.name} onChange={onChange} placeholder="Nombre"></input>
                 </div>
                 <div className={s.container_input_textarea}>
                     <textarea 
                     name="description" 
                     value={input.description} 
-                    onChange={changeState} 
+                    onChange={onChange} 
                     placeholder="Descripcion"
                     maxLength="50"
                     >

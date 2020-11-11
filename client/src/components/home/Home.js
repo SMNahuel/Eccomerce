@@ -5,7 +5,6 @@ import SearchBar from './search bar/SearchBar';
 import Categories from './categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
-import SideBar from '../sideBar/SideBar';
 
 export default function Home() {
     const [ state, setState ] = useState({

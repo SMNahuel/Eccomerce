@@ -1,76 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import s from './CRUDCategory.module.css';
-import axios from 'axios';
 import TableCategory from './table category/TableCategory'
 import CreateCategory from './create category/CreateCategory';
 import ModifyCategory from './modify category/ModifyCategory'
 import DeleteCategory from './delete category/DeleteCategory';
-
+import { useDispatch, useSelector } from 'react-redux';
+import api from '../../redux/action-creators';
 
 function CrudCategory(){
     const [state, setState] = useState({
-        categories: [],
         action: null,
         category: {}
     })
-    
+
+    const dispatch = useDispatch()
+    const categories = useSelector(state=> state.categories)
+
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/category`)
-        .then(({data}) => 
-            setState(state => ({
-                ...state, 
-                categories: data
-            }))
-        )
-    }, [])
+        dispatch(api.getCategories())
+    }, [dispatch])
 
     const onCreate = () => {
         setState({...state, action: 'create'})
     }
     const handleCreate = (category) => {
-        axios.post(`${process.env.REACT_APP_API_URL}/category`, category)
-        .then(({data}) => {
-            setState({
-                ...state,
-                categories: data,
-                action: null
-            })
-        })
+        dispatch(api.createCategory(category))
     }
 
     const onUpdate = (id) => {
         setState({
             ...state, 
-            action: 'edit', 
-            category: state.categories.find(category => category.id === id)
+            action: 'update', 
+            category: categories.find(category => category.id === id)
         })
     }
     const handleUpdate = (id, category) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/category/${id}`, category)
-        .then(({data}) => setState({
-            ...state,
-            categories: data,
-            action: null,
-        }))
+        dispatch(api.updateCategory(id, category))
     }
+
 
     const onDelete = (id) => {
         setState({
             ...state, 
             action: 'delete', 
-            category: state.categories.find(category => category.id === id)
+            category: categories.find(category => category.id === id)
         })
     }
     const handleDelete = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/category/${id}`)
-        .then(({data}) => {
-            setState({
-                ...state,
-                categories: data,
-                action: null
-            })
-        })
+        dispatch(api.deleteCategory(id))
     }
+
+
     const onNotSure = e => {
         setState({...state, action: null})
     }
@@ -89,7 +69,7 @@ function CrudCategory(){
                 <CreateCategory className={s.controls} handleCreate={handleCreate} />
             }
             {
-                state.action === 'edit' &&
+                state.action === 'update' &&
                 <ModifyCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
             }
             {
@@ -97,7 +77,7 @@ function CrudCategory(){
                 <DeleteCategory handleDelete={handleDelete} category={state.category} onNotSure={onNotSure}/>
             }
             <TableCategory
-                categories={state.categories}
+                categories={categories}
                 onEdit={onUpdate}
                 onDelete={onDelete}
             />
