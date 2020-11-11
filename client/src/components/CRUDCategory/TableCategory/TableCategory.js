@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './TableCategory.module.css';
-import RowCategory from './row category/RowCategory'
+import RowCategory from './RowCategory/RowCategory'
 
 
 export default function TableCategory({categories, onEdit, onDelete}){
@@ -19,10 +19,10 @@ export default function TableCategory({categories, onEdit, onDelete}){
                 <tbody>
                     {categories &&
                         categories.map(category => 
-                            <RowCategory 
-                                category={category} 
-                                key={category.id} 
-                                onEdit={onEdit} 
+                            <RowCategory
+                                key={category.id}
+                                category={category}
+                                onEdit={onEdit}
                                 onDelete={onDelete}
                             />
                         )

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import s from './ModifyCategory.module.css';
+import s from './UpdateCategory.module.css';
 
-function ModifyCategory({handleUpdate, category}){
+export default function UpdateCategory({handleUpdate, category}){
     const [ input, setInput ] = useState({
         name: category.name,
         description: category.description
@@ -43,4 +43,3 @@ function ModifyCategory({handleUpdate, category}){
         </div>
     )
 }
-export default ModifyCategory;

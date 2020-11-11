@@ -1,128 +1,84 @@
 import React, { useEffect, useState } from 'react';
 import s from './FormProduct.module.css';
-import axios from 'axios';
-import EditProductForm from './EditProductForm';
-import AddProductForm from './AddProductForm';
-import ProductTable from './ProductTable';
-//import {v4 as uuidv4} from 'uuid';
+import TableProduct from './TableProduct/TableProduct';
+import CreateProduct from './CreateProduct/CreateProduct';
+import UpdateProduct from './UpdateProduct/UpdateProduct';
+import DeleteProduct from './DeleteProduct/DeleteProduct'
+import { useDispatch, useSelector } from 'react-redux';
+import api from '../../redux/action-creators';
+
 export default function CRUDProducts(){
-    
-    //Creamos estado vacio 
     const [state, setState] = useState({
-        products: []
+        action: null,
+        product: {}
     })
 
-    //Pedimos los productos a la base de datos 
+    const dispatch = useDispatch()
+    const products = useSelector(state => state.products)
+
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/products`)
-        .then(({data}) => 
-            //Seteamos los productos a nuestro estado
-            setState(state =>({
-                ...state,
-                products: data
-            }))
-        )
-    }, [])
+        if (!products.length){
+            dispatch(api.getProducts())
+        }
+    }, [dispatch, products])
 
-    //Funcionando
+    const onCreate = () => {
+        setState({...state, action: 'create'})
+    }
     const handleCreate = (product) =>{
-        //Hacemos la peticion post con nuesto product que recibimos como parametro 
-        axios.post(`${process.env.REACT_APP_API_URL}/products`, product)
-        .then(({data}) => {
-            setState({
-                //Lo seteamos con lo que devuelve ya que vuelve todos los post
-                //incluido con el que agregamos
-                ...state,
-                products: data
-            })
-        }) 
+        dispatch(api.createProduct(product))
+        setState({...state, action: null})
     }
 
-    //Funcion deleted a la base de datos
-    function deletedProduct(id){
-        //Hacemos request de deleted al server
-        axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`)
-        .then(({data}) =>{
-            //Seteamos el estado con lo que devuelve el axios ya que devuelve todos los datos 
-            //sin el que borramos
-            setState({
-                ...state,
-                products: data
-            })
+    const onUpdate = (id) => {
+        setState({
+            ...state, 
+            action: 'update', 
+            product: products.find(product => product.id === id)
         })
     }
-    
-    //Agregamos un estado para controlar el componente a mostrar
-    const [editing, setEditing] = useState(false);
-    
-    //Usamos un estado auxiliar para enviar al server y hacer la petición PUT
-    const [currentProduct, setCurrentProduct] = useState({
-        id : null , name: '', description: '', price: '', stock: ''
-    })
-    function editRow(product){
-        //Cambiamos el estado para volver al componente Add
-        setEditing(true);
-        //Seteamos el estado de nuestro producto Auxiliar
-        //con lo que recibimos como parametro
-        setCurrentProduct({
-            id: product.id,
-            name: product.name,
-            description: product.description,
-            price: product.price,
-            stock: product.stock,
-            categories: product.categories
-        })
+    const handleUpdate = (id, product) => {
+        dispatch(api.updateProducts(id, product))
+        setState({...state, action: null})
     }
 
-    const updateProduct = (id, product) =>{
-        //Si se hace el llamado a la función desde el componente EditProduct
-        //Mostramos el componente formulario de edicion
-        setEditing(false);
-        //Hacemos el pedido put al server pasando como segundo parametro el producto que recibimos
-        //y Su id
-        axios.put(`${process.env.REACT_APP_API_URL}/products/${id}`, product)
-        .then(({data}) => setState({
-            //El servidor nos devuelve todos los productos y el producto modificaod
-            //Y lo seteamos a nuestro estado
-            ...state,
-            products: data
-        }))
+    const onDelete = (id) => {
+        setState({
+            ...state, 
+            action: 'delete', 
+            product: products.find(product => product.id === id)
+        })
+    }
+    const handleDelete = (id) => {
+        dispatch(api.deleteProducts(id))
+        setState({...state, action: null})
+    }
+    const onNotSure = () => {
+        setState({...state, action: null})
     }
 
     return(
         <div className={s.form}>
             <div>
                 {
-                    /* Usamos editing para mostrar un componente u otro dependiendo de su estado */
-                    editing ? (
-                    <div>
-                        {/* En el caso que sea true mostramos EditProduct */}
-                    <EditProductForm 
-                    className={s.controls} 
-                    currentProduct={currentProduct}
-                    updateProduct= {updateProduct}
-                        />
-                    </div>
-                    ) : (
-                    <div>
-                        {/* Si no mostramos AddProduct */}
-                    <AddProductForm 
-                        className={s.controls}
-                        handleCreate = {handleCreate}
-                        />
-                    </div>
-                    )
+                    state.action === null &&
+                    <button  onClick={onCreate} className={s.botones} >Crear Producto</button>
                 }
-                </div>
-                <div>
-                {/* Mostraremos siempre la tabla product pasamos como parametros */}
-                {/* Los productos */}
-                {/* Y las funciones Deleted y Editar para incrustar a los botones */}
-                <ProductTable 
-                product={state.products}
-                deletedProduct={deletedProduct}
-                editRow={editRow}
-                />
+                {
+                    state.action === 'create' &&
+                    <CreateProduct className={s.controls} handleCreate={handleCreate} s={s}/>
+                }
+                {
+                    state.action === 'update' &&
+                    <UpdateProduct className={s.controls} handleUpdate={handleUpdate} product={state.product}  s={s}/>
+                }
+                {
+                    state.action === 'delete' &&
+                    <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure} s={s}/>
+                }
+            </div>
+            <div>
+                <TableProduct products={products} onUpdate={onUpdate} onDelete={onDelete} s={s}/>
             </div>
         </div>
     );
