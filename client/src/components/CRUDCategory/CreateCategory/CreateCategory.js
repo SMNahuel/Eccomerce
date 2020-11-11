@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './CreateCategory.module.css';
+import {validateCategory as validate} from '../../../utils/validator';
+
 function CreateCategory({ handleCreate }){
     const[input, setInput] = useState({
         name: "",
         description: ""
     })
+    const[err, setErr] = useState({})
+    useEffect(()=>{
+        setErr(validate(input))
+    }, [input])
     const onChange = function (e){
         setInput({
             ...input,
@@ -21,8 +27,9 @@ function CreateCategory({ handleCreate }){
             <h4>Crear una categoria</h4>
             <form  onSubmit={onSubmit} >
                 <div className={s.container_input_textarea}>
-                    <input name="name" value={input.name} onChange={onChange} placeholder="Nombre"></input>
+                    <input name="name" value={input.name} onChange={onChange} placeholder="Nombre"/>
                 </div>
+                <div>{err.name}</div>
                 <div className={s.container_input_textarea}>
                     <textarea 
                         name="description" 
@@ -32,6 +39,7 @@ function CreateCategory({ handleCreate }){
                         maxLength="50"
                     />
                 </div>
+                <div>{err.description}</div>
                 <div className={s.container_button_create}>
                     <input type="submit" value={'Create new Category'} />
                 </div>
