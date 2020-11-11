@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import CheckCategory from '../CheckCategory/CheckCategory';
-import { useDispatch, useSelector } from 'react-redux';
-import api from '../../../redux/action-creators';
 import {validateProduct as validate} from '../../../utils/validator';
 
-export default function CreateProduct({handleCreate, s}) {
+export default function CreateProduct({handleCreate, categories, s}) {
     const[input, setInput] = useState({
         name: '',
         description: '',
@@ -17,15 +15,6 @@ export default function CreateProduct({handleCreate, s}) {
     useEffect(()=>{
         setErr(validate(input))
     }, [input])
-
-    const dispatch = useDispatch()
-    const categories = useSelector(state => state.categories)
-    
-    useEffect(()=>{
-        if (!categories[0]){
-            dispatch(api.getCategories())
-        }
-    }, [dispatch, categories])
 
     const onChange = function (e){
         setInput({
@@ -67,7 +56,7 @@ export default function CreateProduct({handleCreate, s}) {
                 <textarea className={s.controls} type="text" name="description" onChange={onChange} placeholder="Ingrese descripcion" maxLength="250"/>
                 <div>{err.description}</div>
                 <div >
-                    {categories[0] &&
+                    {categories.length &&
                         categories.map(category => {
                             let cheked = input.categories.includes(category.id)
                             return <CheckCategory key={category.id} category={category} cheked={cheked} handleCheck={handleCheck} s={s} />
