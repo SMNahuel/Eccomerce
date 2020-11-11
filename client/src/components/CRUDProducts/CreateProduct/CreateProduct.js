@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CheckCategory from '../CheckCategory/CheckCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
+import {validateProduct as validate} from '../../../utils/validator';
 
 export default function CreateProduct({handleCreate, s}) {
     const[input, setInput] = useState({
@@ -11,6 +12,11 @@ export default function CreateProduct({handleCreate, s}) {
         stock: '',
         categories: []
     })
+
+    const[err, setErr] = useState({})
+    useEffect(()=>{
+        setErr(validate(input))
+    }, [input])
 
     const dispatch = useDispatch()
     const categories = useSelector(state => state.categories)
@@ -53,12 +59,13 @@ export default function CreateProduct({handleCreate, s}) {
             >
                 <h4>Agregar producto</h4>
                 <input className={s.controls} type="text" name="name" onChange={onChange} placeholder="Ingrese el nombre"/>
-                {/* <div>{errors?.name?.message}</div> */}
+                <div>{err.name}</div>
                 <input className={s.controls} type="number" name="price" onChange={onChange} placeholder="Ingrese el precio" step="0.01"/>
-                {/* <div>{errors?.name?.message}</div> */}
+                <div>{err.price}</div>
                 <input className={s.controls} type="number" name="stock" onChange={onChange} placeholder="Ingrese el stock"/>
+                <div>{err.stock}</div>
                 <textarea className={s.controls} type="text" name="description" onChange={onChange} placeholder="Ingrese descripcion" maxLength="250"/>
-                {/* <div>{errors?.name?.message}</div> */}
+                <div>{err.description}</div>
                 <div >
                     {categories[0] &&
                         categories.map(category => {
@@ -67,8 +74,7 @@ export default function CreateProduct({handleCreate, s}) {
                         })
                     }
                 </div>
-                {/* <div>{errors?.name?.message}</div> */}
-                <button className={s.botones} >Crear producto</button>
+                <input className={s.botones} type="submit" value='Crear producto'/>
             </form>
         </div>
     );
