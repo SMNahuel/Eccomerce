@@ -17,8 +17,10 @@ export default function CRUDProducts(){
     const products = useSelector(state => state.products)
 
     useEffect(() => {
-        dispatch(api.getProducts())
-    }, [dispatch])
+        if (!products.length){
+            dispatch(api.getProducts())
+        }
+    }, [dispatch, products])
 
     const onCreate = () => {
         setState({...state, action: 'create'})

@@ -12,7 +12,8 @@ function CreateCategory({ handleCreate }){
         })
     }
     const onSubmit = (e) => {
-        e.preventdefault()
+        console.log('submit!');
+        e.preventDefault()
         handleCreate(input)
     }
     return(
@@ -24,16 +25,15 @@ function CreateCategory({ handleCreate }){
                 </div>
                 <div className={s.container_input_textarea}>
                     <textarea 
-                    name="description" 
-                    value={input.description} 
-                    onChange={onChange} 
-                    placeholder="Descripcion"
-                    maxLength="50"
-                    >
-                    </textarea>
+                        name="description" 
+                        value={input.description} 
+                        onChange={onChange} 
+                        placeholder="Descripcion"
+                        maxLength="50"
+                    />
                 </div>
                 <div className={s.container_button_create}>
-                    <button type="submit">Create new Category</button>
+                    <input type="submit" value={'Create new Category'} />
                 </div>
             </form>
         </div>

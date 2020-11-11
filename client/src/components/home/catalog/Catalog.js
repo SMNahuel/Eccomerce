@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import s from './Catalog.module.css'
-import ProductCard from './product card/ProductCard';
+import ProductCard from './ProductCard/ProductCard';
 
 
-export default function Catalog({catalog, handleDetail}) {
+export default function Catalog({products, handleDetail}) {
     const [centeredId, setCenteredId] = useState(1)
     const ref = useRef(null)
 
@@ -24,12 +24,12 @@ export default function Catalog({catalog, handleDetail}) {
         timeoutId = setTimeout(setCenteredChildren, 200)
     }
 
-    useEffect(setCenteredChildren, [catalog])
+    useEffect(setCenteredChildren, [products])
 
     return(
         <div className={s.container} onScroll={onScroll} ref={ref}>
-            {catalog[0] && 
-                catalog.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail} centered={Number(centeredId) === Number(product.id)} />)
+            {products && 
+                products.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail} centered={Number(centeredId) === Number(product.id)} />)
             }
         </div>
     )

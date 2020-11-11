@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import s from './CRUDCategory.module.css';
-import TableCategory from './table category/TableCategory'
-import CreateCategory from './create category/CreateCategory';
-import ModifyCategory from './modify category/ModifyCategory'
-import DeleteCategory from './delete category/DeleteCategory';
+import TableCategory from './TableCategory/TableCategory'
+import CreateCategory from './CreateCategory/CreateCategory';
+import UpdateCategory from './UpdateCategory/UpdateCategory'
+import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 
@@ -17,14 +17,17 @@ function CrudCategory(){
     const categories = useSelector(state=> state.categories)
 
     useEffect(() => {
-        dispatch(api.getCategories())
-    }, [dispatch])
+        if(!categories.length){
+            dispatch(api.getCategories())
+        }
+    }, [dispatch, categories])
 
     const onCreate = () => {
         setState({...state, action: 'create'})
     }
     const handleCreate = (category) => {
         dispatch(api.createCategory(category))
+        setState({...state, action: null})
     }
 
     const onUpdate = (id) => {
@@ -36,6 +39,7 @@ function CrudCategory(){
     }
     const handleUpdate = (id, category) => {
         dispatch(api.updateCategory(id, category))
+        setState({...state, action: null})
     }
 
 
@@ -48,6 +52,7 @@ function CrudCategory(){
     }
     const handleDelete = (id) => {
         dispatch(api.deleteCategory(id))
+        setState({...state, action: null})
     }
 
 
@@ -70,7 +75,7 @@ function CrudCategory(){
             }
             {
                 state.action === 'update' &&
-                <ModifyCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
+                <UpdateCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
             }
             {
                 state.action === 'delete' &&
