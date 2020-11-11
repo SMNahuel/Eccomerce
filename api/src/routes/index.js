@@ -4,6 +4,7 @@ const productRouter = require('./product.js');
 const categoryRouter = require('./category.js');
 const imageRouter = require('./image.js');
 const userRouter = require('./user.js')
+const cartRouter = require('./cart.js')
 const router = Router();
 
 // load each router on a route
@@ -13,5 +14,6 @@ router.use('/products', productRouter);
 router.use('/category', categoryRouter);
 router.use('/image', imageRouter);
 router.use('/user', userRouter)
+router.use('/user/:id/cart', cartRouter)
 
 module.exports = router;

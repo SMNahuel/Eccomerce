@@ -44,6 +44,18 @@ Cart.hasMany(Order)
 Order.hasOne(Product)
 Product.belongsTo(Order)
 
+/* // Carrito pertenece a un usuario
+Cart.hasOne(User)
+//Usuario tiene muchos carritos
+User.belongsToMany(Cart)
+//Pertenece a un carrito
+Order.hasOne(Cart)
+//Carrito tiene muchas ordenes
+Cart.belongsToMany(Order)
+
+Order.hasOne(Product)
+Product.belongsToMany(Order) */
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');

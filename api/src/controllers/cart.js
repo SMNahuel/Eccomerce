@@ -1,4 +1,4 @@
-const { Cart, Order, Product, User } = require('../db.js');
+const { Cart, Order, User } = require('../db.js');
 
 module.exports = {
     read: function(idUser){
@@ -8,13 +8,6 @@ module.exports = {
                 {
                     model: Order,
                     attributes:['id', 'quantity'],
-                    through:{
-                        attributes:[]
-                    }
-                },
-                {
-                    model: Product,
-                    attributes:['id', 'name', 'price'],
                     through:{
                         attributes:[]
                     }
@@ -30,6 +23,14 @@ module.exports = {
                     }
                 }
             ]
+        })
+    },
+
+    create: function (idUser, idOrder){
+        Order.findByPk({
+            where:{
+                id: idOrder
+            }
         })
     }
 }
