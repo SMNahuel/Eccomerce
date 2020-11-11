@@ -1,6 +1,39 @@
-const { Product, Category, Image } = require('./src/db.js');
+const { Product, Category, Image, User } = require('./src/db.js');
 
 const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
+const user = [
+    {
+        name: "Maico Loncomilla",
+        email: "maicoloncomilla@gmail.com",
+        password: "1234"
+    },
+    {
+        name: "Javier Balonga",
+        email: "javierbalonga@gmail.com",
+        password: "2345"
+    },
+    {
+        name: "Esteban",
+        email: "ces.esteban@gmail.com",
+        password: "567"
+    },
+    {
+        name: "Leo Vinas",
+        email: "vinasleonardo@yahoo.com",
+        password: "783"
+    },
+    {
+        name: "Nahuel Sanches",
+        email: "nahuelsan96@gmail.com",
+        password: "789"
+    },
+    {
+        name: "Nacho",
+        email: "ignaciogimenez70@gmail.com",
+        password: "1234"
+    }
+
+]
 
 module.exports = ()=> {
     // hardcodeamos algunos datos para trabajar en modo dev
@@ -8,6 +41,11 @@ module.exports = ()=> {
         name: categories[0],
         description: "Cursos de " + categories[0]
     });
+    var z = User.create({
+        name: user[0].name,
+        email: user[0].email,
+        password: user[0].password
+    })
 
     for (let i = 1; i < categories.length; i++) {
         p = p.then(() => Category.create({
@@ -15,6 +53,14 @@ module.exports = ()=> {
             description: "Cursos de " + categories[i]
         }));
     };
+
+    for(let i = 1; i < user.length; i++){
+        z = z.then(() => User.create({
+            name: user[i].name,
+            email: user[i].email,
+            password: user[i].password
+        }))
+    }
 
     p = p.then(r => console.log('categories pre-charged'));
 
