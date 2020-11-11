@@ -1,16 +1,17 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 
-server.get('/', (req, res, next) => {
-    const { idUser } = req.params
-    cart.read(idUser)
+server.get('/:id/cart', (req, res, next) => {
+    const { id } = req.params
+    cart.read(id)
     .then(r => res.send(r))
     .catch(next)
 })
 
-server.post('/:idOrder', (req, res, next) => {
-    const { idUser, idOrder } = req.params
-    cart.create(idUser, idOrder)
+server.post('/:id/cart', (req, res, next) => {
+    const { idOrder } = req.body
+    const { id } = req.params
+    cart.create(id, idOrder)
     .then(r => res.send(r))
     .catch(next)
 })
