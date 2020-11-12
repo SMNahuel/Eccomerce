@@ -11,8 +11,10 @@ server.post('/', (req, res, next) => {
 })
 
 server.get('/', (req, res, next) => {
-    const userId = req.cookies.userId.userId
-    console.log(userId)
+    const userId = req.cookies.user.userId
+    cart.allCarts(userId)
+    .then(r => res.send(r))
+    .catch(next)
 })
 
 server.get('/:id', (req, res, next) => {

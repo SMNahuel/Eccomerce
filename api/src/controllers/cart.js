@@ -2,29 +2,6 @@ const { Cart, Order, User, Product } = require('../db.js');
 
 module.exports = {
 
-    create: function (idUser, idOrder){
-        let cart
-        const cartPromise = Cart.findOrCreate({
-            where:{
-                userId: idUser,
-                state: 'in process'
-            },
-            defaults:{
-                state: 'in process',
-                userId: idUser
-            }
-        })
-        .then(r => cart = r[0].get({plain:true}))
-        const orderPromise = Order.findByPk(idOrder)
-        return Promise.all([cartPromise, orderPromise])
-        .then(([cart, order]) => {
-            order.update({
-                cartId: cart.id
-            })
-        })
-        .then(() => this.cartOf(idUser))
-    },
-
     createAnonimus: function({ productId, quantity }, cookieId){
         if(cookieId){
             return this.addAnonimus(productId, quantity, cookieId)
@@ -88,5 +65,25 @@ module.exports = {
                 ])
             ))
             .then(([user]) => this.cartOf(user.id))
+    },
+
+    allCarts: function(idUser){
+        return User.findOne({
+            where:{
+                id: idUser
+            },
+            attributes: ['id'],
+            include: {
+                model: Cart,
+                attributes: ['id', 'state'],
+                include: {
+                    model: Product,
+                    attributes: ['id', 'name'],
+                    through: {
+                        attributes: ['price', 'quantity']
+                    }
+                }
+            } 
+        })
     }
 }
