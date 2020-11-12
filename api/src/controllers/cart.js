@@ -85,5 +85,22 @@ module.exports = {
                 }
             } 
         })
+    },
+
+    changeCart: function(cartId, { products }){
+        console.log(products)
+    },
+
+    delete: function(cartId){
+        return Cart.findOne({
+            where:{
+                id: cartId
+            }
+        })
+        .then(r => {
+            const user = r.userId
+            r.destroy()
+            return this.allCarts(user)
+        })
     }
 }

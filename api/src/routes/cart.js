@@ -4,7 +4,6 @@ const cart = require('../controllers/cart');
 server.post('/', (req, res, next) => {
     let cookieId
     req.cookies.user ? cookieId = req.cookies.user.userId : cookieId = undefined
-    console.log(cookieId)
     cart.createAnonimus(req.body, cookieId)
     .then(r => cookieId ? res.send(r) : res.cookie("user", r[0]).send(r))
     .catch(next)
@@ -17,21 +16,18 @@ server.get('/', (req, res, next) => {
     .catch(next)
 })
 
-server.get('/:id', (req, res, next) => {
-    const { id } = req.params
-    cart.cartOf(id)
+server.put('/:cartId', (req, res, next) => {
+    const { cartId } = req.params
+    cart.changeCart(cartId, req.body)
     .then(r => res.send(r))
     .catch(next)
 })
 
-server.post('/:id', (req, res, next) => {
-    const { idOrder } = req.body
-    const { id } = req.params
-    cart.create(id, idOrder)
+server.delete('/:cartId', (req, res, next) => {
+    const { cartId } = req.params
+    cart.delete(cartId)
     .then(r => res.send(r))
     .catch(next)
 })
-
-
 
 module.exports = server;
