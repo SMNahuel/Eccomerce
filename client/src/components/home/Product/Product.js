@@ -37,7 +37,7 @@ export default ({product, onBack}) => {
           </div>
         </div>
         <div className={s.container_button}>
-          <button >Add to Cart</button>
+          <button onClick={(console.log(product))}>Add to Cart</button>
         </div>
       </div> 
     </div>
