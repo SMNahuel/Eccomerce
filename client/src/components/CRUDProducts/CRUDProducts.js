@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from './FormProduct.module.css';
+import FilterBar from './FilterBar/FilterBar';
 import TableProduct from './TableProduct/TableProduct';
 import CreateProduct from './CreateProduct/CreateProduct';
 import UpdateProduct from './UpdateProduct/UpdateProduct';
@@ -10,17 +11,22 @@ import api from '../../redux/action-creators';
 export default function CRUDProducts(){
     const [state, setState] = useState({
         action: null,
-        product: {}
+        product: {},
+        products: null
     })
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.products)
+    const categories = useSelector(state => state.categories)
 
     useEffect(() => {
+        if (!categories.length){
+            dispatch(api.getCategories())
+        }
         if (!products.length){
             dispatch(api.getProducts())
         }
-    }, [dispatch, products])
+    }, [dispatch, products, categories])
 
     const onCreate = () => {
         setState({...state, action: 'create'})
@@ -56,6 +62,29 @@ export default function CRUDProducts(){
     const onNotSure = () => {
         setState({...state, action: null})
     }
+    const handleSearch = (key) => {
+        key = key.toLowerCase()
+        setState({
+            ...state, 
+            products: products.filter(({name, description}) => 
+                name.toLowerCase().includes(key) ||
+                description.toLowerCase().includes(key)
+            )
+        })
+
+    }
+    const handleSelect = (categoryId) => {
+        categoryId = Number(categoryId)
+        setState({
+            ...state, 
+            products: products.filter(({categories}) => 
+                categories.some(({id}) => id === categoryId)
+            )
+        })
+    }
+    const handleClearFilters = () => {
+        setState({...state, products: null})
+    }
 
     return(
         <div className={s.form}>
@@ -66,19 +95,20 @@ export default function CRUDProducts(){
                 }
                 {
                     state.action === 'create' &&
-                    <CreateProduct className={s.controls} handleCreate={handleCreate} s={s}/>
+                    <CreateProduct className={s.controls} handleCreate={handleCreate} categories={categories} s={s}/>
                 }
                 {
                     state.action === 'update' &&
-                    <UpdateProduct className={s.controls} handleUpdate={handleUpdate} product={state.product}  s={s}/>
+                    <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate} s={s}/>
                 }
                 {
                     state.action === 'delete' &&
                     <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure} s={s}/>
                 }
             </div>
+            <FilterBar categories={categories} handleSearch={handleSearch} handleSelect={handleSelect} handleClearFilters={handleClearFilters} />
             <div>
-                <TableProduct products={products} onUpdate={onUpdate} onDelete={onDelete} s={s}/>
+                <TableProduct products={state.products || products} onUpdate={onUpdate} onDelete={onDelete} s={s}/>
             </div>
         </div>
     );

@@ -1,6 +1,16 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
 
+server.get('/:id/orders', (req,res,next)=>{
+    const { id } = req.params;
+    if(!id){
+        return res.status(400).send('I need an id to Delete the User')
+    }
+    user.search(id)
+    .then(r => res.send(r))
+    .catch(next);    
+})
+
 server.get('/', (req, res, next) => {
     user.read()
     .then(r => res.send(r))
