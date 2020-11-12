@@ -133,13 +133,20 @@ module.exports = {
         return Cart.findOne({
             where:{
                 id: idCart
+            },
+            include:{
+                model: User
             }
         })
         .then(cart => {
-            return cart.update({
-                state: 'completed'
-            })
-            .then(cart => this.allCarts(cart.userId))
+            if(!cart.user.name || !cart.user.email || !cart.user.password){
+                throw "The user must be logged in "
+            }else{
+                return cart.update({
+                    state: 'completed'
+                })
+                .then(cart => this.allCarts(cart.userId))
+            }
         })
     }
 }
