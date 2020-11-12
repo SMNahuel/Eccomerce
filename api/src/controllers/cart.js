@@ -1,79 +1,151 @@
 const { Cart, Order, User, Product } = require('../db.js');
 
 module.exports = {
-    read: function(idUser){
-        return Cart.findAll({
-            attributes: ['id'],
-            include:[
-                {
-                    model: User,
-                    attributes: ['id', 'name'],
-                    where:{
-                        id: idUser
-                    }
-                },
-                {
-                    model: Order,
-                    attributes:['id', 'quantity', 'price']
-                }
-            ]
-        })
-    },
 
-    create: function (idUser, idOrder){
-        let cart
-        const cartUser = Cart.findOrCreate({
-            where:{
-                userId: idUser,
+    createAnonimus: function({ productId, quantity }, cookieId){
+        if(cookieId){
+            return this.addAnonimus(productId, quantity, cookieId)
+        }else{
+            const userPromise = User.create()
+            const cartPromise = Cart.create({
                 state: 'in process'
-            },
-            defaults:{
-                state: 'in process',
-                userId: idUser
-            }
-        })
-        .then(r => cart = r[0].get({plain:true}))
-        const order = Order.findByPk(idOrder)
-        return Promise.all([cartUser, order])
-        .then((r) => {
-            r[1].update({
-                cartId: r[0].id
             })
-        })
-        .then(() => this.read(idUser))
-    },
-
-    createAnonimus: function({ productId, quantity }){
-        const userPromise = User.create()
-        const cartPromise = Cart.create()
-        const productPromise = Product.findByPk(productId)
-        return Promise.all([userPromise, cartPromise, productPromise])
-        .then(([user, cart, product]) => (
-            Promise.all([
-                user.addCart(cart),
-                cart.addProduct(product, {
-                    through: {
-                        price: product.price,
-                        quantity
-                    }
-                })
-            ])
-        ))
-        .then(([user]) => this.cartOf(user.id))
+            const productPromise = Product.findByPk(productId)
+            return Promise.all([userPromise, cartPromise, productPromise])
+            .then(([user, cart, product]) => (
+                Promise.all([
+                    user.addCart(cart),
+                    cart.addProduct(product, {
+                        through: {
+                            price: product.price,
+                            quantity
+                        }
+                    })
+                ])
+            ))
+            .then(([user]) => this.cartOf(user.id))
+        }
     },
 
     cartOf: function(userId){
         return Cart.findAll({
             where:{
-                userId: userId
+                userId: userId,
+                state:'in process'
             },
-            attributes: ['id', 'state'],
+            attributes: ['id', 'state', 'userId'],
             include: {
                 model: Product,
                 attributes: ['id', 'name'],
                 through: {
                     attributes: ['price', 'quantity']
                 }
+            }
+        })
+    },
+
+    addAnonimus: function(productId, quantity, cookieId){
+        const userPromise = User.findByPk(cookieId)
+        const cartPromise = Cart.findOne({
+            where:{
+                userId: cookieId
+            }
+        })
+        const productPromise = Product.findByPk(productId)
+        return Promise.all([userPromise, cartPromise, productPromise])
+            .then(([user, cart, product]) => (
+                Promise.all([
+                    user,
+                    cart.addProduct(product, {
+                        through: {
+                            price: product.price,
+                            quantity
+                        }
+                    }),
+                ])
+            ))
+            .then(([user]) => this.cartOf(user.id))
+    },
+
+    allCarts: function(idUser){
+        return User.findOne({
+            where:{
+                id: idUser
+            },
+            attributes: ['id'],
+            include: {
+                model: Cart,
+                attributes: ['id', 'state'],
+                include: {
+                    model: Product,
+                    attributes: ['id', 'name'],
+                    through: {
+                        attributes: ['price', 'quantity']
+                    }
+                }
+            } 
+        })
+    },
+
+    changeCart: function(idCart, { products }){
+        const promise = products.map(p => {
+            Order.findOne({
+                where:{
+                    cartId: idCart,
+                    productId: p.id
+                }
+            })
+            .then(order => {
+                if(order){
+                    if(p.order.quantity > 0){
+                        order.update({
+                            quantity: p.order.quantity
+                        })
+                    }else{
+                        order.destroy()
+                    }
+                }
+            })
+        })
+        const cartPromise = Cart.findOne({
+            where:{
+                id: idCart
+            }
+        })
+        return Promise.all([promise, cartPromise])
+        .then((r) => this.cartOf(r[1].userId))
+    },
+
+    delete: function(cartId){
+        return Cart.findOne({
+            where:{
+                id: cartId
+            }
+        })
+        .then(r => {
+            const user = r.userId
+            r.destroy()
+            return this.allCarts(user)
+        })
+    },
+
+    cartComplete: function(idCart){
+        return Cart.findOne({
+            where:{
+                id: idCart
+            },
+            include:{
+                model: User
+            }
+        })
+        .then(cart => {
+            if(!cart.user.name || !cart.user.email || !cart.user.password){
+                throw "The user must be logged in "
+            }else{
+                return cart.update({
+                    state: 'completed'
+                })
+                .then(cart => this.allCarts(cart.userId))
             }
         })
     }
