@@ -87,8 +87,33 @@ module.exports = {
         })
     },
 
-    changeCart: function(cartId, { products }){
-        console.log(products)
+    changeCart: function(idCart, { products }){
+        const promise = products.map(p => {
+            Order.findOne({
+                where:{
+                    cartId: idCart,
+                    productId: p.id
+                }
+            })
+            .then(order => {
+                if(order){
+                    if(p.order.quantity > 0){
+                        order.update({
+                            quantity: p.order.quantity
+                        })
+                    }else{
+                        order.destroy()
+                    }
+                }
+            })
+        })
+        const cartPromise = Cart.findOne({
+            where:{
+                id: idCart
+            }
+        })
+        return Promise.all([promise, cartPromise])
+        .then((r) => this.cartOf(r[1].userId))
     },
 
     delete: function(cartId){
