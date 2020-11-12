@@ -16,6 +16,25 @@ server.get('/', (req, res, next) => {
     .catch(next)
 })
 
+/* body: 
+{"products": [
+        {
+            "id": 1,
+            "name": "Css I",
+            "order": {
+                "price": 100,
+                "quantity": 0
+            }
+        },
+        {
+            "id": 2,
+            "order": {
+                "price": 120,
+                "quantity": 3
+            }
+        }
+    ]
+} */
 server.put('/:cartId', (req, res, next) => {
     const { cartId } = req.params
     cart.changeCart(cartId, req.body)
