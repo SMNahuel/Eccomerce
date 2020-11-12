@@ -1,6 +1,16 @@
 const server = require('express').Router();
 const orders = require('../controllers/orders');
 
+server.get('/', (req,res,next)=>{
+	//Si no tenemos id tiramos error
+	if(!req.body.status){
+		return next(new Error('An status is needed to search products'));
+	}
+	//Buscamos discriminadamente por id
+	orders.search(req.body.status)
+	.then(r=> res.send(r))
+	.catch(next);
+}) 
 server.get('/', (req, res, next) => {
 	//Retornamos todas las ordenes si discriminar
 	orders.read()
@@ -8,16 +18,7 @@ server.get('/', (req, res, next) => {
 	.catch(next);
 });
 
-server.get('/:id', (req,res,next)=>{
-	//Si no tenemos id tiramos error
-	if(!req.params.id){
-		return next(new Error('An idUser is needed to search products'));
-	}
-	//Buscamos discriminadamente por id
-	orders.search(req.params.id)
-	.then(r=> res.send(r))
-	.catch(next);
-})
+
 
 server.post('/', (req,res,next)=>{
 	//Descontruimos el body para manejar individualmente los request
