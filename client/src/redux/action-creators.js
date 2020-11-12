@@ -54,6 +54,12 @@ const actionCreators = {
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
+    addToCart: function(product) {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${product}`)
+            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
+        }
+    },
     
     _dispatchPromise: function(promise, type, dispatch){
         promise
