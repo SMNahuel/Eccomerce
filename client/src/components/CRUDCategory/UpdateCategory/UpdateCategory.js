@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './UpdateCategory.module.css';
+import {validateCategory as validate} from '../../../utils/validator';
 
 export default function UpdateCategory({handleUpdate, category}){
     const [ input, setInput ] = useState({
         name: category.name,
         description: category.description
     })
+    const[err, setErr] = useState({})
+
+    useEffect(()=>{
+        setErr(validate(input))
+    }, [input])
 
     const onChange = ({target}) => {
         let newInput = {...input}
@@ -28,6 +34,7 @@ export default function UpdateCategory({handleUpdate, category}){
                     onChange={onChange}
                 />
             </div>
+            <div>{err.name}</div>
             <div className={s.container_input_textarea}>
                 <textarea 
                     type="text"
@@ -37,6 +44,7 @@ export default function UpdateCategory({handleUpdate, category}){
                     maxLength="50"
                 />
             </div>
+            <div>{err.description}</div>
             <div className={s.container_button_modify}>
                 <button onClick={onClick}>Modificar</button>
             </div> 

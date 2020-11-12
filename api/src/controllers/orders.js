@@ -1,24 +1,23 @@
-const { Order } = require('../db.js');
+const { Order, Cart } = require('../db.js');
 const { Op } = require("sequelize");
 
 module.exports = {
     read: function(){
-        return Order.findAll({
-            attributes: ['id', 'quantity', 'price']
-        })
+        return Cart.findAll()
     },
-    search: function(idOrder){
-        return Order.findAll({
+    search: function(status){
+        return Cart.findAll({
             where: {
-                id: idOrder
+                state: status
             }
         })
     },
-    create: function({quantity, price}){
+    create: function({quantity, price,cartId,productId}){
         return Order.findOrCreate({
             where:{
                 quantity: quantity,
-                price: price
+                price: price,
+                cartId: cartId
             }
         })
         .then(() => this.read())

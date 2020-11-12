@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import CheckCategory from '../CheckCategory/CheckCategory';
-import { useDispatch, useSelector } from 'react-redux';
-import api from '../../../redux/action-creators';
+import {validateProduct as validate} from '../../../utils/validator';
 
-export default function CreateProduct({handleCreate, s}) {
+export default function CreateProduct({handleCreate, categories, s}) {
     const[input, setInput] = useState({
         name: '',
         description: '',
@@ -12,14 +11,10 @@ export default function CreateProduct({handleCreate, s}) {
         categories: []
     })
 
-    const dispatch = useDispatch()
-    const categories = useSelector(state => state.categories)
-    
+    const[err, setErr] = useState({})
     useEffect(()=>{
-        if (!categories[0]){
-            dispatch(api.getCategories())
-        }
-    }, [dispatch, categories])
+        setErr(validate(input))
+    }, [input])
 
     const onChange = function (e){
         setInput({
@@ -53,22 +48,22 @@ export default function CreateProduct({handleCreate, s}) {
             >
                 <h4>Agregar producto</h4>
                 <input className={s.controls} type="text" name="name" onChange={onChange} placeholder="Ingrese el nombre"/>
-                {/* <div>{errors?.name?.message}</div> */}
+                <div>{err.name}</div>
                 <input className={s.controls} type="number" name="price" onChange={onChange} placeholder="Ingrese el precio" step="0.01"/>
-                {/* <div>{errors?.name?.message}</div> */}
+                <div>{err.price}</div>
                 <input className={s.controls} type="number" name="stock" onChange={onChange} placeholder="Ingrese el stock"/>
+                <div>{err.stock}</div>
                 <textarea className={s.controls} type="text" name="description" onChange={onChange} placeholder="Ingrese descripcion" maxLength="250"/>
-                {/* <div>{errors?.name?.message}</div> */}
+                <div>{err.description}</div>
                 <div >
-                    {categories[0] &&
+                    {categories.length &&
                         categories.map(category => {
                             let cheked = input.categories.includes(category.id)
                             return <CheckCategory key={category.id} category={category} cheked={cheked} handleCheck={handleCheck} s={s} />
                         })
                     }
                 </div>
-                {/* <div>{errors?.name?.message}</div> */}
-                <button className={s.botones} >Crear producto</button>
+                <input className={s.botones} type="submit" value='Crear producto'/>
             </form>
         </div>
     );

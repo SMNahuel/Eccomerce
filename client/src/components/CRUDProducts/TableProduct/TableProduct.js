@@ -18,7 +18,7 @@ export default function TableProduct({products, onUpdate, onDelete, s}) {
         </tr>
       </thead>
       <tbody>
-        {products[0] &&
+        {products.length &&
           products.map((product) => <RowProduct key={product.id} product={product} onUpdate={onUpdate} onDelete={onDelete} s={s}/>)
         }
       </tbody>

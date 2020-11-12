@@ -29,12 +29,17 @@ const actionCreators = {
         }
     },
 
-
     PRODUCTS: 'PRODUCTS',
     getProducts: function () {
         return dispatch => {
             const promise = axios.get(`${process.env.REACT_APP_API_URL}/products`)
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
+        }
+    },
+    getProduct: function (id, product) {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products${id}`, product)
+            this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
     createProduct: function (product) {

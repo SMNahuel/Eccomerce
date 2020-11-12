@@ -1,4 +1,4 @@
-const { User } = require('../db.js');
+const { User, Order, Cart } = require('../db.js');
 
 module.exports = {
     read: function(){
@@ -49,5 +49,4 @@ module.exports = {
         })
         .then(() => this.read())
     },
-    
 }
