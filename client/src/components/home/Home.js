@@ -7,6 +7,7 @@ import SearchBar from './SearchBar/SearchBar';
 import Categories from './categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
+import Cart from './Cart/Cart'
 
 export default function Home() {
     const [ state, setState ] = useState({
@@ -80,6 +81,7 @@ export default function Home() {
                     </div>
                     {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
                     <SearchBar handleSearch={handleSearch} />
+                    <Cart/>
                     <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
                 </div>
                     <Catalog products={state.products || products} handleDetail={handleDetail}/>
