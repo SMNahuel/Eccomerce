@@ -28,7 +28,6 @@ const actionCreators = {
         }
     },
 
-
     PRODUCTS: 'PRODUCTS',
     getProducts: function () {
         return dispatch => {
