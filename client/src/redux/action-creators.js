@@ -36,6 +36,12 @@ const actionCreators = {
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
+    getProduct: function (id, product) {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products${id}`, product)
+            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
+        }
+    },
     createProduct: function (product) {
         return dispatch => {
             const promise = axios.post(`${process.env.REACT_APP_API_URL}/products`, product)
@@ -51,12 +57,6 @@ const actionCreators = {
     deleteProducts: function(id) {
         return dispatch => {
             const promise = axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`)
-            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
-        }
-    },
-    addToCart: function(product) {
-        return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${product}`)
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },

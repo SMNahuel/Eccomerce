@@ -10,6 +10,9 @@ import Product from './Product/Product';
 import Cart from './Cart/Cart'
 
 export default function Home() {
+
+
+
     const [ state, setState ] = useState({
         selectedCategory: null,
         products: null,
@@ -19,6 +22,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
+    const cartProducts = useSelector(state => state.cartProducts)//traigo el action.payload, despues de hacer un get desde el action creator.
 
     useEffect(() => {
         if (!categories.length){
