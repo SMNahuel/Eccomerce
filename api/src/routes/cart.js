@@ -49,4 +49,12 @@ server.delete('/:cartId', (req, res, next) => {
     .catch(next)
 })
 
+server.post('/:idCart/completed', (req, res, next) => {
+    const { idCart } = req.params
+    cart.cartComplete(idCart)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
+
 module.exports = server;

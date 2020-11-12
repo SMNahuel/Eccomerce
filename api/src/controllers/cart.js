@@ -127,5 +127,19 @@ module.exports = {
             r.destroy()
             return this.allCarts(user)
         })
+    },
+
+    cartComplete: function(idCart){
+        return Cart.findOne({
+            where:{
+                id: idCart
+            }
+        })
+        .then(cart => {
+            return cart.update({
+                state: 'completed'
+            })
+            .then(cart => this.allCarts(cart.userId))
+        })
     }
 }
