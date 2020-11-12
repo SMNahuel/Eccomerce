@@ -4,21 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
 import SearchBar from './SearchBar/SearchBar';
-import Categories from './Categories/Categories';
+import Categories from './categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
+import Cart from './Cart/Cart'
 
 export default function Home() {
+
     const [ state, setState ] = useState({
         selectedCategory: null,
         products: null,
-        detailedProduct: null
+        detailedProduct: null,
+        cartProduct: []
     })
 
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
-
+    // const cartProducts = useSelector(state => state.cartProduct)
+    
+ 
     useEffect(() => {
         if (!categories.length){
             console.log('categories');
@@ -70,6 +75,15 @@ export default function Home() {
         })
     }
 
+    const addToCart = (product) => {
+        const products = {name: product.name, price: product.price}
+        console.log(products)
+        setState({
+            ...state,
+            cartProduct: products
+        })
+    }
+
     return(
         <>
             <div className={s.container_home_sticky}>
@@ -78,8 +92,9 @@ export default function Home() {
                         {/* <SideBar/> */}
                         <h1 className={s.title}>Pagina</h1>
                     </div>
-                    {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
+                    {state.detailedProduct && <Product product={state.detailedProduct} addToCart={addToCart} onBack={handleBack} />}
                     <SearchBar handleSearch={handleSearch} />
+                    <Cart products={state.cartProduct} />
                     <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
                 </div>
                     <Catalog products={state.products || products} handleDetail={handleDetail}/>
