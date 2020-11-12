@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+export const USER = "USER"
 // proceda con cuidado y amor claro!
 const actionCreators = {
     CATEGORIES: 'CATEGORIES',
@@ -66,7 +67,8 @@ const actionCreators = {
             dispatch({ type: type, payload: data });
         })
         .catch(err => alert("Error!! " + err))
-    }
+    },
+    
 }
 
 export default actionCreators;

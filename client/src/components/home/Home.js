@@ -21,9 +21,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
-    // const cartProducts = useSelector(state => state.cartProduct)
     
- 
     useEffect(() => {
         if (!categories.length){
             console.log('categories');
