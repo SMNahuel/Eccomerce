@@ -41,5 +41,40 @@ module.exports = {
             })
         })
         .then(() => this.read(idUser))
+    },
+
+    createAnonimus: function({ productId, quantity }){
+        const userPromise = User.create()
+        const cartPromise = Cart.create()
+        const productPromise = Product.findByPk(productId)
+        return Promise.all([userPromise, cartPromise, productPromise])
+        .then(([user, cart, product]) => (
+            Promise.all([
+                user.addCart(cart),
+                cart.addProduct(product, {
+                    through: {
+                        price: product.price,
+                        quantity
+                    }
+                })
+            ])
+        ))
+        .then(([user]) => this.cartOf(user.id))
+    },
+
+    cartOf: function(userId){
+        return Cart.findAll({
+            where:{
+                userId: userId
+            },
+            attributes: ['id', 'state'],
+            include: {
+                model: Product,
+                attributes: ['id', 'name'],
+                through: {
+                    attributes: ['price', 'quantity']
+                }
+            }
+        })
     }
 }

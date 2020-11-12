@@ -31,18 +31,25 @@ const { Product, Category, Image, User, Rol, Cart, Order } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-User.hasOne(Rol)
-Rol.belongsToMany(User, {through: 'UserRol'})
+User.belongsTo(Rol)
+Rol.hasMany(User)
+
 Product.belongsToMany(Category, {through: 'ProductCategory'})
 Category.belongsToMany(Product, {through: 'ProductCategory'})
+
 Image.belongsToMany(Product, {through: 'ProductImage'})
 Product.belongsToMany(Image, {through: 'ProductImage'})
+
 Cart.belongsTo(User)
 User.hasMany(Cart)
-Order.belongsTo(Cart)
-Cart.hasMany(Order)
-Order.hasOne(Product)
-Product.belongsTo(Order)
+
+Cart.belongsToMany(Product, {through: Order})
+Product.belongsToMany(Cart, {through: Order})
+
+
+
+/* Order.belongsTo(Product)
+Product.hasOne(Order) */
 
 /* // Carrito pertenece a un usuario
 Cart.hasOne(User)
