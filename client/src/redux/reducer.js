@@ -13,6 +13,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    
     switch (action.type) {
         case CATEGORIES:
             return {
@@ -28,9 +29,9 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 user: {
-                    name: action.input.name,
-                    password: action.input.password,
-                    email: action.input.email
+                    name: action.payload.name,
+                    password: action.payload.password,
+                    email: action.payload.email
                 }
             }
         default:

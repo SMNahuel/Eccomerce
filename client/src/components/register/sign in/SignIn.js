@@ -3,10 +3,12 @@ import s from './SignIn.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import USER from '../../../redux/action-creators'
+import { Redirect } from 'react-router-dom';
 
 function SignIn(){
    
     const dispatch = useDispatch()
+    const [ registerTrue, setRegisterTrue ] = useState(false)
     const [input, setInput] = useState({
         name: "",
         email: "",
@@ -23,12 +25,12 @@ function SignIn(){
                         setInput("")
                     }
                     axios.post('http://localhost:3001/user', input)
-                        .then(() => {
+                        .then(({data}) => {
                             dispatch({
                                 type: USER,
-                                input
+                                payload: {data}
                             })
-                            window.location = "/"
+                            setRegisterTrue(true)
                         })
                 })
         }else{
@@ -37,6 +39,7 @@ function SignIn(){
     }
     return (
         <div className={s.container_signIn}>
+            { registerTrue && <Redirect to="/"/>}
             <div className={s.container_title}>
                 <h2>Sign In</h2>
             </div>

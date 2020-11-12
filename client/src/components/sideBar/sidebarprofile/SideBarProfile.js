@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import s from './SideBarProfile.module.css';
 import {Avatar} from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -12,6 +13,9 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AddIcon from '@material-ui/icons/Add';
 
 function SideBarProfile({ toogleState }){
+
+    const user = useSelector(state => state.user)
+
     return (
         <div className={s.container_menu}>
             <div className={s.container_button}>
@@ -20,8 +24,8 @@ function SideBarProfile({ toogleState }){
             <div className={s.container_profile}>
                 <Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
                 <div className={s.container_user}>
-                    <h3>Nombre usuario</h3>
-                    <p>emailDeEjemplo@gmail.com</p>
+                    <h3>{user.name}</h3>
+                    <p>{user.email}</p>
                 </div>
             </div>
             <div className={s.container_empty}></div>

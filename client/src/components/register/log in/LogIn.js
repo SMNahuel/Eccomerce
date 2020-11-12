@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import s from './LogIn.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import USER from '../../../redux/action-creators'
+import { USER } from '../../../redux/action-creators'
+import { Redirect } from 'react-router-dom';
 
 function LogIn() {
 
     const dispatch = useDispatch()
+    const [login2, setLogin] = useState(false)
     const [input, setInput] = useState({
         email: "",
         password: "",
@@ -17,14 +19,13 @@ function LogIn() {
         axios.get('http://localhost:3001/user')
             .then(({ data }) => {
                 if (data.find(e => e.email === input.email) && data.find(p => p.password === input.password)) {
-                    console.log(data)
                     axios.post('http://localhost:3001/login', input)
-                        .then(() => {
+                        .then(({data}) => {
                             dispatch({
                                 type: USER,
-                                input
+                                payload: data
                             })
-                            window.location = "/"
+                            setLogin(true)
                         })
                         setInput("");
                 } else {
@@ -35,6 +36,7 @@ function LogIn() {
     }
     return (
         <div className={s.container_signIn}>
+            {login2 && <Redirect to="/"/>}
             <div className={s.container_title}>
                 <h2>Log In</h2>
             </div>
