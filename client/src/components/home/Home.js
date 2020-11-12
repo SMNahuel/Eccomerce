@@ -18,6 +18,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         if (!categories.length){
@@ -76,7 +77,7 @@ export default function Home() {
                 <div className={s.container_home}>
                     <div className={s.container}>
                         {/* <SideBar/> */}
-                        <h1 className={s.title}>Pagina</h1>
+                        <h1 className={s.title}>{user.name}</h1>
                     </div>
                     {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
                     <SearchBar handleSearch={handleSearch} />

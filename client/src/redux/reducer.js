@@ -1,9 +1,15 @@
 import actionCreators from './action-creators';
+import { USER } from './action-creators'
 const {CATEGORIES, PRODUCTS} = actionCreators
 
 const initialState = {
     categories: [],
-    products: []
+    products: [],
+    user: {
+        name: "",
+        password: "",
+        email: "",
+    }
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +23,15 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload
+            }
+        case USER:
+            return {
+                ...state,
+                user: {
+                    name: action.input.name,
+                    password: action.input.password,
+                    email: action.input.email
+                }
             }
         default:
             return {...state}
