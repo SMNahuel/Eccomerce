@@ -1,9 +1,10 @@
 import actionCreators from './action-creators';
-const {CATEGORIES, PRODUCTS} = actionCreators
+const {CATEGORIES, PRODUCTS, CART} = actionCreators
 
 const initialState = {
     categories: [],
-    products: []
+    products: [],
+    cartProducts:[],
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +18,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload
+            }
+        case CART:
+            return {
+                ...state,
+                cartProducts: action.payload
             }
         default:
             return {...state}
