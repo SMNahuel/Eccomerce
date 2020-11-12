@@ -78,7 +78,7 @@ export default function Home() {
         console.log(products)
         setState({
             ...state,
-            cartProduct: products
+            cartProduct: state.cartProduct.concat(products)
         })
     }
 
