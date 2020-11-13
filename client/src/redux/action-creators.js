@@ -81,10 +81,7 @@ const actionCreators = {
 
     _dispatchPromise: function(promise, type, dispatch){
         promise
-        .then(r => {
-            console.log(r)
-            return r
-        })
+        .then(r => (console.log(r), r))
         .then(({data}) => {
             dispatch({ type: type, payload: data });
         })

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import api from '../../../redux/action-creators';
 
 function Cart(props) {
-    const cart = useSelector(state => state.cart[0])
+    const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
     const [active, setActive] = useState(false)
@@ -30,6 +30,19 @@ function Cart(props) {
         })
     }
 
+    const totalPrice = () => {
+        if (!cart.products) return 0
+        return cart.products.reduce((acc, product) => 
+            acc + Number(product.order.price) * Number(quantities[product.id] || product.order.quantity)
+        , 0)
+    }
+    const totalQuantity = () => {
+        if (!cart.products) return 0
+        return cart.products.reduce((acc, product) => 
+            acc + Number(quantities[product.id] || product.order.quantity)
+        , 0)
+    }
+
     return (
         <div className={s[active ? 'active' : 'inactive']}>
             <button onClick={onClick}><ShoppingCartIcon/></button>
@@ -43,7 +56,7 @@ function Cart(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {cart && cart.products.map(product => 
+                        {cart.products && cart.products.map(product => 
                             <tr key={product.id}>
                                 <td>{product.name}</td>
                                 <td>
@@ -60,8 +73,8 @@ function Cart(props) {
                     <tfoot>
                         <tr>
                             <td>Totales:</td>
-                            <td>{cart ? cart.products.length : 0}</td>
-                            <td>{cart ? cart.products.reduce((acc, curr) => acc + curr.order.price, 0) : 0}</td>
+                            <td>{totalQuantity()}</td>
+                            <td>{totalPrice()}</td>
                         </tr>
                     </tfoot>
                 </table>
