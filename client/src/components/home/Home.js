@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
 import SearchBar from './SearchBar/SearchBar';
-import Categories from './categories/Categories';
+import Categories from './Categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
 import Cart from './Cart/Cart'
@@ -21,9 +21,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
-    // const cartProducts = useSelector(state => state.cartProduct)
     
- 
     useEffect(() => {
         if (!categories.length){
             console.log('categories');
@@ -80,7 +78,7 @@ export default function Home() {
         console.log(products)
         setState({
             ...state,
-            cartProduct: products
+            cartProduct: state.cartProduct.concat(products)
         })
     }
 

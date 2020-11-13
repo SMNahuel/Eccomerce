@@ -3,12 +3,13 @@ const { User, Order, Cart } = require('../db.js');
 module.exports = {
     read: function(){
         return User.findAll({
-            attributes: ['id', 'name', 'email'],
+            attributes: ['id', 'password', 'email'],
             order:["id"]
         })
     },
 
     create: function({ name, email, password }) {
+
         return User.findOrCreate({
             where: {
                 name: name,
@@ -48,6 +49,7 @@ module.exports = {
         })
         .then(() => this.read())
     },
+  
     search: function(idUser){
         Cart.findOne({
             attributes: ['id', 'state', 'userId'],

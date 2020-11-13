@@ -1,17 +1,27 @@
 import React from 'react';
+import s from './Cart.module.css'; 
 import {useSelector} from 'react-redux'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-function Cart(products) {
+function Cart({products}) {
 
-    //const cartProducts = useSelector(state => state.cartProducts)//traigo el action.payload, despues de hacer un get desde el action creator.
-    console.log(products)
+    const totalPrice = products.reduce((acc, curr) => acc + curr.price, 0)
 
     return (
-        <div>
-            
-            <span>Items in cart : 0</span>
-            <br/>
-            <span>Total price : 0</span>
+        <div className={s.cartFlex}>
+            <div className={s.cartIdent}>
+                <ShoppingCartIcon/>
+                <br/>
+                <span>Items in cart : {products.length}</span>
+                <br/>
+                <span>Total price : {totalPrice}</span>
+                {products && products.map(product => (
+                    <div>
+                        <span>Product: {product.name} Price: {product.price}</span>
+                        <br/>
+                    </div>
+                )) }
+            </div>
         </div>
     );
 }

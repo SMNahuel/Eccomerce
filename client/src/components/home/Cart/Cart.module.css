@@ -1,0 +1,9 @@
+.cartFlex{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cartIdent{
+    margin-right: 50px;
+    text-indent: -30px;
+}
