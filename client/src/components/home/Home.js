@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
 import SearchBar from './SearchBar/SearchBar';
-import Categories from './Categories/Categories';
+import Categories from './categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
 import Cart from './Cart/Cart'
