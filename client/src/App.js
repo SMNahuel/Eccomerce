@@ -9,6 +9,7 @@ import CRUDProducts from './components/CRUDProducts/CRUDProducts'
 import SignIn from './components/register/sign in/SignIn';
 import LogIn from './components/register/log in/LogIn';
 import SideBar from './components/sideBar/SideBar';
+import TableOrders from './components/Admin/TableOrders';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route exact path="/categories" component={CRUDCategory}/>
         <Route exact path="/products" component={CRUDProducts}/>
+        <Route exact path="/TableOrders" component={TableOrders}/>
         <Route exact path="/register" render={() => 
           <div className={s.container_register}>
             <SignIn/>

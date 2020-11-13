@@ -114,6 +114,19 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </button>
                     </Link>
+                    <Link to="/TableOrders" className={s.link}>
+                        <button onClick={toogleState} className={s.button}>
+                            <div className={s.container_icons_title}>
+                                <div className={s.container_icons}>
+                                    <AddIcon className={s.icon} />
+                                    <p>Ordenes</p>
+                                </div>
+                                <div>
+                                    <ArrowRightIcon />
+                                </div>
+                            </div>
+                        </button>
+                    </Link>
                     <Link to="/products" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
