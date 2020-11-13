@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
         type : DataTypes.ENUM({
             values:['created', 'in process', 'canceled', 'completed']
         }),
-        defaultValue: 'created'
+        defaultValue: 'in process'
     }
   });
 };

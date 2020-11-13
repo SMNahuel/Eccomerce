@@ -3,9 +3,9 @@ const { Cart, Order, User, Product } = require('../db.js');
 module.exports = {
 
     createAnonimus: function({ productId, quantity }, cookieId){
-        if(cookieId){
-            return this.addAnonimus(productId, quantity, cookieId)
-        }else{
+         if(cookieId){
+            return this.addAnonimus(productId, quantity, cookieId) 
+        }else{ 
             const userPromise = User.create()
             const cartPromise = Cart.create({
                 state: 'in process'
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     cartOf: function(userId){
-        return Cart.findAll({
+        return Cart.findOne({
             where:{
                 userId: userId,
                 state:'in process'
@@ -88,14 +88,42 @@ module.exports = {
     },
 
 
-    create: function (idUser){
+    create: function (idUser, body){
         let userPromise = User.findByPk(idUser)
-        let cartPromise = Cart.create()
+        let cartPromise = Cart.findOne({
+            where:{
+                userId: idUser,
+                state: 'in process'
+            }
+        })
         return Promise.all([userPromise , cartPromise])
         .then(([user,cart])=> {
-            user.addCart(cart)
+            if(!cart){
+                return Cart.create()
+                .then(car => {
+                    return user.addCart(car)
+                    //.then(user => this.cartOf(user.id))
+                })
+            }else{
+                return cart
+                //this.cartOf(cart.userId)
+            }
         })
-        .then(()=> this.cartOf(idUser))
+        .then(r => {
+            if(body.quantity && body.productId){
+                if(r.userId){
+                    return this.addAnonimus(body.productId, body.quantity, r.userId)
+                }else{
+                    return this.addAnonimus(r.id)
+                }
+            }else{
+                if(r.userId){
+                    return this.cartOf(r.userId)
+                }else{
+                    return this.cartOf(r.id)
+                }
+            }
+        })
     },
 
     changeCart: function(idCart, { products }){
@@ -159,18 +187,15 @@ module.exports = {
                 })
                 .then(cart => this.allCarts(cart.userId))
            /*  } */
-           .then(user => {
-                const cartPromise = Cart.create({
-                    state: 'in process'
-                })
+           .then(([user]) => {
+                const cartPromise = Cart.create()
                 const userPromise = User.findByPk(user.id)
                 return Promise.all([cartPromise, userPromise])
-                .then(([cart, user]) => (
-                    Promise.all([
-                        user.addCart(cart),
-                    ])
-                ))
-                .then(([user]) => this.allCarts(user.id))
+                .then(([cart, user]) => {
+                        return user.addCart(cart)
+                     }
+                )
+                .then((user) => this.allCarts(user.id))
            })
         })
     },
