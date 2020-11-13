@@ -17,6 +17,7 @@
 .App{
   overflow-x: hidden;
   background-color: var(--background);
+  min-height: 100vh;
 }
 tr{
   max-height: 5px;
