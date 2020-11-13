@@ -15,9 +15,9 @@ server.get('/:id', (req, res, next) => {
 })
 
 server.post('/:id', (req, res, next) => {
-    const { idOrder } = req.body
     const { id } = req.params
-    cart.create(id, idOrder)
+    console.log('Holaa ')
+    cart.create(id)
     .then(r => res.send(r))
     .catch(next)
 })

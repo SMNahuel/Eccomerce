@@ -20,27 +20,14 @@ module.exports = {
         })
     },
 
-    create: function (idUser, idOrder){
-        let cart
-        const cartUser = Cart.findOrCreate({
-            where:{
-                userId: idUser,
-                state: 'in process'
-            },
-            defaults:{
-                state: 'in process',
-                userId: idUser
-            }
+    create: function (idUser){
+        let userPromise = User.findByPk(idUser)
+        let cartPromise = Cart.create()
+        return Promise.all([userPromise , cartPromise])
+        .then(([user,cart])=> {
+            user.addCart(cart)
         })
-        .then(r => cart = r[0].get({plain:true}))
-        const order = Order.findByPk(idOrder)
-        return Promise.all([cartUser, order])
-        .then((r) => {
-            r[1].update({
-                cartId: r[0].id
-            })
-        })
-        .then(() => this.read(idUser))
+        .then(()=> this.cartOf(idUser))
     },
 
     createAnonimus: function({ productId, quantity }){
@@ -76,5 +63,29 @@ module.exports = {
                 }
             }
         })
-    }
+    },
+    getByStatus: function(status){
+        return Cart.findAll({
+            where: {
+                state: status
+            }
+        })
+    },
+    addProduct: function({quantity,cartId,productId}){
+        let productPromise = Product.findByPk(productId)
+        let cartPromise = Cart.findByPk(cartId)
+        return Promise.all([productPromise,cartPromise])
+        .then(([product, cart])=>{
+            //Asignamos producto a carrito
+            cart.addProduct(product, {
+                //Al order le asignamos el precio actual
+                //del producto y cantidad que me dice el cliente
+                through: {
+                    price: product.price,
+                    quantity
+                }
+            })
+        })
+        .then(() => this.read())
+    },
 }

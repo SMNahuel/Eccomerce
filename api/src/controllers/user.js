@@ -49,15 +49,13 @@ module.exports = {
         .then(() => this.read())
     },
     search: function(idUser){
-        let idCart = Cart.findAll({
-            attributes : ['id'],
+        Cart.findOne({
+            attributes: ['id', 'state', 'userId'],
             where:{
                 userId: idUser
             }
         })
+        .then(console.log)
 
-        return Order.findAll()
-        .then(() => this.read())
     }
-
 }
