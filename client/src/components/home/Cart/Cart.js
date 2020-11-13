@@ -50,9 +50,9 @@ function Cart(props) {
                 <table>
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,18 +63,20 @@ function Cart(props) {
                                     <input
                                         value={quantities[product.id] || product.order.quantity}
                                         type='number'
+                                        min="1"
+                                        max="99"
                                         onChange={e => chengeQuantity(product.id, e.target.value)}
                                     />
                                 </td>
-                                <td>{product.order.price}</td>
+                                <td>${`${product.order.price * quantities[product.id] || product.order.price}`}</td>
                             </tr>
                         )}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td>Totales:</td>
+                            <td>Total:</td>
                             <td>{totalQuantity()}</td>
-                            <td>{totalPrice()}</td>
+                            <td>${totalPrice()}</td>
                         </tr>
                     </tfoot>
                 </table>
