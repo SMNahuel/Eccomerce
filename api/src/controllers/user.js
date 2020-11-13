@@ -1,4 +1,4 @@
-const { User, Order, Cart } = require('../db.js');
+const { User, Order, Cart, Rol } = require('../db.js');
 
 module.exports = {
     read: function(){
@@ -58,6 +58,17 @@ module.exports = {
             }
         })
         .then(console.log)
+    },
 
+    rol: function(idUser){
+        return User.findOne({
+            where: {
+                id: idUser
+            },
+            include: {
+                model:Rol
+            }
+        })
+        .then(r => r.rol.name)
     }
 }
