@@ -18,7 +18,6 @@ function CreateCategory({ handleCreate }){
         })
     }
     const onSubmit = (e) => {
-        console.log('submit!');
         e.preventDefault()
         handleCreate(input)
     }

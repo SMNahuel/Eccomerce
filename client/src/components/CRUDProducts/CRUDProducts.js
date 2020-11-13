@@ -7,6 +7,8 @@ import UpdateProduct from './UpdateProduct/UpdateProduct';
 import DeleteProduct from './DeleteProduct/DeleteProduct'
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
+import dataURLtoFile from '../../utils/dataURLtoFile';
+import axios from 'axios';
 
 export default function CRUDProducts(){
     const [state, setState] = useState({
@@ -44,7 +46,21 @@ export default function CRUDProducts(){
         })
     }
     const handleUpdate = (id, product) => {
-        dispatch(api.updateProducts(id, product))
+        dispatch(api.updateProducts(id, {
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            stock: product.stock,
+            categories: product.categories
+        }))
+        var formData = new FormData();
+        product.images.forEach(img => 
+            formData.append("image", dataURLtoFile(img.src), img.name)
+        )
+        axios.post(
+            `${process.env.REACT_APP_API_URL}/products/images/${id}`,
+            formData, {headers: {'Content-Type': 'multipart/form-data'}}
+        )
         setState({...state, action: null})
     }
 
