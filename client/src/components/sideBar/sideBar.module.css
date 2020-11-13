@@ -1,5 +1,5 @@
-.container.dehaseIcon{
-    position: absolute;
+.container{
+    position: fixed;
     height: 100%;
     top: 0px;
     left: 0px;
@@ -14,10 +14,10 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
+    color: #DFE6E9;
 }
-.container_sideBarProfile{
-    max-width: 320px;
-    width: 100%;
+.sideBar{
+    min-width: 350px;
     position: absolute;
     z-index: 50;
     background-color: #6C5CE7;
@@ -31,10 +31,4 @@
     left: -400px;
     transition: .3s;
     padding: 0 20px;
-}
-.prueba{
-    left: 0;
-}
-.icon_DehazeIcon{
-    color: #DFE6E9;
 }

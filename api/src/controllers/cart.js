@@ -99,6 +99,7 @@ module.exports = {
     },
 
     changeCart: function(idCart, { products }){
+        console.log(products)
         const promise = products.map(p => {
             Order.findOne({
                 where:{
@@ -108,7 +109,7 @@ module.exports = {
             })
             .then(order => {
                 if(order){
-                    if(p.order.quantity > 0){
+                    if(Number(p.order.quantity) > 0){
                         order.update({
                             quantity: p.order.quantity
                         })

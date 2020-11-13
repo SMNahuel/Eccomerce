@@ -1,9 +1,29 @@
-.cartFlex{
+.active,.inactive{
+    position: fixed;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 20;
+    transition: 1s;
+    text-align: center;
 }
-
-.cartIdent{
-    margin-right: 50px;
-    text-indent: -30px;
+.active button,.inactive button{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.active{
+    width: 110vw;
+    height: 110vw;
+    padding: 5vw;
+    border-radius: 100% 0 0 0;
+}
+.inactive{
+    width: 10vh;
+    height: 10vh;
+    border-radius: 100% 0 0 0;
 }

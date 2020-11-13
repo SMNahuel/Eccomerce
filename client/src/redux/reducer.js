@@ -1,11 +1,10 @@
 import actionCreators from './action-creators';
-import { USER } from './action-creators'
-const {CATEGORIES, PRODUCTS, CART} = actionCreators;
+const {CATEGORIES, PRODUCTS, CART, USER} = actionCreators;
 
 const initialState = {
     categories: [],
     products: [],
-    cartProducts:[],
+    cart:[],
     user: {}
 };
 
@@ -30,7 +29,7 @@ export default (state = initialState, action) => {
         case CART:
             return {
                 ...state,
-                cartProducts: action.payload
+                cart: action.payload
             }
         default:
             return {...state}

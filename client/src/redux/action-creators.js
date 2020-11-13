@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-export const USER = "USER"
 // proceda con cuidado y amor claro!
 const actionCreators = {
     CATEGORIES: 'CATEGORIES',
@@ -38,7 +37,7 @@ const actionCreators = {
     },
     getProduct: function (id, product) {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products${id}`, product)
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`, product)
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
@@ -60,7 +59,26 @@ const actionCreators = {
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
-    
+
+    CART: 'CART',
+    addProduct: function(id, quantity) {
+        return dispatch => {
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/cart`, {
+                productId: id,
+                quantity: quantity
+            })
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
+    updateCart: function(id, cart) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/${id}`, cart)
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
+
+    USER: "USER",
+
     _dispatchPromise: function(promise, type, dispatch){
         promise
         .then(({data}) => {
@@ -68,7 +86,6 @@ const actionCreators = {
         })
         .catch(err => alert("Error!! " + err))
     },
-    
 }
 
 export default actionCreators;

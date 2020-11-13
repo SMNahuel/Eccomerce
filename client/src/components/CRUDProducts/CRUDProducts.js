@@ -4,7 +4,7 @@ import FilterBar from './FilterBar/FilterBar';
 import TableProduct from './TableProduct/TableProduct';
 import CreateProduct from './CreateProduct/CreateProduct';
 import UpdateProduct from './UpdateProduct/UpdateProduct';
-import DeleteProduct from './DeleteProduct/DeleteProduct'
+import DeleteProduct from './DeleteProduct/DeleteProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import dataURLtoFile from '../../utils/dataURLtoFile';

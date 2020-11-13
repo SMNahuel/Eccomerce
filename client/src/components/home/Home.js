@@ -81,21 +81,18 @@ export default function Home() {
     }
 
     return(
-        <>
-            <div className={s.container_home_sticky}>
-                <div className={s.container_home}>
-                    <div className={s.container}>
-                        {/* <SideBar/> */}
-                        <h1 className={s.title}>Pagina</h1>
-                    </div>
-                    {state.detailedProduct && <Product product={state.detailedProduct} addToCart={addToCart} onBack={handleBack} />}
-                    <SearchBar handleSearch={handleSearch} />
-                    <Cart products={state.cartProduct} />
-                    <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
-                </div>
-                    <Catalog products={state.products || products} handleDetail={handleDetail}/>
+        <div className={s.container}>
+            {state.detailedProduct && <Product product={state.detailedProduct} addToCart={addToCart} onBack={handleBack} />}
+            <div className={s.navBar}>
+                <h1 className={s.title}>Pagina</h1>
+                <SearchBar handleSearch={handleSearch} />
             </div>
-        </>
+            <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
+            <div className={s.home}>
+                <Catalog products={state.products || products} handleDetail={handleDetail}/>
+                <Cart/>
+            </div>
+        </div>
     )
 
 }

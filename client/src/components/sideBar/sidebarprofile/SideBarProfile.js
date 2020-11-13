@@ -17,13 +17,13 @@ function SideBarProfile({ toogleState }){
     const user = useSelector(state => state.user)
 
     return (
-        <div className={s.container_menu}>
-            <div className={s.container_button}>
+        <div className={s.container}>
+            <div className={s.x}>
                 <button onClick={toogleState}>X</button>
             </div>
-            <div className={s.container_profile}>
+            <div className={s.profile}>
                 <Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
-                <div className={s.container_user}>
+                <div className={s.user}>
                     <h3>{user.name}</h3>
                     <p>{user.email}</p>
                 </div>

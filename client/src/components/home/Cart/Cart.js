@@ -1,26 +1,71 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './Cart.module.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { useSelector, useDispatch } from 'react-redux';
+import api from '../../../redux/action-creators';
 
-function Cart({products}) {
+function Cart(props) {
+    const cart = useSelector(state => state.cart[0])
+    const dispatch = useDispatch()
 
-    const totalPrice = products.reduce((acc, curr) => acc + curr.price, 0)
+    const [active, setActive] = useState(false)
+    const onClick = e => {
+        if (active && Object.keys(quantities).length) {
+            for(let key in quantities) {
+                let id = Number(key)
+                cart.products.find(p => p.id === id)
+                .order.quantity = quantities[id]
+            }
+            dispatch(api.updateCart(cart.id, cart))
+            setQuantities({})
+        }
+        setActive(!active)
+    }
+
+    const [quantities, setQuantities] = useState({})
+    const chengeQuantity = (id, cant) => {
+        setQuantities({
+            ...quantities,
+            [id]: cant
+        })
+    }
 
     return (
-        <div className={s.cartFlex}>
-            <div className={s.cartIdent}>
-                <ShoppingCartIcon/>
-                <br/>
-                <span>Items in cart : {products.length}</span>
-                <br/>
-                <span>Total price : {totalPrice}</span>
-                {products && products.map(product => (
-                    <div>
-                        <span>Product: {product.name} Price: {product.price}</span>
-                        <br/>
-                    </div>
-                )) }
-            </div>
+        <div className={s[active ? 'active' : 'inactive']}>
+            <button onClick={onClick}><ShoppingCartIcon/></button>
+            {active &&
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {cart && cart.products.map(product => 
+                            <tr key={product.id}>
+                                <td>{product.name}</td>
+                                <td>
+                                    <input
+                                        value={quantities[product.id] || product.order.quantity}
+                                        type='number'
+                                        onChange={e => chengeQuantity(product.id, e.target.value)}
+                                    />
+                                </td>
+                                <td>{product.order.price}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Totales:</td>
+                            <td>{cart ? cart.products.length : 0}</td>
+                            <td>{cart ? cart.products.reduce((acc, curr) => acc + curr.order.price, 0) : 0}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
         </div>
     );
 }

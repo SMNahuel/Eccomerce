@@ -3,7 +3,6 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     height: 100%;
-    width: 100%;
     padding-top: 5%;
     padding-bottom: 5%;
     padding-left: 40%;
@@ -17,7 +16,6 @@
         align-items: center;
         overflow-x: visible;
         overflow-y: auto;
-        width: 100%;
         padding: .7%;
         padding-left: 15%;
         padding-right: 15%;
