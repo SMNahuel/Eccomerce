@@ -1,6 +1,5 @@
 import React from 'react';
-import s from './Cart.module.css'; 
-import {useSelector} from 'react-redux'
+import s from './Cart.module.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Cart({products}) {

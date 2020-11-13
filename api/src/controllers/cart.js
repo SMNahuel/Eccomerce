@@ -68,7 +68,7 @@ module.exports = {
     },
 
     allCarts: function(idUser){
-        return User.findOne({
+        return User.findAll({
             where:{
                 id: idUser
             },

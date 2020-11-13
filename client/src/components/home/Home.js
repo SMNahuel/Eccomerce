@@ -24,11 +24,9 @@ export default function Home() {
     
     useEffect(() => {
         if (!categories.length){
-            console.log('categories');
             dispatch(api.getCategories())
         }
         if (!products.length){
-            console.log('products');
             dispatch(api.getProducts())
         }
     }, [dispatch, products, categories])

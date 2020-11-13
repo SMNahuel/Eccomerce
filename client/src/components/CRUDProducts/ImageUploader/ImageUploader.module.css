@@ -1,0 +1,14 @@
+.imagesContainer{
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: solid 2px whitesmoke;
+    border-radius: 5px;
+}
+.imagesContainer img{
+    height: 80px;
+    margin: 5px;
+}

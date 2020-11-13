@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CheckCategory from '../CheckCategory/CheckCategory';
+import ImageUploader from '../ImageUploader/ImageUploader'
 import {validateProduct as validate} from '../../../utils/validator';
 
 export default function UpdateProduct ({ product, categories, handleUpdate, s}) {
@@ -8,7 +9,8 @@ export default function UpdateProduct ({ product, categories, handleUpdate, s}) 
         description: product.description,
         price: product.price,
         stock: product.stock,
-        categories: product.categories && product.categories.map(c => c.id)
+        categories: product.categories && product.categories.map(c => c.id),
+        images: []
     })
 
     const[err, setErr] = useState({})
@@ -59,6 +61,7 @@ export default function UpdateProduct ({ product, categories, handleUpdate, s}) 
                         })
                     }
                 </div>
+                <ImageUploader product={product} images={input.images} setInput={setInput}/>
                 <input className={s.botones} type="submit" value='Editar Producto'/>
             </form>
         </div>

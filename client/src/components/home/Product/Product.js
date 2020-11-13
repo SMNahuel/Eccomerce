@@ -2,13 +2,8 @@ import React, { useRef } from 'react';
 import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import {useDispatch} from 'react-redux'
-import api from '../../../redux/action-creators';
 
 export default ({product, onBack, addToCart}) => {
-
-  //const dispatch = useDispatch()
-
   const image = product.images[0] ?
   `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
@@ -47,5 +42,3 @@ export default ({product, onBack, addToCart}) => {
     </div>
   )
 }
-
-{/*(dispatch(api.getProduct(product.id, product.name )))*/}//conecta get a api para el button 'addToCard'
