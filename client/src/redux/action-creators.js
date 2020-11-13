@@ -37,7 +37,7 @@ const actionCreators = {
     },
     getProduct: function (id, product) {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`, product)
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
@@ -66,13 +66,13 @@ const actionCreators = {
             const promise = axios.post(`${process.env.REACT_APP_API_URL}/cart`, {
                 productId: id,
                 quantity: quantity
-            })
+            }, {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
     updateCart: function(id, cart) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/${id}`, cart)
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/${id}`, cart, {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
@@ -81,6 +81,10 @@ const actionCreators = {
 
     _dispatchPromise: function(promise, type, dispatch){
         promise
+        .then(r => {
+            console.log(r)
+            return r
+        })
         .then(({data}) => {
             dispatch({ type: type, payload: data });
         })
