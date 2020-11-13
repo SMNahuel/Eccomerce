@@ -150,14 +150,27 @@ module.exports = {
             }
         })
         .then(cart => {
-            if(!cart.user.name || !cart.user.email || !cart.user.password){
+            /* if(!cart.user.name || !cart.user.email || !cart.user.password){
                 throw "The user must be logged in "
-            }else{
+            }else{ */
                 return cart.update({
                     state: 'completed'
                 })
                 .then(cart => this.allCarts(cart.userId))
-            }
+           /*  } */
+           .then(user => {
+                const cartPromise = Cart.create({
+                    state: 'in process'
+                })
+                const userPromise = User.findByPk(user.id)
+                return Promise.all([cartPromise, userPromise])
+                .then(([cart, user]) => (
+                    Promise.all([
+                        user.addCart(cart),
+                    ])
+                ))
+                .then(([user]) => this.allCarts(user.id))
+           })
         })
     },
     getByStatus: function(status){
