@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import CheckCategory from '../CheckCategory/CheckCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
 import {validateProduct as validate} from '../../../utils/validator';
+import CheckCategory from '../CheckCategory/CheckCategory';
 
 export default function CreateProduct({handleCreate, s}) {
     const[input, setInput] = useState({
