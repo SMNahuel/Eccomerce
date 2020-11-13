@@ -68,7 +68,7 @@ module.exports = {
     },
 
     allCarts: function(idUser){
-        return User.findOne({
+        return User.findAll({
             where:{
                 id: idUser
             },
@@ -150,14 +150,14 @@ module.exports = {
             }
         })
         .then(cart => {
-            if(!cart.user.name || !cart.user.email || !cart.user.password){
+/*             if(!cart.user.name || !cart.user.email || !cart.user.password){
                 throw "The user must be logged in "
-            }else{
+            }else{ */
                 return cart.update({
                     state: 'completed'
                 })
                 .then(cart => this.allCarts(cart.userId))
-            }
+ /*            } */
         })
     },
     getByStatus: function(status){

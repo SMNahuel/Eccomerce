@@ -10,14 +10,18 @@ server.get('/', (req,res,next)=>{
 	cart.getByStatus(req.body.status)
 	.then(r=> res.send(r))
 	.catch(next);
-}) 
-server.get('/', (req, res, next) => {
-	//Retornamos todas las ordenes si discriminar
-	cart.read()
+})
+
+//Necesitamos ID
+server.get('/:id', (req, res, next) => {
+	//Retornamos todas las ordenes de un usuario
+	if(!req.params.id){
+		return next(new Error('Necesitamos un id para obtener las ordenes de un usuario'));
+	}
+	cart.allCarts(req.params.id)
 	.then(r => res.send(r))
 	.catch(next);
 });
-
 
 
 server.post('/', (req,res,next)=>{

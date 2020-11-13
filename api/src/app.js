@@ -32,4 +32,8 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
+server.use((req, res, next) => {
+  console.log(req.cookies)
+  next();
+});
 module.exports = server;
