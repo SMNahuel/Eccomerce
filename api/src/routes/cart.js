@@ -2,15 +2,17 @@ const server = require('express').Router();
 const cart = require('../controllers/cart');
 
 server.post('/', (req, res, next) => {
-    let cookieId
-    req.cookies.user ? cookieId = req.cookies.user.userId : cookieId = undefined
-    cart.createAnonimus(req.body, cookieId)
-    .then(r => cookieId ? res.send(r) : res.cookie("user", r[0]).send(r))
+    //let cookieId 
+    // req.cookies.user ? cookieId = req.cookies.user.userId : cookieId = undefined
+    //cart.createAnonimus(req.body, cookieId)
+    //.then(r => cookieId ? res.send(r) : res.cookie("user", r[0]).send(r))
+    cart.create(1, req.body)
+    .then(r => res.send(r))
     .catch(next)
 })
 
 server.get('/', (req, res, next) => {
-    const userId = req.cookies.user.userId
+    const userId = 1 //req.cookies.user.userId
     cart.allCarts(userId)
     .then(r => res.send(r))
     .catch(next)
