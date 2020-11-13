@@ -1,8 +1,20 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
 
+server.get('/:id/orders', (req,res,next)=>{
+    const { id } = req.params;
+    if(!id){
+        return res.status(400).send('I need an id to Delete the User')
+    }
+    user.search(id)
+/*     .then(r => res.send(r))
+    .catch(next);     */
+})
+
 server.get('/', (req, res, next) => {
-    user.read()
+    let {args} = req.body;
+    console.log(args)
+    user.read(args)
     .then(r => res.send(r))
     .catch(next);
 })
@@ -15,7 +27,6 @@ server.post('/', (req, res, next) => {
     }
     user.create(req.body)
     .then(r => res.send())
-    .catch(next)
 })
 
 server.put('/:id', (req, res, next) => {

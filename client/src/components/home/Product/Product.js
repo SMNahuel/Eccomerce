@@ -3,7 +3,7 @@ import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-export default ({product, onBack}) => {
+export default ({product, onBack, addToCart}) => {
   const image = product.images[0] ?
   `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
@@ -36,7 +36,7 @@ export default ({product, onBack}) => {
           </div>
         </div>
         <div className={s.container_button}>
-          <button>Add to Cart</button>
+          <button onClick={() => addToCart(product)}>Add to Cart</button>
         </div>
       </div> 
     </div>

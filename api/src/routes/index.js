@@ -1,22 +1,12 @@
 const { Router } = require('express');
-// import all routers;
-const categoryRouter = require('./category.js');
-const productRouter = require('./product.js');
-const ordersRouter = require('./orders.js');
-const imageRouter = require('./image.js');
-const userRouter = require('./user.js')
-const cartRouter = require('./cart.js')
 const router = Router();
 
-// load each router on a route
-// i.e: router.use('/auth', authRouter);
-// router.use('/auth', authRouter);
-
-router.use('/category', categoryRouter);
-router.use('/products', productRouter);
-router.use('/orders', ordersRouter);
-router.use('/image', imageRouter);
-router.use('/user', userRouter)
-router.use('/user'/* /:id/cart */, cartRouter)
+router.use('/category', require('./category.js'));
+router.use('/products', require('./product.js'));
+router.use('/orders', require('./orders.js'));
+router.use('/image', require('./image.js'));
+router.use('/login', require('./login.js'));
+router.use('/user', require('./user.js'));
+router.use('/cart', require('./cart.js'));
 
 module.exports = router;
