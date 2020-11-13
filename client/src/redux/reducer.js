@@ -1,16 +1,12 @@
 import actionCreators from './action-creators';
-const {CATEGORIES, PRODUCTS, CART} = actionCreators;
 import { USER } from './action-creators'
+const {CATEGORIES, PRODUCTS, CART} = actionCreators;
 
 const initialState = {
     categories: [],
     products: [],
     cartProducts:[],
-    user: {
-        name: "",
-        password: "",
-        email: "",
-    }
+    user: {}
 };
 
 export default (state = initialState, action) => {
