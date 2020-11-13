@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import s from './LogIn.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { USER } from '../../../redux/action-creators'
+import actionCreators from '../../../redux/action-creators'
 import { Redirect } from 'react-router-dom';
+const { USER } = actionCreators;
 
 function LogIn() {
 

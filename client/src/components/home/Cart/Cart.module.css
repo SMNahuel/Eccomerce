@@ -1,6 +1,7 @@
 .cartFlex{
     display: flex;
     justify-content: flex-end;
+    color: whitesmoke;
 }
 
 .cartIdent{
