@@ -14,6 +14,7 @@ export default ({product, onBack, addToCart}) => {
 
   const onAddToCart = e => {
     dispatch(api.addProduct(product.id, 1))
+    onUnmount()
   }
 
   const ref = useRef(null)

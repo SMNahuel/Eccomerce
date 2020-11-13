@@ -70,6 +70,12 @@ const actionCreators = {
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
+    updateCart: function(id, cart) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/${id}`, cart)
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
 
     USER: "USER",
 

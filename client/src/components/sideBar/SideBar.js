@@ -5,21 +5,16 @@ import SideBarProfile from './sidebarprofile/SideBarProfile';
 
 
 export default function SideBar() {
-    const [menu, setMenu] = useState(false)
-    const toogleState = function () {
-        setMenu(!menu)
-    }
+    const [active, setActive] = useState(false);
+    const toogleState = () => setActive(!active);
     return (
-        <>
-            <div className={s.container.dehaseIcon}>
-                <div className={s.icon} onClick={toogleState}>
-                    <DehazeIcon className={s.icon_DehazeIcon}/>
-                </div>
+        <div className={s.container}>
+            <div className={s.icon} onClick={toogleState}>
+                <DehazeIcon/>
             </div>
-
-            <div className={`${s.container_sideBarProfile} ${menu ? s.prueba : null}`}>
+            <div className={s.sideBar} style={active ? {left: '0'} : {left: '-350px'}}>
                 <SideBarProfile toogleState={toogleState} />
             </div>
-        </>
+        </div>
     )
 }
