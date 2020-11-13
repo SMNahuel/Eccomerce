@@ -49,4 +49,15 @@ module.exports = {
         })
         .then(() => this.read())
     },
+  
+    search: function(idUser){
+        Cart.findOne({
+            attributes: ['id', 'state', 'userId'],
+            where:{
+                userId: idUser
+            }
+        })
+        .then(console.log)
+
+    }
 }

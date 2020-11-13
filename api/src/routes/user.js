@@ -7,8 +7,8 @@ server.get('/:id/orders', (req,res,next)=>{
         return res.status(400).send('I need an id to Delete the User')
     }
     user.search(id)
-    .then(r => res.send(r))
-    .catch(next);    
+/*     .then(r => res.send(r))
+    .catch(next);     */
 })
 
 server.get('/', (req, res, next) => {

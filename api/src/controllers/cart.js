@@ -87,6 +87,17 @@ module.exports = {
         })
     },
 
+
+    create: function (idUser){
+        let userPromise = User.findByPk(idUser)
+        let cartPromise = Cart.create()
+        return Promise.all([userPromise , cartPromise])
+        .then(([user,cart])=> {
+            user.addCart(cart)
+        })
+        .then(()=> this.cartOf(idUser))
+    },
+
     changeCart: function(idCart, { products }){
         const promise = products.map(p => {
             Order.findOne({
@@ -148,5 +159,29 @@ module.exports = {
                 .then(cart => this.allCarts(cart.userId))
             }
         })
-    }
+    },
+    getByStatus: function(status){
+        return Cart.findAll({
+            where: {
+                state: status
+            }
+        })
+    },
+    addProduct: function({quantity,cartId,productId}){
+        let productPromise = Product.findByPk(productId)
+        let cartPromise = Cart.findByPk(cartId)
+        return Promise.all([productPromise,cartPromise])
+        .then(([product, cart])=>{
+            //Asignamos producto a carrito
+            cart.addProduct(product, {
+                //Al order le asignamos el precio actual
+                //del producto y cantidad que me dice el cliente
+                through: {
+                    price: product.price,
+                    quantity
+                }
+            })
+        })
+        .then(() => this.read())
+    },
 }

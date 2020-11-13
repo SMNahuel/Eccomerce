@@ -42,6 +42,14 @@ server.put('/:cartId', (req, res, next) => {
     .catch(next)
 })
 
+server.post('/:id', (req, res, next) => {
+    const { id } = req.params
+    console.log('Holaa ')
+    cart.create(id)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
 server.delete('/:cartId', (req, res, next) => {
     const { cartId } = req.params
     cart.delete(cartId)
