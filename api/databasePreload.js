@@ -1,66 +1,70 @@
-const { Product, Category, Image, User } = require('./src/db.js');
+const { Product, Category, Image, User, Rol } = require('./src/db.js');
 
-const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
-const user = [
+const roles = ['admin', 'guest']
+const users = [
     {
         name: "Maico Loncomilla",
         email: "maicoloncomilla@gmail.com",
-        password: "1234"
+        password: "1234",
+        rolId: 1
     },
     {
         name: "Javier Balonga",
         email: "javierbalonga@gmail.com",
-        password: "2345"
+        password: "2345",
+        rolId: 1
     },
     {
         name: "Esteban",
         email: "ces.esteban@gmail.com",
-        password: "567"
+        password: "567",
+        rolId: 1
     },
     {
         name: "Leo Vinas",
         email: "vinasleonardo@yahoo.com",
-        password: "783"
+        password: "783",
+        rolId: 1
     },
     {
         name: "Nahuel Sanches",
         email: "nahuelsan96@gmail.com",
-        password: "789"
+        password: "789",
+        rolId: 1
     },
     {
         name: "Nacho",
         email: "ignaciogimenez70@gmail.com",
-        password: "1234"
+        password: "1234",
+        rolId: 1
     }
-
 ]
+const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
 
 module.exports = ()=> {
     // hardcodeamos algunos datos para trabajar en modo dev
-    var p = Category.create({
-        name: categories[0],
-        description: "Cursos de " + categories[0]
-    });
-    var z = User.create({
-        name: user[0].name,
-        email: user[0].email,
-        password: user[0].password
-    })
+    var p = new Promise(resolve => resolve(true))
 
-    for (let i = 1; i < categories.length; i++) {
-        p = p.then(() => Category.create({
-            name: categories[i],
-            description: "Cursos de " + categories[i]
-        }));
-    };
+    roles.forEach(rol => p = p.then(() => 
+        Rol.create({
+            name: rol
+        })
+    ))
 
-    for(let i = 1; i < user.length; i++){
-        z = z.then(() => User.create({
-            name: user[i].name,
-            email: user[i].email,
-            password: user[i].password
-        }))
-    }
+    p = p.then(r => console.log('Rols pre-charged'));
+
+    users.forEach(user => p = p.then(() => 
+        User.create(user)
+    ))
+
+    p = p.then(r => console.log('users pre-charged'));
+
+    categories.forEach(category =>  p = p.then(() => 
+        Category.create({
+            name: category,
+            description: "Cursos de " + category
+        })
+    ))
 
     p = p.then(r => console.log('categories pre-charged'));
 
