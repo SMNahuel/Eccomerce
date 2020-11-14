@@ -19,6 +19,12 @@ server.get('/:id', (req, res, next) => {
 	.catch(next);
 });
 
+server.get('/', (req, res, next) => {
+	cart.showCart()
+	.then(r => res.send(r))
+	.catch(next);
+});
+
 
 server.post('/', (req,res,next)=>{
 	const {quantity} = req.body;

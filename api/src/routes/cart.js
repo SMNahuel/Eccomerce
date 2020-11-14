@@ -12,7 +12,10 @@ server.post('/', (req, res, next) => {
 })
 
 server.get('/', (req, res, next) => {
-    const userId = 1 //req.cookies.user.userId
+    const userId = req.cookies.user.userId;
+    if(!userId){
+        return next(new Error('Necesitamos un id para obtener las ordenes de un usuario'));
+    }
     cart.allCarts(userId)
     .then(r => res.send(r))
     .catch(next)
