@@ -73,7 +73,6 @@ export default function Home() {
 
     const addToCart = (product) => {
         const products = {name: product.name, price: product.price}
-        console.log(products)
         setState({
             ...state,
             cartProduct: state.cartProduct.concat(products)
@@ -81,18 +80,21 @@ export default function Home() {
     }
 
     return(
-        <div className={s.container}>
-            {state.detailedProduct && <Product product={state.detailedProduct} addToCart={addToCart} onBack={handleBack} />}
-            <div className={s.navBar}>
-                <h1 className={s.title}>Pagina</h1>
-                <SearchBar handleSearch={handleSearch} />
+        <>
+            <div className={s.container}>
+                {state.detailedProduct && <Product product={state.detailedProduct} addToCart={addToCart} onBack={handleBack} />}
+                <div className={s.navBar}>
+                    <h1 className={s.title}>Pagina</h1>
+                    <SearchBar handleSearch={handleSearch} />
+                    <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
+                </div>
             </div>
-            <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
             <div className={s.home}>
-                <Catalog products={state.products || products} handleDetail={handleDetail}/>
-                <Cart/>
+                <Catalog products={state.products || products} handleDetail={handleDetail} />
+                <Cart />
             </div>
-        </div>
+
+        </>
     )
 
 }

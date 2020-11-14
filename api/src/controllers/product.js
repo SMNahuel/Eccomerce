@@ -25,7 +25,6 @@ module.exports = {
         })
     },
 
-
     create: function({ name, description, price, stock, categories }) {
         const productPromise = Product.findOrCreate({
             where: {

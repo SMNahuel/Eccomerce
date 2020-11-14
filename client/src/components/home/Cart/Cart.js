@@ -3,6 +3,8 @@ import s from './Cart.module.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useSelector, useDispatch } from 'react-redux';
 import api from '../../../redux/action-creators';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { selectorValue } from '../../../utils/selector'
 
 function Cart(props) {
     const cart = useSelector(state => state.cart)
@@ -42,6 +44,14 @@ function Cart(props) {
             acc + Number(quantities[product.id] || product.order.quantity)
         , 0)
     }
+    const onDelete = (id) => {
+        setQuantities({
+            ...quantities,
+            [id]: 0
+        })
+        totalQuantity()
+        totalPrice()
+    }
 
     return (
         <div className={s[active ? 'active' : 'inactive']}>
@@ -50,31 +60,38 @@ function Cart(props) {
                 <table>
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cart.products && cart.products.map(product => 
-                            <tr key={product.id}>
-                                <td>{product.name}</td>
+                            (quantities[product.id] !== 0 ) &&
+                                <tr key={product.id}>
+                                    <td>{product.name}</td>
                                 <td>
-                                    <input
-                                        value={quantities[product.id] || product.order.quantity}
-                                        type='number'
-                                        onChange={e => chengeQuantity(product.id, e.target.value)}
-                                    />
+                                    <select 
+                                    onChange={e => chengeQuantity(product.id, e.target.value)}
+                                    value={quantities[product.id] || product.order.quantity}>
+                                        {
+                                            selectorValue && selectorValue.map(value =>
+                                                <option key={value}>{value}</option>
+                                            )
+                                        }
+                                    </select>
                                 </td>
-                                <td>{product.order.price}</td>
-                            </tr>
+                                    <td>${`${product.order.price * quantities[product.id] || product.order.price}`}</td>
+                                    <td onClick={() => onDelete(product.id)}><DeleteForeverIcon/></td>
+                                </tr>
                         )}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td>Totales:</td>
+                            <td>Total:</td>
                             <td>{totalQuantity()}</td>
-                            <td>{totalPrice()}</td>
+                            <td>${totalPrice()}</td>
                         </tr>
                     </tfoot>
                 </table>
