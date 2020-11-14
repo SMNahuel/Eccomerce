@@ -87,7 +87,6 @@ module.exports = {
         })
     },
 
-
     create: function (idUser, body){
         let userPromise = User.findByPk(idUser)
         let cartPromise = Cart.findOne({
@@ -223,4 +222,7 @@ module.exports = {
         })
         .then(() => this.read())
     },
+    showCart : function(){
+        return Cart.findAll()
+    }
 }
