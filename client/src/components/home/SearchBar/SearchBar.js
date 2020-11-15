@@ -18,10 +18,20 @@ export default function SearchBar({handleSearch}){
     }    
     return(
         <div className={s.container_searchBar}>
-            <div className={s.container_input_buttons}>
-                <input type="text" value={key} onKeyDown={onKeyEnter} onChange ={onChange} placeholder="Seach..."/>
-                <button className={s.button} onClick={onSearch}><SearchIcon/></button>
-            </div>
+            <form onSubmit={onSearch}>
+                <div className={s.container_input_buttons}>
+                    <input 
+                    type="text" 
+                    value={key} 
+                    onKeyDown={onKeyEnter} 
+                    onChange ={onChange} 
+                    placeholder="Seach..." 
+                    pattern="[A-Za-z0-9]{3,50}" 
+                    title="Min 3 character"
+                    required/>
+                    <button className={s.button} type="submit"><SearchIcon/></button>
+                </div>
+            </form>
         </div>
     )
 }

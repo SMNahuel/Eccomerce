@@ -7,7 +7,7 @@ export default function TableCategory({categories, onEdit, onDelete}){
     return (
         <div className={s.container_table_category}>
             <table>
-                <thead>
+                <thead className={s.container_thead}>
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>

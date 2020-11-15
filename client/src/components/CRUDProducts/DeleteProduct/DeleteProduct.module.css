@@ -24,14 +24,8 @@
     color: #DFE6E9;
 }
 .botonesNo{
-    background-color: #1f53c5;
-}
-.botonesNo:hover{
-   background-color: #0e42c0;
+    background-color: #7b1fa2;
 }
 .botonesSi{
-    background-color: #e7231f;
-}
-.botonesSi:hover{
-    background-color: #cf231f;
+    background-color: #ab47bc;
 }

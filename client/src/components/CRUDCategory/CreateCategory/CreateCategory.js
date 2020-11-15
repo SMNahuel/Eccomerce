@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './CreateCategory.module.css';
 
 
@@ -30,7 +30,7 @@ function CreateCategory({ handleCreate }){
                     placeholder="Nombre" 
                     required 
                     maxLength="50"
-                    pattern ="[A-Za-z0-9]{3, 50}"
+                    pattern ="[A-Za-z0-9 ]{3,50}"
                     autoComplete="off"
                     />
                     <label>Nombre</label>
@@ -43,7 +43,7 @@ function CreateCategory({ handleCreate }){
                         placeholder="Descripcion"
                         maxLength="50"
                         autoComplete="off"
-                        pattern ="[A-Za-z0-9]{5, 50}"
+                        pattern="[A-Za-z0-9]{5,50}"
                         required
                     />
                     <label>Descripcion</label>

@@ -56,14 +56,14 @@ function SignIn(){
                     <YouTubeIcon className={s.icons} />
                 </div>
             </div>
-            <form>
+            <form onSubmit={register}>
                 <div className={s.container_inputs_signIn}>
                     <div className={s.container_inputs}>
                         <input 
                         type="text"
                         placeholder="Username"
-                        required
-                        pattern="[a-zA-Z_]{6,50}"
+                        required 
+                        pattern="[a-zA-Z]{6,50}"
                         id="name"
                         maxLength="20"
                         title="Only letters | min 6 characters | maximum 50 characters"
@@ -100,7 +100,7 @@ function SignIn(){
                         <label>Password</label>
                     </div>
                     <div className={s.container_button}>
-                        <button onClick={register} type="submit">Sign Up</button>
+                        <button type="submit">Sign Up</button>
                     </div>
                 </div>
             </form>

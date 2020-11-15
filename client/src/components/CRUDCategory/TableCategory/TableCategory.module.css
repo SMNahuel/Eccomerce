@@ -1,11 +1,15 @@
 .container_table_category{
     display: flex;
     justify-content: center;
-    max-width: 600px;
+    width: 98%;
     min-width: 320px;
     margin: 0 auto;
     color: #DFE6E9;
     padding: 0px 10px;
+}
+.container_thead{
+    color: #fff;
+    font-size: 14px;
 }
 
 table{
