@@ -22,9 +22,6 @@ function CrudCategory(){
         }
     }, [dispatch, categories])
 
-    const onCreate = () => {
-        setState({...state, action: 'create'})
-    }
     const handleCreate = (category) => {
         dispatch(api.createCategory(category))
         setState({...state, action: null})
@@ -65,12 +62,6 @@ function CrudCategory(){
             <h4>Categorias</h4>
             {
                 state.action === null &&
-                <div className={s.container_button_create_category}>
-                    <button onClick={onCreate} className={s.button_create_category}>Crear Categoria</button>
-                </div>
-            }
-            {
-                state.action === 'create' &&
                 <CreateCategory className={s.controls} handleCreate={handleCreate} />
             }
             {

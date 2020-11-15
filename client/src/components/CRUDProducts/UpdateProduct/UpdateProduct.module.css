@@ -1,16 +1,16 @@
-.container_form_addProduct{
+.container_form_updateProduct{
     width: 100%;
     padding: 10px 10px;
 }
-.container_form_addProduct form{
+.container_form_updateProduct form{
     width: 100%;
     background-color: #fff;
     padding: 20px 10px;
     border-radius: 10px;
 }
-.container_form_addProduct h4{
+.container_form_updateProduct h4{
     font-weight: 700;
-    font-size: 16px
+    font-size: 16px 
 }
 .container_inputs_products{
     max-width: 500px;
@@ -18,6 +18,13 @@
     position: relative; 
     background-color: transparent;
     z-index: 0;
+    margin-top: 10px;
+}
+.container_inputs_textarea{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container_inputs_products input, 
 .container_inputs_products textarea{
@@ -35,6 +42,10 @@
     font-size: 14px;
     color: #282C34;
     
+}
+.container_inputs_products textarea{
+    height: 70px;
+    margin-bottom: 10px;
 }
 .container_inputs_products input::placeholder{
     color: #282C34;
@@ -78,7 +89,6 @@
 .container_inputs_products textarea:valid {
     border-bottom: 1px solid #ab47bc
 }
-
 .input_submit{
     width: 50%;
     outline: none;
@@ -92,4 +102,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+.container_imageuploader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 95%;
+    border: 1px solid #ab47bc;
+}
+.imageuploader{
+    width: 100%;
+
 }

@@ -54,7 +54,7 @@ function LogIn() {
                     <YouTubeIcon className={s.icons}/>
                 </div>
             </div>
-            <form>
+            <form onSubmit={login}>
                 <div className={s.container_inputs_login}>
                     <div className={s.container_inputs}>
                         <input 
@@ -84,7 +84,7 @@ function LogIn() {
                         <label>Password</label>
                     </div>
                     <div className={s.container_button}>
-                        <button onClick={login} type="submit">Log In</button>
+                        <button type="submit">Log In</button>
                     </div>
                 </div>
             </form>

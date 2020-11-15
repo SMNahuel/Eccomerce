@@ -22,7 +22,8 @@ th{
     }
 }
 .button_edit{
-    background-color: #1f53c5;
+    /* background-color: #ab47bc; */
+    background-color: transparent;
     border: none;
     padding: 12px;
     color: #fff;
@@ -34,10 +35,11 @@ th{
 }
 .button_edit:hover{
    
-    background-color: #1f53e7;
+    background-color: #ab47bc;
 }
 .button_delete{
-    background-color: #e7231f;
+    /* background-color: #ab47bc; */
+    background-color: transparent;
     border: none;
     padding: 12px;
     color: #fff;
@@ -48,5 +50,6 @@ th{
     outline: none;
 }
 .button_delete:hover{
-    background-color: #f7231f;
+    background-color: #ab47bc;
 }
+ /* background: linear-gradient(60deg,#ab47bc,#7b1fa2);   */

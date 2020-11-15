@@ -29,10 +29,7 @@ export default function CRUDProducts(){
             dispatch(api.getProducts())
         }
     }, [dispatch, products, categories])
-
-    const onCreate = () => {
-        setState({...state, action: 'create'})
-    }
+    
     const handleCreate = (product) =>{
         dispatch(api.createProduct(product))
         setState({...state, action: null})
@@ -107,15 +104,11 @@ export default function CRUDProducts(){
             <div>
                 {
                     state.action === null &&
-                    <button  onClick={onCreate} className={s.botones_create} >Crear Producto</button>
-                }
-                {
-                    state.action === 'create' &&
                     <CreateProduct handleCreate={handleCreate} categories={categories}/>
                 }
                 {
                     state.action === 'update' &&
-                    <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate} s={s}/>
+                    <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate}/>
                 }
                 {
                     state.action === 'delete' &&

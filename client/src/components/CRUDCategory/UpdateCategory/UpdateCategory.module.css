@@ -3,9 +3,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 600px;
-    min-width: 320px;
+    max-width: 100%;
     margin: 0 auto;
+}
+.container_main form{
+    width: 95%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px 0 10px 0;
 }
 .container_main h4{
     font-size: 18px;
@@ -13,43 +18,83 @@
 
 }
 .container_input_textarea{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    padding: 0px 10px;
+    width: 80%;
+    margin: 0 auto;
     margin-bottom: 10px;
 }
 .container_input_textarea input{
     width: 100%;
     padding: 5px 10px;
-    background-color: #DFE6E9;
     outline: none;
-    border: 1px solid #1f53e7;
-    color: #232323;
-    border-radius: 8px;
+    background-color: transparent;
+    border-bottom: 1px solid #282C34;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 25px;
+    color: #282C34;
+    
+}
+.container_input_textarea input:focus,
+.container_input_textarea input:valid {
+    border-bottom: 1px solid #ab47bc;
+}
+.container_input_textarea input:focus::placeholder{
+    color: transparent;
+}
+.container_input_textarea input:focus ~ label,
+.container_input_textarea input:valid ~ label {
+    top: -30px;
+    color: #ab47bc;
+}
+.container_input_textarea textarea:focus,
+.container_input_textarea textarea:valid {
+    border-bottom: 1px solid #ab47bc;
+}
+.container_input_textarea textarea:focus::placeholder{
+    color: transparent;
+}
+.container_input_textarea textarea:focus ~ label,
+.container_input_textarea textarea:valid ~ label {
+    top: -30px;
+    color: #ab47bc;
+}
+.container_input_textarea label{
+    position: absolute;
+    color: transparent;
+    left: 10px;
+    top: -8px;
+    transition: all .5s linear;
+    font-size: 14px;
 }
 .container_input_textarea textarea{
     resize: none;
     width: 100%;
-    border-radius: 8px;
-    background-color: #DFE6E9;
-    border: 1px solid #1f53e7;
+    border-bottom: 1px solid #282C34;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     padding: 5px 10px;
+    background-color: transparent;
+    color: #282C34;
     outline: none;
+    font-size: 14px;
 }
 .container_button_modify{
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 400px;
-    min-width: 150px;
+    max-width: 60%;
     margin: 0 auto;
 }
 .container_button_modify button{
     width: 100%;
     line-height: 2em;
-    background-color: #1f53c5;
+    background-color: #ab47bc;
     border: none;
     color: white;
     margin-bottom: 10px;
@@ -57,6 +102,10 @@
     border-radius: 8px;
     cursor: pointer;
     outline: none;
+    
+}
+.container_button_modify button:hover{
+    background-color: #7b1fa2;
 }
 
 

@@ -1,7 +1,7 @@
 .container_create_category{
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    width: 98%;
     min-width: 320px;
     margin: 0 auto;
     padding: 0 10px;
@@ -22,7 +22,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     padding: 0px 10px;
     margin-bottom: 30px;
     
@@ -32,7 +33,7 @@
     padding: 9px 10px;
     background-color: transparent;
     outline: none;
-    border-bottom: 1px solid #e7231f;
+    border-bottom: 1px solid #282C34;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -45,30 +46,30 @@
 }
 .container_input_textarea input:focus,
 .container_input_textarea input:valid {
-    border-bottom: 1px solid #1f53e7
+    border-bottom: 1px solid #ab47bc
 }
 .container_input_textarea input:focus ~ label,
 .container_input_textarea input:valid ~ label {
     top: -30px;
-    color: #1f53e7;
+    color: #ab47bc;
 }
 .container_input_textarea textarea:focus::placeholder{
     color: transparent;
 }
 .container_input_textarea textarea:focus,
 .container_input_textarea textarea:valid {
-    border-bottom: 1px solid #1f53e7
+    border-bottom: 1px solid #ab47bc
 }
 .container_input_textarea textarea:focus ~ label,
 .container_input_textarea textarea:valid ~ label {
     top: -30px;
-    color: #1f53e7;
+    color: #ab47bc;
 }
 .container_input_textarea textarea{
     resize: none;
     width: 100%;
     background-color: transparent;
-    border-bottom: 1px solid #e7231f;
+    border-bottom: 1px solid #282C34;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -96,9 +97,9 @@
     margin-bottom: 10px;
 }
 .container_button_create input{
-    width: 80%;
+    width: 60%;
     line-height: 2em;
-    background-color: #1f53e7;
+    background-color: #ab47bc;
     border: none;
     color: #DFE6E9;
     margin-bottom: 10px;
@@ -107,3 +108,8 @@
     cursor: pointer;
     outline: none;
 }
+.container_button_create input:hover{
+    background-color: #7b1fa2;
+}
+
+    

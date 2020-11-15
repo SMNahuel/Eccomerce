@@ -5,6 +5,9 @@ import SearchIcon from '@material-ui/icons/Search';
 export default function FilterBar({ categories, handleSearch, handleSelect, handleClearFilters }){
     const [key, setKey] = useState("");
     const onSearch = (e)=>{
+        if(key.length <= 2){
+            return;
+        }
         handleSearch(key);
         setKey('')
     }
@@ -12,6 +15,9 @@ export default function FilterBar({ categories, handleSearch, handleSelect, hand
         setKey(e.target.value);
     }
     const onKeyEnter = e => {
+        if(key.length <= 2){
+            return;
+        }
         if(e.keyCode === 13){
             onSearch()
         }
@@ -26,10 +32,20 @@ export default function FilterBar({ categories, handleSearch, handleSelect, hand
                     categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)
                 }
             </select>
-            <div className={s.search}>
-                <input type="text" onKeyDown={onKeyEnter} onChange={onChange} value={key} placeholder="Seach..."/>
-                <button onClick={onSearch}><SearchIcon/></button>
-            </div>
+            <form onSubmit={onSearch}>
+                <div className={s.search}>
+                    <input type="text" 
+                    onKeyDown={onKeyEnter} 
+                    onChange={onChange} 
+                    value={key} 
+                    placeholder="Seach..."
+                    required 
+                    pattern="[a-zA-Z0-9]{3,50}"
+                    title="Min 3 character"
+                    />
+                    <button type="submit"><SearchIcon/></button>
+                </div>
+            </form>
             <div className={s.container_button}>
                 <button onClick={handleClearFilters}>Mostar Todo</button>
             </div>

@@ -1,8 +1,16 @@
 .container_searchBar{
     display: flex;
     justify-content: center;
-    width: 60%;
+    align-items: center;
     height: 30px;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 10px;
+}
+.container_searchBar form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .container_input_buttons{
     display: flex;
