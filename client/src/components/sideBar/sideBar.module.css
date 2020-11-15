@@ -20,6 +20,7 @@
     min-width: 320px;
     position: absolute;
     z-index: 50;
+    /* background: linear-gradient(60deg,#ab47bc,#7b1fa2);   */
     background-color: #6C5CE7;
     height: 100%;
     overflow-y: hidden;

@@ -6,7 +6,7 @@
     justify-content: center;
     right: 0;
     bottom: 0;
-    background-color: white;
+    background-color:  #282C34;
     z-index: 100000;
     transition: 1s;
     text-align: center;
@@ -16,14 +16,109 @@
     bottom: 5px;
     right: 5px;
 }
+.active button{
+    color: #DFE6E9;
+}
 .active{
-    width: 110vw;
-    height: 110vw;
-    padding: 5vw;
-    border-radius: 100% 0 0 0;
+    width: 100%;
+    height: 100%;
 }
 .inactive{
-    width: 10vh;
-    height: 10vh;
+    width: 6vh;
+    height: 6vh;
     border-radius: 100% 0 0 0;
+    background-color: #fff;
+}
+.inactive button,
+.active button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+.container_thead{
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    font-size: 15px;
+}
+.container_table{
+    width: 95%;
+}
+.container_tbody tr:nth-child(odd){
+    /* background-color: #7b1fa2; */
+    color: #DFE6E9;
+}
+.container_tbody tr:nth-child(even){
+    /* background-color: #ab47bc; */
+    color: #DFE6E9;
+}
+.container_tbody tr td select{
+    width: 60px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #DFE6E9;
+    cursor: pointer;
+}
+.container_tbody tr td select option{
+    color: #282C34;
+}
+.container_tbody tr td{
+    font-size: 14px;
+}
+.container_tfoot{
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    font-size: 15px;
+}
+.DeleteForeverIcon{
+    color: #e7231f;
+    cursor: pointer;
+}
+.container_table_button{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    animation: animation 1.5s linear;
+}
+@keyframes animation {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.container_input_button{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container_input_button input {
+    width: 50%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: #DFE6E9;
+    background-color: #ab47bc;
+    cursor: pointer;
+}
+.container_input_button input:hover{
+    background-color: #7b1fa2;
+}
+@media (min-width: 769px){
+    .container_table{
+        max-width: 769px;
+        width: 100%;
+    }
+    .container_input_button input{
+        max-width: 450px;
+        width: 100%;
+    }
 }
