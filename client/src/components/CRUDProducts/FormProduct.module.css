@@ -160,3 +160,13 @@ tbody tr:nth-child(odd){
 .acciones_td{
     width: 10%;
 }
+.botones_create{
+    width: 50%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #1f53c5;
+    color: #DFE6E9;
+    cursor: pointer;
+}

@@ -1,0 +1,37 @@
+.container_deleteCategory{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container_h3{
+    font-size: 14px;
+}
+.container_buttons_yes_no{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+.botonesSi,
+.botonesNo{
+    width: 35%;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+    color: #DFE6E9;
+}
+.botonesNo{
+    background-color: #1f53c5;
+}
+.botonesNo:hover{
+   background-color: #0e42c0;
+}
+.botonesSi{
+    background-color: #e7231f;
+}
+.botonesSi:hover{
+    background-color: #cf231f;
+}
