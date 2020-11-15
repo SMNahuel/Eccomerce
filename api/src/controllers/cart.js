@@ -223,6 +223,15 @@ module.exports = {
         .then(() => this.read())
     },
     showCart : function(){
-        return Cart.findAll()
+        return Cart.findAll({
+            include: {
+                model: Product,
+                attributes: ['id', 'name'],
+                through: {
+                    attributes: ['price', 'quantity']
+                }
+            }
+        })
+        
     }
 }
