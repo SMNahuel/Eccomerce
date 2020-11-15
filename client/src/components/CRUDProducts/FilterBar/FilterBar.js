@@ -30,7 +30,9 @@ export default function FilterBar({ categories, handleSearch, handleSelect, hand
                 <input type="text" onKeyDown={onKeyEnter} onChange={onChange} value={key} placeholder="Seach..."/>
                 <button onClick={onSearch}><SearchIcon/></button>
             </div>
-            <button onClick={handleClearFilters}>Mostar Todo</button>
+            <div className={s.container_button}>
+                <button onClick={handleClearFilters}>Mostar Todo</button>
+            </div>
         </div>
     );
 }

@@ -107,11 +107,11 @@ export default function CRUDProducts(){
             <div>
                 {
                     state.action === null &&
-                    <button  onClick={onCreate} className={s.botones} >Crear Producto</button>
+                    <button  onClick={onCreate} className={s.botones_create} >Crear Producto</button>
                 }
                 {
                     state.action === 'create' &&
-                    <CreateProduct className={s.controls} handleCreate={handleCreate} categories={categories} s={s}/>
+                    <CreateProduct handleCreate={handleCreate} categories={categories}/>
                 }
                 {
                     state.action === 'update' &&
@@ -119,7 +119,7 @@ export default function CRUDProducts(){
                 }
                 {
                     state.action === 'delete' &&
-                    <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure} s={s}/>
+                    <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure}/>
                 }
             </div>
             <FilterBar categories={categories} handleSearch={handleSearch} handleSelect={handleSelect} handleClearFilters={handleClearFilters} />
