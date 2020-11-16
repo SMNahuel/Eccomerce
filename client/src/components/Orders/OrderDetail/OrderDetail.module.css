@@ -1,0 +1,107 @@
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    background-color: white;
+    text-align: center;
+}
+.container button{
+    z-index: 1;
+    position: fixed;
+    bottom: 5px;
+    right: 8px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+.container_thead{
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    font-size: 15px;
+}
+.container_table{
+    width: 95%;
+}
+.container_tbody tr:nth-child(odd){
+    /* background-color: #7b1fa2; */
+    color: #DFE6E9;
+}
+.container_tbody tr:nth-child(even){
+    /* background-color: #ab47bc; */
+    color: #DFE6E9;
+}
+.container_tbody tr td select{
+    width: 60px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #DFE6E9;
+    cursor: pointer;
+}
+.container_tbody tr td select option{
+    color: #282C34;
+}
+.container_tbody tr td{
+    font-size: 14px;
+}
+.container_tfoot{
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    font-size: 15px;
+}
+.DeleteForeverIcon{
+    color: #e7231f;
+    cursor: pointer;
+}
+.container_table_button{
+    position: absolute;
+    right: calc(120vw - 20px);
+    bottom: calc(120vw - 20px);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    animation: animation 1.5s linear;
+}
+@keyframes animation {
+    0%   {opacity: 0;}
+    66%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+.container_input_button{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container_input_button input {
+    width: 25%;
+    margin-left: 1%;
+    margin-right: 1%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: #DFE6E9;
+    background-color: #ab47bc;
+    cursor: pointer;
+}
+.container_input_button input:hover{
+    background-color: #7b1fa2;
+}
+@media (min-width: 769px){
+    .container_table{
+        max-width: 769px;
+        width: 100%;
+    }
+    .container_input_button input{
+        max-width: 225px;
+        width: 100%;
+    }
+}
