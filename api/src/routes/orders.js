@@ -17,6 +17,16 @@ server.get('/admin', (req,res,next)=>{
 	.catch(next);
 })
 
+server.put('/process', (req, res, next) => {
+    const { id } = req.body
+    if (!id) {
+        return next(new Error('A cart content is required to process a cart'));
+    }
+    return cart.process(req.body)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
 server.get('/status', (req,res,next)=>{
 	if(!req.body.status){
 		return next(new Error('An status is needed to search products'));
