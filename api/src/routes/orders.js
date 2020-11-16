@@ -1,6 +1,11 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 
+server.get('/', (req, res, next) => {
+	cart.showCart()
+	.then(r => res.send(r))
+	.catch(next);
+});
 server.get('/', (req,res,next)=>{
 	if(!req.body.status){
 		return next(new Error('An status is needed to search products'));
@@ -19,11 +24,6 @@ server.get('/:id', (req, res, next) => {
 	.catch(next);
 });
 
-server.get('/', (req, res, next) => {
-	cart.showCart()
-	.then(r => res.send(r))
-	.catch(next);
-});
 
 
 server.post('/', (req,res,next)=>{
