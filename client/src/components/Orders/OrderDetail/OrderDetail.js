@@ -7,6 +7,7 @@ export default function OrderDetail({order, onBack}) {
     const dispatch = useDispatch()
     const onCancel = e => {
         dispatch(api.cancelCart(order))
+        onBack()
     }
 
     const totalPrice = () => {
@@ -53,7 +54,7 @@ export default function OrderDetail({order, onBack}) {
                         </tr>
                     </tfoot>
                 </table>
-                <div className={s.container_input_button}>
+                <div className={s.container_input_button_input}>
                     <input type="button" onClick={onCancel} value="Cancelar Carrito"/>
                 </div>
             </div>
