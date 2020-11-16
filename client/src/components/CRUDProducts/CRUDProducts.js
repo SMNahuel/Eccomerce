@@ -30,11 +30,6 @@ export default function CRUDProducts(){
         }
     }, [dispatch, products, categories])
     
-    const handleCreate = (product) =>{
-        dispatch(api.createProduct(product))
-        setState({...state, action: null})
-    }
-
     const onUpdate = (id) => {
         setState({
             ...state, 
@@ -104,7 +99,7 @@ export default function CRUDProducts(){
             <div>
                 {
                     state.action === null &&
-                    <CreateProduct handleCreate={handleCreate} categories={categories}/>
+                    <CreateProduct categories={categories}/>
                 }
                 {
                     state.action === 'update' &&

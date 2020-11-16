@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import s from './CreateCategory.module.css';
+import { useDispatch } from 'react-redux';
+import api from '../../../redux/action-creators';
 
 
-function CreateCategory({ handleCreate }){
+function CreateCategory(){
+    const dispatch = useDispatch();
     const[input, setInput] = useState({
         name: "",
         description: ""
@@ -15,7 +18,11 @@ function CreateCategory({ handleCreate }){
     }
     const onSubmit = (e) => {
         e.preventDefault()
-        handleCreate(input)
+        dispatch(api.createCategory(input))
+        setInput({
+            name: "",
+            description: ""
+        })
     }
     return(
         <div className={s.container_create_category}>
@@ -43,7 +50,7 @@ function CreateCategory({ handleCreate }){
                         placeholder="Descripcion"
                         maxLength="50"
                         autoComplete="off"
-                        pattern="[A-Za-z0-9]{5,50}"
+                        pattern="[A-Za-z0-9 ]{5,50}"
                         required
                     />
                     <label>Descripcion</label>
