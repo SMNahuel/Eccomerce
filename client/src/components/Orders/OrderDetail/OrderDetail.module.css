@@ -1,31 +1,12 @@
-.active,.inactive{
-    z-index: 5;
-    position: fixed;
-    overflow: hidden;
-    border-radius: 50%;
-    transition: 1.5s;
-}
-.active{
-    right: calc(20px - 120vw);
-    bottom: calc(20px - 120vw);
-    width: 240vw;
-    height: 240vw;
-}
-.inactive{
-    right: calc(20px - 5vh);
-    bottom: calc(20px - 5vh);
-    width: 10vh;
-    height: 10vh;
-}
 .container{
-    width: 100%;
-    height: 100%;
-    z-index: 20;
-    background-color: #282C34;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    background-color: white;
     text-align: center;
-}
-.inactive .container{
-    background-color: #fff;
 }
 .container button{
     z-index: 1;
@@ -35,9 +16,6 @@
     background-color: transparent;
     outline: none;
     border: none;
-}
-.active .container button{
-    color: #DFE6E9;
 }
 .container_thead{
     background-color: #ab47bc;

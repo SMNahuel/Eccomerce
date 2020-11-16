@@ -5,7 +5,7 @@ import CreateCategory from './CreateCategory/CreateCategory';
 import UpdateCategory from './UpdateCategory/UpdateCategory'
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../../redux/action-creators';
+import api from '../../../redux/action-creators';
 
 function CrudCategory(){
     const [state, setState] = useState({
@@ -13,19 +13,14 @@ function CrudCategory(){
         category: {}
     })
 
+
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
-
     useEffect(() => {
         if(!categories.length){
             dispatch(api.getCategories())
         }
     }, [dispatch, categories])
-
-    const handleCreate = (category) => {
-        dispatch(api.createCategory(category))
-        setState({...state, action: null})
-    }
 
     const onUpdate = (id) => {
         setState({
@@ -38,7 +33,6 @@ function CrudCategory(){
         dispatch(api.updateCategory(id, category))
         setState({...state, action: null})
     }
-
 
     const onDelete = (id) => {
         setState({
@@ -56,17 +50,16 @@ function CrudCategory(){
     const onNotSure = e => {
         setState({...state, action: null})
     }
-
     return (
         <div className={s.form}>
             <h4>Categorias</h4>
             {
                 state.action === null &&
-                <CreateCategory className={s.controls} handleCreate={handleCreate} />
+                <CreateCategory/>
             }
             {
                 state.action === 'update' &&
-                <UpdateCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
+                <UpdateCategory handleUpdate={handleUpdate} category={state.category} />
             }
             {
                 state.action === 'delete' &&

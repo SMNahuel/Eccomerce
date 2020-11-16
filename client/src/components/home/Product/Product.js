@@ -1,19 +1,28 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import api from '../../../redux/action-creators';
 import { useDispatch } from 'react-redux';
 
-export default ({product, onBack, addToCart}) => {
+export default ({product, onBack}) => {
   const image = product.images[0] ?
   `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
 
   const dispatch = useDispatch()
-
+  
+  const availableQuantities = (function () {
+    let ret = [];
+    for (let i = 1; i <= product.stock; i++){
+      ret.push(i);
+    };
+    return ret;
+  })()
+  const [quantity, setQuantity] = useState(1)
+  const onSelectQuantity = e => setQuantity(e.target.value)
   const onAddToCart = e => {
-    dispatch(api.addProduct(product.id, 1))
+    dispatch(api.addProduct(product.id, quantity))
     onUnmount()
   }
 
@@ -46,6 +55,15 @@ export default ({product, onBack, addToCart}) => {
         </div>
         <div className={s.container_button}>
           <button onClick={onAddToCart}>Add to Cart</button>
+          <select
+            onChange={onSelectQuantity}
+            value={quantity}>
+            {
+              availableQuantities.map(value =>
+                <option key={value}>{value}</option>
+              )
+            }
+          </select>
         </div>
       </div> 
     </div>

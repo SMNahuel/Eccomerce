@@ -1,6 +1,11 @@
 const { User, Order, Cart, Rol } = require('../db.js');
 
 module.exports = {
+    exists: function(id){
+        return User.findByPk(id)
+        .then(r => !!r)
+    },
+
     read: function(){
         return User.findAll({
             attributes: ['id', 'password', 'email'],
@@ -49,7 +54,7 @@ module.exports = {
         })
         .then(() => this.read())
     },
-  
+
     search: function(idUser){
         Cart.findOne({
             attributes: ['id', 'state', 'userId'],
