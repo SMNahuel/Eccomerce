@@ -5,7 +5,7 @@ import CreateCategory from './CreateCategory/CreateCategory';
 import UpdateCategory from './UpdateCategory/UpdateCategory'
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../../redux/action-creators';
+import api from '../../../redux/action-creators';
 
 function CrudCategory(){
     const [state, setState] = useState({

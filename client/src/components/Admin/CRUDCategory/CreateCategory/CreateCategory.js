@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './CreateCategory.module.css';
 import { useDispatch } from 'react-redux';
-import api from '../../../redux/action-creators';
+import api from '../../../../redux/action-creators';
 
 
 function CreateCategory(){

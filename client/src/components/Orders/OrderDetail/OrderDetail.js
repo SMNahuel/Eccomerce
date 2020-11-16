@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './OrderDetail.module.css';
 import { useDispatch } from 'react-redux';
 import api from '../../../redux/action-creators';

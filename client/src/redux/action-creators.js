@@ -115,7 +115,6 @@ const actionCreators = {
         }
     },
 
-
     USER: "USER",
 
     _dispatchPromise: function(promise, type, dispatch){
