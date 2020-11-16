@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect} from 'react'
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import s from './TableOrders.module.css'
 
 function TableOrders() {
@@ -21,34 +19,44 @@ function TableOrders() {
         , 0)
     }
 
-    const onProcess = order => alert('procesando orden :' + order.id + ' pensando a futuros cercanos T-T')
+    const onProcess = order => {
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`,
+        order,
+        {withCredentials: true})
+        .then(({data})=>setOrders(data))
+    }
 
     return (
         <div className={s.styleTableOrders}>
-            <Table>
-                <Thead>
-                    <Tr>
-                        <Th>Id</Th>
-                        <Th>Estado</Th>
-                        <Th>Monto Total</Th>
-                        <Th>Ultima Opreacion</Th>
-                        <Th>Creacion</Th>
-                        <Th>Procesar</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Estado</th>
+                        <th>Monto Total</th>
+                        <th>Ultima Opreacion</th>
+                        <th>Creacion</th>
+                        <th>Procesar</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {orders && orders.map(order => 
-                        <Tr key={order.id}>
-                            <Td>{order.id}</Td>
-                            <Td>{order.state}</Td>
-                            <Td>{orderMount(order)}</Td>
-                            <Td>{order.updatedAt}</Td>
-                            <Td>{order.createdAt}</Td>
-                            <Td><button onClick={()=>onProcess(order)}>Procesar</button></Td>
+                        <tr key={order.id}>
+                            <td>{order.id}</td>
+                            <td>{order.state}</td>
+                            <td>{orderMount(order)}</td>
+                            <td>{order.updatedAt}</td>
+                            <td>{order.createdAt}</td>
+                            <Td>
+                                { order.state === 'created' ? 
+                                    <button onClick={()=>onProcess(order)}>Procesar</button>:
+                                    order.state
+                                }
+                            </Td>
                         </Tr> 
                     )}
-                </Tbody>
-            </Table>
+                </tbody>
+            </table>
         </div>
     );
 }

@@ -8,6 +8,11 @@ export default function OrderDetail({order, onBack}) {
     const onCancel = e => {
         dispatch(api.cancelCart(order))
         onBack()
+        // Esto es un fail para que actualice la tabla 
+        // pero no deberia estar resuelto asi X_X
+        setTimeout(()=>{
+            dispatch(api.getOrders())
+        },1000)
     }
 
     const totalPrice = () => {

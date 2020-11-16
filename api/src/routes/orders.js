@@ -1,6 +1,11 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 
+server.get('/', (req, res, next) => {
+	cart.showCart()
+	.then(r => res.send(r))
+	.catch(next);
+});
 server.get('/', (req,res,next)=>{
 	const { userId } = req.cookies;
 	if(!userId){
@@ -15,6 +20,16 @@ server.get('/admin', (req,res,next)=>{
 	cart.getAll()
 	.then(r=> res.send(r))
 	.catch(next);
+})
+
+server.put('/process', (req, res, next) => {
+    const { id } = req.body
+    if (!id) {
+        return next(new Error('A cart content is required to process a cart'));
+    }
+    return cart.process(req.body)
+    .then(r => res.send(r))
+    .catch(next)
 })
 
 server.get('/status', (req,res,next)=>{
