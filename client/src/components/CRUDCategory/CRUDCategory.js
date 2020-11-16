@@ -59,7 +59,7 @@ function CrudCategory(){
             }
             {
                 state.action === 'update' &&
-                <UpdateCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
+                <UpdateCategory handleUpdate={handleUpdate} category={state.category} />
             }
             {
                 state.action === 'delete' &&
