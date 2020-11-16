@@ -5,37 +5,37 @@ const users = [
     {
         name: "Maico Loncomilla",
         email: "maicoloncomilla@gmail.com",
-        password: "1234",
+        password: "1234567",
         rolId: 1
     },
     {
         name: "Javier Balonga",
         email: "javierbalonga@gmail.com",
-        password: "2345",
+        password: "1234567",
         rolId: 1
     },
     {
         name: "Esteban",
         email: "ces.esteban@gmail.com",
-        password: "567",
+        password: "1234567",
         rolId: 1
     },
     {
         name: "Leo Vinas",
         email: "vinasleonardo@yahoo.com",
-        password: "783",
+        password: "1234567",
         rolId: 1
     },
     {
         name: "Nahuel Sanches",
         email: "nahuelsan96@gmail.com",
-        password: "789",
+        password: "1234567",
         rolId: 1
     },
     {
         name: "Nacho",
         email: "ignaciogimenez70@gmail.com",
-        password: "1234",
+        password: "1234567",
         rolId: 1
     }
 ]

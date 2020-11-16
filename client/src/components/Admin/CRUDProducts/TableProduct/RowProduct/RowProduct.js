@@ -8,7 +8,7 @@ export default function RowProduct({product, onUpdate, onDelete, s}) {
         <tr>
             <td>{product.name}</td>
             <td className={s.description_td}>{product.description}</td>
-            <td>{product.price}</td>
+            <td>${product.price}</td>
             <td>{product.stock}</td>
             <td className={s.acciones_td}>
                 <button href="#arriba" className={s.boton_modificar} onClick={() => onUpdate(product.id)}>

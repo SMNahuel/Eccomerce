@@ -44,8 +44,20 @@ export default ({product, onBack}) => {
               <h1 className={s.name} >{product.name}</h1>
             </div>
             <p>Author: Lorem impsum</p>
-            <p>Cupo: {product.stock}</p>
-            <p>Precio: {product.price}$</p>
+            <div className={s.container_label_select}>
+              <label>Stock:</label>
+              <select
+                className={s.container_select}
+                onChange={onSelectQuantity}
+                value={quantity}>
+                {
+                  availableQuantities.map(value =>
+                    <option key={value}>{value}</option>
+                  )
+                }
+              </select>
+            </div>
+            <p>Price: ${product.price}</p>
             <p>Reviews: ★★★★☆</p>
           </div>
           <div className={s.container_description}>
@@ -55,17 +67,9 @@ export default ({product, onBack}) => {
         </div>
         <div className={s.container_button}>
           <button onClick={onAddToCart}>Add to Cart</button>
-          <select
-            onChange={onSelectQuantity}
-            value={quantity}>
-            {
-              availableQuantities.map(value =>
-                <option key={value}>{value}</option>
-              )
-            }
-          </select>
+
         </div>
-      </div> 
+      </div>
     </div>
   )
 }

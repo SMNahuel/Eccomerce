@@ -1,5 +1,12 @@
 .styleTableOrders{
     color: white;
     text-align: center;
-    margin: 50px
+    margin: 0 auto;
+    width: 100%;
+}
+.container_table{
+    max-width: 768px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
 }

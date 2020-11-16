@@ -1,5 +1,27 @@
 .styleTableOrders{
-    margin: 50px;
-    color: white;
+    width: 100%;
+    color: #fff;
     text-align: center;
+    
+}
+.container_table{
+    max-width: 768px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.button_details button{
+    background-color: transparent;
+    color: #DFE6E9;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.button_details button:hover{
+    background-color: #ab47bc;
+    
 }

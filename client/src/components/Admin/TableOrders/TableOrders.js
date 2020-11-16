@@ -28,13 +28,13 @@ function TableOrders() {
 
     return (
         <div className={s.styleTableOrders}>
-            <table>
+            <table className={s.container_table}>
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Estado</th>
                         <th>Monto Total</th>
-                        <th>Ultima Opreacion</th>
+                        <th>Ultima Operacion</th>
                         <th>Creacion</th>
                         <th>Procesar</th>
                     </tr>
@@ -44,16 +44,16 @@ function TableOrders() {
                         <tr key={order.id}>
                             <td>{order.id}</td>
                             <td>{order.state}</td>
-                            <td>{orderMount(order)}</td>
+                            <td>${orderMount(order)}</td>
                             <td>{order.updatedAt}</td>
                             <td>{order.createdAt}</td>
-                            <Td>
+                            <td className={s.button_details}>
                                 { order.state === 'created' ? 
                                     <button onClick={()=>onProcess(order)}>Procesar</button>:
                                     order.state
                                 }
-                            </Td>
-                        </Tr> 
+                            </td>
+                        </tr> 
                     )}
                 </tbody>
             </table>

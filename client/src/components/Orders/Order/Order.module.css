@@ -1,0 +1,12 @@
+.button_details button{
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
