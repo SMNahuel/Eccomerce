@@ -1,6 +1,11 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 
+server.get('/', (req, res, next) => {
+	cart.showCart()
+	.then(r => res.send(r))
+	.catch(next);
+});
 server.get('/', (req,res,next)=>{
 	const { userId } = req.cookies;
 	if(!userId){
