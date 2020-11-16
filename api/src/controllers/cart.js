@@ -94,9 +94,13 @@ module.exports = {
         .then(() => this.cartOf(userId))
     },
 
-    allCarts: function(){
+    orders: function(userId){
         return Cart.findAll({
+            where:{
+                userId: userId
+            },
             attributes: ['id', 'state'],
+            order: ['state'],
             include: {
                 model: Product,
                 attributes: ['id', 'name'],
@@ -107,10 +111,19 @@ module.exports = {
         })
     },
 
-    getByStatus: function(status){
-        return Cart.findAll({
+    getById: function(id){
+        return Cart.findOne({
             where: {
-                state: status
+                id: id
+            },
+            attributes: ['id', 'state'],
+            order: ['state'],
+            include: {
+                model: Product,
+                attributes: ['id', 'name'],
+                through: {
+                    attributes: ['price', 'quantity']
+                }
             }
         })
     },

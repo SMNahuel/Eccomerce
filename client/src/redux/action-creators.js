@@ -66,6 +66,7 @@ const actionCreators = {
             const promise = axios.get(`${process.env.REACT_APP_API_URL}/cart`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
     addProduct: function(id, quantity) {
@@ -74,6 +75,7 @@ const actionCreators = {
             {productId: id, quantity: quantity},
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
     updateCart: function(cart) {
@@ -82,6 +84,7 @@ const actionCreators = {
             cart,
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
     confirmCart: function(cart) {
@@ -90,6 +93,7 @@ const actionCreators = {
             cart,
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
     cancelCart: function(cart) {
@@ -98,13 +102,24 @@ const actionCreators = {
             cart,
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
+
+    ORDERS: 'ORDERS',
+    getOrders: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/orders`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.ORDERS, dispatch)
+        }
+    },
+
 
     USER: "USER",
 
     _dispatchPromise: function(promise, type, dispatch){
-        promise
+        return promise
         .then(({data}) => {
             dispatch({ type: type, payload: data });
         })
