@@ -1,39 +1,43 @@
 .active,.inactive{
+    z-index: 5;
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    right: 0;
-    bottom: 0;
-    background-color:  #282C34;
-    z-index: 100000;
-    transition: 1s;
-    text-align: center;
-}
-.active button,.inactive button{
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-.active button{
-    color: #DFE6E9;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: 1.5s;
 }
 .active{
-    width: 100%;
-    height: 100%;
+    right: calc(20px - 120vw);
+    bottom: calc(20px - 120vw);
+    width: 240vw;
+    height: 240vw;
 }
 .inactive{
-    width: 6vh;
-    height: 6vh;
-    border-radius: 100% 0 0 0;
+    right: calc(20px - 5vh);
+    bottom: calc(20px - 5vh);
+    width: 10vh;
+    height: 10vh;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: #282C34;
+    text-align: center;
+}
+.inactive .container{
     background-color: #fff;
 }
-.inactive button,
-.active button{
+.container button{
+    z-index: 1;
+    position: fixed;
+    bottom: 5px;
+    right: 8px;
     background-color: transparent;
     outline: none;
     border: none;
+}
+.active .container button{
+    color: #DFE6E9;
 }
 .container_thead{
     background-color: #ab47bc;
@@ -75,23 +79,22 @@
     cursor: pointer;
 }
 .container_table_button{
-    width: 100%;
+    position: absolute;
+    right: calc(120vw - 20px);
+    bottom: calc(120vw - 20px);
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 0 auto;
     animation: animation 1.5s linear;
 }
 @keyframes animation {
-    0% {
-        opacity: 0;
-    }
-    30% {
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+    0%   {opacity: 0;}
+    66%  {opacity: 0;}
+    100% {opacity: 1;}
 }
 .container_input_button{
     margin-top: 10px;
@@ -100,7 +103,9 @@
     justify-content: center;
 }
 .container_input_button input {
-    width: 50%;
+    width: 25%;
+    margin-left: 1%;
+    margin-right: 1%;
     height: 30px;
     border: none;
     outline: none;
@@ -118,7 +123,7 @@
         width: 100%;
     }
     .container_input_button input{
-        max-width: 450px;
+        max-width: 225px;
         width: 100%;
     }
 }

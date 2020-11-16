@@ -1,73 +1,100 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
-
-server.post('/', (req, res, next) => {
-    //let cookieId 
-    // req.cookies.user ? cookieId = req.cookies.user.userId : cookieId = undefined
-    //cart.createAnonimus(req.body, cookieId)
-    //.then(r => cookieId ? res.send(r) : res.cookie("user", r[0]).send(r))
-    cart.create(1, req.body)
-    .then(r => res.send(r))
-    .catch(next)
-})
+const user = require('../controllers/user');
 
 server.get('/', (req, res, next) => {
-    const userId = req.cookies.user.userId;
+    const { userId } = req.cookies;
     if(!userId){
-        return next(new Error('Necesitamos un id para obtener las ordenes de un usuario'));
+        return next(new Error('A userId is needed to bring a cart'));
     }
-    cart.allCarts(userId)
+    cart.cartOf(userId)
     .then(r => res.send(r))
     .catch(next)
 })
 
-/* body: 
-{"products": [
-        {
-            "id": 1,
-            "name": "Css I",
-            "order": {
-                "price": 100,
-                "quantity": 0
+server.post('/', (req, res, next) => {
+    const { userId } = req.cookies
+    const { productId, quantity } = req.body
+    if (!productId || !quantity) {
+        return next(new Error('a productId and a quantity are needed to add the product to the cart'));
+    }
+    if (!userId) {
+        cart.addToCartAnonimus(req.body)
+        .then(r => res.cookie("userId", r.userId).send(r))
+        .catch(next)
+    } else {
+        user.exists(userId)
+        .then(exists => {
+            if (!exists) {
+                return cart.addToCartAnonimus(req.body)
+                .then(r => res.cookie("userId", r.userId).send(r))
+            } else {
+                return cart.addToCart(userId, req.body)
+                .then(r => res.send(r))
             }
-        },
-        {
-            "id": 2,
-            "order": {
-                "price": 120,
-                "quantity": 3
-            }
+        })
+        .catch(next)
+    }
+})
+
+server.put('/', (req, res, next) => {
+    const { userId } = req.cookies;
+    const { id, products } = req.body
+    if (!userId) {
+        return next(new Error('A userId is required to update a cart'));
+    }
+    if (!id || !products) {
+        return next(new Error('A cart content is required to update a cart'));
+    }
+    cart.belongsTo(id, userId)
+    .then(belongsToUser => {
+        if (!belongsToUser){
+            throw new Error('The cart must belong to the user to be updated')
         }
-    ]
-} */
-server.put('/:cartId', (req, res, next) => {
-    const { cartId } = req.params
-    cart.changeCart(cartId, req.body)
+        return cart.update(userId, req.body)
+    })
     .then(r => res.send(r))
     .catch(next)
 })
 
-server.post('/:id', (req, res, next) => {
-    const { id } = req.params
-    console.log('Holaa ')
-    cart.create(id)
+server.put('/create', (req, res, next) => {
+    const { userId } = req.cookies;
+    const { id, products } = req.body
+    if (!userId) {
+        return next(new Error('A userId is required to create a cart'));
+    }
+    if (!id || !products) {
+        return next(new Error('A cart content is required to create a cart'));
+    }
+    cart.belongsTo(id, userId)
+    .then(belongsToUser => {
+        if (!belongsToUser){
+            throw new Error('The cart must belong to the user to be created')
+        }
+        return cart.create(userId, req.body)
+    })
     .then(r => res.send(r))
     .catch(next)
 })
 
-server.delete('/:cartId', (req, res, next) => {
-    const { cartId } = req.params
-    cart.delete(cartId)
+server.put('/cancel', (req, res, next) => {
+    const { userId } = req.cookies;
+    const { id } = req.body
+    if (!userId) {
+        return next(new Error('A userId is required to cancel a cart'));
+    }
+    if (!id) {
+        return next(new Error('A cartID is required to create a cart'));
+    }
+    cart.belongsTo(id, userId)
+    .then(belongsToUser => {
+        if (!belongsToUser){
+            throw new Error('The cart must belong to the user to be canceled')
+        }
+        return cart.cancel(userId, req.body)
+    })
     .then(r => res.send(r))
     .catch(next)
 })
-
-server.post('/:idCart/completed', (req, res, next) => {
-    const { idCart } = req.params
-    cart.cartComplete(idCart)
-    .then(r => res.send(r))
-    .catch(next)
-})
-
 
 module.exports = server;
