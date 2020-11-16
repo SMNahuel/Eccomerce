@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import CheckCategory from '../CheckCategory/CheckCategory';
+import api from '../../../redux/action-creators';
 
 import s from './CreateProduct.module.css'
 
 export default function CreateProduct({handleCreate, categories}) {
-    const[input, setInput] = useState({
+    const dispatch = useDispatch()
+    const [ input, setInput ]  = useState({
         name: '',
         description: '',
         price: '',
@@ -34,7 +37,14 @@ export default function CreateProduct({handleCreate, categories}) {
     }
     const onSubmit = (e) => {
         e.preventDefault()
-        handleCreate(input)
+        dispatch(api.createProduct(input))
+        setInput({
+            name: '',
+            description: '',
+            price: '',
+            stock: '',
+            categories: []
+        })
     }
 
     return (
