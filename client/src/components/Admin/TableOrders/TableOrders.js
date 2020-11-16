@@ -52,7 +52,7 @@ function TableOrders() {
                             <Td>
                                 { order.state === 'created' ? 
                                     <button onClick={()=>onProcess(order)}>Procesar</button>:
-                                    'Procesado'
+                                    order.state
                                 }
                             </Td>
                         </Tr> 
