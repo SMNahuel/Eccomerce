@@ -11,17 +11,36 @@ function Cart(props) {
     const dispatch = useDispatch()
 
     const [active, setActive] = useState(false)
-    const onClick = e => {
+    const onToggleActive = e => {
         if (active && Object.keys(quantities).length) {
             for(let key in quantities) {
                 let id = Number(key)
                 cart.products.find(p => p.id === id)
                 .order.quantity = quantities[id]
             }
-            dispatch(api.updateCart(cart.id, cart))
+            dispatch(api.updateCart(cart))
             setQuantities({})
         }
         setActive(!active)
+    }
+
+    const onBuy = e => {
+        dispatch(api.confirmCart(cart))
+        setActive(!active)
+    }
+
+    const onCancel = e => {
+        dispatch(api.cancelCart(cart))
+        setActive(!active)
+    }
+
+    const onDelete = (id) => {
+        setQuantities({
+            ...quantities,
+            [id]: 0
+        })
+        totalQuantity()
+        totalPrice()
     }
 
     const [quantities, setQuantities] = useState({})
@@ -44,59 +63,65 @@ function Cart(props) {
             acc + Number(quantities[product.id] || product.order.quantity)
         , 0)
     }
-    const onDelete = (id) => {
-        setQuantities({
-            ...quantities,
-            [id]: 0
-        })
-        totalQuantity()
-        totalPrice()
-    }
 
     return (
-        <div className={s[active ? 'active' : 'inactive']}>
-            <button onClick={onClick}><ShoppingCartIcon/></button>
-            {active &&
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {cart.products && cart.products.map(product => 
-                            (quantities[product.id] !== 0 ) &&
-                                <tr key={product.id}>
-                                    <td>{product.name}</td>
-                                <td>
-                                    <select 
-                                    onChange={e => chengeQuantity(product.id, e.target.value)}
-                                    value={quantities[product.id] || product.order.quantity}>
-                                        {
-                                            selectorValue && selectorValue.map(value =>
-                                                <option key={value}>{value}</option>
-                                            )
-                                        }
-                                    </select>
-                                </td>
-                                    <td>${`${product.order.price * quantities[product.id] || product.order.price}`}</td>
-                                    <td onClick={() => onDelete(product.id)}><DeleteForeverIcon/></td>
-                                </tr>
-                        )}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>Total:</td>
-                            <td>{totalQuantity()}</td>
-                            <td>${totalPrice()}</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            }
-        </div>
+        <>
+            <div className={s[active ? 'active' : 'inactive']}>
+                <div className={s.container}>
+                    <button onClick={onToggleActive}><ShoppingCartIcon /></button>
+                    <div className={s.container_table_button}>
+                        {active && cart.products ?
+                            <>
+                                <table className={s.container_table}>
+                                    <thead className={s.container_thead}>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className={s.container_tbody}>
+                                        {cart.products && cart.products.map(product =>
+                                            (quantities[product.id] !== 0) &&
+                                            <tr key={product.id}>
+                                                <td>{product.name}</td>
+                                                <td>
+                                                    <select
+                                                        onChange={e => chengeQuantity(product.id, e.target.value)}
+                                                        value={quantities[product.id] || product.order.quantity}>
+                                                        {
+                                                            selectorValue && selectorValue.map(value =>
+                                                                <option key={value}>{value}</option>
+                                                            )
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td>${`${product.order.price * quantities[product.id] || product.order.price}`}</td>
+                                                <td onClick={() => onDelete(product.id)}><DeleteForeverIcon className={s.DeleteForeverIcon} /></td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                    <tfoot className={s.container_tfoot}>
+                                        <tr>
+                                            <td>Total:</td>
+                                            <td>{totalQuantity()}</td>
+                                            <td>${totalPrice()}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div className={s.container_input_button}>
+                                    <input type="button" onClick={onBuy} value="Comprar!" />
+                                    <input type="button" onClick={onCancel} value="Cancelar Carrito" />
+                                </div>
+                            </> :
+                            <div style={{color:'white'}}>{"No Hay productos en su carrito"}</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
+import s from './DeleteProduct.module.css'
 
-export default function DeleteCategory( { handleDelete, product, onNotSure, s} ){
+export default function DeleteCategory( { handleDelete, product, onNotSure } ){
     return (
-        <div>
+        <div className={s.container_deleteCategory}>
             <div className={s.container_h3}>
                 <h3>Seguro que desea eleminar el producto?</h3>
             </div>

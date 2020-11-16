@@ -29,15 +29,7 @@ export default function CRUDProducts(){
             dispatch(api.getProducts())
         }
     }, [dispatch, products, categories])
-
-    const onCreate = () => {
-        setState({...state, action: 'create'})
-    }
-    const handleCreate = (product) =>{
-        dispatch(api.createProduct(product))
-        setState({...state, action: null})
-    }
-
+    
     const onUpdate = (id) => {
         setState({
             ...state, 
@@ -107,19 +99,15 @@ export default function CRUDProducts(){
             <div>
                 {
                     state.action === null &&
-                    <button  onClick={onCreate} className={s.botones} >Crear Producto</button>
-                }
-                {
-                    state.action === 'create' &&
-                    <CreateProduct className={s.controls} handleCreate={handleCreate} categories={categories} s={s}/>
+                    <CreateProduct categories={categories}/>
                 }
                 {
                     state.action === 'update' &&
-                    <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate} s={s}/>
+                    <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate}/>
                 }
                 {
                     state.action === 'delete' &&
-                    <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure} s={s}/>
+                    <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure}/>
                 }
             </div>
             <FilterBar categories={categories} handleSearch={handleSearch} handleSelect={handleSelect} handleClearFilters={handleClearFilters} />

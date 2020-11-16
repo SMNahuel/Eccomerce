@@ -1,34 +1,73 @@
 .container_signIn{
+    position: relative;
     max-width: 600px;
+    min-width: 320px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px 15px;
+    justify-content: center;
+    height: 100%;
+    padding: 10px 10px;
 }
-.container_title{
-    margin-bottom: 10px;
-    color: #DFE6E9;
-    font-size: large;
-    font-weight: 800;
+
+.container_signIn form{
+    background-color: #fff;
+    border-radius: 10px;
+    height: 430px;
+    -webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.75);
+}
+.container_inputs_signIn{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 20px 20px;
 }
 .container_inputs{
-    border-radius: 7px;
-    background-color: #DFE6E9;
-    margin-bottom: 15px;
-    border: 1px solid transparent;
+    position: relative;
+    display: flex;
+    margin-bottom: 25px;
+    color: #495057;
+}
+.container_inputs input:focus::placeholder{
+    color: transparent;
+}
+.container_inputs input:focus ~ label,
+.container_inputs input:valid ~ label
+{
+    top: -20px;
+    color: #ab47bc;
+}
+.container_inputs input:focus,
+.container_inputs input:valid{
+    border-bottom: 1px solid #ab47bc;
+}
+.container_inputs label{
+    position: absolute;
+    z-index: 20;
+    top: 5px;
+    left: 10px;
+    font-size: 12px;
+    pointer-events: none;
+    color: transparent;
+    transition: all .5s
 }
 
 .container_inputs input{
     padding: 5px 10px;
     line-height: 1.5em;
-    border-radius: 7px;
     width: 100%;
     background-color: transparent;
     outline: none;
-    border: none;
+    border-bottom: 1px solid #404040;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     box-sizing: border-box;
+    
 }
-
 .container_button{
     display: flex;
     justify-content: center;
@@ -37,15 +76,63 @@
 }
 .container_button button{
     min-width: 200px;
-    background-color: #A29BFE;
+    background-color: #ab47bc;
     color: #fff;
     border: 1px solid #6C5CE7;
     outline: none;
-    font-size: medium;
+    font-size: 14px;
     padding: 5px 0;
     border-radius: 7px;
     cursor: pointer;
 }
 .container_button button:hover{
-    background-color: #6C5CE7;
+    background-color: #7b1fa2;
+}
+.container_absolute_sign_in{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 80%;
+    width: 100%;
+    min-height: 150px;
+    border-radius: 10px;
+    top: 100px;
+    right: 0;
+    left: 0;
+    background: linear-gradient(60deg,#ab47bc,#7b1fa2);  
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+}
+.container_h2{
+    position: relative;
+    margin-bottom: 10px;
+    color: #DFE6E9;
+    font-weight: 700;
+    font-size: 1.125em;
+}
+.container_icons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    color: #DFE6E9;
+    margin-top: 15px;
+}
+.icons{
+    cursor: pointer;
+}
+.container_have_account{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+   
+}
+.container_link{
+    text-decoration: none;
+    color: #DFE6E9;
+}
+.container_link:hover{
+    text-decoration: underline;
 }

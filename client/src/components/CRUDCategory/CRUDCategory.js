@@ -13,22 +13,14 @@ function CrudCategory(){
         category: {}
     })
 
+
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
-
     useEffect(() => {
         if(!categories.length){
             dispatch(api.getCategories())
         }
     }, [dispatch, categories])
-
-    const onCreate = () => {
-        setState({...state, action: 'create'})
-    }
-    const handleCreate = (category) => {
-        dispatch(api.createCategory(category))
-        setState({...state, action: null})
-    }
 
     const onUpdate = (id) => {
         setState({
@@ -41,7 +33,6 @@ function CrudCategory(){
         dispatch(api.updateCategory(id, category))
         setState({...state, action: null})
     }
-
 
     const onDelete = (id) => {
         setState({
@@ -59,23 +50,16 @@ function CrudCategory(){
     const onNotSure = e => {
         setState({...state, action: null})
     }
-
     return (
         <div className={s.form}>
             <h4>Categorias</h4>
             {
                 state.action === null &&
-                <div className={s.container_button_create_category}>
-                    <button onClick={onCreate} className={s.button_create_category}>Crear Categoria</button>
-                </div>
-            }
-            {
-                state.action === 'create' &&
-                <CreateCategory className={s.controls} handleCreate={handleCreate} />
+                <CreateCategory/>
             }
             {
                 state.action === 'update' &&
-                <UpdateCategory className={s.controls} handleUpdate={handleUpdate} category={state.category} />
+                <UpdateCategory handleUpdate={handleUpdate} category={state.category} />
             }
             {
                 state.action === 'delete' &&

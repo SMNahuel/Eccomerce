@@ -1,14 +1,14 @@
 
 .form{
-    color: white;
+    color: #fff;
     max-width: 800px;
     background-color: #24303c;
     min-width: 320px;
     margin: auto;
     line-height: 40px;
     text-align: center;
-    box-shadow: 7px 13px 37px  #000;
     min-height: 100vh;
+    box-shadow: 7px 13px 37px  #000;
 }
 
 .form h4{
@@ -28,7 +28,7 @@
 .button_create_category{
     width: 100%;
     line-height: 2em;
-    background-color: #1f53c5;
+    background-color: #ab47bc;
     border: none;
     color: white;
     margin: 16px 0;
@@ -36,4 +36,7 @@
     border-radius: 8px;
     cursor: pointer;
     outline: none;
+}
+.button_create_category:hover{
+    background-color: #7b1fa2;
 }

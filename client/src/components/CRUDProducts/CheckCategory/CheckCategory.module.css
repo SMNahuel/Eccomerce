@@ -1,0 +1,8 @@
+.label{
+    color: #282C34;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.label label{
+    margin: 0 5px;
+}

@@ -71,18 +71,10 @@ export default function Home() {
         })
     }
 
-    const addToCart = (product) => {
-        const products = {name: product.name, price: product.price}
-        setState({
-            ...state,
-            cartProduct: state.cartProduct.concat(products)
-        })
-    }
-
     return(
         <>
             <div className={s.container}>
-                {state.detailedProduct && <Product product={state.detailedProduct} addToCart={addToCart} onBack={handleBack} />}
+                {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
                 <div className={s.navBar}>
                     <h1 className={s.title}>Pagina</h1>
                     <SearchBar handleSearch={handleSearch} />

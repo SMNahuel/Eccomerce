@@ -61,26 +61,65 @@ const actionCreators = {
     },
 
     CART: 'CART',
+    getCart: function() {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/cart`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
+        }
+    },
     addProduct: function(id, quantity) {
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/cart`, {
-                productId: id,
-                quantity: quantity
-            }, {withCredentials: true})
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/cart`,
+            {productId: id, quantity: quantity},
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
-    updateCart: function(id, cart) {
+    updateCart: function(cart) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/${id}`, cart, {withCredentials: true})
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart`,
+            cart,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
         }
     },
+    confirmCart: function(cart) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/create`,
+            cart,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
+        }
+    },
+    cancelCart: function(cart) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/cancel`,
+            cart,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.CART, dispatch)
+            .then(()=>this.getProducts())
+        }
+    },
+
+    ORDERS: 'ORDERS',
+    getOrders: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/orders`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.ORDERS, dispatch)
+        }
+    },
+
 
     USER: "USER",
 
     _dispatchPromise: function(promise, type, dispatch){
-        promise
+        return promise
         .then(({data}) => {
             dispatch({ type: type, payload: data });
         })

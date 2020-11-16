@@ -1,0 +1,95 @@
+.container_form_addProduct{
+    width: 100%;
+    padding: 10px 10px;
+}
+.container_form_addProduct form{
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+.container_form_addProduct h4{
+    font-weight: 700;
+    font-size: 16px
+}
+.container_inputs_products{
+    max-width: 500px;
+    margin: 0 auto;   
+    position: relative; 
+    background-color: transparent;
+    z-index: 0;
+}
+.container_inputs_products input, 
+.container_inputs_products textarea{
+    width: 100%;
+    padding: 7px 10px;
+    margin-bottom: 30px;
+    border-radius: 0px;
+    outline: none;
+    resize: none;
+    border-bottom: 1px solid #282C34;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    font-size: 14px;
+    color: #282C34;
+    
+}
+.container_inputs_products input::placeholder{
+    color: #282C34;
+
+}
+.container_inputs_products input:focus::placeholder{
+    color: transparent;
+}
+.container_inputs_products textarea::placeholder{
+    color: #282C34;
+}
+.container_inputs_products textarea:focus::placeholder{
+    color: transparent;
+}
+
+.container_inputs_products label{
+    position: absolute;
+    z-index: -1;
+    top: -2px;
+    left: 10px;
+    color: transparent;
+    transition: all .5s linear;
+    font-size: 13px;
+    pointer-events: none;
+}
+.container_inputs_products input:focus ~ label,
+.container_inputs_products input:valid ~ label {
+    top: -23px;
+    color: #ab47bc;
+}
+.container_inputs_products input:focus,
+.container_inputs_products input:valid {
+    border-bottom: 1px solid #ab47bc
+}
+.container_inputs_products textarea:focus ~ label,
+.container_inputs_products textarea:valid ~ label {
+    top: -30px;
+    color: #ab47bc;
+}
+.container_inputs_products textarea:focus,
+.container_inputs_products textarea:valid {
+    border-bottom: 1px solid #ab47bc
+}
+
+.input_submit{
+    width: 50%;
+    outline: none;
+    border: none;
+    height: 30px;
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    cursor: pointer;
+}
+.container_label_product{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

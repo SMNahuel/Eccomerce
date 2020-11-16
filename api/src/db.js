@@ -30,38 +30,27 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Product, Category, Image, User, Rol, Cart, Order } = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-User.belongsTo(Rol)
-Rol.hasMany(User)
 
+// Rol 1 <---> N User
+Rol.hasMany(User)
+User.belongsTo(Rol)
+
+// Product N <---> M Category
 Product.belongsToMany(Category, {through: 'ProductCategory'})
 Category.belongsToMany(Product, {through: 'ProductCategory'})
 
-Image.belongsToMany(Product, {through: 'ProductImage'})
+// Product N <---> M Image
 Product.belongsToMany(Image, {through: 'ProductImage'})
+Image.belongsToMany(Product, {through: 'ProductImage'})
 
-Cart.belongsTo(User)
+// User 1 <---> N Cart
 User.hasMany(Cart)
+Cart.belongsTo(User)
 
+// Cart N <---> M Product
 Cart.belongsToMany(Product, {through: Order})
 Product.belongsToMany(Cart, {through: Order})
 
-
-
-/* Order.belongsTo(Product)
-Product.hasOne(Order) */
-
-/* // Carrito pertenece a un usuario
-Cart.hasOne(User)
-//Usuario tiene muchos carritos
-User.belongsToMany(Cart)
-//Pertenece a un carrito
-Order.hasOne(Cart)
-//Carrito tiene muchas ordenes
-Cart.belongsToMany(Order)
-
-Order.hasOne(Product)
-Product.belongsToMany(Order) */
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

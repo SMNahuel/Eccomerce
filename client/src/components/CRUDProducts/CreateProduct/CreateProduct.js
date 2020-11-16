@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import CheckCategory from '../CheckCategory/CheckCategory';
-import {validateProduct as validate} from '../../../utils/validator';
+import api from '../../../redux/action-creators';
 
-export default function CreateProduct({handleCreate, categories, s}) {
-    const[input, setInput] = useState({
+import s from './CreateProduct.module.css'
+
+export default function CreateProduct({handleCreate, categories}) {
+    const dispatch = useDispatch()
+    const [ input, setInput ]  = useState({
         name: '',
         description: '',
         price: '',
         stock: '',
         categories: []
     })
-
-    const[err, setErr] = useState({})
-    useEffect(()=>{
-        setErr(validate(input))
-    }, [input])
 
     const onChange = function (e){
         setInput({
@@ -34,36 +33,85 @@ export default function CreateProduct({handleCreate, categories, s}) {
                 categories: input.categories.filter( i => i !== id)
             })
         }
+        
     }
     const onSubmit = (e) => {
         e.preventDefault()
-        handleCreate(input)
+        dispatch(api.createProduct(input))
+        setInput({
+            name: '',
+            description: '',
+            price: '',
+            stock: '',
+            categories: []
+        })
     }
 
     return (
-        <div>
-            <form
-                className={s.formulario}
-                onSubmit={onSubmit}
-            >
-                <h4>Agregar producto</h4>
-                <input className={s.controls} type="text" name="name" onChange={onChange} placeholder="Ingrese el nombre"/>
-                <div>{err.name}</div>
-                <input className={s.controls} type="number" name="price" onChange={onChange} placeholder="Ingrese el precio" step="0.01"/>
-                <div>{err.price}</div>
-                <input className={s.controls} type="number" name="stock" onChange={onChange} placeholder="Ingrese el stock"/>
-                <div>{err.stock}</div>
-                <textarea className={s.controls} type="text" name="description" onChange={onChange} placeholder="Ingrese descripcion" maxLength="250"/>
-                <div>{err.description}</div>
-                <div >
+        <div className={s.container_form_addProduct}>
+            <h4>Agregar producto</h4>
+            <form onSubmit={onSubmit}>
+                <div className={s.container_inputs_products}>
+                    <input
+                        type="text"
+                        name="name"
+                        autoComplete="off"
+                        onChange={onChange}
+                        maxLength="100"
+                        placeholder="Ingrese el nombre"
+                        pattern="[A-Za-z0-9 ]{5,100}"
+                        required />
+                    <label>Ingrese el nombre</label>
+                </div>
+                <div className={s.container_inputs_products}>
+                    <input
+                        type="text"
+                        name="price"
+                        onChange={onChange}
+                        pattern="[0-9]{1,10}"
+                        placeholder="Ingrese el precio"
+                        title="Only Numbers"
+                        autoComplete="off"
+                        step="0.01"
+                        required />
+                    <label>Ingrese el precio</label>
+                </div>
+                <div className={s.container_inputs_products}>
+                    <input
+                        type="text"
+                        name="stock"
+                        pattern="[0-9]{1,999}"
+                        autoComplete="off"
+                        title="Only Numbers"
+                        onChange={onChange}
+                        placeholder="Ingrese el Stock"
+                        required />
+                    <label>Ingrese el Stock</label>
+                </div>
+                <div className={s.container_inputs_products}>
+                    <textarea
+                        type="text"
+                        onChange={onChange}
+                        name="description"
+                        maxLength="200"
+                        pattern="[A-Za-z0-9 ]{5,250}"
+                        autoComplete="off"
+                        placeholder="Ingrese la descripcion"
+                        required />
+                    <label>Ingrese la descripcion</label>
+                </div>
+                <div className={s.container_label_product}>
                     {categories.length &&
                         categories.map(category => {
                             let cheked = input.categories.includes(category.id)
-                            return <CheckCategory key={category.id} category={category} cheked={cheked} handleCheck={handleCheck} s={s} />
+                            return <CheckCategory key={category.id} category={category} cheked={cheked} handleCheck={handleCheck} /> 
                         })
                     }
                 </div>
-                <input className={s.botones} type="submit" value='Crear producto'/>
+                <input
+                    className={s.input_submit}
+                    type="submit"
+                    value='Crear producto' />
             </form>
         </div>
     );
