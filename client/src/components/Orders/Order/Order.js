@@ -1,5 +1,5 @@
 import React from 'react';
-/* import s from './Order.module.css'; */
+import s from './Order.module.css'; 
 
 export default function Order({order, onDetail}) {
     const orderMount = () => {
@@ -11,8 +11,8 @@ export default function Order({order, onDetail}) {
     return(
         <tr key= {order.id}>
             <td>{order.state}</td>
-            <td>{orderMount()}</td>
-            <td><button onClick={onDetail}>Detalle</button></td>
+            <td>${orderMount()}</td>
+            <td className={s.button_details}><button onClick={onDetail}>Detalle</button></td>
         </tr>
     )
 }

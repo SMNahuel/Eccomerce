@@ -20,7 +20,7 @@ export default function Orders() {
                 {orderDetail ? 
                     <OrderDetail order={orderDetail} onBack={onBack}/>
                     :
-                    <table>
+                    <table className={s.container_table}>
                         <thead>
                             <tr>
                                 <th>Estado</th>

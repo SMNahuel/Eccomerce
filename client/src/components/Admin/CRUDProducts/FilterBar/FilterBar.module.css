@@ -10,7 +10,7 @@
 }
 .container select{
     display: flex;
-    flex: 2;
+    flex: 1;
     background-color: transparent;
     border: 1px solid #DFE6E9;
     height: 30px;
@@ -58,7 +58,7 @@
     align-items: center;
     max-width: 250px;
     width: 100%;
-    flex: 2;
+    flex: 1.5;
     margin: 0 10px;
 }
 .container_button button{

@@ -7,6 +7,8 @@
 }
 /* background: linear-gradient(60deg,#ab47bc,#7b1fa2); */
 .container_table_button{
+    margin-top: 30px;
+    max-width: 768px;
     width: 95%;
     display: flex;
     flex-direction: column;
@@ -23,8 +25,8 @@
 }
 .container_input_button input,
 .container_input_button_input input{
-    width: 40%;
-    height: 30px;
+    width: 30%;
+    height: 25px;
     border-radius: 8px;
     background: #ab47bc; 
     outline: none;

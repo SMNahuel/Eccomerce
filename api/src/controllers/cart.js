@@ -133,7 +133,7 @@ module.exports = {
         })
     },
 
-    getAll : function(){
+    getAll: function(){
         return Cart.findAll({
             attributes: ['id', 'state', 'createdAt', 'updatedAt'],
             order: ['state'],
