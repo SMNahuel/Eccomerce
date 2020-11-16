@@ -61,18 +61,42 @@ const actionCreators = {
     },
 
     CART: 'CART',
-    addProduct: function(id, quantity) {
+    getCart: function() {
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/cart`, {
-                productId: id,
-                quantity: quantity
-            }, {withCredentials: true})
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/cart`,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
-    updateCart: function(id, cart) {
+    addProduct: function(id, quantity) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/${id}`, cart, {withCredentials: true})
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/cart`,
+            {productId: id, quantity: quantity},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
+    updateCart: function(cart) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart`,
+            cart,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
+    confirmCart: function(cart) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/create`,
+            cart,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
+    cancelCart: function({id}) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/cancel`,
+            {id:id},
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
