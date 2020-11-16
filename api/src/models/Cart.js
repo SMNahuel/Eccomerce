@@ -5,9 +5,9 @@ module.exports = (sequelize) => {
   sequelize.define('cart', {
     state:{
         type : DataTypes.ENUM({
-            values:['created', 'in process', 'canceled', 'completed']
+            values:['cart', 'created', 'processing', 'canceled', 'completed']
         }),
-        defaultValue: 'in process'
+        defaultValue: 'cart'
     }
   });
 };

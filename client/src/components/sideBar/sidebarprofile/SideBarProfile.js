@@ -5,10 +5,10 @@ import s from './SideBarProfile.module.css';
 import {Avatar} from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import HomeIcon from '@material-ui/icons/Home';
-import PersonIcon from '@material-ui/icons/Person';
+/* import PersonIcon from '@material-ui/icons/Person'; */
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import ViewListIcon from '@material-ui/icons/ViewList';
+/* import ViewListIcon from '@material-ui/icons/ViewList'; */
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -44,7 +44,7 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </button>
                     </Link>
-                    <Link to="/profile" className={s.link}>
+                    {/* <Link to="/profile" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
@@ -56,8 +56,8 @@ function SideBarProfile({ toogleState }){
                                 </div>
                             </div>
                         </button>
-                    </Link>
-                    <Link to="/cart" className={s.link}>
+                    </Link> */}
+                    <Link to="/orders" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
@@ -70,7 +70,7 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </button>
                     </Link>
-                    <Link to="/product" className={s.link}>
+                    {/* <Link to="/product" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
@@ -82,8 +82,8 @@ function SideBarProfile({ toogleState }){
                                 </div>
                             </div>
                         </button>
-                    </Link>
-                    <Link to="/catalog" className={s.link}>
+                    </Link> */}
+                    {/* <Link to="/catalog" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
@@ -95,18 +95,18 @@ function SideBarProfile({ toogleState }){
                                 </div>
                             </div>
                         </button>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className={s.container_empty}></div>
                 <div>
                     {/* Esta parte dependera del estado del usuario, si esta logeado, no logeado o si es un admin */}
                     <h4 className={s.title_h4}>Admin</h4>
-                    <Link to="/categories" className={s.link}>
+                    <Link to="/admin/categories" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
                                     <AddIcon className={s.icon} />
-                                    <p>Create category</p>
+                                    <p>Administrar Categorias</p>
                                 </div>
                                 <div>
                                     <ArrowRightIcon />
@@ -114,12 +114,12 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </button>
                     </Link>
-                    <Link to="/TableOrders" className={s.link}>
+                    <Link to="/admin/products" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
-                                    <AddIcon className={s.icon} />
-                                    <p>Ordenes</p>
+                                    <ListAltIcon className={s.icon} />
+                                    <p>Administrar Productos</p>
                                 </div>
                                 <div>
                                     <ArrowRightIcon />
@@ -127,12 +127,12 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </button>
                     </Link>
-                    <Link to="/products" className={s.link}>
+                    <Link to="/admin/orders" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
                                     <AddIcon className={s.icon} />
-                                    <p>Create | Modify product</p>
+                                    <p>Administrar Ordenes</p>
                                 </div>
                                 <div>
                                     <ArrowRightIcon />
@@ -145,7 +145,7 @@ function SideBarProfile({ toogleState }){
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
                                     <MeetingRoomIcon className={s.icon} />
-                                    <p>Log Out</p>
+                                    <p>Log In</p>
                                 </div>
                                 <div>
                                     <ArrowRightIcon />

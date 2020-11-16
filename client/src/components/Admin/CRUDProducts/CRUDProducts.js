@@ -6,8 +6,8 @@ import CreateProduct from './CreateProduct/CreateProduct';
 import UpdateProduct from './UpdateProduct/UpdateProduct';
 import DeleteProduct from './DeleteProduct/DeleteProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../../redux/action-creators';
-import dataURLtoFile from '../../utils/dataURLtoFile';
+import api from '../../../redux/action-creators';
+import dataURLtoFile from '../../../utils/dataURLtoFile';
 import axios from 'axios';
 
 export default function CRUDProducts(){
@@ -30,11 +30,6 @@ export default function CRUDProducts(){
         }
     }, [dispatch, products, categories])
     
-    const handleCreate = (product) =>{
-        dispatch(api.createProduct(product))
-        setState({...state, action: null})
-    }
-
     const onUpdate = (id) => {
         setState({
             ...state, 
@@ -104,7 +99,7 @@ export default function CRUDProducts(){
             <div>
                 {
                     state.action === null &&
-                    <CreateProduct handleCreate={handleCreate} categories={categories}/>
+                    <CreateProduct categories={categories}/>
                 }
                 {
                     state.action === 'update' &&
