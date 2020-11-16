@@ -13,6 +13,7 @@ function TableOrders() {
         axios.get('http://localhost:3001/orders')
         .then(({data})=>setOrders(data))
     }, []);
+    
 
     return (
         <div className={s.styleTableOrders}>

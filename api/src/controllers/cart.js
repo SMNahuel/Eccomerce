@@ -127,5 +127,16 @@ module.exports = {
             }
         })
     },
-
+  
+    showCart : function(){
+        return Cart.findAll({
+            include: {
+                model: Product,
+                attributes: ['id', 'name'],
+                through: {
+                    attributes: ['price', 'quantity']
+                }
+            }
+        })
+    }
 }

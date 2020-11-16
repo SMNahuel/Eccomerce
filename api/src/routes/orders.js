@@ -1,6 +1,23 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 
+/*
+server.get('/', (req, res, next) => {
+	cart.showCart()
+	.then(r => res.send(r))
+	.catch(next);
+});
+*/
+
+server.get('/status', (req,res,next)=>{
+	if(!req.body.status){
+		return next(new Error('An status is needed to search products'));
+	}
+	cart.getByStatus(req.body.status)
+	.then(r=> res.send(r))
+	.catch(next);
+})
+
 server.get('/', (req,res,next)=>{
     const { userId } = req.cookies;
     if(!userId){
@@ -28,12 +45,6 @@ server.get('/:id', (req, res, next) => {
     })
     .then(r => res.send(r))
     .catch(next)
-});
-
-server.get('/', (req, res, next) => {
-	cart.showCart()
-	.then(r => res.send(r))
-	.catch(next);
 });
 
 server.post('/', (req,res,next)=>{
