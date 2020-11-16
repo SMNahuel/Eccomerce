@@ -94,6 +94,11 @@ module.exports = {
         .then(() => this.cartOf(userId))
     },
 
+    process: function({id}){
+        return Cart.update({state:'processing'},{where:{id:id}})
+        .then(() => this.getAll())
+    },
+
     orders: function(userId){
         return Cart.findAll({
             where:{

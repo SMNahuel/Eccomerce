@@ -21,7 +21,12 @@ function TableOrders() {
         , 0)
     }
 
-    const onProcess = order => alert('procesando orden :' + order.id + ' pensando a futuros cercanos T-T')
+    const onProcess = order => {
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`,
+        order,
+        {withCredentials: true})
+        .then(({data})=>setOrders(data))
+    }
 
     return (
         <div className={s.styleTableOrders}>
@@ -44,7 +49,12 @@ function TableOrders() {
                             <Td>{orderMount(order)}</Td>
                             <Td>{order.updatedAt}</Td>
                             <Td>{order.createdAt}</Td>
-                            <Td><button onClick={()=>onProcess(order)}>Procesar</button></Td>
+                            <Td>
+                                { order.state === 'created' ? 
+                                    <button onClick={()=>onProcess(order)}>Procesar</button>:
+                                    'Procesado'
+                                }
+                            </Td>
                         </Tr> 
                     )}
                 </Tbody>
