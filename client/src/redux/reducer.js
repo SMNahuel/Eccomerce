@@ -1,14 +1,16 @@
 import actionCreators from './action-creators';
-const {CATEGORIES, PRODUCTS, CART, USER} = actionCreators;
+const { CATEGORIES, PRODUCTS, CART, USER } = actionCreators;
+
 
 const initialState = {
     categories: [],
     products: [],
     cart:[],
-    user: {}
+    user: {},
 };
 
 export default (state = initialState, action) => {
+    // console.log(action.payload)
     switch (action.type) {
         case CATEGORIES:
             return {

@@ -14,6 +14,7 @@ export default function UpdateCategory({handleUpdate, category}){
     
     const onClick = () => {
         handleUpdate(category.id ,input)
+        // dispatch(api.updateCategory(id, input))
     }
 
     return (    
