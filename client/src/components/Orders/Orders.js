@@ -2,7 +2,7 @@ import React,{ useState, useEffect} from 'react';
 import s from './Orders.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import Order from './Order/Order';
 import OrderDetail from './OrderDetail/OrderDetail';
@@ -10,7 +10,7 @@ import OrderDetail from './OrderDetail/OrderDetail';
 export default function Orders() {
     const dispatch = useDispatch()
     const orders = useSelector(state=> state.orders)
-    useEffect(() => dispatch(api.getOrders()), []);
+    useEffect(() => dispatch(api.getOrders()), [dispatch]);
 
     const [orderDetail, setOrderDetail] = useState(null)
     const handleDetail = order => setOrderDetail(order)

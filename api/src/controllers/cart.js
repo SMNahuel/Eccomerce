@@ -127,9 +127,11 @@ module.exports = {
             }
         })
     },
-  
-    showCart : function(){
+
+    getAll : function(){
         return Cart.findAll({
+            attributes: ['id', 'state', 'createdAt', 'updatedAt'],
+            order: ['state'],
             include: {
                 model: Product,
                 attributes: ['id', 'name'],

@@ -1,29 +1,27 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 
-/*
-server.get('/', (req, res, next) => {
-	cart.showCart()
-	.then(r => res.send(r))
+server.get('/', (req,res,next)=>{
+	const { userId } = req.cookies;
+	if(!userId){
+		return next(new Error('A userId is needed to bring all orders'));
+	}
+	cart.orders(userId)
+	.then(r=> res.send(r))
 	.catch(next);
-});
-*/
+})
+
+server.get('/admin', (req,res,next)=>{
+	cart.getAll()
+	.then(r=> res.send(r))
+	.catch(next);
+})
 
 server.get('/status', (req,res,next)=>{
 	if(!req.body.status){
 		return next(new Error('An status is needed to search products'));
 	}
 	cart.getByStatus(req.body.status)
-	.then(r=> res.send(r))
-	.catch(next);
-})
-
-server.get('/', (req,res,next)=>{
-    const { userId } = req.cookies;
-    if(!userId){
-        return next(new Error('A userId is needed to bring all orders'));
-    }
-	cart.orders(userId)
 	.then(r=> res.send(r))
 	.catch(next);
 })

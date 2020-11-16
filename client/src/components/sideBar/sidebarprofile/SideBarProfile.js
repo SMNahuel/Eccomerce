@@ -101,7 +101,7 @@ function SideBarProfile({ toogleState }){
                 <div>
                     {/* Esta parte dependera del estado del usuario, si esta logeado, no logeado o si es un admin */}
                     <h4 className={s.title_h4}>Admin</h4>
-                    <Link to="/categories" className={s.link}>
+                    <Link to="/admin/categories" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
@@ -114,25 +114,25 @@ function SideBarProfile({ toogleState }){
                             </div>
                         </button>
                     </Link>
-                    {/* <Link to="/TableOrders" className={s.link}>
+                    <Link to="/admin/products" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
-                                    <AddIcon className={s.icon} />
-                                    <p>Ordenes</p>
+                                    <ListAltIcon className={s.icon} />
+                                    <p>Administrar Productos</p>
                                 </div>
                                 <div>
                                     <ArrowRightIcon />
                                 </div>
                             </div>
                         </button>
-                    </Link> */}
-                    <Link to="/products" className={s.link}>
+                    </Link>
+                    <Link to="/admin/orders" className={s.link}>
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
-                                    <ListAltIcon className={s.icon} />
-                                    <p>Administrar Productos</p>
+                                    <AddIcon className={s.icon} />
+                                    <p>Administrar Ordenes</p>
                                 </div>
                                 <div>
                                     <ArrowRightIcon />
