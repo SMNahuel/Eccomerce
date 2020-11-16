@@ -11,10 +11,10 @@ module.exports = {
             attributes: ['id', 'state', 'userId'],
             include: {
                 model: Product,
-                attributes: ['id', 'name']/* ,
+                attributes: ['id', 'name'],
                 through: {
                     attributes: ['price', 'quantity']
-                } */
+                }
             }
         })
     },
@@ -24,17 +24,20 @@ module.exports = {
         const cartPromise = Cart.create()
         const productPromise = Product.findByPk(productId)
         return Promise.all([userPromise, cartPromise, productPromise])
-        .then(([user, cart, product]) => (
-            Promise.all([
+        .then(([user, cart, product]) => {
+            let stockRest = product.stock - quantity
+            if (stockRest < 0) throw new Error('Not enough stock')
+            return Promise.all([
                 user.addCart(cart),
                 cart.addProduct(product, {
                     through: {
                         price: product.price,
                         quantity
                     }
-                })
+                }),
+                Product.update({stock:stockRest},{where:{id:productId}})
             ])
-        ))
+        })
         .then(([user]) => this.cartOf(user.id))
     },
 
@@ -48,14 +51,19 @@ module.exports = {
         .then(r => r[0])
         const productPromise = Product.findByPk(productId)
         return Promise.all([cartPromise, productPromise])
-        .then(([cart, product]) => (
-            cart.addProduct(product, {
-                through: {
-                    price: product.price,
-                    quantity
-                }
-            })
-        ))
+        .then(([cart, product]) => {
+            let stockRest = product.stock - quantity
+            if (stockRest < 0) throw new Error('Not enough stock')
+            return Promise.all([
+                cart.addProduct(product, {
+                    through: {
+                        price: product.price,
+                        quantity
+                    }
+                }),
+                Product.update({stock:stockRest},{where:{id:productId}})
+            ])
+        })
         .then(() => this.cartOf(userId))
     },
 
@@ -80,8 +88,9 @@ module.exports = {
         .then(() => this.cartOf(userId))
     },
 
-    cancel: function(userId, {id}){
-        return Cart.update({state:'canceled'},{where:{id:id}})
+    cancel: function(userId, {id, products}){
+        return Promise.all(products.map(p => order.release(id, p)))
+        .then(() => Cart.update({state:'canceled'},{where:{id:id}}))
         .then(() => this.cartOf(userId))
     },
 

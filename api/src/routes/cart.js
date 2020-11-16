@@ -79,12 +79,12 @@ server.put('/create', (req, res, next) => {
 
 server.put('/cancel', (req, res, next) => {
     const { userId } = req.cookies;
-    const { id } = req.body
+    const { id, products } = req.body
     if (!userId) {
         return next(new Error('A userId is required to cancel a cart'));
     }
-    if (!id) {
-        return next(new Error('A cartID is required to create a cart'));
+    if (!id || !products) {
+        return next(new Error('A cart content is required to cancel a cart'));
     }
     cart.belongsTo(id, userId)
     .then(belongsToUser => {

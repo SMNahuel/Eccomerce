@@ -92,10 +92,10 @@ const actionCreators = {
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
-    cancelCart: function({id}) {
+    cancelCart: function(cart) {
         return dispatch => {
             const promise = axios.put(`${process.env.REACT_APP_API_URL}/cart/cancel`,
-            {id:id},
+            cart,
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
         }
