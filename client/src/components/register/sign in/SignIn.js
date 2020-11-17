@@ -10,8 +10,6 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
-const { USER } = actionCreators;
-
 function SignIn(){
     const [input, setInput] = useState({
         name: "",
