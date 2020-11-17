@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import s from './SignIn.module.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import USER from '../../../redux/action-creators'
+import actionCreators from '../../../redux/action-creators'
 import { Link, Redirect } from 'react-router-dom';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
@@ -11,8 +11,11 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
+const { USER } = actionCreators;
+
 function SignIn(){
    
+    
     const dispatch = useDispatch()
     const [ registerTrue, setRegisterTrue ] = useState(false)
     const [input, setInput] = useState({
@@ -34,7 +37,7 @@ function SignIn(){
                         .then(({data}) => {
                             dispatch({
                                 type: USER,
-                                payload: {data}
+                                payload: data
                             })
                             setRegisterTrue(true)
                         })
