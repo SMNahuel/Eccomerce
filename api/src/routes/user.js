@@ -36,7 +36,7 @@ server.post('/register', (req, res, next) => {
 server.get('/me', (req,res,next)=>{
     const { userId } = req.cookies;
     if (!userId) {
-        return next(new Error('User is not logedIn'));
+        return res.send({});
     }
     user.getById(userId)
     .then(r => res.send(r))
@@ -44,7 +44,7 @@ server.get('/me', (req,res,next)=>{
 })
 
 // Ruta que permite deslogearse
-server.post('/logout', (req,res,next)=>{
+server.get('/logout', (req,res,next)=>{
     const { userId } = req.cookies;
     if (!userId) {
         return next(new Error('User is not logedIn'));
