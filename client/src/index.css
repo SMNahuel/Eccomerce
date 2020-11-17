@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* animation: anim 20s linear infinite; */
+}
+
+@keyframes anim {
+  0% {filter: hue-rotate(0deg)}
+  100% {filter: hue-rotate(360deg)}
 }
 
 code {

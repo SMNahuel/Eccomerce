@@ -19,7 +19,7 @@ module.exports = {
             }]
         })
     },
-    
+
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],
@@ -57,6 +57,20 @@ module.exports = {
         .then(r => !!r)
     },
 
+    rol: function(idUser){
+        return User.findOne({
+            attributes: ['id'],
+            where: {
+                id: idUser
+            },
+            include: {
+                model:Rol,
+                attributes: ['name']
+            }
+        })
+        .then(r => r.rol.name)
+    },
+
     read: function(){
         return User.findAll({
             attributes: ['id', 'email', 'name'],
@@ -70,24 +84,18 @@ module.exports = {
     promote: function(id){
         return User.findByPk(id)
         .then(user => user.update({rolId: 1}))
-        .then(()=>this.read())
+        .then(() => this.read())
     },
 
     demote: function(id){
         return User.findByPk(id)
         .then(user => user.update({rolId: 2}))
-        .then(()=>this.read())
+        .then(() => this.read())
     },
 
-    create: function({ name, email, password }) {
-
-        return User.findOrCreate({
-            where: {
-                name: name,
-                email: email,
-                password: password
-            }
-        })
+    ban: function(id){
+        return User.findByPk(id)
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
@@ -111,28 +119,4 @@ module.exports = {
         )
         .then(() => this.read())
     },
-
-    delete: function(id){
-        return User.destroy({
-            where: {
-                id: id
-            }
-        })
-        .then(() => this.read())
-    },
-
-
-    rol: function(idUser){
-        return User.findOne({
-            attributes: ['id'],
-            where: {
-                id: idUser
-            },
-            include: {
-                model:Rol,
-                attributes: ['name']
-            }
-        })
-        .then(r => r.rol.name)
-    }
 }
