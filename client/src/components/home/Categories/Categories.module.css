@@ -1,0 +1,32 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.categories{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+}
+.categories::-webkit-scrollbar{
+    background-color: var(--background);
+}
+.categories button{
+    background-color: var(--green-primary);
+    box-shadow: 0px 0px 10px var(--green-primary);
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    color: #DFE6E9;
+    cursor: pointer;
+    margin: 0px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    height: 30px;
+    transition: .5s;
+}
+.categories button:hover{
+    background-color: var(--green-secundary);
+}

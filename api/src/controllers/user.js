@@ -113,5 +113,16 @@ module.exports = {
             }
         })
         .then(r => r.rol.name)
-    }
+    },
+
+    allUsers: function(){
+        return User.findAll({
+            attributes:['id', 'email', 'name'],
+            include:{
+                model: Rol,
+                attributes:['name']
+            },
+            order: ['id']
+        })
+    } 
 }

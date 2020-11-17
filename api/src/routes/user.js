@@ -76,4 +76,10 @@ server.delete('/:id', (req, res, next) => {
     .catch(next);
 })
 
+server.get('/all', (req, res, next) => {
+    user.allUsers()
+    .then(r => res.send(r))
+    .catch(next);
+}) 
+
 module.exports = server;

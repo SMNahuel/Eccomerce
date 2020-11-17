@@ -11,6 +11,7 @@ import CRUDCategory from './components/Admin/CRUDCategory/CRUDCategory';
 import CRUDProducts from './components/Admin/CRUDProducts/CRUDProducts'
 import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
+import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/admin/categories" component={CRUDCategory}/>
         <Route exact path="/admin/products" component={CRUDProducts}/>
         <Route exact path="/admin/orders" component={TableOrders}/>
+        <Route exact path="/admin/users" component={CRUDUsers}/>
         <Route render={() => <div> 404 </div>}/>
       </Switch>
     </div>
