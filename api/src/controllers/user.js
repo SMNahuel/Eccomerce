@@ -27,7 +27,7 @@ module.exports = {
         })
         .then(user => {
             if (user) throw new Error(`User ${email} already exists`)
-            return User.create({ name, email, password, rolId: 1})
+            return User.create({ name, email, password, rolId: 2})
         })
         .then(user => [user.id, {
             email: user.email,
@@ -37,7 +37,7 @@ module.exports = {
     },
 
     getById: function(userId){
-        User.findOne({
+        return User.findOne({
             attributes: ['email', 'name'],
             where:{ id: userId },
             include: {

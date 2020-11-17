@@ -134,14 +134,14 @@ const actionCreators = {
     },
     getMe: function(){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/me`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/me`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
     logout: function(){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/logout`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/logout`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
         }
