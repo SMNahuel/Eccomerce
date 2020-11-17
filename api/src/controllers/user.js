@@ -1,4 +1,4 @@
-const { User, Order, Cart, Rol } = require('../db.js');
+const { User, Rol } = require('../db.js');
 
 module.exports = {
     login: function ({ email, password }) {
@@ -19,7 +19,7 @@ module.exports = {
             }]
         })
     },
-
+    
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],
@@ -27,7 +27,7 @@ module.exports = {
         })
         .then(user => {
             if (user) throw new Error(`User ${email} already exists`)
-            return User.create({ name, email, password, rolId: 1})
+            return User.create({ name, email, password, rolId: 2})
         })
         .then(user => [user.id, {
             email: user.email,
@@ -35,7 +35,22 @@ module.exports = {
             rol: 'guest',
         }])
     },
-    
+
+    getById: function(userId){
+        return User.findOne({
+            attributes: ['email', 'name'],
+            where:{ id: userId },
+            include: {
+                model:Rol,
+                attributes: ['name']
+            }
+        })
+        .then(user => ({
+            email: user.email,
+            name: user.name,
+            rol: user.rol.name,
+        }))
+    },
 
     exists: function(id){
         return User.findByPk(id)
@@ -91,15 +106,6 @@ module.exports = {
         .then(() => this.read())
     },
 
-    search: function(idUser){
-        Cart.findOne({
-            attributes: ['id', 'state', 'userId'],
-            where:{
-                userId: idUser
-            }
-        })
-        .then(console.log)
-    },
 
     rol: function(idUser){
         return User.findOne({

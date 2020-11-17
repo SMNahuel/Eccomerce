@@ -1,7 +1,7 @@
 const server = require('express').Router();
 const image = require('../controllers/image');
 
-
+// Ruta que devuelve una imagen
 server.get('/:imageFilename', (req, res, next) => {
     const { imageFilename } = req.params;
     if (!imageFilename) {

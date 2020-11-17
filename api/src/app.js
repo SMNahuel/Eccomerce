@@ -19,6 +19,11 @@ server.use((req, res, next) => {
   next();
 });
 server.use((req, res, next) => {
+  let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(ip);
+  next();
+});
+server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', process.env.FRONT_URL);
 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -36,8 +41,4 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-server.use((req, res, next) => {
-  console.log(req.cookies)
-  next();
-});
 module.exports = server;

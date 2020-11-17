@@ -1,4 +1,4 @@
-const { Cart, Order, User, Product } = require('../db.js');
+const { Cart, User, Product } = require('../db.js');
 const order = require('./order');
 
 module.exports = {

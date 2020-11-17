@@ -1,6 +1,7 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
 
+// Ruta que permite logearse
 server.post('/login', (req, res, next) => {
     const { email, password } = req.body;
     if (!email) {
@@ -14,6 +15,7 @@ server.post('/login', (req, res, next) => {
     .catch(next)
 })
 
+// Ruta que permite registrarse
 server.post('/register', (req, res, next) => {
     const { email, name, password} = req.body;
     if (!email) {
@@ -30,22 +32,27 @@ server.post('/register', (req, res, next) => {
     .catch(next)
 })
 
-server.get('/:id/orders', (req,res,next)=>{
-    const { id } = req.params;
-    if(!id){
-        return res.status(400).send('I need an id to Delete the User')
+// Ruta que trae los datos del usuario
+server.get('/me', (req,res,next)=>{
+    const { userId } = req.cookies;
+    if (!userId) {
+        return res.send({});
     }
-    user.search(id)
+    user.getById(userId)
     .then(r => res.send(r))
-    .catch(next);     
+    .catch(next)
 })
 
-server.get('/', (req, res, next) => {
-    user.read(req.body)
-    .then(r => res.send(r))
-    .catch(next);
+// Ruta que permite deslogearse
+server.get('/logout', (req,res,next)=>{
+    const { userId } = req.cookies;
+    if (!userId) {
+        return next(new Error('User is not logedIn'));
+    }
+    res.cookie("userId", "", {expires: new Date(0)}).send({})
 })
 
+// no se esta usando
 server.post('/', (req, res, next) => {
     const { name, email, password } = req.body
 
@@ -56,6 +63,7 @@ server.post('/', (req, res, next) => {
     .then(r => res.send())
 })
 
+// no se esta usando
 server.put('/:id', (req, res, next) => {
     const { id } = req.params;
     if(!id){
@@ -66,6 +74,7 @@ server.put('/:id', (req, res, next) => {
     .catch(next)
 })
 
+// no se esta usando
 server.delete('/:id', (req, res, next) => {
     const { id } = req.params;
     if(!id){

@@ -2,29 +2,31 @@ const user = require('../controllers/user');
 
 module.exports = {
     forAdmin: (req, res, next) => {
-        if (!req.cookies.user) {
-            next(new Error('Debe estar autenticado para acceder a esta ruta'));
+        const { userId } = req.cookies
+        if (!userId) {
+            next(new Error('You must be authenticated to access this route'));
         }
-        user.rol(req.cookies.user)
+        user.rol(userId)
         .then(r => {
-            if (r === 'admin') {
-                next();
+            if (r !== 'admin') {
+                next(new Error('You must be a admin to access this route'));
             } else {
-                next(new Error('Debe ser guest para acceder a esta ruta'));
+                next();
             }
         })
     },
 
     onlyForGuest: (req, res, next) => {
-        if (!req.cookies.user) {
-            next(new Error('Debe estar autenticado para acceder a esta ruta'));
+        const { userId } = req.cookies
+        if (!userId) {
+            next(new Error('You must be authenticated to access this route'));
         }
         user.rol(req.cookies.user)
         .then(r => {
-            if (r === 'guest') {
-                next();
+            if (r !== 'guest') {
+                next(new Error('You must be a admin to access this route'));
             } else {
-                next(new Error('Debe ser guest para acceder a esta ruta'));
+                next();
             }
         })
     }
