@@ -25,9 +25,7 @@ function SideBarProfile({ toogleState }) {
     const onLogOut = () => {
         dispatch(api.logout())
     }
-
-    console.log(user)
-
+    
     return (
         <div className={s.container}>
             <div className={s.x}>
