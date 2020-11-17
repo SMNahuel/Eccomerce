@@ -30,20 +30,22 @@ server.post('/register', (req, res, next) => {
     .catch(next)
 })
 
-server.get('/:id/orders', (req,res,next)=>{
-    const { id } = req.params;
-    if(!id){
-        return res.status(400).send('I need an id to Delete the User')
+server.get('/', (req,res,next)=>{
+    const { userId } = req.cookies;
+    if (!userId) {
+        return next(new Error('User is not logedIn'));
     }
-    user.search(id)
+    user.getById(userId)
     .then(r => res.send(r))
-    .catch(next);     
+    .catch(next)
 })
 
-server.get('/', (req, res, next) => {
-    user.read(req.body)
-    .then(r => res.send(r))
-    .catch(next);
+server.post('/logout', (req,res,next)=>{
+    const { userId } = req.cookies;
+    if (!userId) {
+        return next(new Error('User is not logedIn'));
+    }
+    res.cookie("userId", "", {expires: new Date(0)}).send({})
 })
 
 server.post('/', (req, res, next) => {

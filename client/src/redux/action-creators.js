@@ -132,6 +132,20 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
+    getInfo: function(){
+        return dispatch => {
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USER, dispatch)
+        }
+    },
+    logout: function(){
+        return dispatch => {
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/logout`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USER, dispatch)
+        }
+    },
 
     _dispatchPromise: function(promise, type, dispatch){
         return promise
