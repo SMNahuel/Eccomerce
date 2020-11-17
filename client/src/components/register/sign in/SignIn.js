@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import s from './SignIn.module.css';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import actionCreators from '../../../redux/action-creators'
+import { useDispatch, useSelector } from 'react-redux';
+import api from '../../../redux/action-creators'
 import { Link, Redirect } from 'react-router-dom';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
@@ -14,41 +13,21 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 const { USER } = actionCreators;
 
 function SignIn(){
-   
-    
-    const dispatch = useDispatch()
-    const [ registerTrue, setRegisterTrue ] = useState(false)
     const [input, setInput] = useState({
         name: "",
         email: "",
         password: "",
     })
-    const register = event =>{
-        
-        event.preventDefault();
-        if(input.email !== "" && input.name !== "" && input.password !== ""){
-            axios.get('http://localhost:3001/user')
-                .then(({data}) => {
-                    if(data.find(e => e.email === input.email)){
-                        alert("This email is already in use")
-                        setInput("")
-                    }
-                    axios.post('http://localhost:3001/user', input)
-                        .then(({data}) => {
-                            dispatch({
-                                type: USER,
-                                payload: data
-                            })
-                            setRegisterTrue(true)
-                        })
-                })
-        }else{
-            return alert("Los campos no pueden estar vacios")
-        }
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+    const register = e => {
+        e.preventDefault();
+        dispatch(api.register(input));
     }
+    
     return (
         <div className={s.container_signIn}>
-            { registerTrue && <Redirect to="/"/>}
+            { user.name && <Redirect to="/"/>}
             <div className={s.container_absolute_sign_in}>
                 <div className={s.container_h2}>
                     <h4>Sign Up with</h4>

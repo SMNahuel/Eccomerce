@@ -2,6 +2,7 @@ const server = require('express').Router();
 const cart = require('../controllers/cart');
 const user = require('../controllers/user');
 
+// Ruta que trae el carrito de un usuario
 server.get('/', (req, res, next) => {
     const { userId } = req.cookies;
     if(!userId){
@@ -12,6 +13,7 @@ server.get('/', (req, res, next) => {
     .catch(next)
 })
 
+// Ruta que agrega un producto al carrito de un usuario
 server.post('/', (req, res, next) => {
     const { userId } = req.cookies
     const { productId, quantity } = req.body
@@ -37,6 +39,7 @@ server.post('/', (req, res, next) => {
     }
 })
 
+// Ruta que actualiza el carrito de un usuario
 server.put('/', (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
@@ -57,6 +60,7 @@ server.put('/', (req, res, next) => {
     .catch(next)
 })
 
+// ruta que crea(confirma para procesado) el carrito de un usuario
 server.put('/create', (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
@@ -77,6 +81,7 @@ server.put('/create', (req, res, next) => {
     .catch(next)
 })
 
+// ruta que cancela el carrito de un usuario
 server.put('/cancel', (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body

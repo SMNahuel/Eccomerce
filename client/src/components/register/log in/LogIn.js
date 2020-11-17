@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import s from './LogIn.module.css';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import actionCreators from '../../../redux/action-creators'
+import { useDispatch, useSelector } from 'react-redux';
+import api from '../../../redux/action-creators'
 import { Redirect, Link } from 'react-router-dom';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -10,40 +9,23 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
-const { USER } = actionCreators;
 
 function LogIn() {
-
-    const dispatch = useDispatch()
-    const [login2, setLogin] = useState(false)
     const [input, setInput] = useState({
         email: "",
         password: "",
     })
     
-    const login = event => {
-        event.preventDefault();
-        axios.get('http://localhost:3001/user')
-            .then(({ data }) => {
-                if (data.find(e => e.email === input.email) && data.find(p => p.password === input.password)) {
-                    axios.post('http://localhost:3001/login', input)
-                        .then(({data}) => {
-                            dispatch({
-                                type: USER,
-                                payload: data
-                            })
-                            setLogin(true)
-                        })
-                        setInput("");
-                } else {
-                    alert("Email or Password incorrect!!!")
-                }
-            })
-            .catch(err => alert("Error!!" + err))
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+    const login = e => {
+        e.preventDefault();
+        dispatch(api.login(input));
     }
+
     return (
         <div className={s.container_signIn}>
-            { login2 && <Redirect to="/"/>}
+            { user.name && <Redirect to="/"/>}
             <div className={s.container_absolute_login}>
                 <div className={s.container_h2}>
                     <h4>Log In with</h4>
