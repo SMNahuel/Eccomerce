@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Filter from './Filter/Filter'
 
 export default function CRUDUsers(){
     const [users, setUsers] = useState([]);
@@ -13,7 +14,8 @@ export default function CRUDUsers(){
     }, [])
 
     return(
-        <div>
+        <div style={{color: "white"}}>
+            <Filter />
             <table>
                 <thead>
                     <tr>
