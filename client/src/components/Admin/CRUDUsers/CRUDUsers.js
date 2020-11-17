@@ -9,29 +9,48 @@ export default function CRUDUsers(){
         axios.get(`${process.env.REACT_APP_API_URL}/user/all`)
         .then(({data}) => {
             setUsers(data)
-            console.log(data)
             })
     }, [])
 
+    const onChangeRol = (user, newRol) => {
+        console.log(user, newRol)
+    }
+
     return(
         <div style={{color: "white"}}>
-            <Filter />
             <table>
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>email</th>
-                        <th>name</th>
-                        <th>rol</th>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Rol</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {users && users.map(user => 
                         <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.email}</td>
-                            <td>{user.name}</td>
-                            <td>{user.rol.name}</td>
+                            <td>{user.email ? user.email : "User not registred"}</td>
+                            <td>{user.name ? user.name : "User not registred"}</td>
+                            <td>{user.rol && user.rol.name ? user.rol.name : "User not have rol"}</td>
+                            <td>{user.rol && (
+                                user.email === "maicoloncomilla@gmail.com" || 
+                                user.email === "javierbalonga@gmail.com" || 
+                                user.email === "ces.esteban@gmail.com" || 
+                                user.email === "vinasleonardo@yahoo.com" || 
+                                user.email === "nahuelsan96@gmail.com" /* || 
+                                user.email === "ignaciogimenez70@gmail.com" */) ? "Im a Admin" : user.rol && user.rol.name === "admin" ? (
+                                    <button onClick={() => onChangeRol(user, "guest")}>
+                                        Set Guest
+                                    </button>) : (
+                                        user.rol && user.rol.name !== "admin" ? (
+                                            <button onClick={() => onChangeRol(user, "admin")}>
+                                                Set Admin
+                                            </button>
+                                        ) : "Im a Guest"
+                                    )}</td>
                         </tr>
                         )}
                 </tbody>
