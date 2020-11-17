@@ -18,7 +18,7 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn, Category } = require('./src/db.js');
+const { conn } = require('./src/db.js');
 const preload = require('./databasePreload')
 
 // Syncing all the models at once.
