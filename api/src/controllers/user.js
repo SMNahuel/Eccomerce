@@ -59,9 +59,24 @@ module.exports = {
 
     read: function(){
         return User.findAll({
-            attributes: ['id', 'password', 'email'],
-            order:["id"]
+            attributes: ['id', 'email', 'name'],
+            include: {
+                model:Rol,
+                attributes: ['name']
+            }
         })
+    },
+
+    promote: function(id){
+        return User.findByPk(id)
+        .then(user => user.update({rolId: 1}))
+        .then(()=>this.read())
+    },
+
+    demote: function(id){
+        return User.findByPk(id)
+        .then(user => user.update({rolId: 2}))
+        .then(()=>this.read())
     },
 
     create: function({ name, email, password }) {
