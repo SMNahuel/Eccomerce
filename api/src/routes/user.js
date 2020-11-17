@@ -60,7 +60,7 @@ server.get('/admin', forAdmin, (req, res, next) => {
 })
 
 // Ruta que permite promocionar a un usuario a admin
-server.put('/admin/promote', (req, res, next) => {
+server.put('/admin/promote', forAdmin, (req, res, next) => {
     const { id } = req.body;
     if(!id){
         return res.status(400).send('an id is needed to promote a user')
@@ -71,7 +71,7 @@ server.put('/admin/promote', (req, res, next) => {
 })
 
 // Ruta que permite demotear a un usuario a guest
-server.put('/admin/demote', (req, res, next) => {
+server.put('/admin/demote', forAdmin, (req, res, next) => {
     const { id } = req.body;
     if(!id){
         return res.status(400).send('an id is needed to demote a user')
@@ -81,15 +81,14 @@ server.put('/admin/demote', (req, res, next) => {
     .catch(next)
 })
 
-// no se esta usando
-server.delete('/:id', (req, res, next) => {
-    const { id } = req.params;
+server.put('/admin/ban', forAdmin, (req, res, next) => {
+    const { id } = req.body;
     if(!id){
-        return res.status(400).send('I need an id to Delete the User')
+        return res.status(400).send('an id is needed to ban a user')
     }
-    user.delete(id)
+    user.ban(id)
     .then(r => res.send(r))
-    .catch(next);
+    .catch(next)
 })
 
 module.exports = server;
