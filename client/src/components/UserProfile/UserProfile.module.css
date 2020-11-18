@@ -2,5 +2,11 @@
     display: flex;
     justify-content: center;
     margin: 100px;
-    color: white;
+    height: 100vh;
+}
+
+.justifyCard {
+    max-width: 50vh;
+    max-height: 70vh;
+    display: 'grid';
 }
