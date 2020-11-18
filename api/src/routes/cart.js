@@ -1,7 +1,7 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 const user = require('../controllers/user');
-const {forGuest} = require('../middlewares/authenticate')
+const {cookieOptions, forGuest} = require('../middlewares/authenticate')
 
 // Ruta que trae el carrito de un usuario
 server.get('/', forGuest, (req, res, next) => {
@@ -20,14 +20,14 @@ server.post('/', (req, res, next) => {
     }
     if (!userId) {
         cart.addToCartAnonimus(req.body)
-        .then(r => res.cookie("userId", r.userId).send(r))
+        .then(r => res.cookie("userId", r.userId, cookieOptions).send(r))
         .catch(next)
     } else {
         user.exists(userId)
         .then(exists => {
             if (!exists) {
                 return cart.addToCartAnonimus(req.body)
-                .then(r => res.cookie("userId", r.userId).send(r))
+                .then(r => res.cookie("userId", r.userId, cookieOptions).send(r))
             } else {
                 return cart.addToCart(userId, req.body)
                 .then(r => res.send(r))
