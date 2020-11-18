@@ -1,6 +1,6 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
-const {forAdmin} = require('../middlewares/authenticate')
+const {forAdmin, forGuest} = require('../middlewares/authenticate')
 
 // Ruta que permite logearse
 server.post('/login', (req, res, next) => {
@@ -45,21 +45,15 @@ server.get('/me', (req,res,next)=>{
 })
 
 // Ruta que permite deslogearse
-server.get('/logout', (req,res,next)=>{
+server.get('/logout', forGuest, (req,res,next)=>{
     const { userId } = req.cookies;
-    if (!userId) {
-        return res.status(400).send('User is not logedIn');
-    }
     res.cookie("userId", "", {expires: new Date(0)}).send({})
 })
 
 // Ruta para cambiar de password como usuario
-server.put('/password', (req, res, next) => {
+server.put('/password', forGuest, (req, res, next) => {
     const { userId } = req.cookies;
     const { oldPassword, newPassword }= req.body;
-    if(!userId){
-        return res.status(400).send('You must be logged in to modify the password')
-    }
     if(!oldPassword){
         return res.status(400).send('I need the old password to modify the password')
     }
