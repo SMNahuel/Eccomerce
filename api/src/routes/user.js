@@ -1,5 +1,6 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
+const {forAdmin} = require('../middlewares/authenticate')
 
 //Restore password
 server.put('/password/:id', (req, res, next) => {
@@ -71,37 +72,42 @@ server.get('/logout', (req,res,next)=>{
     res.cookie("userId", "", {expires: new Date(0)}).send({})
 })
 
-// no se esta usando
-server.post('/', (req, res, next) => {
-    const { name, email, password } = req.body
-
-    if(!name || !email || !password){
-        return next(new Error('Body must have a name, email and password'))
-    }
-    user.create(req.body)
+// Ruta que te devuelve todos los usuarios
+server.get('/admin', forAdmin, (req, res, next) => {
+    user.read()
     .then(r => res.send())
 })
 
-// no se esta usando
-server.put('/:id', (req, res, next) => {
-    const { id } = req.params;
+// Ruta que permite promocionar a un usuario a admin
+server.put('/admin/promote', forAdmin, (req, res, next) => {
+    const { id } = req.body;
     if(!id){
-        return res.status(400).send('I need an id to modify the User')
+        return res.status(400).send('an id is needed to promote a user')
     }
-    user.update(id, req.body)
+    user.promote(id)
     .then(r => res.send(r))
     .catch(next)
 })
 
-// no se esta usando
-server.delete('/:id', (req, res, next) => {
-    const { id } = req.params;
+// Ruta que permite demotear a un usuario a guest
+server.put('/admin/demote', forAdmin, (req, res, next) => {
+    const { id } = req.body;
     if(!id){
-        return res.status(400).send('I need an id to Delete the User')
+        return res.status(400).send('an id is needed to demote a user')
     }
-    user.delete(id)
+    user.demote(id)
     .then(r => res.send(r))
-    .catch(next);
+    .catch(next)
+})
+
+server.put('/admin/ban', forAdmin, (req, res, next) => {
+    const { id } = req.body;
+    if(!id){
+        return res.status(400).send('an id is needed to ban a user')
+    }
+    user.ban(id)
+    .then(r => res.send(r))
+    .catch(next)
 })
 
 module.exports = server;

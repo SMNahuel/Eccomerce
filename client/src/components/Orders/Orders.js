@@ -13,7 +13,7 @@ export default function Orders() {
     const [orderDetail, setOrderDetail] = useState(null)
     const handleDetail = order => setOrderDetail(order)
     const onBack = e => setOrderDetail(null)
-
+    
     return (
         <>
             <div className={s.styleTableOrders}>
@@ -23,13 +23,13 @@ export default function Orders() {
                     <table className={s.container_table}>
                         <thead>
                             <tr>
-                                <th>Estado</th>
-                                <th>Monto Total</th>
-                                <th>Detalle</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                                <th>Detail</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map && orders.map(order => <Order order={order} onDetail={()=>handleDetail(order)}/>)}
+                            {orders.map && orders.map(order => <Order key={order} order={order} onDetail={()=>handleDetail(order)}/>)}
                         </tbody>
                     </table>
                 }

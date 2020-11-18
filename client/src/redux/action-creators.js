@@ -147,6 +147,39 @@ const actionCreators = {
         }
     },
 
+    USERS: 'USERS',
+    getUsers: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/admin`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    promoteUser: function(id){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/promote`,
+            {id},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    demoteUser: function(id){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/demote`,
+            {id},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    banUser: function(id){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/ban`,
+            {id},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+
     _dispatchPromise: function(promise, type, dispatch){
         return promise
         .then(({data}) => {
