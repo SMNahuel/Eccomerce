@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import s from './ReviewList.module.css'
-import StarIcon from '@material-ui/icons/Star';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 

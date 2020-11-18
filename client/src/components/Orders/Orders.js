@@ -29,7 +29,7 @@ export default function Orders() {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map && orders.map(order => <Order order={order} onDetail={()=>handleDetail(order)}/>)}
+                            {orders.map && orders.map(order => <Order key={order} order={order} onDetail={()=>handleDetail(order)}/>)}
                         </tbody>
                     </table>
                 }
