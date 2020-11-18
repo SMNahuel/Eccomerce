@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import api from '../../../redux/action-creators'
 
 export default function CRUDUsers(){
-    const [users, setUsers] = useState([]);
-
+    const dispatch = useDispatch()
+    const users = useSelector(state => state.users)
+    
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/user/admin`)
-        .then(({data}) => {
-            setUsers(data)
-        })
-    }, [])
+        dispatch(api.getUsers())
+    }, [dispatch])
 
     const onPromote = (id) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`, {id})
-        .then(({data}) => setUsers(data))
+        dispatch(api.promoteUser(id))
     }
 
     const onDemote = (id) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`, {id})
-        .then(({data}) => setUsers(data))
+        dispatch(api.demoteUser(id))
+    }
+
+    const onBan = (id) => {
+        console.log("La llave (rolId)=(3) no está presente en la tabla «rols»")
+        /* dispatch(api.banUser(id)) */
     }
 
     return(
@@ -30,6 +32,7 @@ export default function CRUDUsers(){
                         <th>Email</th>
                         <th>Name</th>
                         <th>Rol</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -56,6 +59,7 @@ export default function CRUDUsers(){
                                             </button>
                                         ) : "Im not registred"
                                     )}</td>
+                            <td><button onClick={() => onBan(user.id)}>Ban</button></td>
                         </tr>
                         )}
                 </tbody>

@@ -12,6 +12,7 @@ import CRUDProducts from './components/Admin/CRUDProducts/CRUDProducts'
 import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
 import UserProfile from './components/UserProfile/UserProfile';
+import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
 
 function App() {
   return (
