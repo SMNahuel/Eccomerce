@@ -80,7 +80,7 @@ module.exports = ()=> {
         .then(r => imageInstance = r[0])
         .then(() => Product.create({
             name: categories[i] + " I",
-            description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi',
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
             price: 100,
             stock: 20
         }))
@@ -90,7 +90,7 @@ module.exports = ()=> {
         })
         .then(() => Product.create({
             name: categories[i] + " II",
-            description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi',
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
             price: 120,
             stock: 20
         }))
@@ -100,7 +100,7 @@ module.exports = ()=> {
         })
         .then(() => Product.create({
             name: categories[i] + " III",
-            description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi',
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
             price: 140,
             stock: 20
         }))
@@ -110,7 +110,7 @@ module.exports = ()=> {
         })
         .then(() => Product.create({
             name: categories[i] + " IV",
-            description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi',
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
             price: 160,
             stock: 20
         }))
@@ -120,7 +120,7 @@ module.exports = ()=> {
         })
         .then(() => Product.create({
             name: categories[i] + " V",
-            description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi',
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
             price: 180,
             stock: 20
         }))
