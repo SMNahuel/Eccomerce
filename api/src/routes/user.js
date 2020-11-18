@@ -84,7 +84,7 @@ server.put('/admin/promote', forAdmin, (req, res, next) => {
     if(!id){
         return res.status(400).send('an id is needed to promote a user')
     }
-    user.promote(id)
+    user.setAdmin(id)
     .then(r => res.send(r))
     .catch(next)
 })
@@ -95,7 +95,7 @@ server.put('/admin/demote', forAdmin, (req, res, next) => {
     if(!id){
         return res.status(400).send('an id is needed to demote a user')
     }
-    user.demote(id)
+    user.setGuest(id)
     .then(r => res.send(r))
     .catch(next)
 })

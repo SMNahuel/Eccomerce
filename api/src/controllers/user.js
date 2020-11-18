@@ -3,7 +3,7 @@ const { User, Rol } = require('../db.js');
 module.exports = {
     login: function ({ email, password }) {
         return User.findOne({
-            attributes: ['id', 'email', 'password', 'name'],
+            attributes: ['id', 'email', 'password', 'name', 'rolId'],
             where: { email },
             include: {
                 model:Rol,
@@ -12,9 +12,11 @@ module.exports = {
         })
         .then(user => {
             if (user.password !== password) throw new Error('wrong password')
+            if (user.rolId < 2) throw new Error('Your account has been banned contact the company to recover your account')
             return [user.id, {
                 email: user.email,
                 name: user.name,
+                rolId: user.rolId,
                 rol: user.rol.name,
             }]
         })
@@ -32,13 +34,14 @@ module.exports = {
         .then(user => [user.id, {
             email: user.email,
             name: user.name,
+            rolId: user.rolId,
             rol: 'guest',
         }])
     },
 
     getById: function(userId){
         return User.findOne({
-            attributes: ['email', 'name'],
+            attributes: ['email', 'name', 'rolId'],
             where:{ id: userId },
             include: {
                 model:Rol,
@@ -48,6 +51,7 @@ module.exports = {
         .then(user => ({
             email: user.email,
             name: user.name,
+            rolId: user.rolId,
             rol: user.rol.name,
         }))
     },
@@ -58,22 +62,13 @@ module.exports = {
     },
 
     rol: function(idUser){
-        return User.findOne({
-            attributes: ['id'],
-            where: {
-                id: idUser
-            },
-            include: {
-                model:Rol,
-                attributes: ['name']
-            }
-        })
-        .then(r => r.rol.name)
+        return User.findByPk(idUser)
+        .then(r => r.rolId)
     },
 
     read: function(){
         return User.findAll({
-            attributes: ['id', 'email', 'name'],
+            attributes: ['id', 'email', 'name', 'rolId'],
             include: {
                 model:Rol,
                 attributes: ['name']
@@ -81,13 +76,13 @@ module.exports = {
         })
     },
 
-    promote: function(id){
+    setAdmin: function(id){
         return User.findByPk(id)
-        .then(user => user.update({rolId: 1}))
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
-    demote: function(id){
+    setGuest: function(id){
         return User.findByPk(id)
         .then(user => user.update({rolId: 2}))
         .then(() => this.read())
@@ -95,7 +90,7 @@ module.exports = {
 
     ban: function(id){
         return User.findByPk(id)
-        .then(user => user.update({rolId: 3}))
+        .then(user => user.update({rolId: 1}))
         .then(() => this.read())
     },
 
