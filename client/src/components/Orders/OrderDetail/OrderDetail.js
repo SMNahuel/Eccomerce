@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './OrderDetail.module.css';
 import { useDispatch } from 'react-redux';
 import api from '../../../redux/action-creators';
+import ProductReview from '../ProductReview/ProductReview';
 
 export default function OrderDetail({order, onBack}) {
     const dispatch = useDispatch()
+    const [ reviewActive, setReviewActive ] = useState(false);
     const onCancel = e => {
         dispatch(api.cancelCart(order))
         onBack()
@@ -13,6 +15,9 @@ export default function OrderDetail({order, onBack}) {
         setTimeout(()=>{
             dispatch(api.getOrders())
         },1000)
+    }
+    const toggle = e =>{
+        setReviewActive(!reviewActive);
     }
 
     const totalPrice = () => {
@@ -27,8 +32,10 @@ export default function OrderDetail({order, onBack}) {
             acc + Number(product.order.quantity)
         , 0)
     }
-
+    
     return (
+        <>
+        {reviewActive === false ? 
         <div className={s.container}>
             <div className={s.container_table_button}>
                 <div className={s.container_input_button}>
@@ -40,6 +47,7 @@ export default function OrderDetail({order, onBack}) {
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Review</th>
                         </tr>
                     </thead>
                     <tbody className={s.container_tbody}>
@@ -48,6 +56,10 @@ export default function OrderDetail({order, onBack}) {
                                 <td>{product.name}</td>
                                 <td>{product.order.quantity}</td>
                                 <td>${product.order.price}</td>
+                                {order.state === "created" ?
+                                    <td><button onClick={toggle}>Review</button></td>
+                                    : <td></td>
+                                }
                             </tr>
                         )}
                     </tbody>
@@ -60,9 +72,11 @@ export default function OrderDetail({order, onBack}) {
                     </tfoot>
                 </table>
                 <div className={s.container_input_button_input}>
-                    <input type="button" onClick={onCancel} value="Cancelar Carrito"/>
+                    <input type="button" onClick={onCancel} value="Cancelar Carrito" />
                 </div>
             </div>
         </div>
+        :<ProductReview toggle={toggle} order={order}/>}
+        </>
     );
 }
