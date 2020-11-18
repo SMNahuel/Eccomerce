@@ -1,6 +1,25 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
 
+//Restore password
+server.put('/password/:id', (req, res, next) => {
+    const id = req.cookies.userId;
+    const { password }= req.body;
+    const  idUser = req.params.id;
+    if(idUser !== id){
+        return res.status(400).send('Security error cookies invalid')
+    }
+    if(!id){
+        return res.status(400).send('I need an id to modify the User')
+    }
+    if(!password){
+        return res.status(400).send('I need an password to modify the User')
+    }
+    
+    user.resetPassword(id, password)
+    .then(r => res.send(r))
+    .catch(next)
+})
 // Ruta que permite logearse
 server.post('/login', (req, res, next) => {
     const { email, password } = req.body;
