@@ -77,7 +77,8 @@ module.exports = {
             include: {
                 model:Rol,
                 attributes: ['name']
-            }
+            },
+            order: ['id']
         })
     },
 

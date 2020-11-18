@@ -54,13 +54,13 @@ server.get('/logout', (req,res,next)=>{
 })
 
 // Ruta que te devuelve todos los usuarios
-server.get('/admin', forAdmin, (req, res, next) => {
+server.get('/admin', forAdmin , (req, res, next) => {
     user.read()
-    .then(r => res.send())
+    .then(r => res.send(r))
 })
 
 // Ruta que permite promocionar a un usuario a admin
-server.put('/admin/promote', forAdmin, (req, res, next) => {
+server.put('/admin/promote', forAdmin , (req, res, next) => {
     const { id } = req.body;
     if(!id){
         return res.status(400).send('an id is needed to promote a user')
@@ -71,7 +71,7 @@ server.put('/admin/promote', forAdmin, (req, res, next) => {
 })
 
 // Ruta que permite demotear a un usuario a guest
-server.put('/admin/demote', forAdmin, (req, res, next) => {
+server.put('/admin/demote' , forAdmin, (req, res, next) => {
     const { id } = req.body;
     if(!id){
         return res.status(400).send('an id is needed to demote a user')
@@ -87,19 +87,6 @@ server.put('/admin/ban', forAdmin, (req, res, next) => {
         return res.status(400).send('an id is needed to ban a user')
     }
     user.ban(id)
-    .then(r => res.send(r))
-    .catch(next)
-})
-
-server.get('/all', (req, res, next) => {
-    user.allUsers()
-    .then(r => res.send(r))
-    .catch(next);
-})
-
-server.put('/changeRol', (req, res, next) => {
-    const { user, newRol } = req.body
-    user.changeRol(user, newRol)
     .then(r => res.send(r))
     .catch(next)
 })

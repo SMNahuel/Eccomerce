@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Filter from './Filter/Filter'
 
 export default function CRUDUsers(){
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/user/all`)
+        axios.get(`${process.env.REACT_APP_API_URL}/user/admin`)
         .then(({data}) => {
             setUsers(data)
-            })
+        })
     }, [])
 
-    const onChangeRol = (user, newRol) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/user/changeRol`,
-        {user, newRol})
+    const onPromote = (id) => {
+        axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`, {id})
+        .then(({data}) => setUsers(data))
+    }
+
+    const onDemote = (id) => {
+        axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`, {id})
+        .then(({data}) => setUsers(data))
     }
 
     return(
@@ -41,16 +45,16 @@ export default function CRUDUsers(){
                                 user.email === "javierbalonga@gmail.com" || 
                                 user.email === "ces.esteban@gmail.com" || 
                                 user.email === "vinasleonardo@yahoo.com" || 
-                                user.email === "nahuelsan96@gmail.com" /* || 
-                                user.email === "ignaciogimenez70@gmail.com" */) ? "Im a Admin" : user.rol && user.rol.name === "admin" ? (
-                                    <button onClick={() => onChangeRol(user, "guest")}>
+                                user.email === "nahuelsan96@gmail.com" || 
+                                user.email === "ignaciogimenez70@gmail.com") ? "Im a Creator of this page" : user.rol && user.rol.name === "admin" ? (
+                                    <button onClick={() => onDemote(user.id)}>
                                         Set Guest
                                     </button>) : (
                                         user.rol && user.rol.name !== "admin" ? (
-                                            <button onClick={() => onChangeRol(user, "admin")}>
+                                            <button onClick={() => onPromote(user.id)}>
                                                 Set Admin
                                             </button>
-                                        ) : "Im a Guest"
+                                        ) : "Im not registred"
                                     )}</td>
                         </tr>
                         )}
