@@ -198,7 +198,9 @@ const actionCreators = {
         .then(({data}) => {
             dispatch({ type: type, payload: data });
         })
-        .catch(err => alert("Error!! " + err))
+        .catch(err => {
+            alert(`Error!\nStatus: ${err.response.status}\n${err.response.data}`);
+        })
     },
 }
 

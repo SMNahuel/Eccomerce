@@ -1,6 +1,6 @@
 const server = require('express').Router();
 const product = require('../controllers/product');
-const uploadImages = require('../middlewares/uploadImg')
+const { createProductUploader, updateProductUploader } = require('../middlewares/uploadImg')
 const { forAdmin } = require('../middlewares/authenticate');
 
 // Ruta que trae todos los productos
@@ -60,7 +60,7 @@ server.post('/', forAdmin, (req, res, next) => {
 });
 
 // Ruta que permite cargar multiples imagenes
-server.post('/images/:id', forAdmin, uploadImages, (req, res, next) => {
+server.post('/images/:id', forAdmin, updateProductUploader, (req, res, next) => {
     const {id} = req.params
 	if (!id) {
 		return res.status(400).send('A id is needed to set the images of a product');

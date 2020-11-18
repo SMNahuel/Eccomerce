@@ -23,9 +23,8 @@ module.exports = {
         }
         user.rol(userId)
         .then(r => {
-            console.log(r);
             if (r < 3) {
-                return res.status(400).send('You must be a Admin to access this route');
+                return res.status(400).send('You must be a Owner to access this route');
             } else {
                 next();
             }
@@ -37,10 +36,10 @@ module.exports = {
         if (!userId) {
             return res.status(400).send('You must be authenticated to access this route');
         }
-        user.rol(req.cookies.user)
+        user.rol(userId)
         .then(r => {
             if (r < 2) {
-                return res.status(400).send('Your account has been banned contact the company to recover your account');
+                return res.status(400).send('You must be a Owner to access this route');
             } else {
                 next();
             }

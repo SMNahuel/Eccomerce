@@ -12,7 +12,7 @@ module.exports = {
         })
         .then(user => {
             if (user.password !== password) throw new Error('wrong password')
-            if (user.rolId < 2) throw new Error('Your account has been banned contact the company to recover your account')
+            if (user.rolId < 2) throw 'Your account has been banned contact the company to recover your account'
             return [user.id, {
                 email: user.email,
                 name: user.name,
