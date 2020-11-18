@@ -1,4 +1,4 @@
-const { Product, Category, Image } = require('../db.js');
+const { Product, Category, Image, Review } = require('../db.js');
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -59,6 +59,18 @@ module.exports = {
         .then(([product, categories]) => (
             product.setCategories(categories)
         ))
+    },
+    addReview: function(id, review, idUser, qualification){
+        let productPromise = Product.findByPk(id)
+        return Promise.all([id, review, idUser])
+        .then(Review.create({
+            productId: id, 
+            userId: idUser,
+            message: review,
+            qualification
+        }))
+        .then(() => this.detail(id))
+        
     },
 
 
@@ -157,9 +169,14 @@ module.exports = {
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Review,
+                    attributes: ['id', 'qualification', 'message', 'productId', 'userId'],
                 }
             ]
         })
+
         .then(product => {
             if(!product) throw `product id: ${id} does not exist`
             return product

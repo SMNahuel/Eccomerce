@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import Review from './Review/Review';
 import stars from '../../../utils/stars';
+import QuestionsAndAnswers from './questionAndAnswer/QuestionsAndAnswers';
+import Question from './questionAndAnswer/question/Question';
 
 export default ({product, onBack}) => {
   const image = product.images[0] ?
@@ -91,6 +93,12 @@ export default ({product, onBack}) => {
             <div className={s.container_description_review}>
               <Review />
             </div>
+          </div>
+          <div className={s.container_question_answers}>
+              <QuestionsAndAnswers/>
+          </div>
+          <div className={s.container_question_answers}>
+              <Question/>
           </div>
         </div>
       </div>

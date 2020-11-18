@@ -1,7 +1,6 @@
 .container{
-    /* position: absolute; */
-    position: relative;
-    z-index: 10000;
+    position: absolute;
+    z-index: 1000;
     width: 100%;
     height: 100vh;
     backdrop-filter: blur(5px) brightness(70%);
@@ -23,6 +22,8 @@
     justify-content: center;
     margin: 0 auto;
     background-color: #DFE6E9;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
     height: 100%;
     padding: 10px;
     overflow-y: auto;
@@ -71,6 +72,11 @@
     justify-content: center;
     color: #282C34;
     margin: 10px 0;
+}
+.name{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: normal;
 }
 .p_price{
     font-size: 50px;
@@ -145,6 +151,14 @@
 .container_description_product,
 .container_description_review {
     padding: 10px;
+}
+.container_question_answers{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
 }
 @media (max-width: 768px){
     .container_img_title_flex{

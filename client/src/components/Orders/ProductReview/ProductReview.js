@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import s from './ProductReview.module.css'
 import imgNotFound from '../../../img/img404.jpg';
 import StarIcon from '@material-ui/icons/Star';
-import CloseIcon from '@material-ui/icons/Close';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 export default function ProductReview({ toggle, order }){
     const image = order.products[0].images[0].url ?
@@ -13,12 +13,10 @@ export default function ProductReview({ toggle, order }){
         ref.current.style.animation = s.containerUnmount + ' 450ms linear'
         setTimeout(toggle, 400);
     };
-    console.log(order.products[0].images[0].url)
     return (
         <div className={s.container} ref={ref}>
             <div className={s.container_main}>
-                <CloseIcon className={s.back} onClick={onUnmount}/>
-                
+                <HighlightOffIcon className={s.back} fontSize="large" onClick={onUnmount}/>
                     <h1>{order.products[0].name}</h1>
                     <div className={s.container_img_title_flex}>
                         <div className={s.container_background} style={{ backgroundImage: `url(${image})` }}>
