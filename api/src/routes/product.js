@@ -71,6 +71,19 @@ server.post('/review/:id', (req,res,next) =>{
 	.then(r => res.send(r))
 	.catch(next);
 })
+
+//Ruta eliminar review
+server.delete('/review/:id', (req,res,next)=>{
+	const {id} = req.params;
+	if (!id) {
+		return res.status(400).send('A id is needed to deleted the review of a product');
+	}
+
+	product.deletedReview(id)
+	.then(r => res.send(r))
+	.catch(next);
+
+})
 // Ruta que permite cargar multiples imagenes
 server.post('/images/:id', forAdmin, updateProductUploader, (req, res, next) => {
     const {id} = req.params
