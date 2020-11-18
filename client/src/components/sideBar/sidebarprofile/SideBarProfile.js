@@ -6,12 +6,14 @@ import api from '../../../redux/action-creators'
 import { Avatar } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import HomeIcon from '@material-ui/icons/Home';
-/* import PersonIcon from '@material-ui/icons/Person'; */
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PersonIcon from '@material-ui/icons/Person';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import CategoryIcon from '@material-ui/icons/Category';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-/* import ViewListIcon from '@material-ui/icons/ViewList'; */
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
-import AddIcon from '@material-ui/icons/Add';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 function SideBarProfile({ toogleState }) {
 
@@ -58,7 +60,7 @@ function SideBarProfile({ toogleState }) {
                             <button onClick={toogleState} className={s.button}>
                                 <div className={s.container_icons_title}>
                                     <div className={s.container_icons}>
-                                        <HomeIcon className={s.icon} />
+                                        <PersonIcon className={s.icon} />
                                         <p>Perfil Usuario</p>
                                     </div>
                                     <div>
@@ -71,7 +73,7 @@ function SideBarProfile({ toogleState }) {
                             <button onClick={toogleState} className={s.button}>
                                 <div className={s.container_icons_title}>
                                     <div className={s.container_icons}>
-                                        <ShoppingCartIcon className={s.icon} />
+                                        <AssignmentTurnedInIcon className={s.icon} />
                                         <p>Ordenes </p>
                                     </div>
                                     <div>
@@ -82,14 +84,14 @@ function SideBarProfile({ toogleState }) {
                         </Link>
                     </div>
                     <div className={s.container_empty}></div>
-                    {(user.rol === 'admin') && (
+                    {(user.rolId > 2) && (
                         <>
                             <h4 className={s.title_h4}>Admin</h4>
                             <Link to="/admin/categories" className={s.link}>
                                 <button onClick={toogleState} className={s.button}>
                                     <div className={s.container_icons_title}>
                                         <div className={s.container_icons}>
-                                            <AddIcon className={s.icon} />
+                                            <CategoryIcon className={s.icon} />
                                             <p>Administrar Categorias</p>
                                         </div>
                                         <div>
@@ -115,7 +117,7 @@ function SideBarProfile({ toogleState }) {
                                 <button onClick={toogleState} className={s.button}>
                                     <div className={s.container_icons_title}>
                                         <div className={s.container_icons}>
-                                            <AddIcon className={s.icon} />
+                                            <AssignmentIcon className={s.icon} />
                                             <p>Administrar Ordenes</p>
                                         </div>
                                         <div>
@@ -128,7 +130,7 @@ function SideBarProfile({ toogleState }) {
                         <button onClick={toogleState} className={s.button}>
                             <div className={s.container_icons_title}>
                                 <div className={s.container_icons}>
-                                    <AddIcon className={s.icon} />
+                                    <PersonAddIcon className={s.icon} />
                                     <p>Administrar Usuarios</p>
                                 </div>
                                 <div>
@@ -144,7 +146,7 @@ function SideBarProfile({ toogleState }) {
                             <button onClick={onLogOut} className={s.button}>
                                 <div className={s.container_icons_title}>
                                     <div className={s.container_icons}>
-                                        <MeetingRoomIcon className={s.icon} />
+                                        <ExitToAppIcon className={s.icon} />
                                         <p>Log Out</p>
                                     </div>
                                     <div>
@@ -158,7 +160,7 @@ function SideBarProfile({ toogleState }) {
                             <button onClick={toogleState} className={s.button}>
                                 <div className={s.container_icons_title}>
                                     <div className={s.container_icons}>
-                                        <MeetingRoomIcon className={s.icon} />
+                                        <VpnKeyIcon className={s.icon} />
                                         <p>Log In</p>
                                     </div>
                                     <div>

@@ -43,13 +43,7 @@ export default function CRUDUsers(){
                             <td className={s.email}>{user.email ? user.email : "User not registred"}</td>
                             <td>{user.name ? user.name : "User not registred"}</td>
                             <td>{user.rol && user.rol.name ? user.rol.name : "User not have rol"}</td>
-                            <td>{user.rol && (
-                                user.email === "maicoloncomilla@gmail.com" || 
-                                user.email === "javierbalonga@gmail.com" || 
-                                user.email === "ces.esteban@gmail.com" || 
-                                user.email === "vinasleonardo@yahoo.com" || 
-                                user.email === "nahuelsan96@gmail.com" || 
-                                user.email === "ignaciogimenez70@gmail.com") ? "Im a Creator of this page" : user.rol && user.rol.name === "admin" ? (
+                            <td>{user.rol && user.rol.name === "owner" ? "Im a Creator of this page" : user.rol && user.rol.name === "admin" ? (
                                     <button onClick={() => onDemote(user.id)} className={s.btn}>
                                         Set Guest
                                     </button>) : (
