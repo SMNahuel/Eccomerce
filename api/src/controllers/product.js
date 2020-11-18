@@ -20,6 +20,10 @@ module.exports = {
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Review,
+                    attributes: ['id', 'qualification', 'message', 'productId', 'userId'],
                 }
             ]
         })
@@ -71,6 +75,14 @@ module.exports = {
         }))
         .then(() => this.detail(id))
         
+    },
+    deletedReview: function(id){
+        return Review.destroy({
+            where: {
+                id                
+            }
+        })
+        .then(() => this.read())
     },
 
 
