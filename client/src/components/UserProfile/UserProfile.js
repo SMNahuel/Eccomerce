@@ -1,9 +1,10 @@
 import React from 'react';
+import s from './UserProfile.module.css'
 
 function UserProfile(props) {
     return (
-        <div>
-            
+        <div className={s.justify}>
+            Macanudo tu perfil!
         </div>
     );
 }
