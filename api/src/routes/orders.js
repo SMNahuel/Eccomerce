@@ -6,7 +6,7 @@ const { forAdmin } = require('../middlewares/authenticate');
 server.get('/', (req,res,next)=>{
 	const { userId } = req.cookies;
 	if(!userId){
-		return next(new Error('A userId is needed to bring all orders'));
+		return res.status(400).send('A userId is needed to bring all orders');
 	}
 	cart.orders(userId)
 	.then(r=> res.send(r))
@@ -24,7 +24,7 @@ server.get('/admin', forAdmin, (req,res,next)=>{
 server.put('/process', forAdmin, (req, res, next) => {
     const { id } = req.body
     if (!id) {
-        return next(new Error('A cart content is required to process a cart'));
+        return res.status(400).send('A cart content is required to process a cart');
     }
     return cart.process(req.body)
     .then(r => res.send(r))

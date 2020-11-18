@@ -100,7 +100,17 @@ module.exports = {
         .then(() => this.read())
     },
 
-    update: function(id, { name, email, password }){
+    changePassword: function(id, oldPassword, newPassword){
+        return User.findByPk(id)
+        .then(user => {
+            if (user.password !== oldPassword) throw new Error(`Wrong password`)
+            user.password = newPassword;
+            return user.save();
+        })
+        .then(() => 'success')
+    },
+
+    update: function(id, { name, email}){
         let changeAttributes = {};
         if(name) {
             changeAttributes.name = name;
@@ -108,9 +118,6 @@ module.exports = {
         if(email){
             changeAttributes.email = email;
         }
-        if(password){
-            changeAttributes.password = password
-        }
         return User.update(
             changeAttributes, 
             {
@@ -119,29 +126,6 @@ module.exports = {
                 }
             }
         )
-        .then(() => this.read())
-    },
-    resetPassword: function(id, password ){
-        let changeAttributes = {};
-        if(password){
-            changeAttributes.password = password
-        }
-        return User.update(
-            changeAttributes, 
-            {
-                where: {
-                    id: id
-                }
-            }
-        )
-        .then(console.log)
-    },
-    delete: function(id){
-        return User.destroy({
-            where: {
-                id: id
-            }
-        })
         .then(() => this.read())
     }
 }

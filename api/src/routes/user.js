@@ -2,33 +2,14 @@ const server = require('express').Router();
 const user = require('../controllers/user');
 const {forAdmin} = require('../middlewares/authenticate')
 
-//Restore password
-server.put('/password/:id', (req, res, next) => {
-    const id = req.cookies.userId;
-    const { password }= req.body;
-    const  idUser = req.params.id;
-    if(idUser !== id){
-        return res.status(400).send('Security error cookies invalid')
-    }
-    if(!id){
-        return res.status(400).send('I need an id to modify the User')
-    }
-    if(!password){
-        return res.status(400).send('I need an password to modify the User')
-    }
-    
-    user.resetPassword(id, password)
-    .then(r => res.send(r))
-    .catch(next)
-})
 // Ruta que permite logearse
 server.post('/login', (req, res, next) => {
     const { email, password } = req.body;
     if (!email) {
-        return next(new Error('Body must have a email for login'))
+        return res.status(400).send('Body must have a email for login')
     }
     if (!password) {
-        return next(new Error('Body must have a password for login'))
+        return res.status(400).send('Body must have a password for login')
     }
     user.login(req.body)
     .then(r => res.cookie("userId", r[0]).send(r[1]))
@@ -39,13 +20,13 @@ server.post('/login', (req, res, next) => {
 server.post('/register', (req, res, next) => {
     const { email, name, password} = req.body;
     if (!email) {
-        return next(new Error('Body must have a email for register'))
+        return res.status(400).send('Body must have a email for register')
     }
     if (!name) {
-        return next(new Error('Body must have a name for register'))
+        return res.status(400).send('Body must have a name for register')
     }
     if (!password) {
-        return next(new Error('Body must have a password for register'))
+        return res.status(400).send('Body must have a password for register')
     }
     user.register(req.body)
     .then(r => res.cookie("userId", r[0]).send(r[1]))
@@ -67,9 +48,28 @@ server.get('/me', (req,res,next)=>{
 server.get('/logout', (req,res,next)=>{
     const { userId } = req.cookies;
     if (!userId) {
-        return next(new Error('User is not logedIn'));
+        return res.status(400).send('User is not logedIn');
     }
     res.cookie("userId", "", {expires: new Date(0)}).send({})
+})
+
+// Ruta para cambiar de password como usuario
+server.put('/password', (req, res, next) => {
+    const { userId } = req.cookies;
+    const { oldPassword, newPassword }= req.body;
+    if(!userId){
+        return res.status(400).send('You must be logged in to modify the password')
+    }
+    if(!oldPassword){
+        return res.status(400).send('I need the old password to modify the password')
+    }
+    if(!newPassword){
+        return res.status(400).send('I need the new password to modify the password')
+    }
+    
+    user.changePassword(userId, oldPassword, newPassword)
+    .then(r => res.send(r))
+    .catch(next)
 })
 
 // Ruta que te devuelve todos los usuarios
@@ -100,6 +100,7 @@ server.put('/admin/demote' , forAdmin, (req, res, next) => {
     .catch(next)
 })
 
+// Ruta que permite banear a un usuario
 server.put('/admin/ban', forAdmin, (req, res, next) => {
     const { id } = req.body;
     if(!id){

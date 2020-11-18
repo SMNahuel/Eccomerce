@@ -103,15 +103,3 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-.container_imageuploader{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 95%;
-    border: 1px solid #ab47bc;
-}
-.imageuploader{
-    width: 100%;
-
-}

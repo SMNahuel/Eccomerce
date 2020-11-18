@@ -8,7 +8,8 @@ function TableOrders() {
     const [orders , setOrders] = useState([])
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`)
+        axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`,
+        {withCredentials: true})
         .then(({data})=>setOrders(data))
     }, []);
 

@@ -51,7 +51,9 @@ export default function CRUDProducts(){
         )
         axios.post(
             `${process.env.REACT_APP_API_URL}/products/images/${id}`,
-            formData, {headers: {'Content-Type': 'multipart/form-data'}}
+            formData,
+            {headers: {'Content-Type': 'multipart/form-data'},
+            withCredentials: true}
         )
         setState({...state, action: null})
     }
