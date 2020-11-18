@@ -20,7 +20,7 @@ function SideBarProfile({ toogleState }) {
 
     useEffect(() => {
         dispatch(api.getMe())
-    }, []);
+    }, [dispatch]);
 
     const onLogOut = () => {
         dispatch(api.logout())
@@ -47,6 +47,19 @@ function SideBarProfile({ toogleState }) {
                                     <div className={s.container_icons}>
                                         <HomeIcon className={s.icon} />
                                         <p>Home</p>
+                                    </div>
+                                    <div>
+                                        <ArrowRightIcon />
+                                    </div>
+                                </div>
+                            </button>
+                        </Link>
+                        <Link to="/userprofile" className={s.link}>
+                            <button onClick={toogleState} className={s.button}>
+                                <div className={s.container_icons_title}>
+                                    <div className={s.container_icons}>
+                                        <HomeIcon className={s.icon} />
+                                        <p>Perfil Usuario</p>
                                     </div>
                                     <div>
                                         <ArrowRightIcon />
