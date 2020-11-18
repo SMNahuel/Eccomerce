@@ -1,4 +1,4 @@
-const { Cart, User, Product } = require('../db.js');
+const { Cart, User, Product, Image } = require('../db.js');
 const order = require('./order');
 
 module.exports = {
@@ -109,6 +109,10 @@ module.exports = {
             include: {
                 model: Product,
                 attributes: ['id', 'name'],
+                include:{
+                    model: Image,
+                    attributes: ["url"]
+                },
                 through: {
                     attributes: ['price', 'quantity']
                 }

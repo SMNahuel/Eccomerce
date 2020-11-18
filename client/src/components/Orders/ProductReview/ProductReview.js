@@ -1,0 +1,54 @@
+import React, { useRef } from 'react';
+import s from './ProductReview.module.css'
+import imgNotFound from '../../../img/img404.jpg';
+import StarIcon from '@material-ui/icons/Star';
+import CloseIcon from '@material-ui/icons/Close';
+
+export default function ProductReview({ toggle, order }){
+    const image = order.products[0].images[0].url ?
+        `${process.env.REACT_APP_API_URL}${order.products[0].images[0].url}` :
+        imgNotFound
+    const ref = useRef(null)
+    const onUnmount = () => {
+        ref.current.style.animation = s.containerUnmount + ' 450ms linear'
+        setTimeout(toggle, 400);
+    };
+    console.log(order.products[0].images[0].url)
+    return (
+        <div className={s.container} ref={ref}>
+            <div className={s.container_main}>
+                <CloseIcon className={s.back} onClick={onUnmount}/>
+                
+                    <h1>{order.products[0].name}</h1>
+                    <div className={s.container_img_title_flex}>
+                        <div className={s.container_background} style={{ backgroundImage: `url(${image})` }}>
+                        </div>
+                        <div className={s.container_about_product}>
+                            <div className={s.container_stars}>
+                                <p>How many stars would you give it?</p>
+                                <div>
+                                    <button><StarIcon/></button>
+                                    <button><StarIcon/></button>
+                                    <button><StarIcon/></button>
+                                    <button><StarIcon/></button>
+                                    <button><StarIcon/></button>
+                                </div>
+                            </div>
+                            <div className={s.container_p_input}>
+                                <p>Give your review a title</p>
+                                <input placeholder="Title"/>
+                            </div>
+                            <div className={s.container_p_textarea}>
+                                <p>Tell us more about the product</p>
+                                <textarea placeholder="Write about your experience in this course"></textarea>
+                            </div>
+                            <div className={s.container_button_feedback}>
+                                <button>Send feedback</button>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    )
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Order.module.css'; 
 
-export default function Order({order, onDetail}) {
+export default function Order({ order, onDetail, toggle }) {
     const orderMount = () => {
         if (!order.products) return 0
         return order.products.reduce((acc, product) => 
