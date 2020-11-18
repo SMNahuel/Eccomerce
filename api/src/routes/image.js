@@ -5,7 +5,7 @@ const image = require('../controllers/image');
 server.get('/:imageFilename', (req, res, next) => {
     const { imageFilename } = req.params;
     if (!imageFilename) {
-        return next(new Error('A filename is required to show the image'));
+        return res.status(400).send('A filename is required to show the image');
     }
     var splitedPath = __dirname.split(/\/|\\/)
     splitedPath.pop()

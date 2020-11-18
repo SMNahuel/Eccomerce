@@ -13,7 +13,7 @@ server.get('/', (req, res, next) => {
 server.post('/', forAdmin, (req, res, next) => {
     const { name, description } = req.body
     if (!name || !description) {
-        return next(new Error('Body must have a name and description'));
+        return res.status(400).send('Body must have a name and description');
     }
     category.create(req.body)
 	.then(r => res.send(r))

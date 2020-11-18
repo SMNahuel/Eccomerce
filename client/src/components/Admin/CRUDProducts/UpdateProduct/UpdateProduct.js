@@ -105,13 +105,10 @@ export default function UpdateProduct ({ product, categories, handleUpdate }) {
                         })
                     }
                 </div>
-                <div className={s.container_imageuploader}>
-                    <ImageUploader
-                        className={s.imageuploader}
-                        product={product}
-                        images={input.images}
-                        setInput={setInput} />
-                </div>
+                <ImageUploader
+                    product={product}
+                    images={input.images}
+                    setInput={setInput} />
                 <input
                     className={s.input_submit}
                     type="submit"

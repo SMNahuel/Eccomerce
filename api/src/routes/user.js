@@ -25,10 +25,10 @@ server.put('/password/:id', (req, res, next) => {
 server.post('/login', (req, res, next) => {
     const { email, password } = req.body;
     if (!email) {
-        return next(new Error('Body must have a email for login'))
+        return res.status(400).send('Body must have a email for login')
     }
     if (!password) {
-        return next(new Error('Body must have a password for login'))
+        return res.status(400).send('Body must have a password for login')
     }
     user.login(req.body)
     .then(r => res.cookie("userId", r[0]).send(r[1]))
@@ -39,13 +39,13 @@ server.post('/login', (req, res, next) => {
 server.post('/register', (req, res, next) => {
     const { email, name, password} = req.body;
     if (!email) {
-        return next(new Error('Body must have a email for register'))
+        return res.status(400).send('Body must have a email for register')
     }
     if (!name) {
-        return next(new Error('Body must have a name for register'))
+        return res.status(400).send('Body must have a name for register')
     }
     if (!password) {
-        return next(new Error('Body must have a password for register'))
+        return res.status(400).send('Body must have a password for register')
     }
     user.register(req.body)
     .then(r => res.cookie("userId", r[0]).send(r[1]))
@@ -67,7 +67,7 @@ server.get('/me', (req,res,next)=>{
 server.get('/logout', (req,res,next)=>{
     const { userId } = req.cookies;
     if (!userId) {
-        return next(new Error('User is not logedIn'));
+        return res.status(400).send('User is not logedIn');
     }
     res.cookie("userId", "", {expires: new Date(0)}).send({})
 })
