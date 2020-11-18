@@ -19,8 +19,7 @@ export default function CRUDUsers(){
     }
 
     const onBan = (id) => {
-        console.log("La llave (rolId)=(3) no está presente en la tabla «rols»")
-        /* dispatch(api.banUser(id)) */
+        dispatch(api.banUser(id))
     }
 
     return(
@@ -59,7 +58,10 @@ export default function CRUDUsers(){
                                             </button>
                                         ) : "Im not registred"
                                     )}</td>
-                            <td><button onClick={() => onBan(user.id)}>Ban</button></td>
+                            <td>{user.rol && user.rol.name !== "banned" ? 
+                                <button onClick={() => onBan(user.id)}>Ban</button> : 
+                                "this user is banned"
+                            }</td>
                         </tr>
                         )}
                 </tbody>

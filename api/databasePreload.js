@@ -1,6 +1,6 @@
 const { Product, Category, Image, User, Rol } = require('./src/db.js');
 
-const roles = ['admin', 'guest']
+const roles = ['admin', 'guest', 'banned']
 const users = [
     {
         name: "Maico Loncomilla",
