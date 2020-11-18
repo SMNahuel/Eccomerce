@@ -1,55 +1,75 @@
-.active,.inactive{
-    z-index: 5;
+.container_button_toggle{
     position: fixed;
-    overflow: hidden;
-    border-radius: 50%;
-    transition: 1.5s;
-}
-.active{
-    right: calc(20px - 120vw);
-    bottom: calc(20px - 120vw);
-    width: 240vw;
-    height: 240vw;
-}
-.inactive{
-    right: calc(20px - 5vh);
-    bottom: calc(20px - 5vh);
-    width: 10vh;
-    height: 10vh;
-}
-
-
-.container{
-    width: 100%;
-    height: 100%;
-    z-index: 20;
-    background-color: #282C34;
-    text-align: center;
-}
-
-.inactive .container{
-    background-color: #fff;
-}
-.container button{
+    top: 10px;
+    right: 10px;
     z-index: 1;
-    position: fixed;
-    bottom: 5px;
-    right: 8px;
+}
+.container_button_toggle button{
     background-color: transparent;
     outline: none;
     border: none;
-}
-.active .container button{
+    cursor: pointer;
     color: #DFE6E9;
 }
-.container_thead{
-    background-color: #ab47bc;
-    color: #DFE6E9;
-    font-size: 15px;
+.container_absolute_main{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.container_main_table_button{
+    position: relative;
+    max-width: 1000px;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: #DFE6E9;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.container_button_onUnMount_table{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+.container_button_onUnMount_table button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #7b1fa2;
+    cursor: pointer;
 }
 .container_table{
-    width: 95%;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
 }
+.container_thead{
+    color: #282C34;
+    font-size: 15px;
+    /* background-color: #ab47bc; */
+    background-color: rgba(0, 0, 0, .2);
+    font-weight: bold;
+}
+.container_tfoot{
+    /* background-color: #ab47bc; */
+    color: #282C34;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, .2);
+    font-weight: bold;
+}
+
 .container_tbody tr:nth-child(odd){
     /* background-color: #7b1fa2; */
     color: #DFE6E9;
@@ -72,39 +92,18 @@
 .container_tbody tr td{
     font-size: 14px;
 }
-.container_tfoot{
-    background-color: #ab47bc;
-    color: #DFE6E9;
-    font-size: 15px;
-}
+
 .DeleteForeverIcon{
     color: #e7231f;
     cursor: pointer;
 }
-.container_table_button{
-    position: absolute;
-    right: calc(120vw - 20px);
-    bottom: calc(120vw - 20px);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    animation: animation 1.5s linear;
-}
-@keyframes animation {
-    0%   {opacity: 0;}
-    66%  {opacity: 0;}
-    100% {opacity: 1;}
-}
+
 .container_input_button{
     margin-top: 10px;
     width: 100%;
     display: flex;
     justify-content: center;
-}
+} 
 .container_input_button input {
     width: 25%;
     margin-left: 1%;
@@ -117,28 +116,42 @@
     background-color: #ab47bc;
     cursor: pointer;
 }
+.cartEmpty{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.cartEmpty img{
+    max-width: 800px;
+    max-height: 600px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .container_input_button input:hover{
     background-color: #7b1fa2;
 }
-@media (min-width: 769px){
-    .container_table{
-        max-width: 769px;
-        width: 100%;
+@media(max-width: 768px){
+    .container_absolute_main{
+        padding: 0px 0;
     }
-    .container_input_button input{
-        max-width: 225px;
+    .container_table{
         width: 100%;
     }
 }
-@media(max-width: 1000px){
-    .active{
-        right: calc(20px - 120vh);
-        bottom: calc(20px - 120vh);
-        width: 240vh;
-        height: 240vh;
+@media(max-width: 540px){
+    .container_input_button input{
+        width: 40%;
     }
-    .container_table_button{
-        right: calc(120vh - 20px);
-        bottom: calc(120vh - 20px);
-    }
+}
+@keyframes containerMount{
+    0%   { opacity: 0; transform: scale(.5);}
+    50%  { opacity: 0;}
+    100% { opacity: 1; transform: scale(1);}
+}
+@keyframes containerUnmount{
+    0%   { opacity: 1; transform: scale(1);}
+    50%  { opacity: 0;}
+    100% { opacity: 0; transform: scale(.5);}
 }
