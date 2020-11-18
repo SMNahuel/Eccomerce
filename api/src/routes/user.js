@@ -73,13 +73,13 @@ server.put('/password', (req, res, next) => {
 })
 
 // Ruta que te devuelve todos los usuarios
-server.get('/admin', forAdmin, (req, res, next) => {
+server.get('/admin' , forAdmin, (req, res, next) => {
     user.read()
-    .then(r => res.send())
+    .then(r => res.send(r))
 })
 
 // Ruta que permite promocionar a un usuario a admin
-server.put('/admin/promote', forAdmin, (req, res, next) => {
+server.put('/admin/promote' , forAdmin, (req, res, next) => {
     const { id } = req.body;
     if(!id){
         return res.status(400).send('an id is needed to promote a user')
@@ -101,7 +101,7 @@ server.put('/admin/demote', forAdmin, (req, res, next) => {
 })
 
 // Ruta que permite banear a un usuario
-server.put('/admin/ban', forAdmin, (req, res, next) => {
+server.put('/admin/ban' , forAdmin, (req, res, next) => {
     const { id } = req.body;
     if(!id){
         return res.status(400).send('an id is needed to ban a user')

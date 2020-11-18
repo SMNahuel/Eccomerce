@@ -13,6 +13,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 function SideBarProfile({ toogleState }) {
 
@@ -125,6 +126,19 @@ function SideBarProfile({ toogleState }) {
                                     </div>
                                 </button>
                             </Link>
+                    <Link to="/admin/users" className={s.link}>
+                        <button onClick={toogleState} className={s.button}>
+                            <div className={s.container_icons_title}>
+                                <div className={s.container_icons}>
+                                    <PersonAddIcon className={s.icon} />
+                                    <p>Administrar Usuarios</p>
+                                </div>
+                                <div>
+                                    <ArrowRightIcon />
+                                </div>
+                            </div>
+                        </button>
+                    </Link>
                         </>
                     )}
                     {(user.name) ? (

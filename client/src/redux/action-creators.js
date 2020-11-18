@@ -170,7 +170,7 @@ const actionCreators = {
     },
     promoteUser: function(id){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/promote`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`,
             {id},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
@@ -178,7 +178,7 @@ const actionCreators = {
     },
     demoteUser: function(id){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/demote`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`,
             {id},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
@@ -186,7 +186,7 @@ const actionCreators = {
     },
     banUser: function(id){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/ban`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/ban`,
             {id},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
