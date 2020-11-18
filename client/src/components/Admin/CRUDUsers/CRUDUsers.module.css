@@ -1,0 +1,30 @@
+.table{
+    color:white;
+    margin: auto;
+    margin-top: 5%;
+    width: 70%;
+}
+
+@media (max-width: 500px){
+    .email{
+        display: none;
+    }
+}
+
+.btn{
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 90%;
+    height: 20px;
+}
+
+.btn:hover{
+    background-color: #ab47bc;
+}
+
+.table td{
+    text-align: center;
+}

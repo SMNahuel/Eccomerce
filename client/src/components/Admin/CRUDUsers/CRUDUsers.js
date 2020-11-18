@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators'
+import s from './CRUDUsers.module.css'
 
 export default function CRUDUsers(){
     const dispatch = useDispatch()
@@ -23,12 +24,12 @@ export default function CRUDUsers(){
     }
 
     return(
-        <div style={{color: "white"}}>
-            <table>
+        <div>
+            <table className={s.table}>
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Email</th>
+                        <th className={s.email}>Email</th>
                         <th>Name</th>
                         <th>Rol</th>
                         <th></th>
@@ -39,7 +40,7 @@ export default function CRUDUsers(){
                     {users && users.map(user => 
                         <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.email ? user.email : "User not registred"}</td>
+                            <td className={s.email}>{user.email ? user.email : "User not registred"}</td>
                             <td>{user.name ? user.name : "User not registred"}</td>
                             <td>{user.rol && user.rol.name ? user.rol.name : "User not have rol"}</td>
                             <td>{user.rol && (
@@ -49,17 +50,17 @@ export default function CRUDUsers(){
                                 user.email === "vinasleonardo@yahoo.com" || 
                                 user.email === "nahuelsan96@gmail.com" || 
                                 user.email === "ignaciogimenez70@gmail.com") ? "Im a Creator of this page" : user.rol && user.rol.name === "admin" ? (
-                                    <button onClick={() => onDemote(user.id)}>
+                                    <button onClick={() => onDemote(user.id)} className={s.btn}>
                                         Set Guest
                                     </button>) : (
                                         user.rol && user.rol.name !== "admin" ? (
-                                            <button onClick={() => onPromote(user.id)}>
+                                            <button onClick={() => onPromote(user.id)} className={s.btn}>
                                                 Set Admin
                                             </button>
                                         ) : "Im not registred"
                                     )}</td>
                             <td>{user.rol && user.rol.name !== "banned" ? 
-                                <button onClick={() => onBan(user.id)}>Ban</button> : 
+                                <button onClick={() => onBan(user.id)} className={s.btn}>Ban</button> : 
                                 "this user is banned"
                             }</td>
                         </tr>
