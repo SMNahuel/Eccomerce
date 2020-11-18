@@ -49,7 +49,8 @@ export default function Home() {
     }
 
     const handleSearch = (key) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/products/search?key=${key}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/products/search?key=${key}`,
+        {withCredentials: true})
         .then(({data}) =>  setState({
             ...state, 
             products: data

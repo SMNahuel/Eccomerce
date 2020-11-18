@@ -6,7 +6,7 @@ export default function ImageUploader({product, images, setInput}) {
     const onDragOver = e => e.preventDefault();
     const onDrop = e => {
         e.preventDefault();
-
+        console.log('hola');
         let names = images.map(i => i.name)
         
         var files = Array.from(e.dataTransfer.files)
@@ -34,7 +34,7 @@ export default function ImageUploader({product, images, setInput}) {
     }
 
     return(
-        <div>
+        <div className={s.container}>
             <div className={s.imagesContainer} onDragOver={onDragOver} onDrop={onDrop}>
                 {images[0] &&
                     images.map((image, i) => <img key={i} src={image.src} alt=""/>)

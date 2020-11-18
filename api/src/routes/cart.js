@@ -6,7 +6,7 @@ const user = require('../controllers/user');
 server.get('/', (req, res, next) => {
     const { userId } = req.cookies;
     if(!userId){
-        return next(new Error('A userId is needed to bring a cart'));
+        return res.status(400).send('A userId is needed to bring a cart');
     }
     cart.cartOf(userId)
     .then(r => res.send(r))
@@ -18,7 +18,7 @@ server.post('/', (req, res, next) => {
     const { userId } = req.cookies
     const { productId, quantity } = req.body
     if (!productId || !quantity) {
-        return next(new Error('a productId and a quantity are needed to add the product to the cart'));
+        return res.status(400).send('a productId and a quantity are needed to add the product to the cart');
     }
     if (!userId) {
         cart.addToCartAnonimus(req.body)
@@ -44,10 +44,10 @@ server.put('/', (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
     if (!userId) {
-        return next(new Error('A userId is required to update a cart'));
+        return res.status(400).send('A userId is required to update a cart');
     }
     if (!id || !products) {
-        return next(new Error('A cart content is required to update a cart'));
+        return res.status(400).send('A cart content is required to update a cart');
     }
     cart.belongsTo(id, userId)
     .then(belongsToUser => {
@@ -65,10 +65,10 @@ server.put('/create', (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
     if (!userId) {
-        return next(new Error('A userId is required to create a cart'));
+        return res.status(400).send('A userId is required to create a cart');
     }
     if (!id || !products) {
-        return next(new Error('A cart content is required to create a cart'));
+        return res.status(400).send('A cart content is required to create a cart');
     }
     cart.belongsTo(id, userId)
     .then(belongsToUser => {
@@ -86,10 +86,10 @@ server.put('/cancel', (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
     if (!userId) {
-        return next(new Error('A userId is required to cancel a cart'));
+        return res.status(400).send('A userId is required to cancel a cart');
     }
     if (!id || !products) {
-        return next(new Error('A cart content is required to cancel a cart'));
+        return res.status(400).send('A cart content is required to cancel a cart');
     }
     cart.belongsTo(id, userId)
     .then(belongsToUser => {

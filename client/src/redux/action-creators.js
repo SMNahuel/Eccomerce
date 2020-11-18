@@ -5,25 +5,31 @@ const actionCreators = {
     CATEGORIES: 'CATEGORIES',
     getCategories: function(){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/category`)
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/category`,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CATEGORIES, dispatch)
         }
     },
     createCategory: function(category){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/category`, category)
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/category`, 
+            category,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CATEGORIES, dispatch)
         }
     },
     updateCategory: function(id, category){
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/category/${id}`, category)
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/category/${id}`, 
+            category,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CATEGORIES, dispatch)
         }
     },
     deleteCategory: function(id) {
         return dispatch => {
-            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/category/${id}`)
+            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/category/${id}`,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CATEGORIES, dispatch)
         }
     },
@@ -31,31 +37,38 @@ const actionCreators = {
     PRODUCTS: 'PRODUCTS',
     getProducts: function () {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products`)
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products`,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
     getProduct: function (id, product) {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
         }
     },
     createProduct: function (product) {
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products`, product)
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products`,
+            product,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
     updateProducts: function (id, product) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/products/${id}`, product)
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/products/${id}`,
+            product,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
     deleteProducts: function(id) {
         return dispatch => {
-            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`)
+            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`,
+            {withCredentials: true})
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
