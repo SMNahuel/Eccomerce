@@ -41,3 +41,19 @@
     margin-top: 10px;
     width: 100%;
 }
+.boton_review{
+    background-color: transparent;
+}
+.boton_review button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #DFE6E9;
+    background-color: #ab47bc;
+    height: 30px;
+    width: 60px;
+    border-radius: 10px;
+}
+.boton_review button:hover{
+    background-color: #bb47ac;
+}

@@ -6,7 +6,6 @@ export default function ImageUploader({product, images, setInput}) {
     const onDragOver = e => e.preventDefault();
     const onDrop = e => {
         e.preventDefault();
-        console.log('hola');
         let names = images.map(i => i.name)
         
         var files = Array.from(e.dataTransfer.files)

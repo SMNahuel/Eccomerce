@@ -1,0 +1,36 @@
+.container_p{
+    width: 100%;
+    margin: 15px;
+    font-size: 16px;
+}
+.p_answers{
+    font-size: 15px;
+    margin-left: 10px;
+    color: #666;
+}
+.container_answer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 15px;
+}
+.KeyboardReturnIcon{
+    transform: rotate(90deg);
+    color: #666;
+}
+.button_respond{
+    width: 100px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    margin-left: 20px;
+    border-radius: 5px;
+    height: 20px;
+}
+@media (max-width: 521px){
+    .container_p{
+        margin: 5px;
+    }
+}

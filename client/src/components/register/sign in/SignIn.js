@@ -43,7 +43,7 @@ function SignIn(){
                         type="text"
                         placeholder="Username"
                         required 
-                        pattern="[a-zA-Z]{6,50}"
+                        pattern="[a-zA-Z0-9 ]{6,50}"
                         id="name"
                         maxLength="20"
                         title="Only letters | min 6 characters | maximum 50 characters"

@@ -1,6 +1,5 @@
 .container{
-    /* position: absolute; */
-    position: relative;
+    position: absolute;
     z-index: 10000;
     width: 100%;
     height: 100vh;
@@ -23,6 +22,8 @@
     justify-content: center;
     margin: 0 auto;
     background-color: #DFE6E9;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
     height: 100%;
     padding: 10px;
     overflow-y: auto;
@@ -71,6 +72,11 @@
     justify-content: center;
     color: #282C34;
     margin: 10px 0;
+}
+.name{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: normal;
 }
 .p_price{
     font-size: 50px;
@@ -146,6 +152,24 @@
 .container_description_review {
     padding: 10px;
 }
+.container_question_answers{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+}
+.container_formRespond{
+    position: absolute;
+    z-index: 10000;
+    width: calc(100%);
+    min-height: calc(100vh);
+    height: 19vw;
+    overflow-y: hidden;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
+}
 @media (max-width: 768px){
     .container_img_title_flex{
         flex-direction: column;
@@ -167,7 +191,8 @@
 }
 @media (max-width: 521px){
     .container_description_product,
-    .container_description_review {
+    .container_description_review,
+    .container_question_answers {
     padding: 0px;
     }
 }
