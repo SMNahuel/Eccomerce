@@ -32,12 +32,15 @@ function UserProfile(props) {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
+                            {user.name}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                            across all continents except Antarctica
+                        <Typography gutterBottom variant="h6" component="h2">
+                            {user.email}
                         </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {user.rol}
+                        </Typography>
+                        
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
