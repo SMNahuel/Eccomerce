@@ -56,19 +56,23 @@ function SideBarProfile({ toogleState }) {
                                 </div>
                             </button>
                         </Link>
-                        <Link to="/userprofile" className={s.link}>
-                            <button onClick={toogleState} className={s.button}>
-                                <div className={s.container_icons_title}>
-                                    <div className={s.container_icons}>
-                                        <PersonIcon className={s.icon} />
-                                        <p>Perfil Usuario</p>
+                        {(user.name) && (
+                        <>
+                            <Link to="/userprofile" className={s.link}>
+                                <button onClick={toogleState} className={s.button}>
+                                    <div className={s.container_icons_title}>
+                                        <div className={s.container_icons}>
+                                            <PersonIcon className={s.icon} />
+                                            <p>Perfil Usuario</p>
+                                        </div>
+                                        <div>
+                                            <ArrowRightIcon />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <ArrowRightIcon />
-                                    </div>
-                                </div>
-                            </button>
-                        </Link>
+                                </button>
+                            </Link>
+                        </>
+                        )}
                         <Link to="/orders" className={s.link}>
                             <button onClick={toogleState} className={s.button}>
                                 <div className={s.container_icons_title}>
