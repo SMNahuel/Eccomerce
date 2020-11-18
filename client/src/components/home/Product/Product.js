@@ -89,7 +89,7 @@ export default ({product, onBack}) => {
           <div className={s.container_review}>
             <h3>Product reviews</h3>
             <div className={s.container_description_review}>
-              <Review/>
+              <Review />
             </div>
           </div>
         </div>
