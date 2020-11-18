@@ -1,6 +1,13 @@
 const user = require('../controllers/user');
 
 module.exports = {
+    cookieOptions: {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 16),
+        httpOnly: true,
+        /* sameSite: 'none',
+        secure: true */
+    },
+
     forOwner: (req, res, next) => {
         const { userId } = req.cookies
         if (!userId) {

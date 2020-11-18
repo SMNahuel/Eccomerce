@@ -1,6 +1,6 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
-const {forAdmin, forGuest} = require('../middlewares/authenticate')
+const {cookieOptions, forAdmin, forGuest} = require('../middlewares/authenticate')
 
 // Ruta que permite logearse
 server.post('/login', (req, res, next) => {
@@ -12,7 +12,7 @@ server.post('/login', (req, res, next) => {
         return res.status(400).send('Body must have a password for login')
     }
     user.login(req.body)
-    .then(r => res.cookie("userId", r[0]).send(r[1]))
+    .then(r => res.cookie("userId", r[0], cookieOptions).send(r[1]))
     .catch(next)
 })
 
@@ -29,7 +29,7 @@ server.post('/register', (req, res, next) => {
         return res.status(400).send('Body must have a password for register')
     }
     user.register(req.body)
-    .then(r => res.cookie("userId", r[0]).send(r[1]))
+    .then(r => res.cookie("userId", r[0], cookieOptions).send(r[1]))
     .catch(next)
 })
 
@@ -47,7 +47,7 @@ server.get('/me', (req,res,next)=>{
 // Ruta que permite deslogearse
 server.get('/logout', forGuest, (req,res,next)=>{
     const { userId } = req.cookies;
-    res.cookie("userId", "", {expires: new Date(0)}).send({})
+    res.clearCookie("userId").send({})
 })
 
 // Ruta para cambiar de password como usuario
