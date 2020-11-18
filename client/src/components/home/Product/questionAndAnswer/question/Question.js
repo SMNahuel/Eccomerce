@@ -9,11 +9,18 @@ export default function Question(){
     const answers = ["This is a answers"]
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const { FORMRESPOND } = api
 
     useEffect(() => {
         dispatch(api.getMe())
     }, [dispatch])
-
+    const toggle = e =>{
+        e.preventDefault()
+        dispatch({
+            type: FORMRESPOND,
+            payload: true
+        })
+    }
     return (
         // Hacer un map de todas las preguntas q vienen del servidor. 
         <>
@@ -27,8 +34,8 @@ export default function Question(){
                         </div>))}
 
                     {
-                        user.rol === "admin" &&
-                        <button className={s.button_respond}>Respond</button>
+                        user.rol === "owner" &&
+                        <button onClick={toggle} className={s.button_respond}>Respond</button>
                     }
                 </div>
             )}

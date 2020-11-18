@@ -29,3 +29,8 @@
     border-radius: 5px;
     height: 20px;
 }
+@media (max-width: 521px){
+    .container_p{
+        margin: 5px;
+    }
+}
