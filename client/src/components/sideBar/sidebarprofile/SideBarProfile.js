@@ -56,36 +56,36 @@ function SideBarProfile({ toogleState }) {
                                 </div>
                             </button>
                         </Link>
-                        {(user.name) && (
-                        <>
-                            <Link to="/userprofile" className={s.link}>
-                                <button onClick={toogleState} className={s.button}>
-                                    <div className={s.container_icons_title}>
-                                        <div className={s.container_icons}>
-                                            <PersonIcon className={s.icon} />
-                                            <p>Perfil Usuario</p>
+                        {(user.name)&&(
+                            <>
+                                <Link to="/userprofile" className={s.link}>
+                                    <button onClick={toogleState} className={s.button}>
+                                        <div className={s.container_icons_title}>
+                                            <div className={s.container_icons}>
+                                                <PersonIcon className={s.icon} />
+                                                <p>Perfil Usuario</p>
+                                            </div>
+                                            <div>
+                                                <ArrowRightIcon />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <ArrowRightIcon />
+                                    </button>
+                                </Link>
+                                <Link to="/orders" className={s.link}>
+                                    <button onClick={toogleState} className={s.button}>
+                                        <div className={s.container_icons_title}>
+                                            <div className={s.container_icons}>
+                                                <AssignmentTurnedInIcon className={s.icon} />
+                                                <p>Ordenes </p>
+                                            </div>
+                                            <div>
+                                                <ArrowRightIcon />
+                                            </div>
                                         </div>
-                                    </div>
-                                </button>
-                            </Link>
-                        </>
+                                    </button>
+                                </Link>
+                            </>
                         )}
-                        <Link to="/orders" className={s.link}>
-                            <button onClick={toogleState} className={s.button}>
-                                <div className={s.container_icons_title}>
-                                    <div className={s.container_icons}>
-                                        <AssignmentTurnedInIcon className={s.icon} />
-                                        <p>Ordenes </p>
-                                    </div>
-                                    <div>
-                                        <ArrowRightIcon />
-                                    </div>
-                                </div>
-                            </button>
-                        </Link>
                     </div>
                     <div className={s.container_empty}></div>
                     {(user.rolId > 2) && (
