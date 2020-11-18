@@ -3,6 +3,7 @@ import s from './OrderDetail.module.css';
 import { useDispatch } from 'react-redux';
 import api from '../../../redux/action-creators';
 import ProductReview from '../ProductReview/ProductReview';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 export default function OrderDetail({order, onBack}) {
     const dispatch = useDispatch()
@@ -39,7 +40,7 @@ export default function OrderDetail({order, onBack}) {
         <div className={s.container}>
             <div className={s.container_table_button}>
                 <div className={s.container_input_button}>
-                    <input type="button" onClick={onBack} value="Back"/>
+                    <ArrowBackIcon onClick={onBack} fontSize="default"/>
                 </div>
                 <table className={s.container_table}>
                     <thead className={s.container_thead}>
@@ -57,7 +58,7 @@ export default function OrderDetail({order, onBack}) {
                                 <td>{product.order.quantity}</td>
                                 <td>${product.order.price}</td>
                                 {order.state === "created" ?
-                                    <td><button onClick={toggle}>Review</button></td>
+                                    <td className={s.boton_review}><button onClick={toggle}>Review</button></td>
                                     : <td></td>
                                 }
                             </tr>
