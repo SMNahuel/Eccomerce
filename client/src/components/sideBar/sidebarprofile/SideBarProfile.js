@@ -20,7 +20,7 @@ function SideBarProfile({ toogleState }) {
 
     useEffect(() => {
         dispatch(api.getMe())
-    }, []);
+    }, [dispatch]);
 
     const onLogOut = () => {
         dispatch(api.logout())

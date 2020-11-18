@@ -19,7 +19,7 @@ module.exports = {
             }]
         })
     },
-    
+
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],
@@ -57,22 +57,45 @@ module.exports = {
         .then(r => !!r)
     },
 
+    rol: function(idUser){
+        return User.findOne({
+            attributes: ['id'],
+            where: {
+                id: idUser
+            },
+            include: {
+                model:Rol,
+                attributes: ['name']
+            }
+        })
+        .then(r => r.rol.name)
+    },
+
     read: function(){
         return User.findAll({
-            attributes: ['id', 'password', 'email'],
-            order:["id"]
+            attributes: ['id', 'email', 'name'],
+            include: {
+                model:Rol,
+                attributes: ['name']
+            }
         })
     },
 
-    create: function({ name, email, password }) {
+    promote: function(id){
+        return User.findByPk(id)
+        .then(user => user.update({rolId: 1}))
+        .then(() => this.read())
+    },
 
-        return User.findOrCreate({
-            where: {
-                name: name,
-                email: email,
-                password: password
-            }
-        })
+    demote: function(id){
+        return User.findByPk(id)
+        .then(user => user.update({rolId: 2}))
+        .then(() => this.read())
+    },
+
+    ban: function(id){
+        return User.findByPk(id)
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
@@ -96,43 +119,4 @@ module.exports = {
         )
         .then(() => this.read())
     },
-
-    delete: function(id){
-        return User.destroy({
-            where: {
-                id: id
-            }
-        })
-        .then(() => this.read())
-    },
-
-
-    rol: function(idUser){
-        return User.findOne({
-            attributes: ['id'],
-            where: {
-                id: idUser
-            },
-            include: {
-                model:Rol,
-                attributes: ['name']
-            }
-        })
-        .then(r => r.rol.name)
-    },
-
-    allUsers: function(){
-        return User.findAll({
-            attributes:['id', 'email', 'name'],
-            include:{
-                model: Rol,
-                attributes:['name']
-            },
-            order: ['id']
-        })
-    }, 
-
-    changeRol: function(user, newRol){
-        console.log(user, newRol)
-    }
 }
