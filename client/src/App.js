@@ -11,7 +11,7 @@ import CRUDCategory from './components/Admin/CRUDCategory/CRUDCategory';
 import CRUDProducts from './components/Admin/CRUDProducts/CRUDProducts'
 import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
-import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
+import UserProfile from './components/UserProfile/UserProfile';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
       <SideBar/>
       <Switch>
         <Route exact path="/" component={Home}/>
+        <Route exact path="/userprofile" component={UserProfile}/>
         <Route exact path="/orders" component={Orders}/>
         <Route exact path="/register" render={() => 
           <div className={s.container_register}>

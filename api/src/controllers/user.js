@@ -112,7 +112,8 @@ module.exports = {
             changeAttributes.password = password
         }
         return User.update(
-            changeAttributes, {
+            changeAttributes, 
+            {
                 where: {
                     id: id
                 }
@@ -120,4 +121,27 @@ module.exports = {
         )
         .then(() => this.read())
     },
+    resetPassword: function(id, password ){
+        let changeAttributes = {};
+        if(password){
+            changeAttributes.password = password
+        }
+        return User.update(
+            changeAttributes, 
+            {
+                where: {
+                    id: id
+                }
+            }
+        )
+        .then(console.log)
+    },
+    delete: function(id){
+        return User.destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(() => this.read())
+    }
 }
