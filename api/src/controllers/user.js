@@ -79,19 +79,28 @@ module.exports = {
 
     setAdmin: function(id){
         return User.findByPk(id)
-        .then(user => user.update({rolId: 3}))
+        .then(user => {
+            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
+            return user.update({rolId: 3});
+        })
         .then(() => this.read())
     },
 
     setGuest: function(id){
         return User.findByPk(id)
-        .then(user => user.update({rolId: 2}))
+        .then(user => {
+            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
+            return user.update({rolId: 2});
+        })
         .then(() => this.read())
     },
 
     ban: function(id){
         return User.findByPk(id)
-        .then(user => user.update({rolId: 1}))
+        .then(user => {
+            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
+            return user.update({rolId: 1});
+        })
         .then(() => this.read())
     },
 

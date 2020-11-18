@@ -1,13 +1,10 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
-const { forAdmin } = require('../middlewares/authenticate');
+const { forAdmin, forGuest } = require('../middlewares/authenticate');
 
 // Ruta qque devuelve las ordenes de un usuario
-server.get('/', (req,res,next)=>{
+server.get('/', forGuest, (req,res,next)=>{
 	const { userId } = req.cookies;
-	if(!userId){
-		return res.status(400).send('A userId is needed to bring all orders');
-	}
 	cart.orders(userId)
 	.then(r=> res.send(r))
 	.catch(next);

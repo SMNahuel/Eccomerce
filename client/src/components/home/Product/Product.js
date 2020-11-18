@@ -4,7 +4,7 @@ import imgNotFound from '../../../img/img404.jpg';
 import CloseIcon from '@material-ui/icons/Close';
 import api from '../../../redux/action-creators';
 import { useDispatch } from 'react-redux';
-import Description from './description/Description'
+import ReactMarkdown from 'react-markdown';
 import Review from './Review/Review';
 import stars from '../../../utils/stars';
 
@@ -83,7 +83,7 @@ export default ({product, onBack}) => {
           <div className={s.container_description}>
             <h3>What you'll learn</h3>
             <div className={s.container_description_product}>
-              <Description product={product} />
+              <ReactMarkdown>{product.description}</ReactMarkdown>
             </div>
           </div>
           <div className={s.container_review}>

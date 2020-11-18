@@ -1,13 +1,11 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 const user = require('../controllers/user');
+const {forGuest} = require('../middlewares/authenticate')
 
 // Ruta que trae el carrito de un usuario
-server.get('/', (req, res, next) => {
+server.get('/', forGuest, (req, res, next) => {
     const { userId } = req.cookies;
-    if(!userId){
-        return res.status(400).send('A userId is needed to bring a cart');
-    }
     cart.cartOf(userId)
     .then(r => res.send(r))
     .catch(next)
@@ -40,12 +38,9 @@ server.post('/', (req, res, next) => {
 })
 
 // Ruta que actualiza el carrito de un usuario
-server.put('/', (req, res, next) => {
+server.put('/', forGuest, (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
-    if (!userId) {
-        return res.status(400).send('A userId is required to update a cart');
-    }
     if (!id || !products) {
         return res.status(400).send('A cart content is required to update a cart');
     }
@@ -61,12 +56,9 @@ server.put('/', (req, res, next) => {
 })
 
 // ruta que crea(confirma para procesado) el carrito de un usuario
-server.put('/create', (req, res, next) => {
+server.put('/create', forGuest, (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
-    if (!userId) {
-        return res.status(400).send('A userId is required to create a cart');
-    }
     if (!id || !products) {
         return res.status(400).send('A cart content is required to create a cart');
     }
@@ -82,12 +74,9 @@ server.put('/create', (req, res, next) => {
 })
 
 // ruta que cancela el carrito de un usuario
-server.put('/cancel', (req, res, next) => {
+server.put('/cancel', forGuest, (req, res, next) => {
     const { userId } = req.cookies;
     const { id, products } = req.body
-    if (!userId) {
-        return res.status(400).send('A userId is required to cancel a cart');
-    }
     if (!id || !products) {
         return res.status(400).send('A cart content is required to cancel a cart');
     }
