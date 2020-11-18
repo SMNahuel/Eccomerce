@@ -13,7 +13,8 @@ export default function CRUDUsers(){
     }, [])
 
     const onChangeRol = (user, newRol) => {
-        console.log(user, newRol)
+        axios.put(`${process.env.REACT_APP_API_URL}/user/changeRol`,
+        {user, newRol})
     }
 
     return(

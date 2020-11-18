@@ -89,6 +89,13 @@ server.get('/all', (req, res, next) => {
     user.allUsers()
     .then(r => res.send(r))
     .catch(next);
-}) 
+})
+
+server.put('/changeRol', (req, res, next) => {
+    const { user, newRol } = req.body
+    user.changeRol(user, newRol)
+    .then(r => res.send(r))
+    .catch(next)
+})
 
 module.exports = server;

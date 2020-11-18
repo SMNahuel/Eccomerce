@@ -130,5 +130,9 @@ module.exports = {
             },
             order: ['id']
         })
-    } 
+    }, 
+
+    changeRol: function(user, newRol){
+        console.log(user, newRol)
+    }
 }
