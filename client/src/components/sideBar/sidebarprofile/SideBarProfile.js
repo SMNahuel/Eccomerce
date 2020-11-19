@@ -88,7 +88,7 @@ function SideBarProfile({ toogleState }) {
                         )}
                     </div>
                     <div className={s.container_empty}></div>
-                    {(user.rolId > 2) && (
+                    {(user.rolId > 3) && (
                         <>
                             <h4 className={s.title_h4}>Admin</h4>
                             <Link to="/admin/categories" className={s.link}>
