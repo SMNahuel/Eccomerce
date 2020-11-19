@@ -5,10 +5,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useSelector, useDispatch } from 'react-redux';
-
 
 function UserProfile(props) {
 
@@ -44,8 +44,13 @@ function UserProfile(props) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button onClick={data} size="small" color="primary">
-                        Cargar imagen de perfil
+                    <Input type="file" size="small" color="primary">
+                        Selecciona imagen de perfil
+                    </Input>
+                </CardActions>
+                <CardActions>
+                    <Button type="submit" size="small" color="primary">
+                        Cargar
                     </Button>
                 </CardActions>
             </Card>
