@@ -28,9 +28,9 @@ server.post('/register', (req, res, next) => {
         return res.status(400).send('Body must have a password for register')
     }
     user.register(req.body)
-    .then(r => {
-        req.login(r, err => err && next(err))
-        return res.send(r);
+    .then(session => {
+        req.login(session, err => err && next(err))
+        return res.send(session);
     })
     .catch(next)
 })

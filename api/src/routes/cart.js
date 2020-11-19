@@ -1,7 +1,6 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
-const user = require('../controllers/user');
-const { forGuest } = require('../middlewares/authenticate')
+const { forAnonym, forGuest } = require('../middlewares/authenticate')
 
 // Ruta que trae el carrito de un usuario
 server.get('/', forGuest, (req, res, next) => {
@@ -19,30 +18,20 @@ server.post('/', (req, res, next) => {
 
     if (!req.isAuthenticated()) {
         cart.addToCartAnonimus(req.body)
-        .then(r => {
-            res.cookie("userId", r.userId, cookieOptions).send(r)
+        .then(([session, cart]) => {
+            req.login(session, err => err && next(err))
+            return res.send(cart);
         })
         .catch(next)
-    }
-
-    if (!userId) {
     } else {
-        user.exists(userId)
-        .then(exists => {
-            if (!exists) {
-                return cart.addToCartAnonimus(req.body)
-                .then(r => res.cookie("userId", r.userId, cookieOptions).send(r))
-            } else {
-                return cart.addToCart(userId, req.body)
-                .then(r => res.send(r))
-            }
-        })
+        return cart.addToCart(req.user.id, req.body)
+        .then(r => res.send(r))
         .catch(next)
     }
 })
 
 // Ruta que actualiza el carrito de un usuario
-server.put('/', forGuest, (req, res, next) => {
+server.put('/', forAnonym, (req, res, next) => {
     const { id, products } = req.body
     if (!id || !products) {
         return res.status(400).send('A cart content is required to update a cart');
@@ -64,7 +53,7 @@ server.put('/create', forGuest, (req, res, next) => {
 })
 
 // ruta que cancela el carrito de un usuario
-server.put('/cancel', forGuest, (req, res, next) => {
+server.put('/cancel', forAnonym, (req, res, next) => {
     const { id, products } = req.body
     if (!id || !products) {
         return res.status(400).send('A cart content is required to cancel a cart');

@@ -10,9 +10,9 @@ module.exports = {
                 attributes: ['name']
             }
         })
-        .then(user => matchPassword(user, password))
-        .then(checkBan)
-        .then(user => session(user))
+        .then(user => this.matchPassword(user, password))
+        .then(this.checkBan)
+        .then(this.session)
     },
 
     register: function ({ email, name, password}) {
@@ -24,7 +24,7 @@ module.exports = {
             if (user) throw `User ${email} already exists`
             return User.create({ name, email, password, rolId: 2})
         })
-        .then(user => session(user))
+        .then(this.session)
     },
 
     anonymous: function () {
@@ -33,14 +33,14 @@ module.exports = {
 
     getById: function(userId){
         return User.findOne({
-            attributes: ['email', 'name', 'rolId'],
+            attributes: ['id', 'email', 'name', 'rolId'],
             where:{ id: userId },
             include: {
                 model:Rol,
                 attributes: ['name']
             }
         })
-        .then(user => session(user))
+        .then(this.session)
     },
 
     exists: function(id){
@@ -66,43 +66,36 @@ module.exports = {
 
     setAdmin: function(id){
         return User.findByPk(id)
-        .then(ownerProtect)
+        .then(this.ownerProtect)
         .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
     setGuest: function(id){
         return User.findByPk(id)
-        .then(ownerProtect)
+        .then(this.ownerProtect)
         .then(user => user.update({rolId: 2}))
         .then(() => this.read())
     },
 
     ban: function(id){
         return User.findByPk(id)
-        .then(ownerProtect)
+        .then(this.ownerProtect)
         .then(user => user.update({rolId: 1}))
         .then(() => this.read())
     },
 
     changePassword: function(id, oldPassword, newPassword){
         return User.findByPk(id)
-        .then(user => matchPassword(user, password))
-        .then(user => {
-            user.password = newPassword;
-            return user.save();
-        })
+        .then(user => this.matchPassword(user, oldPassword))
+        .then(user => user.update({password: newPassword}))
         .then(() => 'success')
     },
 
     update: function(id, { name, email}){
         let changeAttributes = {};
-        if(name) {
-            changeAttributes.name = name;
-        }
-        if(email){
-            changeAttributes.email = email;
-        }
+        if (name) changeAttributes.name = name; 
+        if (email) changeAttributes.email = email; 
         return User.update(
             changeAttributes, 
             { where: { id } }
@@ -116,7 +109,7 @@ module.exports = {
             email: user.email,
             name: user.name,
             rolId: user.rolId,
-            rol: user.rol.name || 'guest',
+            rol: user.rol ? user.rol.name : 'guest',
         }
     },
     
@@ -131,7 +124,7 @@ module.exports = {
     },
 
     ownerProtect: function (user) {
-        if (user.rolId > 3) throw `the role of an owner cannot be changed`
+        if (user.rolId > 4) throw `the role of an owner cannot be changed`
         return user;
     }
 }

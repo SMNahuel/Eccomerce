@@ -27,7 +27,7 @@ module.exports = {
         return Promise.all([userPromise, cartPromise, productPromise])
         .then(([user, cart, product]) => {
             let stockRest = product.stock - quantity
-            if (stockRest < 0) throw new Error('Not enough stock')
+            if (stockRest < 0) throw 'Not enough stock'
             return Promise.all([
                 user.addCart(cart),
                 cart.addProduct(product, {
@@ -39,13 +39,7 @@ module.exports = {
                 Product.update({stock:stockRest},{where:{id:productId}})
             ])
         })
-        .then(([user]) => Promise.all([{
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            rolId: user.rolId,
-            rol: 'guest',
-        }, this.cartOf(user.id)]))
+        .then(([u]) => Promise.all([user.session(u), this.cartOf(u.id)]))
     },
 
     addToCart: function(userId, { productId, quantity }){
@@ -60,7 +54,7 @@ module.exports = {
         return Promise.all([cartPromise, productPromise])
         .then(([cart, product]) => {
             let stockRest = product.stock - quantity
-            if (stockRest < 0) throw new Error('Not enough stock')
+            if (stockRest < 0) throw 'Not enough stock'
             return Promise.all([
                 cart.addProduct(product, {
                     through: {
@@ -74,7 +68,7 @@ module.exports = {
         .then(() => this.cartOf(userId))
     },
 
-    _belongsTo: function(cartId, userId){
+    belongsTo: function(cartId, userId){
         return Cart.findOne({
             where:{
                 id: cartId,

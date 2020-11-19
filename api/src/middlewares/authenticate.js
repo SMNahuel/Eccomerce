@@ -35,7 +35,7 @@ module.exports = {
         if (!req.isAuthenticated()) {
             return res.status(400).send('You must be authenticated to access this route');
         }
-        if (req.user.rolId < 4) {
+        if (req.user.rolId < 5) {
             return res.status(400).send('You must be a Owner to access this route');
         }
         next();
@@ -45,13 +45,23 @@ module.exports = {
         if (!req.isAuthenticated()) {
             return res.status(400).send('You must be authenticated to access this route');
         }
-        if (req.user.rolId < 3) {
+        if (req.user.rolId < 4) {
             return res.status(400).send('You must be a Admin to access this route');
         }
         next();
     },
 
     forGuest: (req, res, next) => {
+        if (!req.isAuthenticated()) {
+            return res.status(400).send('You must be authenticated to access this route');
+        }
+        if (req.user.rolId < 3) {
+            return res.status(400).send('You must be registered to access this route');
+        }
+        next();
+    },
+
+    forAnonym: (req, res, next) => {
         if (!req.isAuthenticated()) {
             return res.status(400).send('You must be authenticated to access this route');
         }
