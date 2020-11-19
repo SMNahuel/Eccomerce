@@ -4,7 +4,7 @@ import ReviewList from './reviewlist/ReviewList';
 import stars from '../../../../utils/stars'
 import FormAddReview from './formAddReview/formAddReview'
 
-export default function Review({reviews, productId}) {
+export default function Review({reviews, productId, user}) {
     const [addReview, setAddReview] = useState(false)
     const [seeReview, setReview] = useState(reviews)
     const onAddReview = () => {
@@ -33,7 +33,7 @@ export default function Review({reviews, productId}) {
         <div className={s.container_review_main}>
             <div className={s.container_review_average}>
                 <div className={s.container_average}>
-                    <p className={s.p_number_average}>{numberAverage()}</p>
+                    <p className={s.p_number_average}>{isNaN(numberAverage())? 0 : numberAverage()}</p>
                     <p className={s.p_stars}>{stars(Math.round(numberAverage()))}</p>
                     <p className={s.p_text}>Average based on {reviews.length} reviews</p>
                 </div>
@@ -59,9 +59,11 @@ export default function Review({reviews, productId}) {
                         <progress max={reviews.length} value={quantityStar(1)}>1 stars</progress>
                     </div>
                 </div>
+                <div>
+                    {!addReview && !(reviews.filter(review => review.userId === user.id)).length && <button onClick={() => onAddReview()} className={s.btnReview}>Add my review</button>}
+                    {addReview && <FormAddReview setAddReview={setAddReview} productId={productId}/>}
+                </div>
             </div>
-            <button onClick={() => onAddReview()}>Add my review</button>
-            {addReview && <FormAddReview setAddReview={setAddReview} productId={productId}/>}
             <div className={s.container_review_all_positive_negative}>
                 <button>
                     <div className={s.container_allPositiveNegative} onClick={() => onReview("all")}>

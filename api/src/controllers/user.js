@@ -41,7 +41,7 @@ module.exports = {
 
     getById: function(userId){
         return User.findOne({
-            attributes: ['email', 'name', 'rolId'],
+            attributes: ['email', 'name', 'rolId', 'id'],
             where:{ id: userId },
             include: {
                 model:Rol,
@@ -53,6 +53,7 @@ module.exports = {
             name: user.name,
             rolId: user.rolId,
             rol: user.rol.name,
+            id: user.id
         }))
     },
 

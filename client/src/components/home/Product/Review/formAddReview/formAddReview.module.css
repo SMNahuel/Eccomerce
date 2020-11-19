@@ -17,5 +17,16 @@
 
 .clasification{
     direction: rtl;
-    unicode-bidi: bidi-override;
+    margin-right: 32%;
+}
+
+.message{
+    display: flex;
+    flex-direction: column;
+}
+
+.FormReview{
+    margin-top: 10%;
+    width: 100%;
+    margin-right: 100%;
 }

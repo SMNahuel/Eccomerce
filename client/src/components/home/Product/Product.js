@@ -3,7 +3,7 @@ import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import CloseIcon from '@material-ui/icons/Close';
 import api from '../../../redux/action-creators';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import Review from './Review/Review';
 import stars from '../../../utils/stars';
@@ -15,7 +15,7 @@ export default ({product, onBack}) => {
   `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
   const dispatch = useDispatch()
-  
+  const user = useSelector(state => state.user)
   const availableQuantities = (function () {
     let ret = [];
     for (let i = 1; i <= product.stock; i++){
@@ -90,7 +90,7 @@ export default ({product, onBack}) => {
           <div className={s.container_review}>
             <h3>Product reviews</h3>
             <div className={s.container_description_review}>
-              <Review reviews={product.reviews} productId={product.id}/>
+              <Review reviews={product.reviews} productId={product.id} user={user} />
             </div>
           </div>
           <div className={s.container_question_answers}>
