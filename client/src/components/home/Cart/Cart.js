@@ -139,7 +139,7 @@ function Cart(props) {
                             <button onClick={onUnmount}><HighlightOffIcon fontSize="large" /></button>
                         </div>
                         <div className={s.cartEmpty}>
-                            <img src={cartEmpty}/>
+                            <img src={cartEmpty} alt="Cart is empty"/>
                         </div>
                     </div>
                 </div>

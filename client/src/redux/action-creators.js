@@ -192,6 +192,7 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
+    FORMRESPOND: 'FORMRESPOND',
 
     _dispatchPromise: function(promise, type, dispatch){
         return promise

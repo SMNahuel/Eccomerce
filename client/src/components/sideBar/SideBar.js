@@ -12,7 +12,7 @@ export default function SideBar() {
             <div className={s.icon} onClick={toogleState}>
                 <DehazeIcon/>
             </div>
-            <div className={s.sideBar} style={active ? {left: '0'} : {left: '-350px'}}>
+            <div className={s.sideBar} style={active ? {left: '0'} : {left: '-450px'}}>
                 <SideBarProfile toogleState={toogleState} />
             </div>
         </div>

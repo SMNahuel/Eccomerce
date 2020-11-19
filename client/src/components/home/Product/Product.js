@@ -36,7 +36,7 @@ export default ({product, onBack}) => {
     ref.current.style.animation = s.containerUnmount + ' 450ms linear'
     setTimeout(onBack, 400);
   };
-
+  
   return (
     <div className={s.container} ref={ref}>
       <div className={s.container_main}>

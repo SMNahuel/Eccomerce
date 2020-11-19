@@ -20,6 +20,10 @@ module.exports = {
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Review,
+                    attributes: ['id', 'qualification', 'message', 'productId', 'userId'],
                 }
             ]
         })
@@ -60,19 +64,42 @@ module.exports = {
             product.setCategories(categories)
         ))
     },
-    addReview: function(id, review, idUser, qualification){
+    addReview: function(id, message, idUser, qualification){
         let productPromise = Product.findByPk(id)
-        return Promise.all([id, review, idUser])
+        return Promise.all([id, message, idUser])
         .then(Review.create({
             productId: id, 
             userId: idUser,
-            message: review,
+            message: message,
             qualification
         }))
         .then(() => this.detail(id))
         
     },
 
+    deletedReview: function(id){
+        return Review.destroy({
+            where: {
+                id                
+            }
+        })
+        .then(() => this.read())
+    },
+
+    updateReview:function(id, {qualification, message}){
+        let atributesToUpdate = {};
+        if (qualification) atributesToUpdate.qualification = qualification;
+        if (message) atributesToUpdate.message = message;
+        return Review.update(
+            atributesToUpdate,
+            { 
+                where: { 
+                    id
+                }
+            }
+        )
+        .then(() => this.read());
+    },
 
     update: function(id, { name, description, price, stock, categories }) {
         let atributesToUpdate = {};

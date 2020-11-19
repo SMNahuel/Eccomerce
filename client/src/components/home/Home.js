@@ -8,6 +8,7 @@ import Categories from './Categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
 import Cart from './Cart/Cart'
+import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
 
 export default function Home() {
 
@@ -21,6 +22,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
+    const formRespond = useSelector(state => state.formRespond)
     
     useEffect(() => {
         if (!categories.length){
@@ -74,8 +76,13 @@ export default function Home() {
 
     return(
         <>
+            {
+               state.detailedProduct &&
+               <div className={s.container_absolute}>
+                   <Product product={state.detailedProduct} onBack={handleBack} />
+               </div>
+            }
             <div className={s.container}>
-                {state.detailedProduct && <Product product={state.detailedProduct} onBack={handleBack} />}
                 <div className={s.navBar}>
                     <h1 className={s.title}>Pagina</h1>
                     <SearchBar handleSearch={handleSearch} />
@@ -86,7 +93,11 @@ export default function Home() {
                 <Catalog products={state.products || products} handleDetail={handleDetail} />
                 <Cart />
             </div>
-
+            
+            {
+                formRespond &&
+                <FormRespond/>
+            }
         </>
     )
 

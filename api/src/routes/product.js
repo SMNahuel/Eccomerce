@@ -62,13 +62,39 @@ server.post('/', forAdmin, (req, res, next) => {
 //Ruta para agregar review
 server.post('/review/:id', (req,res,next) =>{
 	const {id} = req.params;
-	const {review, idUser, qualification} = req.body;
+	const {message, idUser, qualification} = req.body;
 
-	if(!review) {
-		return res.status(400).send('Need a review ');
+	if(!message && !qualification) {
+		return res.status(400).send('Need a review or qualification');
 	}
 
-	product.addReview(id, review, idUser, qualification)
+	product.addReview(id, message, idUser,qualification)
+	.then(r => res.send(r))
+	.catch(next);
+})
+
+//Ruta eliminar review
+server.delete('/review/:id', (req,res,next)=>{
+	const {id} = req.params;
+	if (!id) {
+		return res.status(400).send('A id is needed to deleted the review of a product');
+	}
+
+	product.deletedReview(id)
+	.then(r => res.send(r))
+	.catch(next);
+
+})
+
+//Ruta que permite hacer update a un review
+server.put('/review/:id', (req,res,next)=>{
+	const {id} = req.params;
+	const {qualification, message} = req.body;
+	if (!qualification && !message && !id ) {
+		return res.status(400).send('At least one attribute (qualification message id) of product is needed to modify it');
+	}
+
+	product.updateReview(id, req.body)
 	.then(r => res.send(r))
 	.catch(next);
 })
