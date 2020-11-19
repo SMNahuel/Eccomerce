@@ -1,55 +1,65 @@
+const passport = require('passport');
+const LocalStrategy  = require('passport-local').Strategy;
 const user = require('../controllers/user');
 
+passport.use(
+	new LocalStrategy(
+		{
+			usernameField: 'email',
+			passwordField: 'password'
+		},
+		(email, password, done) => {
+            user.login(email, password)
+            .then(user => done(null, user))
+            .catch(err => done(err, false));
+		}
+	)
+);
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    user.getById(id)
+    .then(user => done(null, user))
+    .catch(err => done(err));
+});
+
 module.exports = {
-    cookieOptions: {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 16),
-        httpOnly: true,
-        /* sameSite: 'none',
-        secure: true */
-    },
+    login: passport.authenticate('local'),
+
+    logout: (req, res)=> (req.logout(),res.send({})),
 
     forOwner: (req, res, next) => {
-        const { userId } = req.cookies
-        if (!userId) {
+        if (!req.isAuthenticated()) {
             return res.status(400).send('You must be authenticated to access this route');
         }
-        user.rol(userId)
-        .then(r => {
-            if (r < 4) {
-                return res.status(400).send('You must be a Owner to access this route');
-            } else {
-                next();
-            }
-        })
+        if (req.user.rolId < 4) {
+            return res.status(400).send('You must be a Owner to access this route');
+        }
+        next();
     },
 
     forAdmin: (req, res, next) => {
-        const { userId } = req.cookies
-        if (!userId) {
+        if (!req.isAuthenticated()) {
             return res.status(400).send('You must be authenticated to access this route');
         }
-        user.rol(userId)
-        .then(r => {
-            if (r < 3) {
-                return res.status(400).send('You must be a Owner to access this route');
-            } else {
-                next();
-            }
-        })
+        if (req.user.rolId < 3) {
+            return res.status(400).send('You must be a Admin to access this route');
+        }
+        next();
     },
 
     forGuest: (req, res, next) => {
-        const { userId } = req.cookies
-        if (!userId) {
+        if (!req.isAuthenticated()) {
             return res.status(400).send('You must be authenticated to access this route');
         }
-        user.rol(userId)
-        .then(r => {
-            if (r < 2) {
-                return res.status(400).send('You must be a Owner to access this route');
-            } else {
-                next();
-            }
-        })
-    }
+        if (req.user.rolId < 2) {
+            return res.status(400).send('Your account has been banned contact the company to recover your account');
+        }
+        next();
+    },
+
+    passport: passport,
 }

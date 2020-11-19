@@ -1,7 +1,7 @@
 const { User, Rol } = require('../db.js');
 
 module.exports = {
-    login: function ({ email, password }) {
+    login: function (email, password) {
         return User.findOne({
             attributes: ['id', 'email', 'password', 'name', 'rolId'],
             where: { email },
@@ -10,16 +10,9 @@ module.exports = {
                 attributes: ['name']
             }
         })
-        .then(user => {
-            if (user.password !== password) throw new Error('wrong password')
-            if (user.rolId < 2) throw 'Your account has been banned contact the company to recover your account'
-            return [user.id, {
-                email: user.email,
-                name: user.name,
-                rolId: user.rolId,
-                rol: user.rol.name,
-            }]
-        })
+        .then(user => matchPassword(user, password))
+        .then(checkBan)
+        .then(user => session(user))
     },
 
     register: function ({ email, name, password}) {
@@ -28,15 +21,14 @@ module.exports = {
             where: { email }
         })
         .then(user => {
-            if (user) throw new Error(`User ${email} already exists`)
+            if (user) throw `User ${email} already exists`
             return User.create({ name, email, password, rolId: 2})
         })
-        .then(user => [user.id, {
-            email: user.email,
-            name: user.name,
-            rolId: user.rolId,
-            rol: 'guest',
-        }])
+        .then(user => session(user))
+    },
+
+    anonymous: function () {
+        return User.create({rolId: 2})
     },
 
     getById: function(userId){
@@ -48,12 +40,7 @@ module.exports = {
                 attributes: ['name']
             }
         })
-        .then(user => ({
-            email: user.email,
-            name: user.name,
-            rolId: user.rolId,
-            rol: user.rol.name,
-        }))
+        .then(user => session(user))
     },
 
     exists: function(id){
@@ -79,35 +66,29 @@ module.exports = {
 
     setAdmin: function(id){
         return User.findByPk(id)
-        .then(user => {
-            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
-            return user.update({rolId: 3});
-        })
+        .then(ownerProtect)
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
     setGuest: function(id){
         return User.findByPk(id)
-        .then(user => {
-            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
-            return user.update({rolId: 2});
-        })
+        .then(ownerProtect)
+        .then(user => user.update({rolId: 2}))
         .then(() => this.read())
     },
 
     ban: function(id){
         return User.findByPk(id)
-        .then(user => {
-            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
-            return user.update({rolId: 1});
-        })
+        .then(ownerProtect)
+        .then(user => user.update({rolId: 1}))
         .then(() => this.read())
     },
 
     changePassword: function(id, oldPassword, newPassword){
         return User.findByPk(id)
+        .then(user => matchPassword(user, password))
         .then(user => {
-            if (user.password !== oldPassword) throw new Error(`Wrong password`)
             user.password = newPassword;
             return user.save();
         })
@@ -124,12 +105,33 @@ module.exports = {
         }
         return User.update(
             changeAttributes, 
-            {
-                where: {
-                    id: id
-                }
-            }
+            { where: { id } }
         )
         .then(() => this.read())
+    },
+
+    session: function (user){
+        return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            rolId: user.rolId,
+            rol: user.rol.name || 'guest',
+        }
+    },
+    
+    matchPassword: function (user, password) {
+        if (user.password !== password) throw `Wrong password`;
+        return user;
+    },
+    
+    checkBan: function (user) {
+        if (user.rolId < 2) throw 'Your account has been banned contact the company to recover your account'
+        return user;
+    },
+
+    ownerProtect: function (user) {
+        if (user.rolId > 3) throw `the role of an owner cannot be changed`
+        return user;
     }
 }

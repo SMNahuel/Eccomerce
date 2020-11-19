@@ -1,4 +1,5 @@
 const { Cart, User, Product, Image } = require('../db.js');
+const user = require('./user');
 const order = require('./order');
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
     },
 
     addToCartAnonimus: function({ productId, quantity }){
-        const userPromise = User.create()
+        const userPromise = user.anonymous()
         const cartPromise = Cart.create()
         const productPromise = Product.findByPk(productId)
         return Promise.all([userPromise, cartPromise, productPromise])
@@ -38,7 +39,13 @@ module.exports = {
                 Product.update({stock:stockRest},{where:{id:productId}})
             ])
         })
-        .then(([user]) => this.cartOf(user.id))
+        .then(([user]) => Promise.all([{
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            rolId: user.rolId,
+            rol: 'guest',
+        }, this.cartOf(user.id)]))
     },
 
     addToCart: function(userId, { productId, quantity }){
@@ -67,7 +74,7 @@ module.exports = {
         .then(() => this.cartOf(userId))
     },
 
-    belongsTo: function(cartId, userId){
+    _belongsTo: function(cartId, userId){
         return Cart.findOne({
             where:{
                 id: cartId,
@@ -78,18 +85,36 @@ module.exports = {
     },
 
     update: function(userId, {id, products}){
-        return Promise.all(products.map(p => order.update(id, p)))
+        return this.belongsTo(id, userId)
+        .then(belongsToUser => {
+            if (!belongsToUser){
+                throw 'The cart must belong to the user to be updated'
+            }
+            return Promise.all(products.map(p => order.update(id, p)))
+        })
         .then(() => this.cartOf(userId))
     },
 
     create: function(userId, {id, products}){
-        return Promise.all(products.map(p => order.updateWithActualPrices(id, p)))
+        return this.belongsTo(id, userId)
+        .then(belongsToUser => {
+            if (!belongsToUser){
+                throw 'The cart must belong to the user to be created'
+            }
+            return Promise.all(products.map(p => order.updateWithActualPrices(id, p)))
+        })
         .then(() => Cart.update({state:'created'},{where:{id:id}}))
         .then(() => this.cartOf(userId))
     },
 
     cancel: function(userId, {id, products}){
-        return Promise.all(products.map(p => order.release(id, p)))
+        return this.belongsTo(id, userId)
+        .then(belongsToUser => {
+            if (!belongsToUser){
+                throw 'The cart must belong to the user to be created'
+            }
+            return Promise.all(products.map(p => order.release(id, p)))
+        })
         .then(() => Cart.update({state:'canceled'},{where:{id:id}}))
         .then(() => this.cartOf(userId))
     },
