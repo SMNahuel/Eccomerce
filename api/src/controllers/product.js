@@ -1,4 +1,4 @@
-const { Product, Category, Image, Review } = require('../db.js');
+const { Product, Category, Image, Review, User } = require('../db.js');
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -24,6 +24,10 @@ module.exports = {
                 {
                     model: Review,
                     attributes: ['id', 'qualification', 'message', 'productId', 'userId'],
+                    include:{
+                        model: User,
+                        attributes: ['name']
+                    }
                 }
             ]
         })
@@ -71,7 +75,7 @@ module.exports = {
             message: message,
             qualification
         })
-        .then(() => this.detail(id))
+        .then(() => this.read())
     },
 
     deletedReview: function(id){

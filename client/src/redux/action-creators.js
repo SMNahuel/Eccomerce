@@ -72,6 +72,14 @@ const actionCreators = {
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
+    addReview: function(productId, review) {
+        return dispatch => {
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
+            review,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
+        }
+    },
 
     CART: 'CART',
     getCart: function() {

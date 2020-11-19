@@ -5,10 +5,21 @@ import stars from '../../../../utils/stars'
 import FormAddReview from './formAddReview/formAddReview'
 
 export default function Review({reviews, productId}) {
-    console.log("reviews: ", reviews)
     const [addReview, setAddReview] = useState(false)
+    const [seeReview, setReview] = useState(reviews)
     const onAddReview = () => {
         setAddReview(!addReview)
+    }
+    const onReview = (state) => {
+        if(state === "all") setReview(reviews)
+        if(state === "positive"){
+            let reviewsFiltred = reviews.filter(review => review.qualification > 2)
+            setReview(reviewsFiltred)
+        }
+        if(state === "negative"){
+            let reviewsFiltred = reviews.filter(review => review.qualification < 4)
+            setReview(reviewsFiltred)
+        }
     }
     return (
         <div className={s.container_review_main}>
@@ -45,28 +56,30 @@ export default function Review({reviews, productId}) {
             {addReview && <FormAddReview setAddReview={setAddReview} productId={productId}/>}
             <div className={s.container_review_all_positive_negative}>
                 <button>
-                    <div className={s.container_allPositiveNegative}>
+                    <div className={s.container_allPositiveNegative} onClick={() => onReview("all")}>
                         <p>All</p>
                     </div>
                 </button>
                 <button>
-                    <div className={s.container_allPositiveNegative}>
+                    <div className={s.container_allPositiveNegative} onClick={() => onReview("positive")}>
                         <p>Positive</p>
                     </div>
                 </button>
                 <button>
-                    <div className={s.container_allPositiveNegative}>
+                    <div className={s.container_allPositiveNegative} onClick={() => onReview("negative")}>
                         <p>Negative</p>
                     </div>
                 </button>
             </div>
             <div className={s.container_reviewList}>
-                <ReviewList stars={stars(5)}/>
-                <ReviewList stars={stars(3)}/>
-                <ReviewList stars={stars(5)}/>
-                <ReviewList stars={stars(2)}/>
-                <ReviewList stars={stars(1)}/>
-                <ReviewList stars={stars(3)}/>
+                {seeReview.map(review => (
+                    <ReviewList
+                    stars={stars(review.qualification)}
+                    key={review.id}
+                    message={review.message}
+                    user={review.user.name}
+                    />
+                ))}
             </div>
         </div>
     )

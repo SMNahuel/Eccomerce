@@ -1,0 +1,21 @@
+.radio{
+    display:none
+}
+
+.radio:checked ~ label{
+    color: orange;
+}
+
+.star{
+    color: grey
+}
+
+.star:hover,
+.star:hover ~ label{
+    color: orange;
+}
+
+.clasification{
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
