@@ -14,7 +14,6 @@ export default ({product, onBack}) => {
   const image = product.images[0] ?
   `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
-
   const dispatch = useDispatch()
   
   const availableQuantities = (function () {
@@ -91,7 +90,7 @@ export default ({product, onBack}) => {
           <div className={s.container_review}>
             <h3>Product reviews</h3>
             <div className={s.container_description_review}>
-              <Review />
+              <Review reviews={product.reviews} productId={product.id}/>
             </div>
           </div>
           <div className={s.container_question_answers}>

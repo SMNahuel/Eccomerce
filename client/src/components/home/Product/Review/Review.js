@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Review.module.css'
 import ReviewList from './reviewlist/ReviewList';
 import stars from '../../../../utils/stars'
+import FormAddReview from './formAddReview/formAddReview'
 
-export default function Review() {
+export default function Review({reviews, productId}) {
+    console.log("reviews: ", reviews)
+    const [addReview, setAddReview] = useState(false)
+    const onAddReview = () => {
+        setAddReview(!addReview)
+    }
     return (
         <div className={s.container_review_main}>
             <div className={s.container_review_average}>
                 <div className={s.container_average}>
                     <p className={s.p_number_average}>4.0</p>
                     <p className={s.p_stars}>{stars(4)}</p>
-                    <p className={s.p_text}>Average based on X reviews</p>
+                    <p className={s.p_text}>Average based on {reviews.length} reviews</p>
                 </div>
                 <div className={s.container_progress}>
                     <div className={s.container_label_progress}>
@@ -35,6 +41,8 @@ export default function Review() {
                     </div>
                 </div>
             </div>
+            <button onClick={() => onAddReview()}>Add my review</button>
+            {addReview && <FormAddReview setAddReview={setAddReview} productId={productId}/>}
             <div className={s.container_review_all_positive_negative}>
                 <button>
                     <div className={s.container_allPositiveNegative}>

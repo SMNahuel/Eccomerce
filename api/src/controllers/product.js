@@ -65,16 +65,13 @@ module.exports = {
         ))
     },
     addReview: function(id, message, idUser, qualification){
-        let productPromise = Product.findByPk(id)
-        return Promise.all([id, message, idUser])
-        .then(Review.create({
+        return Review.create({
             productId: id, 
             userId: idUser,
             message: message,
             qualification
-        }))
+        })
         .then(() => this.detail(id))
-        
     },
 
     deletedReview: function(id){

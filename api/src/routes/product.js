@@ -61,13 +61,13 @@ server.post('/', forAdmin, (req, res, next) => {
 //Ruta para agregar review
 server.post('/review/:id', (req,res,next) =>{
 	const {id} = req.params;
-	const {message, idUser, qualification} = req.body;
+	const { userId } = req.cookies;
+	const {message, qualification} = req.body;
 
 	if(!message && !qualification) {
 		return res.status(400).send('Need a review or qualification');
 	}
-
-	product.addReview(id, message, idUser,qualification)
+	product.addReview(id, message, userId, qualification)
 	.then(r => res.send(r))
 	.catch(next);
 })
