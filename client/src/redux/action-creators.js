@@ -195,6 +195,7 @@ const actionCreators = {
     addImgUser: function(img){
         return dispatch => {
             const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/imgage`,
+            {img},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
