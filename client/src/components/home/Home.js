@@ -9,6 +9,7 @@ import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
 import Cart from './Cart/Cart'
 import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
+import CarouselB from './carousel/CarouselB';
 
 export default function Home() {
 
@@ -90,6 +91,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={s.home}>
+                <CarouselB/>
                 <Catalog products={state.products || products} handleDetail={handleDetail} />
                 <Cart />
             </div>
