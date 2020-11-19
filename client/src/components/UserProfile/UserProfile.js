@@ -11,9 +11,12 @@ import Typography from '@material-ui/core/Typography';
 import { useSelector, useDispatch } from 'react-redux';
 
 function UserProfile(props) {
-
+    
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+
+    const image = user.image &&
+    `${process.env.REACT_APP_API_URL}${user.image}`
 
     const data = () => {
         console.log(user)
@@ -27,7 +30,7 @@ function UserProfile(props) {
                         component="img"
                         alt="Contemplative Reptile"
                         height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        image= {image}
                         title="Contemplative Reptile"
                     />
                     <CardContent>

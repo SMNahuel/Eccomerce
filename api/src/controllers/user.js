@@ -1,14 +1,17 @@
-const { User, Rol } = require('../db.js');
+const { User, Rol, Image } = require('../db.js');
 
 module.exports = {
     login: function (email, password) {
         return User.findOne({
             attributes: ['id', 'email', 'password', 'name', 'rolId'],
             where: { email },
-            include: {
+            include: [{
                 model:Rol,
                 attributes: ['name']
-            }
+            }, {
+                model:Image,
+                attributes: ['url']
+            }]
         })
         .then(user => this.matchPassword(user, password))
         .then(this.checkBan)
@@ -24,7 +27,7 @@ module.exports = {
             if (user) throw `User ${email} already exists`
             return User.create({ name, email, password, rolId: 2})
         })
-        .then(this.session)
+        .then(user => this.getById(user.id))
     },
 
     anonymous: function () {
@@ -35,10 +38,13 @@ module.exports = {
         return User.findOne({
             attributes: ['id', 'email', 'name', 'rolId'],
             where:{ id: userId },
-            include: {
+            include: [{
                 model:Rol,
                 attributes: ['name']
-            }
+            }, {
+                model:Image,
+                attributes: ['url']
+            }]
         })
         .then(this.session)
     },
@@ -110,6 +116,7 @@ module.exports = {
             name: user.name,
             rolId: user.rolId,
             rol: user.rol ? user.rol.name : 'guest',
+            image: user.image && user.image.url
         }
     },
     
@@ -126,5 +133,18 @@ module.exports = {
     ownerProtect: function (user) {
         if (user.rolId > 4) throw `the role of an owner cannot be changed`
         return user;
+    },
+    
+    setImage: function (id, img) {
+        let userPromise = User.findByPk(id);
+        let imagePromise = Image.findOrCreate({
+            where: {
+                fileName: img.filename
+            }
+        })
+        .then(r => r [0])
+        return Promise.all([userPromise, imagePromise])
+        .then(([user, image])=> user.setImage(image))
+        .then(()=>(this.getById(id)))
     }
 }

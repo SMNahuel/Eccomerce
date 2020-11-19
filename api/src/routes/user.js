@@ -1,5 +1,6 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
+const {ProfileImageUploader} = require('../middlewares/uploadImg');
 const {login, logout, forAdmin, forGuest} = require('../middlewares/authenticate')
 
 // Ruta que permite logearse
@@ -87,5 +88,15 @@ server.put('/admin/ban', forAdmin, (req, res, next) => {
     .then(r => res.send(r))
     .catch(next)
 })
+
+//Ruta que permite cargar imagen de perfil
+server.post('/image', forGuest, ProfileImageUploader, (req, res, next) => {
+	if (!req.file) {
+		return res.status(400).send(`the image (key:'image') are required to set them on the profile`);
+	}
+    user.setImage(req.user.id, req.file)
+	.then(r => res.send(r))
+	.catch(next);
+});
 
 module.exports = server;
