@@ -4,7 +4,7 @@ import api from '../../../../../redux/action-creators'
 import s from './formAddReview.module.css'
 import CloseIcon from '@material-ui/icons/Close';
 
-export default function FormAddReview({setAddReview, productId}){
+export default function FormAddReview({onAddReview, productId}){
     const [review, setReview] = useState({
         message:"",
         qualification: 0
@@ -14,7 +14,7 @@ export default function FormAddReview({setAddReview, productId}){
 
     const finishReview = () => {
         dispatch(api.addReview(productId, review))
-        setAddReview()
+        onAddReview()
     }
     const setStars= (num) => {
         setReview({
@@ -31,6 +31,7 @@ export default function FormAddReview({setAddReview, productId}){
 
     return(
         <div className={s.FormReview}>
+            <CloseIcon className={s.close} onClick={() => onAddReview()}/>
             <p className={s.clasification}>
                 <input type="radio" className={s.radio}/>
                 <label className={s.star} onClick={() => setStars(5)}>★</label>

@@ -3,10 +3,17 @@ import s from './Review.module.css'
 import ReviewList from './reviewlist/ReviewList';
 import stars from '../../../../utils/stars'
 import FormAddReview from './formAddReview/formAddReview'
+import { useDispatch } from 'react-redux';
+import api from '../../../../redux/action-creators'
 
 export default function Review({reviews, productId, user}) {
     const [addReview, setAddReview] = useState(false)
     const [seeReview, setReview] = useState(reviews)
+
+    const dispatch = useDispatch()
+    const onDeleteReview = (reviewId) => {
+        dispatch(api.deleteReview(reviewId))
+    }
     const onAddReview = () => {
         setAddReview(!addReview)
     }
@@ -61,7 +68,7 @@ export default function Review({reviews, productId, user}) {
                 </div>
                 <div>
                     {!addReview && !(reviews.filter(review => review.userId === user.id)).length && <button onClick={() => onAddReview()} className={s.btnReview}>Add my review</button>}
-                    {addReview && <FormAddReview setAddReview={setAddReview} productId={productId}/>}
+                    {addReview && <FormAddReview onAddReview={onAddReview} productId={productId}/>}
                 </div>
             </div>
             <div className={s.container_review_all_positive_negative}>
@@ -82,14 +89,21 @@ export default function Review({reviews, productId, user}) {
                 </button>
             </div>
             <div className={s.container_reviewList}>
-                {seeReview.map(review => (
-                    <ReviewList
-                    stars={stars(review.qualification)}
-                    key={review.id}
-                    message={review.message}
-                    user={review.user.name}
-                    />
-                ))}
+                {seeReview.map(review => {
+                    return review.userId === user.id ? <ReviewList
+                        stars={stars(review.qualification)}
+                        key={review.id}
+                        message={review.message}
+                        user={review.user.name}
+                        cb={onDeleteReview}
+                        idReview={review.id}
+                        /> : <ReviewList
+                        stars={stars(review.qualification)}
+                        key={review.id}
+                        message={review.message}
+                        user={review.user.name}
+                        />
+                })}
             </div>
         </div>
     )

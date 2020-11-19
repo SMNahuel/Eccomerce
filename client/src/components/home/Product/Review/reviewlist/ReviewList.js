@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import s from './ReviewList.module.css'
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-export default function ReviewList({ stars, message, user }){
+export default function ReviewList({ stars, message, user, cb, idReview }){
 
     const [ valueup, setValueUp ] = useState(0);
     const [ valuedown, setValueDown ] = useState(0);
@@ -37,6 +38,11 @@ export default function ReviewList({ stars, message, user }){
                     </button>
                     <label>{valuedown}</label>
                 </div>
+                {cb && <div className={s.container_delete}>
+                    <button onClick={() => cb(idReview)}>
+                        <DeleteIcon />
+                    </button>
+                </div>}
             </div>
         </div>
     )
