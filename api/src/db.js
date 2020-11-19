@@ -43,6 +43,10 @@ Category.belongsToMany(Product, {through: 'ProductCategory'})
 Product.belongsToMany(Image, {through: 'ProductImage'})
 Image.belongsToMany(Product, {through: 'ProductImage'})
 
+// User N <---> M Image
+User.belongsToMany(Image, {through: 'UserImage'})
+Image.belongsToMany(User, {through: 'UserImage'})
+
 // User 1 <---> N Cart
 User.hasMany(Cart)
 Cart.belongsTo(User)
