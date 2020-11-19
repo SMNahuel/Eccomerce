@@ -2,11 +2,11 @@
     min-width: 80vw;
     max-width: 80vw;
     box-shadow: 0px 0px 10px var(--green-primary);
-    height: 70vh;
+    height: 60vh;
     background-size: cover;
     background-position: center;
     border-radius: 30px;
-    margin: 0 -10px;
+    margin: 20px -10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -16,7 +16,7 @@
     scroll-snap-align: center;
     transform-style: preserve-3d;
     transform-origin: center;
-    transform: perspective(800px) translateZ(-200px);
+    transform: perspective(700px) translateZ(-200px);
 }
 .container{
     filter: brightness(50%);

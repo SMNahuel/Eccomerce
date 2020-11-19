@@ -12,11 +12,11 @@ import ReactRedux from '../../../img/ReactRedux.jpg';
 
 export default function CarouselB(){
     const array = [
+        <ImgComponent src={React2}/>,
         <ImgComponent src={CourseAngular}/>,
         <ImgComponent src={HtmlJsCss}/>,
         <ImgComponent src={Java}/>,
         <ImgComponent src={Python}/>,
-        <ImgComponent src={React2}/>,
         <ImgComponent src={ReactRedux}/>,
     ]
     const [ x, setX ] = useState(0)

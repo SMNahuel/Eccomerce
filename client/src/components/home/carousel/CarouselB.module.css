@@ -2,6 +2,7 @@
     max-width: 1200px;
     width: 100%;
     max-height: 550px;
+    min-height: 300px;
     height: 100%;
     box-sizing: border-box;
     margin: 0 auto;
@@ -20,7 +21,7 @@
 .button_right,
 .button_left{
     position: absolute;
-    z-index: 100;
+    z-index: 10;
     background-color: #ab47bc;
     width: 40px;
     height: 40px;
@@ -35,5 +36,10 @@
 }
 .button_left{
     left: 20px;
+}
+@media (max-width: 700px){
+    .container_main{
+        display: none;
+    }
 }
 
