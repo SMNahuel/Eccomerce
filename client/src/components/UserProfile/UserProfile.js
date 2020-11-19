@@ -8,31 +8,26 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function UserProfile(props) {
-    
-    const dispatch = useDispatch()
+
     const user = useSelector(state => state.user)
 
     const image = user.image &&
-    `${process.env.REACT_APP_API_URL}${user.image}`
-
-    const data = () => {
-        console.log(user)
-    }
+        `${process.env.REACT_APP_API_URL}${user.image}`
 
     return (
         <div className={s.justify}>
             <Card className={s.justifyCard}>
                 <CardActionArea>
-                    <CardMedia
+                    {(image) && (<CardMedia
                         component="img"
-                        alt="Contemplative Reptile"
-                        height="140"
-                        image= {image}
-                        title="Contemplative Reptile"
-                    />
+                        alt="Profile"
+                        maxHeight="100vh"
+                        image={image}
+                        title="Profile"
+                    />)}
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {user.name}
@@ -43,16 +38,14 @@ function UserProfile(props) {
                         <Typography gutterBottom variant="h5" component="h2">
                             {user.rol}
                         </Typography>
-                        
+
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Input type="file" size="small" color="primary">
+                    <Input type='file'>
                         Selecciona imagen de perfil
                     </Input>
-                </CardActions>
-                <CardActions>
-                    <Button type="submit" size="small" color="primary">
+                    <Button type="submit" class="btn">
                         Cargar
                     </Button>
                 </CardActions>

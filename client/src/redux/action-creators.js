@@ -192,6 +192,13 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
+    addImgUser: function(img){
+        return dispatch => {
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/imgage`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
     FORMRESPOND: 'FORMRESPOND',
 
     _dispatchPromise: function(promise, type, dispatch){
