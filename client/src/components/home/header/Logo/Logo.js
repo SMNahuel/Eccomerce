@@ -4,7 +4,7 @@ export default function Logo() {
     return(
         <svg height="100" width="170" viewBox="5 -20 22 32">
             <g>
-                <animateTransform id="a1" dur="2s" attributeName="transform" type="translateX" from="22" to="22" additive="sum"/>
+                <animateTransform id="a1" dur="2s" attributeName="transform" type="translateX" from="16" to="16" additive="sum"/>
                 <animateTransform dur="2s" attributeName="transform" type="scale" from="1.2" to="1.2" additive="sum"/>
                 <g>
                     <circle stroke="#30ff00" strokeWidth=".5" fill="transparent" cx="0" cy="0" r="2"/>
@@ -62,7 +62,7 @@ export default function Logo() {
                     </path>
                     <animateTransform id="a3" begin="a1.end" dur="1s" attributeName="transform" type="rotate" from="360" to="0" additive="sum"/>
                 </g>
-                <animateTransform id="a2" begin="a1.end" dur="1s" attributeName="transform" type="translateX" from="22" to="0" additive="sum"/>
+                <animateTransform id="a2" begin="a1.end" dur="1s" attributeName="transform" type="translateX" from="16" to="0" additive="sum"/>
                 <animateTransform begin="a1.end" dur="1s" attributeName="transform" type="scale" from="1.2" to="1" additive="sum"/>
             </g>
             <g>
