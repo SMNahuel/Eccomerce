@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Logo() {
     return(
-        <svg height="100" width="170" viewBox="5 -20 22 32">
+        <svg height="80" width="170" viewBox="5 -20 22 32">
             <g>
                 <animateTransform id="a1" dur="2s" attributeName="transform" type="translateX" from="16" to="16" additive="sum"/>
                 <animateTransform dur="2s" attributeName="transform" type="scale" from="1.2" to="1.2" additive="sum"/>

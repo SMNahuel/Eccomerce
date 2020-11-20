@@ -1,12 +1,14 @@
 import React from 'react';
+import HeaderLeft from './header left/HeaderLeft';
+import HeaderRight from './header right/HeaderRight';
 import s from './Header.module.css'
-import Logo from './Logo/Logo'
 
-export default function Header(){
+export default function Header( { handleSearch }){
     return (
         <div className={s.container_main}>
             {/* <Sidebar/> */}
-            <Logo/>
+            <HeaderLeft handleSearch={handleSearch}/>
+            <HeaderRight/>
             {/* <Cart/> */}
         </div>
     )

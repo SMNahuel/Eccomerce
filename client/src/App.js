@@ -11,12 +11,10 @@ import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
 import UserProfile from './components/UserProfile/UserProfile';
 import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
-import SideBar from './components/sideBar/SideBar';
 
 function App() {
   return (
     <div className="App">
-      <SideBar/>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/userprofile" component={UserProfile}/>

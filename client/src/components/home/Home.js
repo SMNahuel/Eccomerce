@@ -8,9 +8,7 @@ import Product from './Product/Product';
 import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
 import CarouselB from './carousel/CarouselB';
 import Header from './header/Header';
-import SearchBar from './SearchBar/SearchBar';
 import Categories from './Categories/Categories';
-import Cart from './Cart/Cart';
 
 export default function Home() {
 
@@ -86,15 +84,15 @@ export default function Home() {
             }
             <div className={s.container}>
                 <div className={s.navBar}>
-                    <Header/>
-                    <SearchBar handleSearch={handleSearch} />
+                    <Header handleSearch={handleSearch}/>
+                    {/* <SearchBar handleSearch={handleSearch} /> */}
                     <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
                 </div>
             </div>
             <div className={s.home}>
                 <CarouselB categories={categories}/>
                 <Catalog products={state.products || products} handleDetail={handleDetail} />
-                <Cart/>
+                {/* <Cart/> */}
             </div>
             
             {
