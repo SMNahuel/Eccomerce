@@ -137,7 +137,8 @@ module.exports = {
                 },{
                     model: Review,
                     attributes: ["id","qualification","message"],
-                    where: {userId}
+                    where: {userId},
+                    required: false
                 }],
                 through: {
                     attributes: ['price', 'quantity']

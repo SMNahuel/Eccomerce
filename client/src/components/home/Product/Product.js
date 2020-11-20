@@ -92,7 +92,7 @@ export default ({product, onBack}) => {
           <div className={s.container_review}>
             <h3>Product reviews</h3>
             <div className={s.container_description_review}>
-              <ReviewsBox productId={product.id} />
+              <ReviewsBox productId={product.id}/>
             </div>
           </div>
           <div className={s.container_question_answers}>

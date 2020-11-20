@@ -180,24 +180,24 @@ const actionCreators = {
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    addReview: function(productId, review) {
+    makeReview: function(productId, review) {
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/reviews/${productId}`,
             review,
             {withCredentials: true})
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    deleteReview: function(productId, userId) {
+    deleteReview: function(productId) {
         return dispatch => {
-            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${productId}/${userId}`,
+            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${productId}`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    getReviewByUser: function(userId) {
+    getReviewByUser: function() {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews/${userId}`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
