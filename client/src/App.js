@@ -2,17 +2,16 @@ import React from 'react';
 import './App.css';
 import s from './App.module.css'
 import { Route, Switch } from 'react-router-dom';
-
 import Home from './components/home/Home';
 import SignIn from './components/register/sign in/SignIn';
 import LogIn from './components/register/log in/LogIn';
-import SideBar from './components/sideBar/SideBar';
 import CRUDCategory from './components/Admin/CRUDCategory/CRUDCategory';
 import CRUDProducts from './components/Admin/CRUDProducts/CRUDProducts'
 import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
 import UserProfile from './components/UserProfile/UserProfile';
 import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
+import SideBar from './components/sideBar/SideBar';
 
 function App() {
   return (

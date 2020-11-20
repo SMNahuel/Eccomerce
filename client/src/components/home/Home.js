@@ -3,12 +3,14 @@ import s from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
-import SearchBar from './SearchBar/SearchBar';
-import Categories from './Categories/Categories';
 import Catalog from './Catalog/Catalog';
 import Product from './Product/Product';
-import Cart from './Cart/Cart'
 import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
+import CarouselB from './carousel/CarouselB';
+import Header from './header/Header';
+import SearchBar from './SearchBar/SearchBar';
+import Categories from './Categories/Categories';
+import Cart from './Cart/Cart';
 
 export default function Home() {
 
@@ -84,14 +86,15 @@ export default function Home() {
             }
             <div className={s.container}>
                 <div className={s.navBar}>
-                    <h1 className={s.title}>Pagina</h1>
+                    <Header/>
                     <SearchBar handleSearch={handleSearch} />
                     <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
                 </div>
             </div>
             <div className={s.home}>
+                <CarouselB categories={categories}/>
                 <Catalog products={state.products || products} handleDetail={handleDetail} />
-                <Cart />
+                <Cart/>
             </div>
             
             {
