@@ -41,15 +41,15 @@ function UserProfile(props) {
 
     return (
         <div className={s.justifyDiv}>
-            <Box className={s.justify} boxShadow={3} >
-                <div >
-                    <div className={s.justifyAv}>
+            <div className={s.boxStyle} >                
+                <div className={s.justifyAv}>
+                    <div>
                         <Avatar
                             className={s.avatarSize}
                             src={image}
                         />
                     </div>
-                    <div className={s.button}>                            
+                    <div className={s.cameraButton}>
                         <input 
                             className={s.input}
                             onChange={selectImg}
@@ -59,21 +59,22 @@ function UserProfile(props) {
                         />
                         <label htmlFor="file">
                             <IconButton color="primary" aria-label="upload picture" component="span">
-                                <PhotoCamera />
+                                <PhotoCamera fontSize="large" />
                             </IconButton>
-                            <Button onClick={onSubmit} variant="contained" color="primary" component="span">
-                                Upload
-                            </Button>
                         </label>
                     </div>
-                    <ThemeProvider theme={theme}>
-                        <Typography className={s.text} variant="h4">{user.name}</Typography>
-                        <Typography className={s.text} variant="h5">{user.email}</Typography>
-                        <Typography className={s.text} variant="h5">Usuario: {user.rol}</Typography>
-                    </ThemeProvider>
-                    
                 </div>
-            </Box>
+                <div className={s.button}>                            
+                    <Button onClick={onSubmit} variant="contained" color="primary" component="span">
+                        Upload
+                    </Button>
+                </div>
+                <ThemeProvider theme={theme}>
+                    <Typography className={s.text} variant="h4">{user.name}</Typography>
+                    <Typography className={s.text} variant="h5">{user.email}</Typography>
+                    <Typography className={s.text} variant="h5">Usuario: {user.rol}</Typography>
+                </ThemeProvider>               
+            </div>
         </div>
     );
 }
