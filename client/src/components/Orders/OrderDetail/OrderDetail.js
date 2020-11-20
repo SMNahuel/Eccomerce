@@ -57,7 +57,7 @@ export default function OrderDetail({order, onBack}) {
                                 <td>{product.name}</td>
                                 <td>{product.order.quantity}</td>
                                 <td>${product.order.price}</td>
-                                {order.state === "created" ?
+                                {order.state === "processing" ?
                                     <td className={s.boton_review}><button onClick={toggle}>Review</button></td>
                                     : <td></td>
                                 }

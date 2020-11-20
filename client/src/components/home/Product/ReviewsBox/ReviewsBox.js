@@ -8,6 +8,7 @@ import api from '../../../../redux/action-creators'
 
 export default function ReviewsBox({productId}) {
     const user = useSelector(state => state.user)
+    const purchased = useSelector(state => state.purchased)
     const reviews = useSelector(state => state.reviews)
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -18,7 +19,9 @@ export default function ReviewsBox({productId}) {
         average: 0,
         averageStars:"",
         stars: [0,0,0,0,0],
-        reviews: reviews
+        reviews: reviews,
+        purchased: purchased.includes(productId),
+        addReview: false
     })
     useEffect(()=>{
         if (reviews.length) {
@@ -51,10 +54,8 @@ export default function ReviewsBox({productId}) {
             })
         }
     }
-    const [addReview, setAddReview] = useState(false)
-    const onAddReview = () => {
-        setAddReview(!addReview)
-    }
+    const onAddReview = () => setState({...state, addReview: true})
+    const onBack = () => setState({...state, addReview: false})
     return (
         <div className={s.container_review_main}>
             <div className={s.container_review_average}>
@@ -86,8 +87,12 @@ export default function ReviewsBox({productId}) {
                     </div>
                 </div>
                 <div>
-                    {!addReview && !(reviews.filter(review => review.userId === user.id)).length && <button onClick={() => onAddReview()} className={s.btnReview}>Add my review</button>}
-                    {addReview && <FormAddReview onAddReview={onAddReview} productId={productId} userId={user.id}/>}
+                    {state.purchased && (
+                        state.addReview ?
+                        <FormAddReview onBack={onBack} productId={productId} userId={user.id}/>
+                        :
+                        <button className={s.btnReview} onClick={onAddReview}>Add my review</button>
+                    )}
                 </div>
             </div>
             <div className={s.container_review_all_positive_negative}>

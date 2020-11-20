@@ -1,4 +1,4 @@
-const { Product, Review, User, Image } = require('../db.js');
+const { Review, User, Image } = require('../db.js');
 
 module.exports = {
     byProduct: function(id){

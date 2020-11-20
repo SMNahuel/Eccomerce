@@ -8,7 +8,6 @@ import toStars from '../../../../../utils/toStars';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function Review({ review, del }){
-    console.log(review)
     const [state, setState] = useState({
         like: 0,
         dislike: 0

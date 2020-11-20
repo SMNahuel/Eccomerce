@@ -192,6 +192,15 @@ const actionCreators = {
         }
     },
 
+    PURCHASEDPRODUCTS: 'PURCHASEDPRODUCTS',
+    getPurchased: function() {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/purchased`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.PURCHASEDPRODUCTS, dispatch)
+        }
+    },
+
     FORMRESPOND: 'FORMRESPOND',
 
     _dispatchPromise: function(promise, type, dispatch){

@@ -1,5 +1,5 @@
 import actionCreators from './action-creators';
-const {CATEGORIES, PRODUCTS, CART, ORDERS, USER, USERS, FORMRESPOND, REVIEW} = actionCreators;
+const {CATEGORIES, PRODUCTS, CART, ORDERS, USER, USERS, FORMRESPOND, REVIEW, PURCHASEDPRODUCTS} = actionCreators;
 
 const initialState = {
     categories: [],
@@ -9,7 +9,8 @@ const initialState = {
     user: {},
     users: [],
     formRespond: false,
-    reviews: []
+    reviews: [],
+    purchased: []
 };
 
 export default (state = initialState, action) => {
@@ -54,6 +55,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 reviews: action.payload
+            }
+        case PURCHASEDPRODUCTS:
+            return {
+                ...state,
+                purchased: action.payload
             }
         default:
             return {...state}

@@ -99,4 +99,15 @@ server.post('/image', forGuest, ProfileImageUploader, (req, res, next) => {
 	.catch(next);
 });
 
+//Ruta que me trae los id de los productos comprados
+server.get('/purchased', (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.send([]);
+    } else {
+        user.getPurchasedProducts(req.user.id)
+        .then(r => res.send(r))
+        .catch(next);
+    }
+})
+
 module.exports = server;
