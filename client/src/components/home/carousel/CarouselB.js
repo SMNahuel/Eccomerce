@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './CarouselB.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -12,21 +12,27 @@ import ReactRedux from '../../../img/ReactRedux.jpg';
 
 export default function CarouselB(){
     const array = [
+        <ImgComponent src={ReactRedux}/>,
         <ImgComponent src={React2}/>,
         <ImgComponent src={CourseAngular}/>,
         <ImgComponent src={HtmlJsCss}/>,
         <ImgComponent src={Java}/>,
         <ImgComponent src={Python}/>,
         <ImgComponent src={ReactRedux}/>,
+        <ImgComponent src={React2}/>,
     ]
     const [ x, setX ] = useState(0)
-    const goLeft = e =>{
+    const goLeft = () =>{
         setX(x + 100)
         x === 0 ? setX(-100 * (array.length - 1)) : setX(x + 100)
     }
-    const goRight =e =>{
+    const goRight = () =>{
         x === -100 * (array.length -1) ? setX(0) : setX(x - 100)
     }
+    useEffect(()=>{
+        const timeoutId = setTimeout(goRight, 4000)
+        return () => clearTimeout(timeoutId)
+    }, [x])
     return (
         <div className={s.container_main}>
             {
