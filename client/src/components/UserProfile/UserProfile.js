@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import s from './UserProfile.module.css'
 import api from '../../redux/action-creators'
-import Box from '@material-ui/core/Box';
 import { useSelector, useDispatch } from 'react-redux';
 import { Avatar } from '@material-ui/core';
 import dataURLtoFile from '../../utils/dataURLtoFile';
@@ -10,6 +9,8 @@ import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui
 import Typography from '@material-ui/core/Typography';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
+import Header from '../home/header/Header'
+import styl from '../home/header/Header.module.css'
 
 
 function UserProfile(props) {
@@ -40,6 +41,12 @@ function UserProfile(props) {
     }
 
     return (
+    
+        <> 
+        <div className={styl.navBar}>
+            <Header/>   
+        </div>       
+
         <div className={s.justifyDiv}>
             <div className={s.boxStyle} >                
                 <div className={s.justifyAv}>
@@ -76,6 +83,7 @@ function UserProfile(props) {
                 </ThemeProvider>               
             </div>
         </div>
+        </>
     );
 }
 

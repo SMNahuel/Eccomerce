@@ -5,6 +5,7 @@
 }
 
 .boxStyle{
+    margin-top: 10vh;
     border: 2px solid white;
     border-radius: 5%;
     min-width: 80vh;
@@ -41,11 +42,11 @@
 }
 
 .button{
-    min-width: 250px;
-    min-height: 50px;
+    min-width: 50px;
+    min-height: 40px;
     display: flex;
     justify-content: center;
-    margin: 25px;
+    margin: 10px;
 }
 
 .cameraButton{
