@@ -63,3 +63,11 @@
 .container_up_down_2 button:focus{
     color: #7b1fa2;
 }
+.container_delete button{
+    background-color: transparent;
+    color:red;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px 0 10px;
+}

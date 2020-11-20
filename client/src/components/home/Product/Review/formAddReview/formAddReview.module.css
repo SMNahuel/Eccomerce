@@ -1,0 +1,39 @@
+.radio{
+    display:none
+}
+
+.radio:checked ~ label{
+    color: orange;
+}
+
+.star{
+    color: grey
+}
+
+.star:hover,
+.star:hover ~ label{
+    color: orange;
+}
+
+.clasification{
+    direction: rtl;
+    margin-right: 32%;
+}
+
+.message{
+    display: flex;
+    flex-direction: column;
+}
+
+.FormReview{
+    margin-top: 10%;
+    width: 100%;
+    margin-right: 100%;
+    position: relative;
+}
+
+.close{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
