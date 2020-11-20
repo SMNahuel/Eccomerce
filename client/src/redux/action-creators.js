@@ -174,6 +174,16 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
+    passwordChange: function(newPassword, oldPassword){
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/password`,
+            oldPassword,
+            newPassword,
+            {withCredentials: true}
+            )
+            this._dispatchPromise(promise, this.CART, dispatch)
+        }
+    },
 
     USERS: 'USERS',
     getUsers: function(){
@@ -223,7 +233,7 @@ const actionCreators = {
             dispatch({ type: type, payload: data });
         })
         .catch(err => {
-            alert(`Error!\nStatus: ${err.response.status}\n${err.response.data}`);
+            alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
         })
     },
 }
