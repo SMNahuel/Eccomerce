@@ -6,10 +6,8 @@ import s from './Header.module.css'
 export default function Header( { handleSearch }){
     return (
         <div className={s.container_main}>
-            {/* <Sidebar/> */}
             <HeaderLeft handleSearch={handleSearch}/>
             <HeaderRight/>
-            {/* <Cart/> */}
         </div>
     )
 }

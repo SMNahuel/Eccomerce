@@ -12,8 +12,6 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ComponentLink from '../componentLink/ComponentLink';
-import Cart from '../../Cart/Cart';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function SideBarProfile({ toggle }) {
 
@@ -50,14 +48,6 @@ function SideBarProfile({ toggle }) {
                                 SetIcon={<AssignmentTurnedInIcon />}
                                 p={"Orders"}
                             />
-                            {/* <div className={s.container_cart}>
-                                <ComponentLink
-                                to=""
-                                funcion={<Cart/>}
-                                SetIcon={<ShoppingCartIcon/>}
-                                p={"Cart"}
-                                />
-                            </div> */}
                         </>
                     )}
                 </div>

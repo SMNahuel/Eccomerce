@@ -1,7 +1,7 @@
 .container_main{
     display: flex;
     align-items: center;
-    width: 230px;
+    width: 220px;
 }
 .container_arrowBack{
     width: 40px;

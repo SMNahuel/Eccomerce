@@ -11,7 +11,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useSelector, useDispatch } from 'react-redux';
 import { Avatar } from '@material-ui/core';
-import dataURLtoFile from '../../utils/dataURLtoFile'
+import dataURLtoFile from '../../utils/dataURLtoFile';
+// import Header from '../home/header/Header'
 
 function UserProfile(props) {
 
@@ -39,6 +40,7 @@ function UserProfile(props) {
 
     return (
         <div className={s.justify}>
+            {/* <Header/> */}
             <Card className={s.justifyCard}>
                 <div >
                     <CardActionArea>

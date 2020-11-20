@@ -6,6 +6,7 @@ import UpdateCategory from './UpdateCategory/UpdateCategory'
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
+import Header from '../../home/header/Header';
 
 function CrudCategory(){
     const [state, setState] = useState({
@@ -51,26 +52,29 @@ function CrudCategory(){
         setState({...state, action: null})
     }
     return (
-        <div className={s.form}>
-            <h4>Categorias</h4>
-            {
-                state.action === null &&
-                <CreateCategory/>
-            }
-            {
-                state.action === 'update' &&
-                <UpdateCategory handleUpdate={handleUpdate} category={state.category} />
-            }
-            {
-                state.action === 'delete' &&
-                <DeleteCategory handleDelete={handleDelete} category={state.category} onNotSure={onNotSure}/>
-            }
-            <TableCategory
-                categories={categories}
-                onEdit={onUpdate}
-                onDelete={onDelete}
-            />
-        </div>
+        <>
+            <Header />
+            <div className={s.form}>
+                <h4>Categorias</h4>
+                {
+                    state.action === null &&
+                    <CreateCategory />
+                }
+                {
+                    state.action === 'update' &&
+                    <UpdateCategory handleUpdate={handleUpdate} category={state.category} />
+                }
+                {
+                    state.action === 'delete' &&
+                    <DeleteCategory handleDelete={handleDelete} category={state.category} onNotSure={onNotSure} />
+                }
+                <TableCategory
+                    categories={categories}
+                    onEdit={onUpdate}
+                    onDelete={onDelete}
+                />
+            </div>
+        </>
     )
 }
 export default CrudCategory;

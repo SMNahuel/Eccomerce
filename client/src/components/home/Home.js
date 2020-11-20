@@ -85,14 +85,12 @@ export default function Home() {
             <div className={s.container}>
                 <div className={s.navBar}>
                     <Header handleSearch={handleSearch}/>
-                    {/* <SearchBar handleSearch={handleSearch} /> */}
                     <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
                 </div>
             </div>
             <div className={s.home}>
                 <CarouselB categories={categories}/>
                 <Catalog products={state.products || products} handleDetail={handleDetail} />
-                {/* <Cart/> */}
             </div>
             
             {

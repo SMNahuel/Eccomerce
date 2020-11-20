@@ -29,6 +29,7 @@
     background-color: #ab47bc;
     margin-right: 10px;
     cursor: pointer;
+    color: #DFE6E9;
 }
 
 .container_absolute{
@@ -43,7 +44,7 @@
         display: none;
     }
     .Avatar{
-        visibility: hidden;
+        display: none;
     }
     .container_absolute{
         right: 0px;
@@ -53,14 +54,4 @@
     .container_cart{
         display: none;
     }
-} */
-/* @keyframes containerMount{
-    0%   { opacity: 0; transform: scale(.5);}
-    50%  { opacity: 0;}
-    100% { opacity: 1; transform: scale(1);}
-}
-@keyframes containerUnmount{
-    0%   { opacity: 1; transform: scale(1);}
-    50%  { opacity: 0;}
-    100% { opacity: 0; transform: scale(.5);}
 } */
