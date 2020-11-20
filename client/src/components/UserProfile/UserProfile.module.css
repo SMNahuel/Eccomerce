@@ -10,3 +10,20 @@
     max-height: 70vh;
     display: 'grid';
 }
+
+.formPassword{
+    max-width: 200vh;
+    max-height: 70vh;
+    margin: 0px 50px ;
+    border: 1px white;
+    background-color: white;
+}
+.formPassword input{
+    margin-left: 35px;
+    font-size: 30;
+    margin-bottom: 10px;
+}
+.formPassword button{
+    margin-left: 10px;
+    margin-right: 10px;
+}
