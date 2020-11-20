@@ -1,17 +1,43 @@
-.justify{
+.justifyDiv{
     display: flex;
     justify-content: center;
-    margin: 50px;
-    height: 70vh;
 }
 
-.justifyCard {
-    min-width: 100vh;
-    min-height: 80vh;
-    display: 'grid';
+.justify{
+    border-radius: 25%;
+    margin: 50px;    
+    min-width: 75vh;
+    background-color: rgb(158, 77, 233);
+}
+
+.input{
+    display: none;
+}
+
+.justifyAv{
+    display: flex;
+    justify-content: center;
 }
 
 .avatarSize{
-    min-width: 350px;
-    min-height: 350px;
+    margin: 25px;
+    min-width: 250px;
+    min-height: 250px;
+}
+
+.text{
+    min-width: 250px;
+    min-height: 75px;
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    color: rgb(44, 39, 54);
+}
+
+.button{
+    min-width: 250px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 25px;
 }
