@@ -4,8 +4,7 @@ const { forAdmin, forGuest } = require('../middlewares/authenticate');
 
 // Ruta qque devuelve las ordenes de un usuario
 server.get('/', forGuest, (req,res,next)=>{
-	const { userId } = req.cookies;
-	cart.orders(userId)
+	cart.orders(req.user.id)
 	.then(r=> res.send(r))
 	.catch(next);
 })

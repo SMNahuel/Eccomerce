@@ -1,42 +1,42 @@
 const { Product, Category, Image, User, Rol } = require('./src/db.js');
 
-const roles = ['banned','guest','admin','owner']
+const roles = ['banned','anonymous','guest','admin','owner']
 const users = [
     {
         name: "Maico Loncomilla",
         email: "maicoloncomilla@gmail.com",
         password: "1234567",
-        rolId: 4
+        rolId: 5
     },
     {
         name: "Javier Balonga",
         email: "javierbalonga@gmail.com",
         password: "1234567",
-        rolId: 4
+        rolId: 5
     },
     {
         name: "Esteban",
         email: "ces.esteban@gmail.com",
         password: "1234567",
-        rolId: 4
+        rolId: 5
     },
     {
         name: "Leo Vinas",
         email: "vinasleonardo@yahoo.com",
         password: "1234567",
-        rolId: 4
+        rolId: 5
     },
     {
         name: "Nahuel Sanches",
         email: "nahuelsan96@gmail.com",
         password: "1234567",
-        rolId: 4
+        rolId: 5
     },
     {
         name: "Nacho",
         email: "ignaciogimenez70@gmail.com",
         password: "1234567",
-        rolId: 4
+        rolId: 5
     }
 ]
 const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];

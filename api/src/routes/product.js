@@ -58,6 +58,7 @@ server.post('/', forAdmin, (req, res, next) => {
 	.then(r => res.send(r))
 	.catch(next);
 });
+
 //Ruta para agregar review
 server.post('/review/:id', (req,res,next) =>{
 	const {id} = req.params;
@@ -97,6 +98,7 @@ server.put('/review/:id', (req,res,next)=>{
 	.then(r => res.send(r))
 	.catch(next);
 })
+
 // Ruta que permite cargar multiples imagenes
 server.post('/images/:id', forAdmin, updateProductUploader, (req, res, next) => {
     const {id} = req.params
