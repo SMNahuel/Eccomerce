@@ -1,0 +1,22 @@
+.container_main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0px;
+}
+.container_p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ab47bc;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #DFE6E9;
+}
+.container_p p{
+    font-size: 16px;
+    font-weight: 500;
+}
