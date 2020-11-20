@@ -4,7 +4,7 @@ import api from '../../../../../redux/action-creators'
 import s from './formAddReview.module.css'
 import CloseIcon from '@material-ui/icons/Close';
 
-export default function FormAddReview({onAddReview, productId}){
+export default function FormAddReview({onAddReview, productId, userId}){
     const [review, setReview] = useState({
         message:"",
         qualification: 0
@@ -13,7 +13,7 @@ export default function FormAddReview({onAddReview, productId}){
     const dispatch = useDispatch()
 
     const finishReview = () => {
-        dispatch(api.addReview(productId, review))
+        dispatch(api.addReview(productId, userId, review))
         onAddReview()
     }
     const setStars= (num) => {

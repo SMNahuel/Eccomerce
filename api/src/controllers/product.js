@@ -20,14 +20,6 @@ module.exports = {
                     through: {
                         attributes: []
                     }
-                },
-                {
-                    model: Review,
-                    attributes: ['id', 'qualification', 'message', 'productId', 'userId'],
-                    include:{
-                        model: User,
-                        attributes: ['name']
-                    }
                 }
             ]
         })

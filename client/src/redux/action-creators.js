@@ -72,21 +72,6 @@ const actionCreators = {
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
-    addReview: function(productId, review) {
-        return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
-            review,
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
-        }
-    },
-    deleteReview: function(reviewId) {
-        return dispatch => {
-            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/products/review/${reviewId}`,
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
-        }
-    },
 
     CART: 'CART',
     getCart: function() {
@@ -167,46 +152,6 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
-    logout: function(){
-        return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/logout`,
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.USER, dispatch)
-        }
-    },
-
-    USERS: 'USERS',
-    getUsers: function(){
-        return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/admin`,
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
-        }
-    },
-    promoteUser: function(id){
-        return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`,
-            {id},
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
-        }
-    },
-    demoteUser: function(id){
-        return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`,
-            {id},
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
-        }
-    },
-    banUser: function(id){
-        return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/ban`,
-            {id},
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
-        }
-    },
     addImgUser: function(data){
         return dispatch => {
             const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/image`,
@@ -215,6 +160,38 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
+
+    REVIEW: 'REVIEW',
+    getReviews: function(productId) {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews/${productId}`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
+        }
+    },
+    addReview: function(productId, review) {
+        return dispatch => {
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
+            review,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
+        }
+    },
+    deleteReview: function(productId, userId) {
+        return dispatch => {
+            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${productId}/${userId}`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
+        }
+    },
+    getReviewByUser: function(userId) {
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews/${userId}`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
+        }
+    },
+
     FORMRESPOND: 'FORMRESPOND',
 
     _dispatchPromise: function(promise, type, dispatch){
