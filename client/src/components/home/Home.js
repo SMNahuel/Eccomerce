@@ -101,7 +101,7 @@ export default function Home() {
             </div>
             <div className={s.home}>
                 <CarouselB categories={categories}/>
-                <Catalog products={currentProduct || products} handleDetail={handleDetail} />
+                <Catalog products={ state.products || currentProduct || products} handleDetail={handleDetail} />
                 <Pagination postsPerPage={postsPerPage} totalProduct={products.length} paginate={paginate}/>
             </div>
             
