@@ -12,7 +12,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Header from '../home/header/Header'
 import styl from '../home/header/Header.module.css'
 
-
 function UserProfile(props) {
 
     let theme = createMuiTheme();
@@ -70,16 +69,16 @@ function UserProfile(props) {
                             </IconButton>
                         </label>
                     </div>
-                </div>
-                <div className={s.button}>                            
-                    <Button onClick={onSubmit} variant="contained" color="primary" component="span">
-                        Upload
-                    </Button>
+                    <div className={s.button}>                            
+                        <Button onClick={onSubmit} variant="contained" color="primary" component="span">
+                            Upload
+                        </Button>
+                    </div>
                 </div>
                 <ThemeProvider theme={theme}>
-                    <Typography className={s.text} variant="h4">{user.name}</Typography>
-                    <Typography className={s.text} variant="h5">{user.email}</Typography>
-                    <Typography className={s.text} variant="h5">Usuario: {user.rol}</Typography>
+                    <Typography className={s.text} variant="button">{user.name}</Typography>
+                    <Typography className={s.text} variant="caption">{user.email}</Typography>
+                    <Typography className={s.text} variant="overline">Usuario: {user.rol}</Typography>
                 </ThemeProvider>               
             </div>
         </div>
