@@ -89,9 +89,9 @@ export default function ReviewsBox({productId}) {
                 <div>
                     {state.purchased && (
                         state.addReview ?
-                        <FormAddReview onBack={onBack} productId={productId} userId={user.id}/>
+                        <FormAddReview onBack={onBack} productId={productId} review={reviews.find(review => review.userId === user.id)}/>
                         :
-                        <button className={s.btnReview} onClick={onAddReview}>Add my review</button>
+                        <button className={s.btnReview} onClick={onAddReview}>My review</button>
                     )}
                 </div>
             </div>

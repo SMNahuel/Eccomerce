@@ -30,42 +30,20 @@ module.exports = {
     },
 
     create: function(userId, productId, {message, qualification}){
-        return Review.findOrCreate({
-            where:{
-                userId,
-                productId
-            },
-            defaults: {
-                message,
-                qualification
+        return Review.findOne({where:{ userId, productId }})
+        .then(review => {
+            if (review) {
+                return review.update({message, qualification})
+            } else {
+                return Review.create({userId, productId, message, qualification})
             }
         })
-        .then(()=>this.byProduct(productId))
-    },
-
-    update: function(userId, productId, {message, qualification}){
-        let atributesToUpdate = {};
-        if (qualification) atributesToUpdate.qualification = qualification;
-        if (message) atributesToUpdate.message = message;
-        return Review.update(
-            atributesToUpdate,
-            {
-                where:{
-                    userId,
-                    productId
-                }
-            }
-        )
         .then(()=>this.byProduct(productId))
     },
 
     delete: function(userId, productId){
-        return Review.destroy({
-            where: {
-                userId,
-                productId
-            }
-        })
+        return Review.findOne({where: { userId, productId }})
+        .then(review => review.destroy())
         .then(()=>this.byProduct(productId))
     }
 }
