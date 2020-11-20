@@ -192,10 +192,10 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
-    addImgUser: function(img){
+    addImgUser: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/imgage`,
-            {img},
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/image`,
+            data,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
