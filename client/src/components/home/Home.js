@@ -31,6 +31,7 @@ export default function Home() {
         if (!products.length){
             dispatch(api.getProducts())
         }
+        dispatch(api.getPurchased())
     }, [dispatch, products, categories])
 
     const onSelect = (e) => {

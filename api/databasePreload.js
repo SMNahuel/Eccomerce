@@ -1,4 +1,4 @@
-const { Product, Category, Image, User, Rol } = require('./src/db.js');
+const { Product, Category, Image, User, Rol, Review } = require('./src/db.js');
 
 const roles = ['banned','anonymous','guest','admin','owner']
 const users = [
@@ -40,6 +40,13 @@ const users = [
     }
 ]
 const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
+
+const qualification = () => (Math.random() * 4 + 1.5) | 0
+const reviewMessage = () => {
+    let str = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+    return str.slice(0, (Math.random() * 612 + 1.5) | 0)
+}
+const randomUser = () => (Math.random() * 4 + 1.5) | 0
 
 module.exports = ()=> {
     // hardcodeamos algunos datos para trabajar en modo dev
@@ -130,5 +137,23 @@ module.exports = ()=> {
         })
     };
 
-    p.then(r => console.log('products pre-charged'))
+    p = p.then(r => console.log('products pre-charged'));
+
+    for (let i = 1; i < 41; i++) {
+        let aux = (Math.random() * 9 + 1.5) | 0
+        for (let j = 0; j < aux; j++) {
+            p = p.then(() => {
+                return Review.create({
+                    qualification: qualification(),
+                    message: reviewMessage(),
+                    userId: randomUser(),
+                    productId: i
+                })
+            })
+        }
+    }
+
+    p = p.then(r => console.log('reviews pre-charged'));
 }
+
+

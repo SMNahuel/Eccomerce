@@ -7,5 +7,6 @@ router.use('/orders', require('./orders.js'));
 router.use('/image', require('./image.js'));
 router.use('/user', require('./user.js'));
 router.use('/cart', require('./cart.js'));
+router.use('/reviews', require('./reviews.js'));
 
 module.exports = router;

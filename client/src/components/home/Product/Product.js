@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import CloseIcon from '@material-ui/icons/Close';
 import api from '../../../redux/action-creators';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
-import Review from './Review/Review';
-import stars from '../../../utils/stars';
+import ReviewsBox from './ReviewsBox/ReviewsBox';
+import toStars from '../../../utils/toStars';
 import QuestionsAndAnswers from './questionAndAnswer/QuestionsAndAnswers';
 import Question from './questionAndAnswer/question/Question';
 
@@ -14,8 +14,10 @@ export default ({product, onBack}) => {
   const image = product.images[0] ?
   `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
   imgNotFound
+
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+
+  
   const availableQuantities = (function () {
     let ret = [];
     for (let i = 1; i <= product.stock; i++){
@@ -50,7 +52,7 @@ export default ({product, onBack}) => {
               </div>
               <div>
                 <p>Author: Lorem impsum</p>
-                <p className={s.p_reviews}>{stars(3)}</p>
+                <p className={s.p_reviews}>{toStars(3)}</p>
               </div>
               <p className={s.p_price}>${product.price}</p>
               <div className={s.container_stock_select}>
@@ -90,7 +92,7 @@ export default ({product, onBack}) => {
           <div className={s.container_review}>
             <h3>Product reviews</h3>
             <div className={s.container_description_review}>
-              <Review reviews={product.reviews} productId={product.id} user={user} />
+              <ReviewsBox productId={product.id} />
             </div>
           </div>
           <div className={s.container_question_answers}>
