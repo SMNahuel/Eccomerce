@@ -116,6 +116,7 @@ const actionCreators = {
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
             .then(()=>this.getProducts())
+            .then(()=>this.getOrders())
         }
     },
 
