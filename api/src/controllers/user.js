@@ -1,25 +1,21 @@
-const { User, Rol } = require('../db.js');
+const { User, Rol, Image } = require('../db.js');
 
 module.exports = {
-    login: function ({ email, password }) {
+    login: function (email, password) {
         return User.findOne({
             attributes: ['id', 'email', 'password', 'name', 'rolId'],
             where: { email },
-            include: {
+            include: [{
                 model:Rol,
                 attributes: ['name']
-            }
-        })
-        .then(user => {
-            if (user.password !== password) throw new Error('wrong password')
-            if (user.rolId < 2) throw 'Your account has been banned contact the company to recover your account'
-            return [user.id, {
-                email: user.email,
-                name: user.name,
-                rolId: user.rolId,
-                rol: user.rol.name,
+            }, {
+                model:Image,
+                attributes: ['url']
             }]
         })
+        .then(user => this.matchPassword(user, password))
+        .then(this.checkBan)
+        .then(this.session)
     },
 
     register: function ({ email, name, password}) {
@@ -28,32 +24,29 @@ module.exports = {
             where: { email }
         })
         .then(user => {
-            if (user) throw new Error(`User ${email} already exists`)
+            if (user) throw `User ${email} already exists`
             return User.create({ name, email, password, rolId: 2})
         })
-        .then(user => [user.id, {
-            email: user.email,
-            name: user.name,
-            rolId: user.rolId,
-            rol: 'guest',
-        }])
+        .then(user => this.getById(user.id))
+    },
+
+    anonymous: function () {
+        return User.create({rolId: 2})
     },
 
     getById: function(userId){
         return User.findOne({
-            attributes: ['email', 'name', 'rolId'],
+            attributes: ['id', 'email', 'name', 'rolId'],
             where:{ id: userId },
-            include: {
+            include: [{
                 model:Rol,
                 attributes: ['name']
-            }
+            }, {
+                model:Image,
+                attributes: ['url']
+            }]
         })
-        .then(user => ({
-            email: user.email,
-            name: user.name,
-            rolId: user.rolId,
-            rol: user.rol.name,
-        }))
+        .then(this.session)
     },
 
     exists: function(id){
@@ -79,57 +72,79 @@ module.exports = {
 
     setAdmin: function(id){
         return User.findByPk(id)
-        .then(user => {
-            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
-            return user.update({rolId: 3});
-        })
+        .then(this.ownerProtect)
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
     setGuest: function(id){
         return User.findByPk(id)
-        .then(user => {
-            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
-            return user.update({rolId: 2});
-        })
+        .then(this.ownerProtect)
+        .then(user => user.update({rolId: 2}))
         .then(() => this.read())
     },
 
     ban: function(id){
         return User.findByPk(id)
-        .then(user => {
-            if (user.rolId > 3) throw new Error(`the role of an owner cannot be changed`)
-            return user.update({rolId: 1});
-        })
+        .then(this.ownerProtect)
+        .then(user => user.update({rolId: 1}))
         .then(() => this.read())
     },
 
     changePassword: function(id, oldPassword, newPassword){
         return User.findByPk(id)
-        .then(user => {
-            if (user.password !== oldPassword) throw new Error(`Wrong password`)
-            user.password = newPassword;
-            return user.save();
-        })
+        .then(user => this.matchPassword(user, oldPassword))
+        .then(user => user.update({password: newPassword}))
         .then(() => 'success')
     },
 
     update: function(id, { name, email}){
         let changeAttributes = {};
-        if(name) {
-            changeAttributes.name = name;
-        }
-        if(email){
-            changeAttributes.email = email;
-        }
+        if (name) changeAttributes.name = name; 
+        if (email) changeAttributes.email = email; 
         return User.update(
             changeAttributes, 
-            {
-                where: {
-                    id: id
-                }
-            }
+            { where: { id } }
         )
         .then(() => this.read())
+    },
+
+    session: function (user){
+        return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            rolId: user.rolId,
+            rol: user.rol ? user.rol.name : 'guest',
+            image: user.image && user.image.url
+        }
+    },
+    
+    matchPassword: function (user, password) {
+        if (user.password !== password) throw `Wrong password`;
+        return user;
+    },
+    
+    checkBan: function (user) {
+        if (user.rolId < 2) throw 'Your account has been banned contact the company to recover your account'
+        return user;
+    },
+
+    ownerProtect: function (user) {
+        if (user.rolId > 4) throw `the role of an owner cannot be changed`
+        return user;
+    },
+    
+    setImage: function (id, img) {
+        let userPromise = User.findByPk(id);
+        let imagePromise = Image.findOrCreate({
+            where: {
+                fileName: img.filename
+            }
+        })
+        .then(r => r [0])
+        return Promise.all([userPromise, imagePromise])
+        .then(([user, image])=> user.setImage(image))
+        .then(()=>(this.getById(id)))
     }
 }

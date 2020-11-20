@@ -19,6 +19,8 @@ function SideBarProfile({ toogleState }) {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
+    const image = user.image && `${process.env.REACT_APP_API_URL}${user.image}`
+
     useEffect(() => {
         dispatch(api.getMe())
     }, [dispatch]);
@@ -33,7 +35,7 @@ function SideBarProfile({ toogleState }) {
                 <button onClick={toogleState}>X</button>
             </div>
             <div className={s.profile}>
-                <Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
+                {({image})?(<Avatar src={image}/>):(<Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />)}
                 <div className={s.user}>
                     <h3>{user.name}</h3>
                     <p>{user.email}</p>
@@ -65,7 +67,7 @@ function SideBarProfile({ toogleState }) {
                     )}
                 </div>
                 <div className={s.container_empty}></div>
-                {(user.rolId > 2) && (
+                {(user.rolId > 3) && (
                     <>
                         <h4 className={s.title_h4}>Admin</h4>
                         <ComponentLink
