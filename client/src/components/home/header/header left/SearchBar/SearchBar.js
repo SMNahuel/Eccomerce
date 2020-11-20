@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import s from './SearchBar.module.css'
 import SearchIcon from '@material-ui/icons/Search';
+import SearchBar521 from './searchBar521px/SearchBar521'
 
-export default function SearchBar({handleSearch}){
+export default function SearchBar({ handleSearch, toggle, status }){
     const [key, setKey] = useState("");
     const onChange = (e)=>{
         setKey(e.target.value);
@@ -17,6 +18,7 @@ export default function SearchBar({handleSearch}){
         }
     }    
     return(
+        <>
         <div className={s.container_searchBar}>
             <form onSubmit={onSearch}>
                 <div className={s.container_input_buttons}>
@@ -31,7 +33,22 @@ export default function SearchBar({handleSearch}){
                     required/>
                     <button className={s.button} type="submit"><SearchIcon/></button>
                 </div>
+                
             </form>
         </div>
+            {
+                !status &&
+                <div className={s.container_searchIcon} onClick={toggle}>
+                    <SearchIcon />
+                </div>
+            }
+        
+        {
+            status &&
+            <div className={s.container_521}>
+                <SearchBar521 handleSearch={handleSearch} toggle={toggle}/>
+            </div>
+        }
+        </>
     )
 }

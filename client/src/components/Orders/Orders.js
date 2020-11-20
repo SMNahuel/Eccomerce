@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import Order from './Order/Order';
 import OrderDetail from './OrderDetail/OrderDetail';
+import Header from '../home/header/Header';
 
 export default function Orders() {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export default function Orders() {
     
     return (
         <>
+            <Header/>
             <div className={s.styleTableOrders}>
                 {orderDetail ? 
                     <OrderDetail order={orderDetail} onBack={onBack}/>

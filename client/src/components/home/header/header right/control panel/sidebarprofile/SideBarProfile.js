@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './SideBarProfile.module.css';
-import api from '../../../redux/action-creators'
-import { Avatar } from '@material-ui/core';
+import api from '../../../../../../redux/action-creators'
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
@@ -12,9 +11,9 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import ComponentLink from './componentLink/ComponentLink';
+import ComponentLink from '../componentLink/ComponentLink';
 
-function SideBarProfile({ toogleState }) {
+function SideBarProfile({ toggle }) {
 
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -28,38 +27,26 @@ function SideBarProfile({ toogleState }) {
     const onLogOut = () => {
         dispatch(api.logout())
     }
-    
     return (
         <div className={s.container}>
-            <div className={s.x}>
-                <button onClick={toogleState}>X</button>
-            </div>
-            <div className={s.profile}>
-                {({image})?(<Avatar src={image}/>):(<Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />)}
-                <div className={s.user}>
-                    <h3>{user.name}</h3>
-                    <p>{user.email}</p>
-                </div>
-            </div>
-            <div className={s.container_empty}></div>
             <div className={s.container_flex}>
                 <div className={s.container_links}>
                     <ComponentLink
                         to={"/"}
-                        funcion={toogleState}
+                        funcion={toggle}
                         SetIcon={<HomeIcon />}
                         p={"Home"} />
                     {(user.name) && (
                         <>
                             <ComponentLink
                                 to={"/userprofile"}
-                                funcion={toogleState}
+                                funcion={toggle}
                                 SetIcon={<PersonIcon />}
                                 p={"User Profile"}
                             />
                             <ComponentLink
                                 to={"/orders"}
-                                funcion={toogleState}
+                                funcion={toggle}
                                 SetIcon={<AssignmentTurnedInIcon />}
                                 p={"Orders"}
                             />
@@ -72,25 +59,25 @@ function SideBarProfile({ toogleState }) {
                         <h4 className={s.title_h4}>Admin</h4>
                         <ComponentLink
                             to={"/admin/categories"}
-                            funcion={toogleState}
+                            funcion={toggle}
                             SetIcon={<CategoryIcon />}
                             p={"Create | Modifiy categories"}
                         />
                         <ComponentLink
                             to={"/admin/products"}
-                            funcion={toogleState}
+                            funcion={toggle}
                             SetIcon={<ListAltIcon />}
                             p={"Create | Modifiy products"}
                         />
                         <ComponentLink
                             to={"/admin/orders"}
-                            funcion={toogleState}
+                            funcion={toggle}
                             SetIcon={<AssignmentIcon />}
                             p={"Manage orders"}
                         />
                         <ComponentLink
                             to={"/admin/users"}
-                            funcion={toogleState}
+                            funcion={toggle}
                             SetIcon={<PersonAddIcon />}
                             p={"Manage Users"}
                         />
@@ -106,7 +93,7 @@ function SideBarProfile({ toogleState }) {
                 ) : (
                         <ComponentLink
                             to={"/login"}
-                            funcion={toogleState}
+                            funcion={toggle}
                             SetIcon={<VpnKeyIcon />}
                             p={"Log In"}
                         />

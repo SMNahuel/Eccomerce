@@ -1,16 +1,16 @@
-.container_searchBar{
+.container_main{
+    display: flex;
+    align-items: center;
+    width: 220px;
+}
+.container_arrowBack{
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
-    max-width: 600px;
-    width: 100%;
-    padding: 0 10px;
-}
-.container_searchBar form{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    border-radius: 50%;
+    margin-left: 10px;
 }
 .container_input_buttons{
     display: flex;
@@ -35,4 +35,3 @@
     border: none;
     cursor: pointer;
 }
-

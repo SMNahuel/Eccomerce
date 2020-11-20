@@ -12,17 +12,11 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 
 
-
-
 function UserProfile(props) {
-    const [state, setState] = useState({
-        action: false,
-        oldPassword: null,
-        newPassword: null
-    })
 
     let theme = createMuiTheme();
     theme = responsiveFontSizes(theme);
+
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const [img, setImg] = useState(null);
@@ -44,115 +38,8 @@ function UserProfile(props) {
         fReader.onloadend = event => setImg({ src: event.target.result, name: input.files[0].name })
         fReader.readAsDataURL(input.files[0]);
     }
-    const handlePassword = () => {
-        if(state.action === false){
-            setState({...state, action: true})
-        }else{
-            setState({...state, action: false})
-        }
-    }
-    
-    const onChange = function(e){
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
-    }
-    const changePassword = function(){
-        dispatch(api.passwordChange({
-            oldPassword: state.oldPassword,
-            newPassword: state.newPassword
-        }))
-        setState({...state, action: false})
-    } 
+
     return (
-
-        <div className={s.justify}>
-            {
-                state.action === true &&
-                <form className={s.formPassword}>
-                    <div>
-                        <input 
-                        type="password"
-                        placeholder="Ingrese su anterior contraseña" 
-                        name="oldPassword"
-                        onChange={onChange}
-                        pattern="[A-Za-z0-9 ]{5,100}"
-                        maxLength="100"
-                        autoComplete="off"
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <input 
-                        placeholder="Ingrese nueva contraseña"
-                        type="password"
-                        name="newPassword"
-                        onChange={onChange}
-                        pattern="[A-Za-z0-9 ]{5,100}"
-                        maxLength="100"
-                        autoComplete="off"
-                        >
-
-                        </input>
-                    </div>
-                    <div>
-                        <input 
-                        placeholder="Repita la nueva contraseña"
-                        type="password"
-                        pattern="[A-Za-z0-9 ]{5,100}"
-                        maxLength="100"
-                        autoComplete="off"
-                        >
-                        </input>
-                    </div>
-                    <Button variant="contained" color="primary" onClick={changePassword}>Aceptar</Button>
-                    <Button variant="contained" color="secondary" onClick={handlePassword} >Cancelar</Button>
-                </form>
-            }
-            {
-            state.action === false &&
-            <Card className={s.justifyCard}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Contemplative Reptile"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {user.name}
-                        </Typography>
-                        <Typography gutterBottom variant="h6" component="h2">
-                            {user.email}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {user.rol}
-                        </Typography>
-                        
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Input type="file" size="small" color="primary">
-                        Selecciona imagen de perfil
-                    </Input>
-                </CardActions>
-                <CardActions>
-                    <Button type="submit" size="small" color="primary">
-                        Cargar
-                    </Button>
-                </CardActions>
-                <Button onClick={handlePassword}> 
-                Cambiar password 
-                </Button>
-                   
-                    
-                
-            </Card>
-            }
-
         <div className={s.justifyDiv}>
             <div className={s.boxStyle} >                
                 <div className={s.justifyAv}>

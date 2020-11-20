@@ -2,11 +2,11 @@ import React, {useRef, useState} from 'react';
 import s from './Cart.module.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useSelector, useDispatch } from 'react-redux';
-import api from '../../../redux/action-creators';
+import api from '../../../../../redux/action-creators';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import { selectorValue } from '../../../utils/selector'
+import { selectorValue } from '../../../../../utils/selector'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import cartEmpty from '../../../img/empty-cart.png'
+import cartEmpty from '../../../../../img/empty-cart.png'
 
 function Cart(props) {
     const cart = useSelector(state => state.cart)
@@ -75,7 +75,7 @@ function Cart(props) {
     return (
         <>
             <div className={s.container_button_toggle}>
-                <button onClick={onToggleActive}><ShoppingCartIcon /></button>
+                <button onClick={onToggleActive}><ShoppingCartIcon fontSize="small"/></button>
             </div>
             {active && cart.products ?
                 <div className={s.container_absolute_main} ref={ref}>
