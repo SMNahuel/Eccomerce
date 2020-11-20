@@ -72,21 +72,6 @@ const actionCreators = {
             this._dispatchPromise(promise, this.PRODUCTS, dispatch)
         }
     },
-    addReview: function(productId, review) {
-        return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
-            review,
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
-        }
-    },
-    deleteReview: function(reviewId) {
-        return dispatch => {
-            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/products/review/${reviewId}`,
-            {withCredentials: true})
-            this._dispatchPromise(promise, this.PRODUCTS, dispatch)
-        }
-    },
 
     CART: 'CART',
     getCart: function() {
@@ -131,6 +116,7 @@ const actionCreators = {
             {withCredentials: true})
             this._dispatchPromise(promise, this.CART, dispatch)
             .then(()=>this.getProducts())
+            .then(()=>this.getOrders())
         }
     },
 
@@ -167,11 +153,12 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
-    logout: function(){
+    addImgUser: function(data){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/logout`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/image`,
+            data,
             {withCredentials: true})
-            this._dispatchPromise(promise, this.USER, dispatch)
+            this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
     passwordChange: function(newPassword, oldPassword){
@@ -185,46 +172,46 @@ const actionCreators = {
         }
     },
 
-    USERS: 'USERS',
-    getUsers: function(){
+    REVIEW: 'REVIEW',
+    getReviews: function(productId) {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/admin`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews/${productId}`,
             {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    promoteUser: function(id){
+    addReview: function(productId, review) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`,
-            {id},
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
+            review,
             {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    demoteUser: function(id){
+    deleteReview: function(productId, userId) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`,
-            {id},
+            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${productId}/${userId}`,
             {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    banUser: function(id){
+    getReviewByUser: function(userId) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/ban`,
-            {id},
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews/${userId}`,
             {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
+            this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    addImgUser: function(data){
+
+    PURCHASEDPRODUCTS: 'PURCHASEDPRODUCTS',
+    getPurchased: function() {
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/image`,
-            data,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/purchased`,
             {withCredentials: true})
-            this._dispatchPromise(promise, this.USERS, dispatch)
+            this._dispatchPromise(promise, this.PURCHASEDPRODUCTS, dispatch)
         }
     },
+
     FORMRESPOND: 'FORMRESPOND',
 
     _dispatchPromise: function(promise, type, dispatch){

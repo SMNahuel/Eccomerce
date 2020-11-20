@@ -1,4 +1,4 @@
-const { User, Rol, Image } = require('../db.js');
+const { User, Rol, Image, Cart, Product } = require('../db.js');
 
 module.exports = {
     login: function (email, password) {
@@ -146,5 +146,23 @@ module.exports = {
         return Promise.all([userPromise, imagePromise])
         .then(([user, image])=> user.setImage(image))
         .then(()=>(this.getById(id)))
+    },
+
+    getPurchasedProducts: function (userId) {
+        return Product.findAll({
+            attributes: ['id'],
+            include: {
+                model: Cart,
+                attributes: [],
+                where: {
+                    userId,
+                    state: 'processing'
+                },
+                through: {
+                    attributes: []
+                }
+            }
+        })
+        .then(poducts => poducts.map(poduct => poduct.id))
     }
 }

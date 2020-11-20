@@ -4,20 +4,20 @@ import imgNotFound from '../../../img/img404.jpg';
 import StarIcon from '@material-ui/icons/Star';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-export default function ProductReview({ toggle, order }){
-    const image = order.products[0].images[0].url ?
-        `${process.env.REACT_APP_API_URL}${order.products[0].images[0].url}` :
+export default function ProductReview({ onBack, product }){
+    const image = product.images[0].url ?
+        `${process.env.REACT_APP_API_URL}${product.images[0].url}` :
         imgNotFound
     const ref = useRef(null)
     const onUnmount = () => {
         ref.current.style.animation = s.containerUnmount + ' 450ms linear'
-        setTimeout(toggle, 400);
+        setTimeout(onBack, 400);
     };
     return (
         <div className={s.container} ref={ref}>
             <div className={s.container_main}>
                 <HighlightOffIcon className={s.back} fontSize="large" onClick={onUnmount}/>
-                    <h1>{order.products[0].name}</h1>
+                    <h1>{product.name}</h1>
                     <div className={s.container_img_title_flex}>
                         <div className={s.container_background} style={{ backgroundImage: `url(${image})` }}>
                         </div>
