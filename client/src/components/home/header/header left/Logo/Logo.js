@@ -58,6 +58,7 @@ export default function Logo() {
                         <animate attributeName="stroke-dasharray" from="0,6" to="6,6" dur="2s"/>
                     </path>
                     <path stroke="#55EFC4" strokeWidth=".5" fill="transparent" d="M5,5 Q7,5 8.5,3.5 L7.5,2.5">
+
                         <animate attributeName="stroke-dasharray" from="0,6" to="6,6" dur="2s"/>
                     </path>
                     <animateTransform id="a3" begin="a1.end" dur="1s" attributeName="transform" type="rotate" from="360" to="0" additive="sum"/>

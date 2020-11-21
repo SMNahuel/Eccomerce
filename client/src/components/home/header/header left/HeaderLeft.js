@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Logo from './Logo/Logo';
 import s from './HeaderLeft.module.css';
+import { Link } from 'react-router-dom';
+import Logo from './Logo/Logo';
 import SearchBar from './SearchBar/SearchBar';
 
 
@@ -15,7 +16,9 @@ export default function HeaderLeft({ handleSearch }){
         <div className={s.container_main}>
             {
                 !seachbar521px &&
-                <Logo style={{visibility: "hidden"}}/>
+                <Link to='/'>
+                    <Logo style={{visibility: "hidden"}}/>
+                </Link>
             }
             <SearchBar handleSearch={handleSearch} className={s.SearchBar} toggle={toggle} status={seachbar521px}/>
         </div>
