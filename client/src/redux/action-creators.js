@@ -168,14 +168,17 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
-    passwordChange: function(newPassword, oldPassword){
+    passwordChange: function(oldPassword, newPassword,){
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/password`,
+            console.log(oldPassword, newPassword)
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/password`,
+            {
             oldPassword,
-            newPassword,
+            newPassword
+            },
             {withCredentials: true}
             )
-            this._dispatchPromise(promise, this.CART, dispatch)
+            this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
 

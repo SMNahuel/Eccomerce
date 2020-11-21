@@ -38,6 +38,7 @@ server.post('/register', (req, res, next) => {
 
 // Ruta para cambiar de password como usuario
 server.put('/password', forGuest, (req, res, next) => {
+    
     const { oldPassword, newPassword }= req.body;
     if(!oldPassword){
         return res.status(400).send('I need the old password to modify the password')
@@ -59,7 +60,6 @@ server.get('/admin', forAdmin, (req, res, next) => {
 // Ruta que permite promocionar a un usuario a admin
 server.put('/admin/promote', forAdmin, (req, res, next) => {
     const { userId } = req.body;
-    console.log(userId)
     if(!userId){
         return res.status(400).send('an id is needed to promote a user')
     }

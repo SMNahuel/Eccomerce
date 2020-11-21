@@ -8,7 +8,7 @@ import Product from './Product/Product';
 import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
 import CarouselB from './carousel/CarouselB';
 import Header from './header/Header';
-import Categories from './Categories/Categories';
+import Categories from './Categories/Categories/Categories';
 import Pagination from './Catalog/pagination/Pagination';
 import Footer from './footer/Footer';
 

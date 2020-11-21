@@ -7,7 +7,7 @@ const users = [
     { rolId: 5, password: "1234567", imageId: categories.length + 1, name: "Maico Loncomilla", email: "maicoloncomilla@gmail.com" },
     { rolId: 5, password: "1234567", imageId: categories.length + 2, name: "Javier Balonga", email: "javierbalonga@gmail.com" },
     { rolId: 5, password: "1234567", imageId: categories.length + 3, name: "Esteban", email: "ces.esteban@gmail.com" },
-    { rolId: 5, password: "1234567", imageId: categories.length + 4, name: "Nahuel Sanches", email: "nahuelsan96@gmail.com" },
+    { rolId: 5, password: "1234567", imageId: categories.length + 4, name: "Nahuel Sanchez", email: "nahuelsan96@gmail.com" },
     { rolId: 5, password: "1234567", imageId: categories.length + 5, name: "Nacho", email: "ignaciogimenez70@gmail.com"},
     { rolId: 5, password: "1234567", imageId: categories.length + 6, name: "Leo Vinas", email: "vinasleonardo@yahoo.com" }
 ]
