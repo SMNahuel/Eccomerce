@@ -20,7 +20,11 @@ export default function FormAddReview({ onBack, review, productId }){
     }
     return(
         <div className={s.FormReview}>
-            <CloseIcon className={s.close} onClick={() => onBack()}/>
+            <div className={s.container_closeIcon}>
+                <CloseIcon className={s.close} onClick={() => onBack()}/>
+            </div>
+            <div className={s.container_p_clasification}>
+
                 <p className={s.clasification}>
                     <input type="radio" className={s.radio} checked={input.qualification > 4} />
                     <label className={s.star} onClick={() => setStars(5)}>★</label>
@@ -34,11 +38,18 @@ export default function FormAddReview({ onBack, review, productId }){
                     <label className={s.star} onClick={() => setStars(1)}>★</label>
                     : stars
                 </p>
+            </div>
             <div className={s.message}>
                 <label>message: </label>
-                <textarea value={input.message} onChange={onChangeMessage} placeholder="message for review..."/>
+                <textarea 
+                value={input.message} 
+                onChange={onChangeMessage} 
+                placeholder="message for review..."
+                autoFocus="true"/>
             </div>
-            <button onClick={onSubmit}>Send Review</button>
+            <div className={s.container_button_submit}>
+                <button onClick={onSubmit}>Send Review</button>
+            </div>
         </div>
     )
 }

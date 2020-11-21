@@ -18,8 +18,6 @@ function SideBarProfile({ toggle }) {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
-    const image = user.image && `${process.env.REACT_APP_API_URL}${user.image}`
-
     useEffect(() => {
         dispatch(api.getMe())
     }, [dispatch]);

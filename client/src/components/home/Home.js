@@ -20,8 +20,8 @@ export default function Home() {
         detailedProduct: null,
         cartProduct: []
     })
-    const [ currentPage, setCurrentPage ] = useState(1)
-    const [ postsPerPage ] = useState(10);
+    const [ currentPage ] = useState(1)
+    const [ postsPerPage, setPostPerPage ] = useState(10);
 
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
@@ -43,7 +43,7 @@ export default function Home() {
     const currentProduct = products.slice(indexFirstProduct, indexOfLastProduct)
 
     const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber)
+        setPostPerPage(postsPerPage + pageNumber)
     }
     const onSelect = (e) => {
         let categoryId = Number(e.target.value)
@@ -103,7 +103,7 @@ export default function Home() {
             <div className={s.home}>
                 <CarouselB categories={categories}/>
                 <Catalog products={ state.products || currentProduct || products} handleDetail={handleDetail} />
-                <Pagination postsPerPage={postsPerPage} totalProduct={products.length} paginate={paginate}/>
+                <Pagination paginate={paginate}/>
                 <Footer/>
             </div>
             
@@ -111,6 +111,7 @@ export default function Home() {
                 formRespond &&
                 <FormRespond/>
             }
+            
         </>
     )
 

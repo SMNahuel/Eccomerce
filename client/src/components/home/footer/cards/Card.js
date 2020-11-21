@@ -17,13 +17,13 @@ export default function Card({ image, name, email, gitHref, linkedinHref }){
                 </div>
             </div>
             <div className={s.container_datos}>
-                <a href={linkedinHref} target="_BLANK">
+                <a href={linkedinHref} target="_BLANK" rel="noopener noreferrer">
                     <div className={s.container_icons}>
                         <LinkedInIcon className={s.icon} />
                         <p>Linkedin</p>
                     </div>
                 </a>
-                <a href={gitHref} target="_BLANK">
+                <a href={gitHref} target="_BLANK" rel="noopener noreferrer">
                     <div className={s.container_icons}>
                         <GitHubIcon className={s.icon} />
                         <p>Git Hub</p>
