@@ -12,7 +12,7 @@ export default function Categories({categories, onSelect, onClear, selectedCateg
                             key={category.id} 
                             onClick={category.id === selectedCategory ? onClear : onSelect} 
                             value={category.id} 
-                            style={category.id === selectedCategory ? {filter: 'hue-rotate(-180deg)'} : {}} 
+                            style={category.id === selectedCategory ? {filter: 'hue-rotate(-180deg)', color: "#282C34"} : {}} 
                         >
                             {category.name}
                         </button>

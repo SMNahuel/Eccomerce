@@ -3,14 +3,11 @@ import s from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
-import Catalog from './Catalog/Catalog';
-import Product from './Product/Product';
-import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
-import CarouselB from './carousel/CarouselB';
+import FormRespond from './body/Catalog/Product/questionAndAnswer/question/formRespond/FormRespond';
 import Header from './header/Header';
-import Categories from './Categories/Categories/Categories';
-import Pagination from './Catalog/pagination/Pagination';
 import Footer from './footer/Footer';
+import Body from './body/Body';
+import Product from './body/Catalog/Product/Product'
 
 export default function Home() {
 
@@ -94,24 +91,22 @@ export default function Home() {
                    <Product product={state.detailedProduct} onBack={handleBack} />
                </div>
             }
-            <div className={s.container}>
-                <div className={s.navBar}>
+            <div className={s.container_home}>
+                <div className={s.container_header}>
                     <Header handleSearch={handleSearch}/>
-                    <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
                 </div>
-            </div>
-            <div className={s.home}>
-                <CarouselB categories={categories}/>
-                <Catalog products={ state.products || currentProduct || products} handleDetail={handleDetail} />
-                <Pagination paginate={paginate}/>
-                <Footer/>
-            </div>
-            
+                <div>
+                    <Body 
+                    categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory}
+                    products={state.products || currentProduct || products} handleDetail={handleDetail}
+                    paginate={paginate}/>
+                    <Footer/>
+                </div>
+            </div>  
             {
                 formRespond &&
                 <FormRespond/>
             }
-            
         </>
     )
 

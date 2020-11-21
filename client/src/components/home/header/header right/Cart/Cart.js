@@ -7,9 +7,11 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { selectorValue } from '../../../../../utils/selector'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import cartEmpty from '../../../../../img/empty-cart.png'
+import { Redirect } from 'react-router-dom';
 
 function Cart(props) {
     const cart = useSelector(state => state.cart)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     const [active, setActive] = useState(false)
@@ -26,14 +28,23 @@ function Cart(props) {
         setActive(!active)
     }
 
+    const [redirect, setRedirect] = useState(false)
     const onBuy = e => {
-        dispatch(api.confirmCart(cart))
-        setActive(!active)
+        if (user.name) {
+            dispatch(api.confirmCart(cart))
+            setActive(!active)
+        } else {
+            setRedirect(true)
+        }
     }
 
     const onCancel = e => {
-        dispatch(api.cancelCart(cart))
-        setActive(!active)
+        if (user.name) {
+            dispatch(api.cancelCart(cart))
+            setActive(!active)
+        } else {
+            setRedirect(true)
+        }
     }
 
     const onDelete = (id) => {
@@ -66,14 +77,15 @@ function Cart(props) {
         , 0)
     }
     
-  const ref = useRef(null)
-  const onUnmount = () => {
-    ref.current.style.animation = s.containerUnmount + ' 450ms linear'
-    setTimeout(onToggleActive, 400);
-  };
+    const ref = useRef(null)
+    const onUnmount = () => {
+        ref.current.style.animation = s.containerUnmount + ' 450ms linear'
+        setTimeout(onToggleActive, 400);
+    };
 
     return (
         <>
+            {redirect && <Redirect to="/login"/>}
             <div className={s.container_button_toggle}>
                 <button onClick={onToggleActive}><ShoppingCartIcon fontSize="small"/></button>
             </div>

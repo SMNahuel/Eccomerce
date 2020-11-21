@@ -2,6 +2,14 @@ const server = require('express').Router();
 const cart = require('../controllers/cart');
 const { forAnonym, forGuest } = require('../middlewares/authenticate')
 
+// Opciones de  la cookie del carrito
+const cookieOptions = {
+    expires: new Date(Date.now() + 16 * 3600000),
+    httpOnly: true,
+    secure: process.env.PORT !== '3001',
+    sameSite: process.env.PORT === '3001' ? 'strict' : 'none'
+};
+
 // Ruta que trae el carrito de un usuario
 server.get('/', forGuest, (req, res, next) => {
     cart.cartOf(req.user.id)
@@ -17,11 +25,8 @@ server.post('/', (req, res, next) => {
     }
 
     if (!req.isAuthenticated()) {
-        cart.addToCartAnonimus(req.body)
-        .then(([session, cart]) => {
-            req.login(session, err => err && next(err))
-            return res.send(cart);
-        })
+        cart.addToCartAnonimus(req.body, req.cookies.cartId)
+        .then(cart => res.cookie('cartId', cart.id, cookieOptions).send(cart))
         .catch(next)
     } else {
         return cart.addToCart(req.user.id, req.body)

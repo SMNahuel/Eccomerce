@@ -164,5 +164,10 @@ module.exports = {
             }
         })
         .then(poducts => poducts.map(poduct => poduct.id))
-    }
+    },
+
+    addCart: function (userId, cartId) {
+        return User.findByPk(userId)
+        .then(user => user.addCart(cartId))
+    } 
 }
