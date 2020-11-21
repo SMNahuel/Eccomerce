@@ -58,12 +58,11 @@ server.get('/admin', forAdmin, (req, res, next) => {
 
 // Ruta que permite promocionar a un usuario a admin
 server.put('/admin/promote', forAdmin, (req, res, next) => {
-    const { userId } = req.body;
-    console.log(userId)
-    if(!userId){
+    const { id } = req.body;
+    if(!id){
         return res.status(400).send('an id is needed to promote a user')
     }
-    user.setAdmin(userId)
+    user.setAdmin(id)
     .then(r => res.send(r))
     .catch(next)
 })
