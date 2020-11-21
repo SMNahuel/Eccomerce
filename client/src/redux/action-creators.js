@@ -179,6 +179,15 @@ const actionCreators = {
         }
     },
 
+    USERS: "USERS",
+    getUsers: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/admin`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+
     REVIEW: 'REVIEW',
     getReviews: function(productId) {
         return dispatch => {
