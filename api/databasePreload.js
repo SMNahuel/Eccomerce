@@ -1,159 +1,129 @@
+const cart = require('./src/controllers/cart.js');
 const { Product, Category, Image, User, Rol, Review } = require('./src/db.js');
 
+const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
 const roles = ['banned','anonymous','guest','admin','owner']
 const users = [
-    {
-        name: "Maico Loncomilla",
-        email: "maicoloncomilla@gmail.com",
-        password: "1234567",
-        rolId: 5
-    },
-    {
-        name: "Javier Balonga",
-        email: "javierbalonga@gmail.com",
-        password: "1234567",
-        rolId: 5
-    },
-    {
-        name: "Esteban",
-        email: "ces.esteban@gmail.com",
-        password: "1234567",
-        rolId: 5
-    },
-    {
-        name: "Leo Vinas",
-        email: "vinasleonardo@yahoo.com",
-        password: "1234567",
-        rolId: 5
-    },
-    {
-        name: "Nahuel Sanches",
-        email: "nahuelsan96@gmail.com",
-        password: "1234567",
-        rolId: 5
-    },
-    {
-        name: "Nacho",
-        email: "ignaciogimenez70@gmail.com",
-        password: "1234567",
-        rolId: 5
-    }
+    { rolId: 5, password: "1234567", imageId: categories.length + 1, name: "Maico Loncomilla", email: "maicoloncomilla@gmail.com" },
+    { rolId: 5, password: "1234567", imageId: categories.length + 2, name: "Javier Balonga", email: "javierbalonga@gmail.com" },
+    { rolId: 5, password: "1234567", imageId: categories.length + 3, name: "Esteban", email: "ces.esteban@gmail.com" },
+    { rolId: 5, password: "1234567", imageId: categories.length + 4, name: "Nahuel Sanches", email: "nahuelsan96@gmail.com" },
+    { rolId: 5, password: "1234567", imageId: categories.length + 5, name: "Nacho", email: "ignaciogimenez70@gmail.com"},
+    { rolId: 5, password: "1234567", imageId: categories.length + 6, name: "Leo Vinas", email: "vinasleonardo@yahoo.com" }
 ]
-const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
+const lorem = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+const romanNumbers = ['I','II','III','IV','V']
 
-const qualification = () => (Math.random() * 4 + 1.5) | 0
-const reviewMessage = () => {
-    let str = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
-    return str.slice(0, (Math.random() * 612 + 1.5) | 0)
+const randomNumber = (min, max) => (Math.random() * (max - min) + (min + 0.5)) | 0
+const randomMessage = (val) => lorem.slice(0, (Math.random() * (val-1) + 1.5) | 0)
+
+var p = new Promise(resolve => resolve(true))
+
+const log = (str) => {
+    p = p.then(r => (
+        console.log(str)
+    ))
 }
-const randomUser = () => (Math.random() * 4 + 1.5) | 0
 
-module.exports = ()=> {
-    // hardcodeamos algunos datos para trabajar en modo dev
-    var p = new Promise(resolve => resolve(true))
-
-    roles.forEach(rol => p = p.then(() => 
-        Rol.create({
-            name: rol
-        })
+const createRoles = () => {
+    roles.forEach(rol => (
+        p = p.then(() => (
+            Rol.create({name: rol})
+        ))
     ))
+}
 
-    p = p.then(r => console.log('Rols pre-charged'));
-
-    users.forEach(user => p = p.then(() => 
-        User.create(user)
+const createUsers = () => {
+    users.forEach(user => (
+        p = p.then(() => (
+            User.create(user)
+        ))
     ))
+}
 
-    p = p.then(r => console.log('users pre-charged'));
-
-    categories.forEach(category =>  p = p.then(() => 
-        Category.create({
-            name: category,
-            description: "Cursos de " + category
-        })
+const createCategories = () => {
+    categories.forEach(category => (
+        p = p.then(() => (
+            Category.create({
+                name: category,
+                description: "Cursos de " + category
+            })
+        ))
     ))
+}
 
-    p = p.then(r => console.log('categories pre-charged'));
+const createImages = () => {
+    categories.forEach(category => (
+        p = p.then(() => (
+            Image.create({fileName: category + '.png'}))
+        )
+    ))
+}
 
-    
-    for (let i = 0; i < categories.length; i++) {
-        let imageInstance;
+const createProfileImages = () => {
+    users.forEach((user, i) => (
+        p = p.then(() => (
+            Image.create({fileName: i + 1 + '.jpg'}))
+        )
+    ))
+}
 
-        p = p.then(() => Image.findOrCreate({
-            where: {
-                fileName: categories[i] + '.png'
-            }
-        }))
-        .then(r => imageInstance = r[0])
-        .then(() => Product.create({
-            name: categories[i] + " I",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
-            price: 100,
-            stock: 20
-        }))
-        .then( product => {
-            product.setCategories([i + 1]);
-            return product.setImages([imageInstance.id]);
-        })
-        .then(() => Product.create({
-            name: categories[i] + " II",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
-            price: 120,
-            stock: 20
-        }))
-        .then( product => {
-            product.setCategories([i + 1]);
-            return product.setImages([imageInstance.id]);
-        })
-        .then(() => Product.create({
-            name: categories[i] + " III",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
-            price: 140,
-            stock: 20
-        }))
-        .then( product => {
-            product.setCategories([i + 1]);
-            return product.setImages([imageInstance.id]);
-        })
-        .then(() => Product.create({
-            name: categories[i] + " IV",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
-            price: 160,
-            stock: 20
-        }))
-        .then( product => {
-            product.setCategories([i + 1]);
-            return product.setImages([imageInstance.id]);
-        })
-        .then(() => Product.create({
-            name: categories[i] + " V",
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit conubia ornare mi faucibus, hac gravida quisque dignissim ridiculus proin himenaeos diam et. Nullam risus gravida praesent eu nulla platea per lacinia netus, volutpat facilisis ut ultricies turpi\n- Build, test, and launch React apps\n- Setup authentication and user accounts\n- Learn the latest React libraries and tools\n- Use cutting-edge ES6/ES7 JavaScrip\n- Deploy your React apps live to the web\n- Master React, Redux, React-Router, and more\n- Become an advanced, confident, and modern JavaScript developer from scratch\n- JavaScript fundamentals: variables, if/else, operators, boolean logic, functions, arrays, objects, loops, strings, etc.",
-            price: 180,
-            stock: 20
-        }))
-        .then( product => {
-            product.setCategories([i + 1]);
-            return product.setImages([imageInstance.id]);
-        })
-    };
-
-    p = p.then(r => console.log('products pre-charged'));
-
-    for (let i = 1; i < 41; i++) {
-        let aux = (Math.random() * 9 + 1.5) | 0
-        for (let j = 0; j < aux; j++) {
-            p = p.then(() => {
-                return Review.create({
-                    qualification: qualification(),
-                    message: reviewMessage(),
-                    userId: randomUser(),
-                    productId: i
+const createProducts = () => {
+    categories.forEach((category, i) => {
+        for (let j = 0; j < 5; j++) {
+            p = p.then(() => (
+                Product.create({
+                    name: category + " " + romanNumbers[j],
+                    description: randomMessage(255),
+                    price: randomNumber(50, 200),
+                    stock:  randomNumber(10, 30)
                 })
+            ))
+            .then( product => {
+                product.setCategories([i + 1]);
+                return product.setImages([i + 1]);
             })
         }
-    }
+    })
+}
 
-    p = p.then(r => console.log('reviews pre-charged'));
+const createCarts = () => {
+    users.forEach((user, i) => {
+        let userId = i+1
+        let productsIds = []
+        for (let j = randomNumber(1, 5); j < categories.length * 5; j += randomNumber(1, 5)) {
+            productsIds.push(j)
+        }
+        productsIds.forEach(productId => {
+            p = p.then(()=>cart.addToCart(userId, {productId: productId, quantity: 1}))
+        })
+        p = p.then(c => cart.process({id: c.id}))
+        productsIds.forEach(productId => {
+            p = p.then(() => Review.create({
+                qualification: randomNumber(1, 5),
+                message: randomMessage(255),
+                userId: userId,
+                productId: productId
+            }))
+        })
+    })
+}
+
+module.exports = ()=> {
+    createImages()
+    log('images pre-charged')
+    createProfileImages()
+    log('profile images pre-charged')
+    createRoles()
+    log('Rols pre-charged')
+    createUsers()
+    log('users pre-charged')
+    createCategories()
+    log('categories pre-charged')
+    createProducts()
+    log('products pre-charged')
+    createCarts()
+    log('carts and reviews pre-charged')
 }
 
 
