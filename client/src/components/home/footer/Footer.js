@@ -2,6 +2,11 @@ import React from 'react';
 import s from './Footer.module.css';
 import Card from './cards/Card';
 import maico from '../../../img/maico.jpg';
+import javi from '../../../img/javi.jpg';
+import esteban from '../../../img/esteban.jpg';
+import nahu from '../../../img/nahu.jpg';
+import nacho from '../../../img/nacho.jpg';
+import leo from '../../../img/leo.jpg';
 import { logoHenry } from '../../../utils/logo'
 
 export default function Footer(){
@@ -22,35 +27,35 @@ export default function Footer(){
                     linkedinHref={"https://www.linkedin.com/in/maicoloncomilla/"}
                     />
                     <Card
-                    image={""}
+                    image={javi}
                     name={"Javier Balonga"}
                     email={"javierbalonga@gmail.com"}
                     gitHref={"https://github.com/JavierBalonga"}
                     linkedinHref={"https://www.linkedin.com/in/javier-balonga-39518a1b1/"}
                     />
                     <Card
-                    image={""}
+                    image={esteban}
                     name={"Esteban"}
                     email={"ces.esteban@gmail.com"}
                     gitHref={"https://github.com/cesesteban"}
                     linkedinHref={"https://www.linkedin.com/in/esteban-cespedes-/"}
                     />
                     <Card
-                    image={""}
+                    image={nahu}
                     name={"Nahuel Sanchez"}
                     email={"nahuelsan96@gmail.com"}
                     gitHref={"https://github.com/Nahuelsan"}
                     linkedinHref={"https://www.linkedin.com/in/nahuel-sanchez-327139167/"}
                     />
                     <Card
-                    image={""}
+                    image={nacho}
                     name={"Ignacio Gimenez"}
                     email={"ignaciogimenez70@gmail.com"}
                     gitHref={"https://github.com/Nacho077"}
                     linkedinHref={"https://www.linkedin.com/in/ignacio-gimenez-305799184/"}
                     />
                     <Card
-                    image={""}
+                    image={leo}
                     name={"Leonardo Vinas"}
                     email={"vinasleonardo@yahoo.com"}
                     gitHref={"https://github.com/Leonardo-vinas"}
