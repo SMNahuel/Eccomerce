@@ -8,9 +8,9 @@ export default function Footer(){
     return (
         <div className={s.container_main}>
             <div>
-                <a href="https://www.soyhenry.com/" target="_BLANK">
+                <a href="https://www.soyhenry.com/" rel="noopener noreferrer" target="_BLANK">
                     <div className={s.container_logo}>
-                        <img src={logoHenry}/>
+                        <img src={logoHenry} alt="Logo-Henry"/>
                     </div>
                 </a>
                 <div className={s.container_creadores}>

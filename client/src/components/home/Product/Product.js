@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import CloseIcon from '@material-ui/icons/Close';
