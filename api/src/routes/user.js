@@ -5,7 +5,14 @@ const {login, logout, forAdmin, forGuest} = require('../middlewares/authenticate
 
 // Ruta que permite logearse
 server.post('/login', login, (req, res, next) => {
-    return res.send(req.user);
+    const { cartId } = req.cookies
+    if (!cartId) {
+        return res.send(req.user);
+    } else {
+        return user.addCart(req.user.id, cartId)
+        .then(() => res.clearCookie('cartId').send(req.user))
+        .catch(next);
+    }
 })
 
 // Ruta que permite deslogearse
@@ -31,9 +38,15 @@ server.post('/register', (req, res, next) => {
     user.register(req.body)
     .then(session => {
         req.login(session, err => err && next(err))
-        return res.send(session);
+        const { cartId } = req.cookies
+        if (!cartId) {
+            return res.send(session);
+        } else {
+            return user.addCart(session.id, cartId)
+            .then(() => res.clearCookie('cartId').send(session))
+            .catch(next)
+        }
     })
-    .catch(next)
 })
 
 // Ruta para cambiar de password como usuario
@@ -58,12 +71,11 @@ server.get('/admin', forAdmin, (req, res, next) => {
 
 // Ruta que permite promocionar a un usuario a admin
 server.put('/admin/promote', forAdmin, (req, res, next) => {
-    const { userId } = req.body;
-    console.log(userId)
-    if(!userId){
+    const { id } = req.body;
+    if(!id){
         return res.status(400).send('an id is needed to promote a user')
     }
-    user.setAdmin(userId)
+    user.setAdmin(id)
     .then(r => res.send(r))
     .catch(next)
 })
