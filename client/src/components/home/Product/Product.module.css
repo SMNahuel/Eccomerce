@@ -6,14 +6,6 @@
     backdrop-filter: blur(5px) brightness(70%);
     animation: containerMount .4s linear;
 }
-.back{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    color: #7b1fa2;
-    cursor: pointer;
-}
 .container_main{
     position: relative;
     max-width: 1200px;
@@ -27,6 +19,24 @@
     height: 100%;
     padding: 10px;
     overflow-y: auto;
+}
+.container_button_close{
+    position: absolute;
+    display: flex;
+    right: 10px;
+    top: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #ab47bc;
+    border-radius: 50%;
+}
+.back{
+    background-color: transparent;
+    color: #7b1fa2;
+    cursor: pointer;
+    color: #DFE6E9;
 }
 .container_flex{
     display: flex;
