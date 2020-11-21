@@ -25,7 +25,7 @@ module.exports = {
         })
         .then(user => {
             if (user) throw `User ${email} already exists`
-            return User.create({ name, email, password, rolId: 2})
+            return User.create({ name, email, password, rolId: 3})
         })
         .then(user => this.getById(user.id))
     },
@@ -73,14 +73,14 @@ module.exports = {
     setAdmin: function(id){
         return User.findByPk(id)
         .then(this.ownerProtect)
-        .then(user => user.update({rolId: 3}))
+        .then(user => user.update({rolId: 4}))
         .then(() => this.read())
     },
 
     setGuest: function(id){
         return User.findByPk(id)
         .then(this.ownerProtect)
-        .then(user => user.update({rolId: 2}))
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 

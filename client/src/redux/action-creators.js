@@ -187,6 +187,30 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
+    promoteUser: function(userId) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`,
+            userId,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    demoteUserUser: function(id) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`,
+            id,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    banUser: function(id) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/ban`,
+            id,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
 
     REVIEW: 'REVIEW',
     getReviews: function(productId) {
