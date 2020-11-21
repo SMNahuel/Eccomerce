@@ -42,13 +42,12 @@ export default function Footer(){
                     gitHref={"https://github.com/Nahuelsan"}
                     linkedinHref={"https://www.linkedin.com/in/nahuel-sanchez-327139167/"}
                     />
-                    {/* Modificar falta linkedin*/}
                     <Card
                     image={""}
                     name={"Ignacio Gimenez"}
                     email={"ignaciogimenez70@gmail.com"}
                     gitHref={"https://github.com/Nacho077"}
-                    linkedinHref={"https://www.linkedin.com/in/maicoloncomilla/"}
+                    linkedinHref={"https://www.linkedin.com/in/ignacio-gimenez-305799184/"}
                     />
                     <Card
                     image={""}
