@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../../redux/action-creators'
 import ControlPanel from './control panel/ControlPanel';
 import Cart from './Cart/Cart'
+import { Redirect } from 'react-router-dom';
 
 export default function HeaderRight(){
 
     const user = useSelector(state => state.user)
     const image = user.image && `${process.env.REACT_APP_API_URL}${user.image}`
     const [ controlPanelOn, setControlPanelOn ] = useState(false);
+    const [ userProfile, setUserProfile ] = useState(false);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(api.getMe())
@@ -20,15 +22,21 @@ export default function HeaderRight(){
     const toggle = () =>{
         setControlPanelOn(!controlPanelOn)
     }
-    // {({image})?(<Avatar src={image}/>):(<Avatar src="http://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />)}
+    const redirect = () =>{
+        setUserProfile(!userProfile)
+    }
 
     return (
+        <>
+        {userProfile && <Redirect to="/userprofile"/>}
         <div className={s.container_main} >
             <div className={s.container_flex} >
-                <div className={s.Avatar}>
-                    <Avatar src={image ? image : ""}/>
+                <div className={s.container_avatar_name_button} onClick={redirect}>
+                    <div className={s.Avatar}>
+                        <Avatar src={image ? image : ""}/>
+                    </div>
+                    <h3 className={s.h3_name}>{user.name}</h3>
                 </div>
-                <h3 className={s.h3_name}>{user.name}</h3>
                 <div className={s.container_cart}>
                     <Cart/>
                 </div>
@@ -44,5 +52,6 @@ export default function HeaderRight(){
                 </div>
             }
         </div>
+        </>
     )
 }
