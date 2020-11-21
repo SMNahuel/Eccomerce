@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import s from './Review.module.css'
 import { useDispatch } from 'react-redux';
-import api from '../../../../../redux/action-creators'
+import api from '../../../../../../../redux/action-creators'
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
-import toStars from '../../../../../utils/toStars';
+import toStars from '../../../../../../../utils/toStars';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function Review({ review, del }){

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import s from './FormRespond.module.css'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useDispatch } from 'react-redux';
-import api from '../../../../../../redux/action-creators'
+import api from '../../../../../../../../redux/action-creators'
 
 export default function FormRespond(){
     const { FORMRESPOND } = api

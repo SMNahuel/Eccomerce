@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import s from './ReviewsBox.module.css'
 import Review from './Review/Review';
-import toStars from '../../../../utils/toStars';
 import FormAddReview from './formAddReview/formAddReview'
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../../../../redux/action-creators'
+import api from '../../../../../../redux/action-creators'
+import toStars from '../../../../../../utils/toStars';
 
 export default function ReviewsBox({productId}) {
     const user = useSelector(state => state.user)
