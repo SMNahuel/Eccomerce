@@ -158,8 +158,9 @@
 .star{
     color: grey;
     font-size: 50px;
+    cursor: pointer;
 }
-.star:hover
+.star:hover,
 .star:hover ~ label{
     color: orange;
 }

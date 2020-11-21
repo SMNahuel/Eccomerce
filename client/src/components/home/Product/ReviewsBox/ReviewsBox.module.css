@@ -92,6 +92,17 @@
     flex-direction: column;
     justify-content: flex-start;
 }
+.btnReview{
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #DFE6E9;
+    background-color: #ab47bc;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 15px;
+}
 @media (max-width: 498px){
     .container_review_average{
         justify-content: center;
@@ -101,13 +112,4 @@
         margin-bottom: 10px;
     }
 }
-.btnReview{
-    margin-top: 20%;
-    margin-left: 80%;
-    width: auto;
-    padding: 10px;
-    border: none;
-    color: white;
-    background-color: #7b1fa2;
-    outline: none;
-}
+

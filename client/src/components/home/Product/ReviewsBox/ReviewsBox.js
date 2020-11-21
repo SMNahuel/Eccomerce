@@ -86,14 +86,6 @@ export default function ReviewsBox({productId}) {
                         <progress max={reviews.length} value={state.stars[0]}>1 stars</progress>
                     </div>
                 </div>
-                <div>
-                    {state.purchased && (
-                        state.addReview ?
-                        <FormAddReview onBack={onBack} productId={productId} review={reviews.find(review => review.userId === user.id)}/>
-                        :
-                        <button className={s.btnReview} onClick={onAddReview}>My review</button>
-                    )}
-                </div>
             </div>
             <div className={s.container_review_all_positive_negative}>
                 <button>
@@ -115,6 +107,14 @@ export default function ReviewsBox({productId}) {
             <div className={s.container_reviewList}>
                 {state.reviews.map(review => 
                     <Review key={review.id} review={review} del={review.userId === user.id}/>
+                )}
+            </div>
+            <div>
+                {state.purchased && (
+                    state.addReview ?
+                        <FormAddReview onBack={onBack} productId={productId} review={reviews.find(review => review.userId === user.id)} />
+                        :
+                        <button className={s.btnReview} onClick={onAddReview}>My review</button>
                 )}
             </div>
         </div>

@@ -4,7 +4,6 @@ import s from './Pagination.module.css'
 export default function Pagination({ postsPerPage, totalProduct, paginate }){
 
     const pageNumber = [];
-    console.log(postsPerPage, totalProduct)
     for(let i = 1; i <= Math.ceil(totalProduct / postsPerPage); i++){
         pageNumber.push(i);
     }
