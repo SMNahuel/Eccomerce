@@ -1,5 +1,14 @@
 .container{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 15px;
+}
+/* .container{
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     height: 100%;
@@ -21,4 +30,4 @@
         padding-right: 15%;
         scroll-snap-type: none;
     }
-}
+} */

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import api from '../../../../../redux/action-creators'
+import api from '../../../../../../../redux/action-creators'
 import s from './formAddReview.module.css'
 import CloseIcon from '@material-ui/icons/Close';
 

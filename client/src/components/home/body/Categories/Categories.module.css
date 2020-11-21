@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 90px;
 }
 .categories{
     display: flex;
@@ -14,8 +15,8 @@
     background-color: var(--background);
 }
 .categories button{
-    background-color: var(--green-primary);
-    box-shadow: 0px 0px 10px var(--green-primary);
+    background-color: var(--green-secundary);
+    box-shadow: 0px 0px 5px var(--green-primary);
     outline: none;
     border: none;
     padding: 10px 15px;
@@ -25,8 +26,8 @@
     border-radius: 10px;
     font-size: 12px;
     height: 30px;
-    transition: .5s;
+    transition: .2s;
 }
 .categories button:hover{
-    background-color: var(--green-secundary);
+    background-color: var(--green-primary);
 }

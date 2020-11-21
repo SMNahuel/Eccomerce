@@ -3,12 +3,12 @@ import s from './CarouselB.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ImgComponent from './imgComponent/ImgComponent';
-import CourseAngular from '../../../img/CourseAngular.jpg';
-import HtmlJsCss from '../../../img/HtmlJsCss.jpg';
-import Java from '../../../img/Java.jpg';
-import Python from '../../../img/Python.jpg';
-import React2 from '../../../img/React.jpg';
-import ReactRedux from '../../../img/ReactRedux.jpg';
+import CourseAngular from '../../../../img/CourseAngular.jpg';
+import HtmlJsCss from '../../../../img/HtmlJsCss.jpg';
+import Java from '../../../../img/Java.jpg';
+import Python from '../../../../img/Python.jpg';
+import React2 from '../../../../img/React.jpg';
+import ReactRedux from '../../../../img/ReactRedux.jpg';
 
 export default function CarouselB(){
     const array = [

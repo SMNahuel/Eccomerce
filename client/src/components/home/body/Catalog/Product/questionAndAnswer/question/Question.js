@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './Question.module.css'
-import api from '../../../../../redux/action-creators'
+import api from '../../../../../../../redux/action-creators'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 
 export default function Question(){
