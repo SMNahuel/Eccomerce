@@ -10,6 +10,7 @@ import CarouselB from './carousel/CarouselB';
 import Header from './header/Header';
 import Categories from './Categories/Categories';
 import Pagination from './Catalog/pagination/Pagination';
+import Footer from './footer/Footer';
 
 export default function Home() {
 
@@ -103,6 +104,7 @@ export default function Home() {
                 <CarouselB categories={categories}/>
                 <Catalog products={ state.products || currentProduct || products} handleDetail={handleDetail} />
                 <Pagination postsPerPage={postsPerPage} totalProduct={products.length} paginate={paginate}/>
+                <Footer/>
             </div>
             
             {
