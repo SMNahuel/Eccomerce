@@ -10,7 +10,7 @@ const initialState = {
     users: [],
     formRespond: false,
     reviews: [],
-    purchased: []
+    purchased: [],
 };
 
 export default (state = initialState, action) => {

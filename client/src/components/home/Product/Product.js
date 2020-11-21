@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import s from './Product.module.css';
 import imgNotFound from '../../../img/img404.jpg';
 import CloseIcon from '@material-ui/icons/Close';
@@ -41,7 +41,9 @@ export default ({product, onBack}) => {
   return (
     <div className={s.container} ref={ref}>
       <div className={s.container_main}>
-        <CloseIcon className={s.back} fontSize="large" onClick={onUnmount} />
+        <div className={s.container_button_close} onClick={onUnmount}>
+          <CloseIcon className={s.back} fontSize="default"/>
+        </div>
         <div className={s.container_flex}>
           <div className={s.container_img_title_flex}>
             <div className={s.container_background} style={{ backgroundImage: `url(${image})` }}>
