@@ -219,8 +219,7 @@ const actionCreators = {
         }
     },
 
-    FORMRESPOND: 'FORMRESPOND',
-    PRODUCTREVIEW: "PRODUCTREVIEW",
+    FORMRESPOND: 'FORMRESPOND'
 
     _dispatchPromise: function(promise, type, dispatch){
         return promise
