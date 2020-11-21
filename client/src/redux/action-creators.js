@@ -219,7 +219,7 @@ const actionCreators = {
         }
     },
 
-    FORMRESPOND: 'FORMRESPOND'
+    FORMRESPOND: 'FORMRESPOND',
 
     _dispatchPromise: function(promise, type, dispatch){
         return promise
