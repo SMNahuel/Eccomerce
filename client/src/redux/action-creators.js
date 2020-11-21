@@ -138,6 +138,13 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
+    logout: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/logout`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USER, dispatch)
+        }
+    },
     register: function(data){
         return dispatch => {
             const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/register`,
