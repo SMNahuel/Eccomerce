@@ -93,10 +93,9 @@ function UserProfile(props) {
                         <Button onClick={onSubmit} variant="contained" color="primary" component="span">
                             Upload
                         </Button>
-                        <Button onClick={showFormPassword} variant="contained" color="primary" component="span">
-                            Cambiar Contraseña
-                        </Button>
+
                     </div>
+
                     </div>
                     }
                 </div>
@@ -104,7 +103,13 @@ function UserProfile(props) {
                     <Typography className={s.text} variant="button">{user.name}</Typography>
                     <Typography className={s.text} variant="caption">{user.email}</Typography>
                     <Typography className={s.text} variant="overline">Usuario: {user.rol}</Typography>
-                </ThemeProvider>               
+
+                </ThemeProvider>  
+                <div className={s.boton}>
+                <Button onClick={showFormPassword} variant="contained" color="primary" component="span">
+                            Cambiar Contraseña
+                </Button>
+                </div>
             </div>
         </div>
         </>

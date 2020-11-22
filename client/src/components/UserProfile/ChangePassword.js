@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import { useDispatch} from 'react-redux';
 import s from './passwordChange.module.css';
 import api from '../../redux/action-creators';
-import Input from '@material-ui/core/Input';
 
 function ChangePassword({showFormPassword}){
     const [password, setPassword] = useState({
@@ -31,8 +30,7 @@ function ChangePassword({showFormPassword}){
         <div>
                 <form onSubmit={sendPassword} className={s.formPassword}>
                     <div>
-                        <Input 
-                        fullWidth="true"
+                        <input 
                         placeholder="Ingrese su anterior contraseña"
                         type="password"
                         name="oldPassword"
@@ -42,11 +40,10 @@ function ChangePassword({showFormPassword}){
                         autoComplete="off"
                         required
                         >
-                        </Input>
+                        </input>
                     </div>
                     <div>
-                        <Input 
-                        fullWidth="true"
+                        <input 
                         placeholder="Escriba su nueva contraseña"
                         type="password"
                         name="newPassword"
@@ -56,11 +53,10 @@ function ChangePassword({showFormPassword}){
                         autoComplete="off"
                         required
                         >
-                        </Input>
+                        </input>
                     </div>
                     <div>
-                        <Input 
-                        fullWidth="true"
+                        <input 
                         placeholder="Vuelve a escribir la Contraseña"
                         type="password"
                         name="newPassword2"
@@ -70,7 +66,7 @@ function ChangePassword({showFormPassword}){
                         autoComplete="off"
                         required
                         >
-                        </Input>
+                        </input>
                     </div>
                     {
                         (password.newPassword !== password.newPassword2) === true && 
