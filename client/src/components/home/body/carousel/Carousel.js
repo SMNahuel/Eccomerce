@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import s from './CarouselB.module.css'
+import s from './Carousel.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ImgComponent from './imgComponent/ImgComponent';
@@ -38,14 +38,12 @@ export default function CarouselB(){
     return (
         <div className={s.container_main}>
             {
-                array.map((item, index) => {
-                    return (
-                        <div key={index} className={s.container_img}
-                            style={{ transform: `translateX(${x}%)` }}>
-                            {item}
-                        </div>
-                    )
-                })
+                array.map((item, index) => (
+                    <div key={index} className={s.container_img}
+                        style={{ transform: `translateX(${x}%)` }}>
+                        {item}
+                    </div>
+                ))
             }
             <button
                 id="goLeft"

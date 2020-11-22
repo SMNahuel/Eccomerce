@@ -2,14 +2,14 @@ import React, {useRef, useState} from 'react';
 import s from './Cart.module.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useSelector, useDispatch } from 'react-redux';
-import api from '../../../../../redux/action-creators';
+import api from '../../../../redux/action-creators';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import { selectorValue } from '../../../../../utils/selector'
+import { selectorValue } from '../../../../utils/selector'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import cartEmpty from '../../../../../img/empty-cart.png'
+import cartEmpty from '../../../../img/empty-cart.png'
 import { Redirect } from 'react-router-dom';
 
-function Cart(props) {
+function Cart() {
     const cart = useSelector(state => state.cart)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()

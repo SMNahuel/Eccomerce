@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './SideBarProfile.module.css';
-import api from '../../../../../../redux/action-creators'
+import api from '../../../../../redux/action-creators'
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';

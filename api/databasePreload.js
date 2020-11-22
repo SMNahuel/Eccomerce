@@ -6,10 +6,10 @@ const roles = ['banned','anonymous','guest','admin','owner']
 const users = [
     { rolId: 5, password: "1234567", imageId: categories.length + 1, name: "Maico Loncomilla", email: "maicoloncomilla@gmail.com" },
     { rolId: 5, password: "1234567", imageId: categories.length + 2, name: "Javier Balonga", email: "javierbalonga@gmail.com" },
-    { rolId: 5, password: "1234567", imageId: categories.length + 3, name: "Esteban", email: "ces.esteban@gmail.com" },
+    { rolId: 5, password: "1234567", imageId: categories.length + 3, name: "Esteban Céspedes", email: "ces.esteban@gmail.com" },
     { rolId: 5, password: "1234567", imageId: categories.length + 4, name: "Nahuel Sanchez", email: "nahuelsan96@gmail.com" },
-    { rolId: 5, password: "1234567", imageId: categories.length + 5, name: "Nacho", email: "ignaciogimenez70@gmail.com"},
-    { rolId: 5, password: "1234567", imageId: categories.length + 6, name: "Leo Vinas", email: "vinasleonardo@yahoo.com" }
+    { rolId: 5, password: "1234567", imageId: categories.length + 5, name: "Ignacio Gimenez", email: "ignaciogimenez70@gmail.com"},
+    { rolId: 5, password: "1234567", imageId: categories.length + 6, name: "Leonardo Vinas", email: "vinasleonardo@yahoo.com" }
 ]
 const lorem = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
 const romanNumbers = ['I','II','III','IV','V']

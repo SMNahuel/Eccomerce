@@ -3,7 +3,7 @@ import s from './HeaderRight.module.css';
 import { Avatar } from '@material-ui/core'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../../../../redux/action-creators'
+import api from '../../../redux/action-creators'
 import ControlPanel from './control panel/ControlPanel';
 import Cart from './Cart/Cart'
 import { Redirect } from 'react-router-dom';

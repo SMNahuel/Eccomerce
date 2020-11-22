@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './ControlPanel.module.css'
-import api from '../../../../../redux/action-creators'
+import api from '../../../../redux/action-creators'
 import { Avatar } from '@material-ui/core';
 import SideBarProfile from './sidebarprofile/SideBarProfile';
 

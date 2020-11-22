@@ -4,31 +4,23 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { Avatar } from '@material-ui/core';
 
-export default function Card({ image, name, email, gitHref, linkedinHref }){
+export default function Card({user}){
     return (
-        <div className={s.container_flex}>
-            <div className={s.container_avatar_name}>
-                <div>
-                    <Avatar src={image ? image : ""}/>
-                </div>
-                <div className={s.container_name}>
-                    <p>{name}</p>
-                    <p>{email}</p>
-                </div>
-            </div>
-            <div className={s.container_datos}>
-                <a href={linkedinHref} target="_BLANK" rel="noopener noreferrer">
-                    <div className={s.container_icons}>
+        <div className={s.container}>
+            <Avatar src={user.image ? user.image : ""}/>
+            <div className={s.data}>
+                <p>{user.name}</p>
+                <p className={s.email}>{user.email}</p>
+                <div className={s.links}>
+                    <a href={user.linkedin} target="_BLANK" rel="noopener noreferrer">
                         <LinkedInIcon className={s.icon} />
                         <p>Linkedin</p>
-                    </div>
-                </a>
-                <a href={gitHref} target="_BLANK" rel="noopener noreferrer">
-                    <div className={s.container_icons}>
+                    </a>
+                    <a href={user.git} target="_BLANK" rel="noopener noreferrer">
                         <GitHubIcon className={s.icon} />
                         <p>Git Hub</p>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     )
