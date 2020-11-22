@@ -1,41 +1,42 @@
 import React from 'react';
-import s from './Catalog.module.css'
+import './Catalog.css';
 import ProductCard from './ProductCard/ProductCard';
+
+// import Swiper core and required components
+import SwiperCore, {Pagination, EffectCoverflow, Autoplay} from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/swiper-bundle.css';
+import 'swiper/swiper-bundle.min.css';
+
+// install Swiper components
+SwiperCore.use([Pagination, EffectCoverflow, Autoplay]);
 
 
 export default function Catalog({products, handleDetail}) {
-    // const [centeredId, setCenteredId] = useState(1)
-    // const ref = useRef(null)
-
-    // const windowXCenter = window.innerWidth / 2
-    // const setCenteredChildren = e => {
-    //     let children = Array.from(ref.current.children);
-    //     for (let i = 0; i < children.length; i++) {
-    //         let data = children[i].getBoundingClientRect();
-    //         if (Math.abs((data.x + data.width / 2) - windowXCenter) < 100) {
-    //             return setCenteredId(children[i].id)
-    //         }
-    //     }
-    // }
-    
-    // var timeoutId;
-    // const onScroll = event => {
-    //     clearTimeout(timeoutId)
-    //     timeoutId = setTimeout(setCenteredChildren, 200)
-    // }
-
-    // useEffect(setCenteredChildren, [products])
-
     return(
-        <div className={s.container}>
+        <Swiper
+            effect="coverflow"
+            loop={true}
+            centeredSlides={true}
+            coverflowEffect={{ rotate: 30, stretch: 100, slideShadows: false }}
+            autoplay={{ delay: 2000 }}
+            breakpoints={{
+                0:  { slidesPerView: 1 },
+                600:  { slidesPerView: 2 },
+                1000:  { slidesPerView: 3 },
+                1500:  { slidesPerView: 4 }
+            }}
+        >
             {products && 
-                products.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail}/>)
+                products.map(product => (
+                    <SwiperSlide key={product.id}>
+                        <ProductCard product={product} onDetail={handleDetail}/>
+                    </SwiperSlide>
+                ))
             }
-        </div>
+        </Swiper>
     )
 }
-/* <div className={s.container} onScroll={onScroll} ref={ref}>
-    {products &&
-        products.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail} centered={Number(centeredId) === Number(product.id)} />)
-    }
-</div> */
