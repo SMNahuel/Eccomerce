@@ -51,7 +51,7 @@ export default function Footer(){
                     </div>
                 </a>
                 <div className={s.container_creadores}>
-                    {users.map(user => <Card user={user}/>)}
+                    {users.map((user,i) => <Card key={i} user={user}/>)}
                 </div>
             </div>
             <div className={s.container_derechos}>
