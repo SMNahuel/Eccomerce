@@ -9,23 +9,14 @@ import Cart from './Cart/Cart'
 import { Redirect } from 'react-router-dom';
 
 export default function HeaderRight(){
-
     const user = useSelector(state => state.user)
     const image = user.image && `${process.env.REACT_APP_API_URL}${user.image}`
     const [ controlPanelOn, setControlPanelOn ] = useState(false);
     const [ userProfile, setUserProfile ] = useState(false);
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(api.getMe())
-    }, [dispatch]);
-    
-    const toggle = () =>{
-        setControlPanelOn(!controlPanelOn)
-    }
-    const redirect = () =>{
-        setUserProfile(!userProfile)
-    }
-
+    useEffect(() => {dispatch(api.getMe())}, [dispatch]);
+    const toggle = () => setControlPanelOn(!controlPanelOn)
+    const redirect = () => setUserProfile(!userProfile)
     return (
         <>
         {userProfile && <Redirect to="/userprofile"/>}
@@ -44,9 +35,7 @@ export default function HeaderRight(){
                     <ArrowDropDownIcon />
                 </div>
             </div>
-            {
-
-                controlPanelOn &&
+            {controlPanelOn &&
                 <div className={s.container_absolute} >
                     <ControlPanel toggle={toggle}/>
                 </div>

@@ -6,7 +6,7 @@ import Order from './Order/Order';
 import OrderDetail from './OrderDetail/OrderDetail';
 import Header from '../home/header/Header';
 
-export default function Orders() {
+export default function Orders({history}) {
     const dispatch = useDispatch()
     const orders = useSelector(state=> state.orders)
     useEffect(() => dispatch(api.getOrders()), [dispatch]);

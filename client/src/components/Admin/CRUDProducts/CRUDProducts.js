@@ -11,7 +11,7 @@ import dataURLtoFile from '../../../utils/dataURLtoFile';
 import axios from 'axios';
 import Header from '../../home/header/Header';
 
-export default function CRUDProducts(){
+export default function CRUDProducts({history}){
     const [state, setState] = useState({
         action: null,
         product: {},
@@ -101,7 +101,7 @@ export default function CRUDProducts(){
 
     return(
         <>
-            <Header />
+            <Header/>
             <div className={s.form}>
                 <div>
                     {

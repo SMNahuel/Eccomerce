@@ -4,7 +4,7 @@ import { useState, useEffect} from 'react'
 import s from './TableOrders.module.css'
 import Header from '../../home/header/Header'
 
-function TableOrders() {
+function TableOrders({history}) {
 
     const [orders , setOrders] = useState([])
 

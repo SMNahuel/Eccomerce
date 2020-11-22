@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
 import Header from '../../home/header/Header';
 
-function CrudCategory(){
+function CrudCategory({history}){
     const [state, setState] = useState({
         action: null,
         category: {}
@@ -55,7 +55,7 @@ function CrudCategory(){
     }
     return (
         <>
-            <Header />
+            <Header/>
             <div className={s.form}>
                 <h4>Categorias</h4>
                 {
