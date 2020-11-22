@@ -13,7 +13,7 @@ export default function ReviewsBox({productId}) {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(api.getReviews(productId))
-    }, [dispatch])
+    }, [dispatch, productId])
 
     const [state, setState] = useState({
         average: 0,

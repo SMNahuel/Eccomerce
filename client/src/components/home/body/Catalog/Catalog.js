@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
 import s from './Catalog.module.css'
 import ProductCard from './ProductCard/ProductCard';
 
@@ -34,8 +34,8 @@ export default function Catalog({products, handleDetail}) {
         </div>
     )
 }
-{/* <div className={s.container} onScroll={onScroll} ref={ref}>
+/* <div className={s.container} onScroll={onScroll} ref={ref}>
     {products &&
         products.map(product => <ProductCard key={product.id} product={product} onDetail={handleDetail} centered={Number(centeredId) === Number(product.id)} />)
     }
-</div> */}
+</div> */

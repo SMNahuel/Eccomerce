@@ -30,9 +30,11 @@ export default function CarouselB(){
         x === -100 * (array.length -1) ? setX(0) : setX(x - 100)
     }
     useEffect(()=>{
-        const timeoutId = setTimeout(goRight, 5000)
+        const timeoutId = setTimeout(()=>{
+            x === -100 * (array.length -1) ? setX(0) : setX(x - 100)
+        }, 4000)
         return () => clearTimeout(timeoutId)
-    }, [x])
+    }, [x, array.length])
     return (
         <div className={s.container_main}>
             {

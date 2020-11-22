@@ -1,0 +1,39 @@
+.container2{
+    height: 80px;
+    width: 170px;
+}
+.container,.containerLoading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1.5s;
+}
+.logo,.logoLoading{
+    transition: 1.5s;
+}
+.container{
+    height: 80px;
+    width: 170px;
+}
+.containerLoading{
+    width: 100vw;
+    height: 102vh;
+    background-color: var(--background);
+}
+.logo{
+    height: 80px;
+    width: 170px;
+}
+.logoLoading{
+    width: 90vw;
+    height: 42vw;
+}
+@media (min-width: 992px) {
+    .logoLoading{
+        height: 160px;
+        width: 340px;
+    }
+}

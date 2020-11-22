@@ -24,6 +24,7 @@ function CrudCategory(){
     }, [dispatch, categories])
 
     const onUpdate = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'update', 
@@ -36,6 +37,7 @@ function CrudCategory(){
     }
 
     const onDelete = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'delete', 
