@@ -2,10 +2,7 @@
     display: flex;
     position: relative;
     width: 100%;
-    max-height: 550px;
-    min-height: 300px;
     height: 100%;
-
 }
 .container_img_button img{
     width: 100%;
@@ -14,9 +11,9 @@
 }
 .container_img_button button{
     position: absolute;
-    right: 50px;
-    bottom: 50px;
-    width: 100px;
+    right: 20px;
+    bottom: 20px;
+    width: 90px;
     height: 30px;
     background-color: #ab47bc;
     color: #DFE6E9;
@@ -25,3 +22,9 @@
     border: none;
     border-radius: 7px;
 }  
+@media (max-width: 900px){
+    .container_img_button button{
+        width: 70px;
+        height: 25px;
+    }
+}

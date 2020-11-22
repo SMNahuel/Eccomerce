@@ -1,8 +1,6 @@
 .container_main{
-    max-width: 1200px;
+    max-width: 1920px;
     width: 100%;
-    max-height: 550px;
-    min-height: 300px;
     height: 100%;
     box-sizing: border-box;
     margin: 0 auto;
@@ -10,6 +8,7 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    margin-top: 10px;
 }
 .container_img{
     min-width: 100%;
@@ -23,8 +22,8 @@
     position: absolute;
     z-index: 10;
     background-color: #ab47bc;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     outline: none;
     border: none;
@@ -37,9 +36,17 @@
 .button_left{
     left: 20px;
 }
-@media (max-width: 700px){
+@media (max-width: 900px){
+    .button_right,
+    .button_left{   
+        width: 30px;
+        height: 30px;
+    }
+}
+@media (max-width: 525px){
     .container_main{
         display: none;
     }
+
 }
 
