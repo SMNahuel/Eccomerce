@@ -10,7 +10,6 @@ export default function Catalog({products, handleDetail}) {
     return(
         <Swiper
             effect="coverflow"
-            loop={true}
             centeredSlides={true}
             coverflowEffect={{ rotate: 30, stretch: 100, slideShadows: false }}
             autoplay={{ delay: 2000 }}

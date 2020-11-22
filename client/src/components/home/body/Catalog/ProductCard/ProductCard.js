@@ -9,10 +9,10 @@ export default ({product, onDetail}) => {
 
     return (
         <div id={product.id} onClick={() => onDetail(product)} className={s.container_main} style={{backgroundImage:`url(${image})`}}>
-            <div className={s.info} >
+            <span className={s.info} >
                 <h1 className={s.name} >{product.name}</h1>
-                <div className={s.ranking}>★★★★☆</div>
-            </div>
+                <h1 className={s.ranking}>★★★★☆</h1>
+            </span>
         </div>
     )
 }
