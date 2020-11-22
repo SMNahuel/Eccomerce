@@ -1,3 +1,9 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: #282C34;
+    height: 80vh;
+}
 .container_signIn{
     position: relative;
     max-width: 600px;
@@ -9,7 +15,6 @@
     height: 100%;
     padding: 10px 10px;
 }
-
 .container_signIn form{
     background-color: #fff;
     border-radius: 10px;

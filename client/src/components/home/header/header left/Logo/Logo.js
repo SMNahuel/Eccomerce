@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import s from './Logo.module.css';
 import { Link } from 'react-router-dom';
 
-export default function Logo() {
-    const [loading, setLoading] = useState(true)
+export default function Logo({load}) {
+    const [loading, setLoading] = useState(load)
     useEffect(() => {setTimeout(() => setLoading(false), 6000)}, [setLoading])
-    const [background, setBackground] = useState(true)
+    const [background, setBackground] = useState(load)
     useEffect(() => {setTimeout(() => setBackground(false), 7600)}, [setLoading])
     return(
         <div className={s.spaceReserve}>

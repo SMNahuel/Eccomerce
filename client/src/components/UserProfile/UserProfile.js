@@ -13,7 +13,7 @@ import Header from '../home/header/Header'
 import styl from '../home/header/Header.module.css'
 import ChangePassword from './ChangePassword.js';
 
-function UserProfile(props) {
+function UserProfile({history}) {
 
     let theme = createMuiTheme();
     theme = responsiveFontSizes(theme);

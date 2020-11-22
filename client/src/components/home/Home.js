@@ -9,7 +9,7 @@ import Footer from './footer/Footer';
 import Body from './body/Body';
 import Product from './body/Catalog/Product/Product'
 
-export default function Home() {
+export default function Home({history}) {
 
     const [ state, setState ] = useState({
         selectedCategory: null,
@@ -93,7 +93,7 @@ export default function Home() {
             }
             <div className={s.container_home}>
                 <div className={s.container_header}>
-                    <Header handleSearch={handleSearch}/>
+                    <Header history={history} handleSearch={handleSearch}/>
                 </div>
                 <div>
                     <Body 
