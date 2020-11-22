@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
 import dataURLtoFile from '../../../utils/dataURLtoFile';
 import axios from 'axios';
-import Header from '../../home/header/Header';
 
 export default function CRUDProducts({history}){
     const [state, setState] = useState({
@@ -101,7 +100,6 @@ export default function CRUDProducts({history}){
 
     return(
         <>
-            <Header/>
             <div className={s.form}>
                 <div>
                     {

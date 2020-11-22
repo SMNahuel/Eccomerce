@@ -9,8 +9,6 @@ import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui
 import Typography from '@material-ui/core/Typography';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
-import Header from '../home/header/Header'
-import styl from '../home/header/Header.module.css'
 import ChangePassword from './ChangePassword.js';
 
 function UserProfile({history}) {
@@ -55,12 +53,6 @@ function UserProfile({history}) {
     }
 
     return (
-    
-        <> 
-        <div className={styl.navBar}>
-            <Header/>   
-        </div>       
-
         <div className={s.justifyDiv}>
             <div className={s.boxStyle} >                
                 <div className={s.justifyAv}>
@@ -112,7 +104,6 @@ function UserProfile({history}) {
                 </div>
             </div>
         </div>
-        </>
     );
 }
 

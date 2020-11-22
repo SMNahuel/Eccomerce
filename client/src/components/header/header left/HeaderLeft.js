@@ -16,7 +16,7 @@ export default function HeaderLeft({ handleSearch, history }){
             {!seachbar521px &&
                 <Logo load={history && history.length < 3}/>
             }
-            <SearchBar handleSearch={handleSearch} className={s.SearchBar} toggle={toggle} status={seachbar521px}/>
+            {handleSearch && <SearchBar handleSearch={handleSearch} className={s.SearchBar} toggle={toggle} status={seachbar521px}/>}
         </div>
     )
 }

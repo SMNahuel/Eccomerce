@@ -6,7 +6,6 @@ import UpdateCategory from './UpdateCategory/UpdateCategory'
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
-import Header from '../../home/header/Header';
 
 function CrudCategory({history}){
     const [state, setState] = useState({
@@ -55,7 +54,6 @@ function CrudCategory({history}){
     }
     return (
         <>
-            <Header/>
             <div className={s.form}>
                 <h4>Categorias</h4>
                 {

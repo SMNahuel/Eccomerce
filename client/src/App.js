@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import Header from './components/header/Header';
 import Home from './components/home/Home';
 import SignIn from './components/register/sign in/SignIn';
 import LogIn from './components/register/log in/LogIn';
@@ -15,16 +16,23 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/userprofile" component={UserProfile}/>
-        <Route exact path="/orders" component={Orders}/>
         <Route exact path="/register" component={SignIn}/>
         <Route exact path="/login" component={LogIn}/>
-        <Route exact path="/admin/categories" component={CRUDCategory}/>
-        <Route exact path="/admin/products" component={CRUDProducts}/>
-        <Route exact path="/admin/orders" component={TableOrders}/>
-        <Route exact path="/admin/users" component={CRUDUsers}/>
-        <Route render={() => <div> 404 </div>}/>
+        <Route exact path="/" component={Home}/>
+        <Route path="/" render={()=>(
+          <>
+            <Header/>
+            <Switch>
+              <Route exact path="/userprofile" component={UserProfile}/>
+              <Route exact path="/orders" component={Orders}/>
+              <Route exact path="/admin/categories" component={CRUDCategory}/>
+              <Route exact path="/admin/products" component={CRUDProducts}/>
+              <Route exact path="/admin/orders" component={TableOrders}/>
+              <Route exact path="/admin/users" component={CRUDUsers}/>
+              <Route render={() => <div> 404 </div>}/>
+            </Switch>
+          </>
+        )}/>
       </Switch>
     </div>
   );

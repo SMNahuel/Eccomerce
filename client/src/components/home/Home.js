@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
 import FormRespond from './body/Catalog/Product/questionAndAnswer/question/formRespond/FormRespond';
-import Header from './header/Header';
+import Header from '../header/Header';
 import Footer from './footer/Footer';
 import Body from './body/Body';
 import Product from './body/Catalog/Product/Product'
@@ -86,10 +86,10 @@ export default function Home({history}) {
     return(
         <>
             {
-               state.detailedProduct &&
-               <div className={s.container_absolute}>
-                   <Product product={state.detailedProduct} onBack={handleBack} />
-               </div>
+                state.detailedProduct &&
+                <div className={s.container_absolute}>
+                    <Product product={state.detailedProduct} onBack={handleBack} />
+                </div>
             }
             <div className={s.container_home}>
                 <div className={s.container_header}>
