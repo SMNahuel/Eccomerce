@@ -53,3 +53,9 @@
     bottom: 42px;
     right: 150px;
 }
+.boton{
+    width:100%;
+    display:flex;
+    justify-content: center;
+
+}

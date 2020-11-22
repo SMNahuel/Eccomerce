@@ -3,23 +3,23 @@ import s from './CarouselB.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ImgComponent from './imgComponent/ImgComponent';
-import CourseAngular from '../../../../img/CourseAngular.jpg';
-import HtmlJsCss from '../../../../img/HtmlJsCss.jpg';
-import Java from '../../../../img/Java.jpg';
-import Python from '../../../../img/Python.jpg';
-import React2 from '../../../../img/React.jpg';
-import ReactRedux from '../../../../img/ReactRedux.jpg';
+import banner1 from '../../../../img/banner1.jpg'
+import banner2 from '../../../../img/banner2.jpg'
+import banner3 from '../../../../img/banner3.jpg'
+import banner4 from '../../../../img/banner4.jpg'
+import banner5 from '../../../../img/banner5.jpg'
+import banner6 from '../../../../img/banner6.jpg'
+import banner7 from '../../../../img/banner7.png'
 
 export default function CarouselB(){
     const array = [
-        <ImgComponent src={ReactRedux}/>,
-        <ImgComponent src={React2}/>,
-        <ImgComponent src={CourseAngular}/>,
-        <ImgComponent src={HtmlJsCss}/>,
-        <ImgComponent src={Java}/>,
-        <ImgComponent src={Python}/>,
-        <ImgComponent src={ReactRedux}/>,
-        <ImgComponent src={React2}/>,
+        <ImgComponent src={banner1}/>,
+        <ImgComponent src={banner2}/>,
+        <ImgComponent src={banner3}/>,
+        <ImgComponent src={banner4}/>,
+        <ImgComponent src={banner5}/>,
+        <ImgComponent src={banner6}/>,
+        <ImgComponent src={banner7}/>,
     ]
     const [ x, setX ] = useState(0)
     const goLeft = () =>{

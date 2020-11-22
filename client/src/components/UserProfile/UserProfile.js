@@ -11,15 +11,19 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import Header from '../home/header/Header'
 import styl from '../home/header/Header.module.css'
+import ChangePassword from './ChangePassword.js';
 
 function UserProfile(props) {
 
     let theme = createMuiTheme();
     theme = responsiveFontSizes(theme);
-
+    const [state, setState] = useState({
+        action : false
+    })
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const [img, setImg] = useState(null);
+
 
     const image = user.image && `${process.env.REACT_APP_API_URL}${user.image}`
 
@@ -29,6 +33,17 @@ function UserProfile(props) {
             formData.append("image", dataURLtoFile(img.src), img.name)
             dispatch(api.addImgUser(formData))
             window.location.reload()
+        }
+    }
+    const showFormPassword = function(){
+        if(state.action === false){
+            setState({
+                action: true
+            })
+        }else{
+            setState({
+                action: false
+            })
         }
     }
 
@@ -49,6 +64,11 @@ function UserProfile(props) {
         <div className={s.justifyDiv}>
             <div className={s.boxStyle} >                
                 <div className={s.justifyAv}>
+                    {
+                        state.action ===  true && 
+                        <ChangePassword showFormPassword={showFormPassword}/>
+                    }
+                    {state.action === false &&<div>
                     <div>
                         <Avatar
                             className={s.avatarSize}
@@ -73,13 +93,23 @@ function UserProfile(props) {
                         <Button onClick={onSubmit} variant="contained" color="primary" component="span">
                             Upload
                         </Button>
+
                     </div>
+
+                    </div>
+                    }
                 </div>
                 <ThemeProvider theme={theme}>
                     <Typography className={s.text} variant="button">{user.name}</Typography>
                     <Typography className={s.text} variant="caption">{user.email}</Typography>
                     <Typography className={s.text} variant="overline">Usuario: {user.rol}</Typography>
-                </ThemeProvider>               
+
+                </ThemeProvider>  
+                <div className={s.boton}>
+                <Button onClick={showFormPassword} variant="contained" color="primary" component="span">
+                            Cambiar Contraseña
+                </Button>
+                </div>
             </div>
         </div>
         </>
