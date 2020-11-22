@@ -32,6 +32,7 @@ export default function CRUDProducts(){
     }, [dispatch, products, categories])
     
     const onUpdate = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'update', 
@@ -60,6 +61,7 @@ export default function CRUDProducts(){
     }
 
     const onDelete = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'delete', 

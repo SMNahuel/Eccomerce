@@ -25,9 +25,9 @@ export default ({product, onDetail, centered}) => {
         </div>
     )
 }
-{/* <div id={product.id} onClick={onClick} className={centered ? s.centered : s.container} style={{ backgroundImage: `url(${image})` }}>
+/* <div id={product.id} onClick={onClick} className={centered ? s.centered : s.container} style={{ backgroundImage: `url(${image})` }}>
     <div className={s.info} >
         <h1 className={s.name} >{product.name}</h1>
         <div className={s.ranking}>★★★★☆</div>
     </div>
-</div> */}
+</div> */
