@@ -1,5 +1,5 @@
 const { Product, Category, Image, Review, User } = require('../db.js');
-const { Op, fn, col } = require("sequelize");
+const { Op } = require("sequelize");
 
 
 module.exports = {
@@ -26,7 +26,6 @@ module.exports = {
                     model: Review,
                     attributes: ['qualification'],
                     group: "productId",
-                    // attributes: [[fn('AVG', col('qualification')), 'qualification']],
                 }
             ]
         })
