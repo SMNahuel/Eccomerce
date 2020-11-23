@@ -263,7 +263,11 @@ const actionCreators = {
             dispatch({ type: type, payload: data });
         })
         .catch(err => {
-            alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
+            if (err.response) {
+                alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
+            } else {
+                alert(`Error! ${err}`);
+            }
         })
     },
 }

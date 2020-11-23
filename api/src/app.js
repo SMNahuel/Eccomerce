@@ -28,7 +28,6 @@ var sess = {
   resave: false,
   saveUninitialized: true
 }
-console.log(server.get('env'))
 if (server.get('env') === 'production') {
   server.set('trust proxy', 1)
   sess.cookie = { secure: true, sameSite: 'none' }
