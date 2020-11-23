@@ -3,16 +3,17 @@ import './Catalog.css';
 import 'swiper/swiper-bundle.min.css';
 import ProductCard from './ProductCard/ProductCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, {Pagination, EffectCoverflow, Autoplay} from 'swiper';
-SwiperCore.use([Pagination, EffectCoverflow, Autoplay]);
+import SwiperCore, {EffectCoverflow, Virtual, Navigation} from 'swiper';
+SwiperCore.use([EffectCoverflow, Virtual, Navigation]);
 
 export default function Catalog({products, handleDetail}) {
     return(
         <Swiper
+            virtual
+            navigation
             effect="coverflow"
             centeredSlides={true}
             coverflowEffect={{ rotate: 30, stretch: 100, slideShadows: false }}
-            autoplay={{ delay: 2000 }}
             breakpoints={{
                 0:    { slidesPerView: 1 },
                 600:  { slidesPerView: 2 },
@@ -21,8 +22,8 @@ export default function Catalog({products, handleDetail}) {
             }}
         >
             {products && 
-                products.map(product => (
-                    <SwiperSlide key={product.id}>
+                products.map((product, index) => (
+                    <SwiperSlide key={product.id} virtualIndex={index}>
                         <ProductCard product={product} onDetail={handleDetail}/>
                     </SwiperSlide>
                 ))
