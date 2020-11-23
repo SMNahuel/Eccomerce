@@ -16,6 +16,7 @@ function Cart() {
 
     const [active, setActive] = useState(false)
     const onToggleActive = e => {
+        if(!!Object.keys(user).length) dispatch(api.getCart())
         if (active && Object.keys(quantities).length) {
             for(let key in quantities) {
                 let id = Number(key)
