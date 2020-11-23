@@ -7,7 +7,8 @@ import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import YouTubeIcon from '@material-ui/icons/YouTube';
+/* import YouTubeIcon from '@material-ui/icons/YouTube'; */
+import GoogleIcon from '../../../img/G.svg'
 
 
 function LogIn() {
@@ -34,7 +35,7 @@ function LogIn() {
                     <div className={s.container_icons}>
                         <FacebookIcon className={s.icons}/>
                         <GitHubIcon className={s.icons}/>
-                        <YouTubeIcon className={s.icons}/>
+                        <img src={GoogleIcon} alt={""} className={s.icons}/>
                     </div>
                 </div>
                 <form onSubmit={login}>

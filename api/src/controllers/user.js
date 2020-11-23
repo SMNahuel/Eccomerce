@@ -18,6 +18,16 @@ module.exports = {
         .then(this.session)
     },
 
+    logingGoogle: function ({id, displayName, emails}) {
+        User.findOrCreate({
+            where: {googleId: id},
+            defaults: {name: displayName, email: emails[0].value}
+        })
+        .then(u => u[0])
+        .then(this.checkBan)
+        .then(this.session)
+    },
+
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],

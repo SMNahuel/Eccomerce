@@ -21,6 +21,15 @@ module.exports = (sequelize) => {
         password: {
             type: DataTypes.STRING(30)
             //is: /^[0-9a-zA-Z]{7,30}$/i
-        }
+        },
+        googleId: {
+            type: DataTypes.STRING
+        },
+        githubId: {
+            type: DataTypes.STRING
+        },
+        facebookId: {
+            type: DataTypes.STRING
+        },
     })
 }

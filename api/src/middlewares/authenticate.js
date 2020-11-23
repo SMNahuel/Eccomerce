@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 const user = require('../controllers/user');
 
 passport.use(
@@ -16,6 +17,22 @@ passport.use(
 	)
 );
 
+passport.use(
+    new GoogleStrategy(
+        {
+            consumerKey: passport.env.GOOGLE_CONSUMER_KEY,
+            consumerSecret: passport.env.GOOGLE_CONSUMER_SECRET,
+            callbackURL: '/auth/google/redirect'
+        },
+        function(token, tokenSecret, profile, done) {
+            console.log(profile);
+            user.logingGoogle(profile)
+            .then(user => done(null, user))
+            .catch(err => done(err, false));
+        }
+    )
+);
+
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
@@ -28,6 +45,8 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = {
     login: passport.authenticate('local'),
+
+    loginGoogle: passport.authenticate('google', {scope: ['profile', 'email'], display: 'popup'}),
 
     logout: (req, res)=> (req.logout(),res.send({})),
 
