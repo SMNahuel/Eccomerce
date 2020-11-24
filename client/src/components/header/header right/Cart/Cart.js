@@ -8,6 +8,7 @@ import { selectorValue } from '../../../../utils/selector'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import cartEmpty from '../../../../img/empty-cart.png'
 import { Redirect } from 'react-router-dom';
+import FormCheckout from './formCheckout/formCheckout'
 
 function Cart() {
     const cart = useSelector(state => state.cart)
@@ -136,6 +137,7 @@ function Cart() {
                                     </tr>
                                 </tfoot>
                             </table>
+                            <FormCheckout items={cart} price={totalPrice()}/>
                             <div className={s.container_input_button}>
                                 <input type="button" onClick={onBuy} value="Comprar!" />
                                 <input type="button" onClick={onCancel} value="Cancelar Carrito" />
