@@ -1,16 +1,10 @@
 const FacebookStrategy = require('passport-facebook').Strategy;
-const user = require('../controllers/user');
-const { User } = require('../db.js');
+const user = require('../../controllers/user');
 
-//Integramos un passport facebook ya requerido 
-//Importamos la plantilla User para hacer uso de sus funciones 
 module.exports = new FacebookStrategy(
   {
-    //Usamos los codigos necesarios 
-    //MEMO: Utilizar un archivos aparte
-    //profileFields datos especificos, indicar como array
-    clientID: 697586607801620,
-    clientSecret: 'e24a4e6fc02a76c25fc6db6470fd5722',
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: '/auth/facebook/success',
     profileFields: ['displayName', 'photos', 'emails']
   },

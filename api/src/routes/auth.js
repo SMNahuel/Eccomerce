@@ -1,5 +1,6 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
+const { ProfileImageUploader } = require('../middlewares/uploadImg');
 const { forGuest } = require('../middlewares/authenticate')
 const {
     login,
@@ -70,7 +71,38 @@ server.put('/password', forGuest, (req, res, next) => {
     .catch(next)
 })
 
+// Ruta que permite cargar imagen de perfil
+server.post('/image', forGuest, ProfileImageUploader, (req, res, next) => {
+	if (!req.file) {
+		return res.status(400).send(`the image (key:'image') are required to set them on the profile`);
+	}
+    user.setImage(req.user.id, req.file)
+	.then(r => res.send(r))
+	.catch(next);
+});
+
+// Ruta que me trae los id de los productos comprados
+server.get('/purchased', (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.send([]);
+    } else {
+        user.getPurchasedProducts(req.user.id)
+        .then(r => res.send(r))
+        .catch(next);
+    }
+})
+
+// Rutas que permiten logearse con facebook
 server.get('/facebook', loginFacebook);
-server.get('/facebook/success', loginFacebookSuccess);
+server.get('/facebook/success', loginFacebookSuccess, (req, res, next) => {
+    const { cartId } = req.cookies
+    if (!cartId) {
+        return res.send(req.user);
+    } else {
+        return user.addCart(req.user.id, cartId)
+        .then(() => res.clearCookie('cartId').send(req.user))
+        .catch(next);
+    }
+})
 
 module.exports = server;

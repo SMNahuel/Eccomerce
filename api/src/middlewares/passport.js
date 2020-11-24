@@ -2,7 +2,7 @@ const passport = require('passport');
 const user = require('../controllers/user');
 
 passport.use(require('./strategies/local'));
-passport.use(require('./strategies/google'));
+/* passport.use(require('./strategies/google')); */
 passport.use(require('./strategies/facebook'))
 
 passport.serializeUser(function(user, done) {
@@ -17,14 +17,14 @@ passport.deserializeUser(function(id, done) {
 
 const login = passport.authenticate('local')
 
-const loginGoogle = passport.authenticate('google', {scope: ['profile', 'email'], display: 'popup'})
+/* const loginGoogle = passport.authenticate('google', {scope: ['profile', 'email'], display: 'popup'}) */
 
 const loginFacebook = passport.authenticate('facebook', {scope: ['email'], display: 'popup'})
 const loginFacebookSuccess = passport.authenticate('facebook', {successRedirect: `${process.env.FRONT_URL}`})
 
 module.exports = {
     login,
-    loginGoogle,
+    /* loginGoogle, */
     loginFacebook,
     loginFacebookSuccess,
     passport
