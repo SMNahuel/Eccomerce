@@ -137,7 +137,7 @@ function Cart() {
                                     </tr>
                                 </tfoot>
                             </table>
-                            <FormCheckout items={cart} price={totalPrice()}/>
+                            <FormCheckout items={cart} price={totalPrice()} user={user}/>
                             <div className={s.container_input_button}>
                                 <input type="button" onClick={onBuy} value="Comprar!" />
                                 <input type="button" onClick={onCancel} value="Cancelar Carrito" />
