@@ -11,6 +11,9 @@ async function main() {
       user: 'wultur.company@gmail.com', 
       pass: 'contrasena1234567',
     },
+    tls:{
+      rejectUnauthorized: false
+    }
   });
 
   function sendEmail (email) {
