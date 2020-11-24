@@ -15,16 +15,14 @@ async function main() {
       rejectUnauthorized: false
     }
   });
-
-  function sendEmail (email) {
-    let info = await transporter.sendMail({
-      from: '"Wultur Company" <wultur.company@gmail.com>', 
-      to: email, 
-      subject: "Hello ✔",
-      text: "Hello world?", 
-      html: "<b>Hello world?</b>", 
-    });
-  }
+  
+  let info = await transporter.sendMail({
+    from: '"Wultur Company" <wultur.company@gmail.com>', 
+    to: 'email', 
+    subject: "Hello ✔",
+    text: "Hello world?", 
+    html: "<b>Hello world?</b>", 
+  });
 
   console.log("Message sent: %s", info.messageId);
 
@@ -32,5 +30,3 @@ async function main() {
 }
 
 main().catch(console.error);
-
-export default sendEmail;
