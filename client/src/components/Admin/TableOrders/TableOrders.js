@@ -55,7 +55,7 @@ function TableOrders() {
                             <td>{order.createdAt}</td>
                             <td className={s.button_details}>
                                 { order.state === 'created' ? 
-                                    <button onClick={()=>{onProcess(order), endWare.sendEmail(user.email)}}>Procesar</button>:
+                                    <button onClick={()=>onProcess(order), endWare.sendEmail(user.email)}>Procesar</button>:
                                     order.state
                                 }
                             </td>
