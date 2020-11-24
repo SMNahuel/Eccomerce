@@ -20,7 +20,7 @@ const login = passport.authenticate('local')
 /* const loginGoogle = passport.authenticate('google', {scope: ['profile', 'email'], display: 'popup'}) */
 
 const loginFacebook = passport.authenticate('facebook', {scope: ['email'], display: 'popup'})
-const loginFacebookSuccess = passport.authenticate('facebook', {successRedirect: `${process.env.FRONT_URL}`})
+const loginFacebookSuccess = passport.authenticate('facebook', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
 
 module.exports = {
     login,
