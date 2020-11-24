@@ -22,6 +22,15 @@ function LogIn() {
         e.preventDefault();
         dispatch(api.login(input));
     }
+    const loginProvider = (provider, width=500, height=500) => {
+        var left = (window.screen.width / 2) - (width / 2);
+        var top = (window.screen.height / 2) - (height / 2);
+        return window.open(
+            `${process.env.REACT_APP_API_URL}/auth/${provider}`,
+            `Autenticate con ${provider}`,
+            `width=${width},height=${height},top=${top},left=${left},toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no`
+        );
+    }
 
     return (
         <div className={s.container}>
@@ -32,11 +41,9 @@ function LogIn() {
                         <h4>Log In with</h4>
                     </div>
                     <div className={s.container_icons}>
-                        <a id='buto' href={`${process.env.REACT_APP_API_URL}/auth/facebook`}>
-                        <FacebookIcon for='buto' className={s.icons}/>
-                        </a>
-                        <GitHubIcon className={s.icons}/>
-                        <img src={Google} alt="Google Logo"/>
+                        <FacebookIcon className={s.icons} onClick={()=>loginProvider('facebook')}/>
+                        <GitHubIcon className={s.icons} onClick={()=>loginProvider('github')}/>
+                        <img src={Google} alt="Google Logo" onClick={()=>loginProvider('google')}/>
                     </div>
                 </div>
                 <form onSubmit={login}>
