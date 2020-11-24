@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import s from './Carousel.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ImgComponent from './imgComponent/ImgComponent';
-import banner1 from '../../../../img/banner1.jpg'
-import banner2 from '../../../../img/banner2.jpg'
-import banner3 from '../../../../img/banner3.jpg'
-import banner4 from '../../../../img/banner4.jpg'
-import banner5 from '../../../../img/banner5.jpg'
-import banner6 from '../../../../img/banner6.jpg'
-import banner7 from '../../../../img/banner7.png'
 
 export default function CarouselB(){
+    const product = useSelector(state => state.products)
+    const arrayurl = []
+    const arraynames= []
+    const arraydescription = []
+    const arrayprice = []
+    const arraystock = []
+    product.map(products =>{
+        arrayurl.push(`${process.env.REACT_APP_API_URL}${products.images[0].url}`)
+        arraynames.push(products.name)
+        arraydescription.push(products.description)
+        arrayprice.push(products.price)
+        arraystock.push(products.stock)
+    })
     const array = [
-        <ImgComponent src={banner1}/>,
-        <ImgComponent src={banner2}/>,
-        <ImgComponent src={banner3}/>,
-        <ImgComponent src={banner4}/>,
-        <ImgComponent src={banner5}/>,
-        <ImgComponent src={banner6}/>,
-        <ImgComponent src={banner7}/>,
+        <ImgComponent src={arrayurl[0]} name={arraynames[0]} description={arraydescription[0]} price={arrayprice[0]} stock={arraystock[0]}/>,
+        <ImgComponent src={arrayurl[6]} name={arraynames[6]} description={arraydescription[6]} price={arrayprice[6]} stock={arraystock[6]}/>,
+        <ImgComponent src={arrayurl[11]} name={arraynames[11]} description={arraydescription[11]} price={arrayprice[11]} stock={arraystock[11]}/>,
+        <ImgComponent src={arrayurl[17]} name={arraynames[17]} description={arraydescription[17]} price={arrayprice[17]} stock={arraystock[17]}/>,
+        <ImgComponent src={arrayurl[24]} name={arraynames[24]} description={arraydescription[24]} price={arrayprice[24]} stock={arraystock[24]}/>,
+        <ImgComponent src={arrayurl[30]} name={arraynames[30]} description={arraydescription[30]} price={arrayprice[30]} stock={arraystock[30]}/>,
+        <ImgComponent src={arrayurl[36]} name={arraynames[36]} description={arraydescription[36]} price={arrayprice[36]} stock={arraystock[36]}/>,
     ]
     const [ x, setX ] = useState(0)
     const goLeft = () =>{
@@ -32,7 +39,7 @@ export default function CarouselB(){
     useEffect(()=>{
         const timeoutId = setTimeout(()=>{
             x === -100 * (array.length -1) ? setX(0) : setX(x - 100)
-        }, 4000)
+        }, 5000)
         return () => clearTimeout(timeoutId)
     }, [x, array.length])
     return (

@@ -47,6 +47,10 @@
     color: #DFE6E9;
     margin-top: 15px;
 }
+.container_icons img{
+    width: 24px;
+    cursor: pointer;
+}
 .icons{
     cursor: pointer;
     height: 20px;

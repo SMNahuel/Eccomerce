@@ -26,6 +26,9 @@
 .email{
     display: none;
 }
+.links a{
+    margin: 5px;
+}
 .links a p{
     font-size: 16px;
     letter-spacing: .6px;
@@ -34,7 +37,7 @@
 .icon{
     color:#F2AED4;
 }
-@media (min-width: 940px){
+@media (min-width: 768px){
     .links{
         flex-direction: column;
     }
