@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
 const user = require('../controllers/user');
-
+const faceStrategy = require('./facebook');
 passport.use(
 	new LocalStrategy(
 		{
@@ -15,6 +15,8 @@ passport.use(
 		}
 	)
 );
+
+passport.use(faceStrategy)
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
