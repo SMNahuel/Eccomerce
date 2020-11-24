@@ -2,7 +2,7 @@ const passport = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 const user = require('../controllers/user');
-
+const faceStrategy = require('./facebook');
 passport.use(
 	new LocalStrategy(
 		{
@@ -17,6 +17,7 @@ passport.use(
 	)
 );
 
+<<<<<<< HEAD
 passport.use(
     new GoogleStrategy(
         {
@@ -32,6 +33,9 @@ passport.use(
         }
     )
 );
+=======
+passport.use(faceStrategy)
+>>>>>>> 77101a4897448a1c319447a40c8b4340e21ebf1e
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);

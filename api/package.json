@@ -26,7 +26,11 @@
     "multer": "^1.4.2",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
+<<<<<<< HEAD
     "passport-google-oauth": "^2.0.0",
+=======
+    "passport-facebook": "^3.0.0",
+>>>>>>> 77101a4897448a1c319447a40c8b4340e21ebf1e
     "passport-local": "^1.0.0",
     "pg": "^8.3.0",
     "sequelize": "^6.3.4"
