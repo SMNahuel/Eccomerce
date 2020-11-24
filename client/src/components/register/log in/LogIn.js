@@ -32,8 +32,9 @@ function LogIn() {
                         <h4>Log In with</h4>
                     </div>
                     <div className={s.container_icons}>
-                        <a href={`${process.env.REACT_APP_API_URL}/auth/facebook`}>Apreta loro</a>
-                        <FacebookIcon className={s.icons}/>
+                        <a id='buto' href={`${process.env.REACT_APP_API_URL}/auth/facebook`}>
+                        <FacebookIcon for='buto' className={s.icons}/>
+                        </a>
                         <GitHubIcon className={s.icons}/>
                         <img src={Google} alt="Google Logo"/>
                     </div>

@@ -15,7 +15,7 @@ module.exports = new FacebookStrategy(
   },
 
   async (accessToken, refreshToken, profile, done) => {
-    console.log('vamo a ve que ta trae: ' , profile);
+    
     try{
     const [user, created] = await User.findOrCreate({
         where: {
@@ -26,29 +26,14 @@ module.exports = new FacebookStrategy(
             name: profile.displayName, 
             email: profile.emails[0].value
         }
-    
     });
     if (!user) return done(null, false, {message: 'No pudimos loguearte con esa cuenta'});
 
-    // On success
-    return done(null, user);
+        // On success
+        return done(null, user);
     }catch (error) {
         done(error);
     }
-/*       function(err, user) {
-      if (err) { return done(err);}
-      //Si exite que lo devuelva
-      if(!err && user != null) return done(null, user);
-      
-      let usuario = new User({
-          name          : profile.displayName,
-          mail          : profile.mail
-      });
-      usuario.save(function(err){
-          if(err) throw err;
-          done(null, user);
-      }) 
-    ); */
   } 
 )
 
