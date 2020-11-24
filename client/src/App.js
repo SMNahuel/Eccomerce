@@ -11,6 +11,7 @@ import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
 import UserProfile from './components/UserProfile/UserProfile';
 import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
+import AuthSuccess from './components/AuthSuccess/AuthSuccess'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Switch>
         <Route exact path="/register" component={SignIn}/>
         <Route exact path="/login" component={LogIn}/>
+        <Route exact path="/AuthSuccess" component={AuthSuccess}/>
         <Route exact path="/" component={Home}/>
         <Route path="/" render={()=>(
           <>
