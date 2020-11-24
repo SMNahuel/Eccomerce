@@ -53,6 +53,7 @@
 }
 .icons{
     cursor: pointer;
+    height: 20px;
 }
 .container_signIn form{
     background-color: #fff;
