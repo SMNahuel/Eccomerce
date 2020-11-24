@@ -1,0 +1,89 @@
+.FormReview{
+    margin-top: 10px;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.container_closeIcon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ab47bc;
+}
+.close{
+    position: absolute;
+    color: #DFE6E9;
+    cursor: pointer;
+}
+.container_p_clasification{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+.container_p_clasification p{
+    font-size: 18px;
+    font-weight: 400;
+}
+.clasification{
+    align-self: flex-start;
+    direction: rtl;
+    padding-top: 40px;
+}
+.radio{
+    display:none
+}
+
+.radio:checked ~ label{
+    color: orange;
+}
+
+.star{
+    color: grey
+}
+
+.star:hover,
+.star:hover ~ label{
+    color: orange;
+}
+.message{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}  
+.message label{
+    font-size: 18px;
+}
+.message textarea{
+    resize: none;
+    height: 60px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+}
+.container_button_submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.container_button_submit button{
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    border-radius: 5px;
+}
+
+

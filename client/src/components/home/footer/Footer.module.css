@@ -1,0 +1,37 @@
+.container_main{
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #ab47bc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.container_logo{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+.container_logo img{
+    width: 143px;
+    height: 27.5px;
+    margin-right: 20px;
+}
+.container_creadores{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.container_derechos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ab47bc;
+    color: #DFE6E9;
+    height: 40px;
+
+}

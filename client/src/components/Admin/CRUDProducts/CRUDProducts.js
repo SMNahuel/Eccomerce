@@ -9,9 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
 import dataURLtoFile from '../../../utils/dataURLtoFile';
 import axios from 'axios';
-import Header from '../../home/header/Header';
 
-export default function CRUDProducts(){
+export default function CRUDProducts({history}){
     const [state, setState] = useState({
         action: null,
         product: {},
@@ -32,6 +31,7 @@ export default function CRUDProducts(){
     }, [dispatch, products, categories])
     
     const onUpdate = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'update', 
@@ -60,6 +60,7 @@ export default function CRUDProducts(){
     }
 
     const onDelete = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'delete', 
@@ -99,7 +100,6 @@ export default function CRUDProducts(){
 
     return(
         <>
-            <Header />
             <div className={s.form}>
                 <div>
                     {

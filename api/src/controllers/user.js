@@ -18,6 +18,16 @@ module.exports = {
         .then(this.session)
     },
 
+    logingProvider: function (provider, providerId, name, email) {
+        return User.findOrCreate({
+            where: {provider, providerId},
+            defaults: {name, email, rolId: 3}
+        })
+        .then(u => u[0])
+        .then(this.checkBan)
+        .then(this.session)
+    },
+
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],
@@ -25,7 +35,7 @@ module.exports = {
         })
         .then(user => {
             if (user) throw `User ${email} already exists`
-            return User.create({ name, email, password, rolId: 2})
+            return User.create({ name, email, password, rolId: 3})
         })
         .then(user => this.getById(user.id))
     },
@@ -73,14 +83,14 @@ module.exports = {
     setAdmin: function(id){
         return User.findByPk(id)
         .then(this.ownerProtect)
-        .then(user => user.update({rolId: 3}))
+        .then(user => user.update({rolId: 4}))
         .then(() => this.read())
     },
 
     setGuest: function(id){
         return User.findByPk(id)
         .then(this.ownerProtect)
-        .then(user => user.update({rolId: 2}))
+        .then(user => user.update({rolId: 3}))
         .then(() => this.read())
     },
 
@@ -164,5 +174,10 @@ module.exports = {
             }
         })
         .then(poducts => poducts.map(poduct => poduct.id))
-    }
+    },
+
+    addCart: function (userId, cartId) {
+        return User.findByPk(userId)
+        .then(user => user.addCart(cartId))
+    } 
 }

@@ -146,6 +146,25 @@
     color: #DFE6E9;
     border-radius: 8px;
 }
+.clasification{
+    direction: rtl;
+}
+.radio{
+    display: none;
+}
+.radio:checked ~ label{
+    color: orange;
+}
+.star{
+    color: grey;
+    font-size: 50px;
+    cursor: pointer;
+}
+.star:hover,
+.star:hover ~ label{
+    color: orange;
+}
+
 @media (max-width: 768px){
     .container_img_title_flex{
         flex-direction: column;
@@ -158,7 +177,6 @@
         width: 100%;
     }
 }
-
 @keyframes containerMount{
     0%   { opacity: 0; transform: scale(.5);}
     50%  { opacity: 0;}

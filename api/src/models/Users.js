@@ -3,7 +3,6 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 
     sequelize.define('user', {
-
         name: {
             type: DataTypes.STRING
         },
@@ -21,6 +20,12 @@ module.exports = (sequelize) => {
         password: {
             type: DataTypes.STRING(30)
             //is: /^[0-9a-zA-Z]{7,30}$/i
+        },
+        provider:{
+            type: DataTypes.STRING
+        },
+        providerId:{
+            type: DataTypes.STRING
         }
     })
 }

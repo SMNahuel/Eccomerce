@@ -1,0 +1,54 @@
+.spaceReserve{
+    height: 80px;
+    width: 170px;
+}
+.backgroud,.backgroudLoading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 102vh;
+    background-color: var(--background);
+    transition: 1.5s;
+    opacity: 0;
+    z-index: 1;
+}
+.container,.containerLoading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1.5s;
+    z-index: 1;
+}
+.logo,.logoLoading{
+    transition: 1.5s;
+    cursor: default;
+}
+.backgroudLoading{
+    opacity: 1;
+}
+.container{
+    height: 80px;
+    width: 170px;
+}
+.containerLoading{
+    width: 100vw;
+    height: 102vh;
+}
+.logo{
+    height: 80px;
+    width: 170px;
+}
+.logoLoading{
+    width: 90vw;
+    height: 42vw;
+}
+@media (min-width: 992px) {
+    .logoLoading{
+        height: 160px;
+        width: 340px;
+    }
+}

@@ -1,0 +1,21 @@
+.container_main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #43435c;
+}
+.container_main button{
+    cursor: pointer;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #ab47bc;
+    border: none;
+    outline: none;
+    color: #DFE6E9;
+}
+.container_main button:hover{
+    font-size: 14px;
+}
+

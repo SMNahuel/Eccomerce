@@ -1,6 +1,7 @@
 const { Product, Category, Image, Review, User } = require('../db.js');
 const { Op } = require("sequelize");
 
+
 module.exports = {
     read: function() {
         return Product.findAll({
@@ -20,6 +21,11 @@ module.exports = {
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Review,
+                    attributes: ['qualification'],
+                    group: "productId",
                 }
             ]
         })

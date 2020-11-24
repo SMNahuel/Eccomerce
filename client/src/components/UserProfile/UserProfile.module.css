@@ -51,6 +51,17 @@
 
 .cameraButton{
     position: absolute;
+<<<<<<< HEAD
     bottom: 25px;
     right: 85px;
+=======
+    bottom: 42px;
+    right: 150px;
+}
+.boton{
+    width:100%;
+    display:flex;
+    justify-content: center;
+
+>>>>>>> 9bf435da608538bb783315d6cf1649fd372243d2
 }

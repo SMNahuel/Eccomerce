@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators'
-import Header from '../../home/header/Header';
 import s from './CRUDUsers.module.css'
 
-export default function CRUDUsers(){
+export default function CRUDUsers({history}){
     const dispatch = useDispatch()
     const users = useSelector(state => state.users)
     
@@ -26,7 +25,6 @@ export default function CRUDUsers(){
 
     return(
         <>
-        <Header/>
         <div>
             <table className={s.table}>
                 <thead>

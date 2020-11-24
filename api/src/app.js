@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const session = require('express-session');
-const { passport } = require('./middlewares/authenticate');
+const { passport } = require('./middlewares/passport');
 
 require('./db.js');
 
@@ -23,11 +23,16 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-server.use(session({
+var sess = {
   secret: process.env.PASSPORT_SECRET,
   resave: false,
   saveUninitialized: true
-}));
+}
+if (server.get('env') === 'production') {
+  server.set('trust proxy', 1)
+  sess.cookie = { secure: true, sameSite: 'none' }
+}
+server.use(session(sess));
 server.use(passport.initialize());
 server.use(passport.session());
 

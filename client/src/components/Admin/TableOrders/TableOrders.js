@@ -2,7 +2,6 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect} from 'react'
 import s from './TableOrders.module.css'
-import Header from '../../home/header/Header'
 
 function TableOrders() {
 
@@ -30,7 +29,6 @@ function TableOrders() {
 
     return (
         <>
-        <Header/>
         <div className={s.styleTableOrders}>
             <table className={s.container_table}>
                 <thead>

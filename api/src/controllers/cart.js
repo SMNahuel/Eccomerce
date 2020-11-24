@@ -1,5 +1,4 @@
 const { Cart, Product, Image, Review } = require('../db.js');
-const user = require('./user');
 const order = require('./order');
 
 module.exports = {
@@ -20,26 +19,25 @@ module.exports = {
         })
     },
 
-    addToCartAnonimus: function({ productId, quantity }){
-        const userPromise = user.anonymous()
-        const cartPromise = Cart.create()
+    addToCartAnonimus: function({ productId, quantity }, cartId){
+        const cartPromise = cartId ? Cart.findByPk(cartId) : Cart.create()
         const productPromise = Product.findByPk(productId)
-        return Promise.all([userPromise, cartPromise, productPromise])
-        .then(([user, cart, product]) => {
+        return Promise.all([cartPromise, productPromise])
+        .then(([cart, product]) => {
             let stockRest = product.stock - quantity
             if (stockRest < 0) throw 'Not enough stock'
+            cartId = cart.id
             return Promise.all([
-                user.addCart(cart),
                 cart.addProduct(product, {
                     through: {
                         price: product.price,
                         quantity
                     }
                 }),
-                Product.update({stock:stockRest},{where:{id:productId}})
+                product.update({stock:stockRest})
             ])
         })
-        .then(([u]) => Promise.all([user.session(u), this.cartOf(u.id)]))
+        .then(() => this.getById(cartId))
     },
 
     addToCart: function(userId, { productId, quantity }){
@@ -137,7 +135,8 @@ module.exports = {
                 },{
                     model: Review,
                     attributes: ["id","qualification","message"],
-                    where: {userId}
+                    where: {userId},
+                    required: false
                 }],
                 through: {
                     attributes: ['price', 'quantity']

@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import Order from './Order/Order';
 import OrderDetail from './OrderDetail/OrderDetail';
-import Header from '../home/header/Header';
 
-export default function Orders() {
+export default function Orders({history}) {
     const dispatch = useDispatch()
     const orders = useSelector(state=> state.orders)
     useEffect(() => dispatch(api.getOrders()), [dispatch]);
@@ -17,7 +16,6 @@ export default function Orders() {
     
     return (
         <>
-            <Header/>
             <div className={s.styleTableOrders}>
                 {orderDetail ? 
                     <OrderDetail order={orderDetail} onBack={onBack}/>

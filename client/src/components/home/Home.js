@@ -3,14 +3,13 @@ import s from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
-import Catalog from './Catalog/Catalog';
-import Product from './Product/Product';
-import FormRespond from './Product/questionAndAnswer/question/formRespond/FormRespond';
-import CarouselB from './carousel/CarouselB';
-import Header from './header/Header';
-import Categories from './Categories/Categories';
+import FormRespond from './body/Catalog/Product/questionAndAnswer/question/formRespond/FormRespond';
+import Header from '../header/Header';
+import Footer from './footer/Footer';
+import Body from './body/Body';
+import Product from './body/Catalog/Product/Product'
 
-export default function Home() {
+export default function Home({history}) {
 
     const [ state, setState ] = useState({
         selectedCategory: null,
@@ -18,6 +17,8 @@ export default function Home() {
         detailedProduct: null,
         cartProduct: []
     })
+    const [ currentPage ] = useState(1)
+    const [ postsPerPage, setPostPerPage ] = useState(10);
 
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
@@ -34,6 +35,13 @@ export default function Home() {
         dispatch(api.getPurchased())
     }, [dispatch, products, categories])
 
+    const indexOfLastProduct = currentPage * postsPerPage;
+    const indexFirstProduct = indexOfLastProduct - postsPerPage;
+    const currentProduct = products.slice(indexFirstProduct, indexOfLastProduct)
+
+    const paginate = (pageNumber) => {
+        setPostPerPage(postsPerPage + pageNumber)
+    }
     const onSelect = (e) => {
         let categoryId = Number(e.target.value)
         setState({
@@ -78,22 +86,23 @@ export default function Home() {
     return(
         <>
             {
-               state.detailedProduct &&
-               <div className={s.container_absolute}>
-                   <Product product={state.detailedProduct} onBack={handleBack} />
-               </div>
-            }
-            <div className={s.container}>
-                <div className={s.navBar}>
-                    <Header handleSearch={handleSearch}/>
-                    <Categories categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory} />
+                state.detailedProduct &&
+                <div className={s.container_absolute}>
+                    <Product product={state.detailedProduct} onBack={handleBack} />
                 </div>
-            </div>
-            <div className={s.home}>
-                <CarouselB categories={categories}/>
-                <Catalog products={state.products || products} handleDetail={handleDetail} />
-            </div>
-            
+            }
+            <div className={s.container_home}>
+                <div className={s.container_header}>
+                    <Header history={history} handleSearch={handleSearch}/>
+                </div>
+                <div>
+                    <Body 
+                    categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory}
+                    products={state.products || currentProduct || products} handleDetail={handleDetail}
+                    paginate={paginate}/>
+                    <Footer/>
+                </div>
+            </div>  
             {
                 formRespond &&
                 <FormRespond/>

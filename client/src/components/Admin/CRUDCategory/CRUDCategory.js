@@ -6,9 +6,8 @@ import UpdateCategory from './UpdateCategory/UpdateCategory'
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
-import Header from '../../home/header/Header';
 
-function CrudCategory(){
+function CrudCategory({history}){
     const [state, setState] = useState({
         action: null,
         category: {}
@@ -24,6 +23,7 @@ function CrudCategory(){
     }, [dispatch, categories])
 
     const onUpdate = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'update', 
@@ -36,6 +36,7 @@ function CrudCategory(){
     }
 
     const onDelete = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'delete', 
@@ -53,7 +54,6 @@ function CrudCategory(){
     }
     return (
         <>
-            <Header />
             <div className={s.form}>
                 <h4>Categorias</h4>
                 {

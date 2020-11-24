@@ -132,15 +132,22 @@ const actionCreators = {
     USER: "USER",
     login: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/login`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/auth/login`,
             data,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USER, dispatch)
+        }
+    },
+    logout: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/auth/logout`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
     register: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/register`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/auth/register`,
             data,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
@@ -148,27 +155,63 @@ const actionCreators = {
     },
     getMe: function(){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/me`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/auth/me`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
     addImgUser: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/image`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/auth/image`,
             data,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
-    passwordChange: function(newPassword, oldPassword){
+    passwordChange: function(oldPassword, newPassword,){
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/password`,
+            console.log(oldPassword, newPassword)
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/auth/password`,
+            {
             oldPassword,
-            newPassword,
+            newPassword
+            },
             {withCredentials: true}
             )
-            this._dispatchPromise(promise, this.CART, dispatch)
+            this._dispatchPromise(promise, this.USER, dispatch)
+        }
+    },
+
+    USERS: "USERS",
+    getUsers: function(){
+        return dispatch => {
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user`,
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    promoteUser: function(id) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/promote`,
+            {id},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    demoteUser: function(id) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/demote`,
+            {id},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
+        }
+    },
+    banUser: function(id) {
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/ban`,
+            {id},
+            {withCredentials: true})
+            this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
 
@@ -180,24 +223,24 @@ const actionCreators = {
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    addReview: function(productId, review) {
+    makeReview: function(productId, review) {
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/products/review/${productId}`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/reviews/${productId}`,
             review,
             {withCredentials: true})
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    deleteReview: function(productId, userId) {
+    deleteReview: function(productId) {
         return dispatch => {
-            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${productId}/${userId}`,
+            const promise = axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${productId}`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
     },
-    getReviewByUser: function(userId) {
+    getReviewByUser: function() {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews/${userId}`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/reviews`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.REVIEW, dispatch)
         }
@@ -206,7 +249,7 @@ const actionCreators = {
     PURCHASEDPRODUCTS: 'PURCHASEDPRODUCTS',
     getPurchased: function() {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/purchased`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/auth/purchased`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.PURCHASEDPRODUCTS, dispatch)
         }
@@ -220,7 +263,11 @@ const actionCreators = {
             dispatch({ type: type, payload: data });
         })
         .catch(err => {
-            alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
+            if (err.response) {
+                alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
+            } else {
+                alert(`Error! ${err}`);
+            }
         })
     },
 }

@@ -1,0 +1,115 @@
+.container_review_main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.container_review_average{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.container_average{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.p_number_average{
+    font-size: 50px;
+    font-weight: 600;
+    color: #282C34;
+}
+.p_stars{
+    font-size: 35px;
+    color: #7b1fa2;   
+}
+.p_text{
+    color: 666;
+    font-size: 15px;
+    color: #666;
+}
+.container_progress{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 10px;
+}
+.container_label_progress{
+    width: 100%;
+    
+}
+.container_label_progress label{
+    margin-right: 10px;
+    color: #666;
+}
+.container_label_progress progress{
+    background-color: transparent;
+    /* No borrar */
+}
+.container_label_progress progress::-webkit-progress-value{
+    background-color: #7b1fa2;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.container_label_progress progress::-webkit-progress-bar{
+    background-color:#DFE6E9;
+    height: 10px;
+    border: .5px solid #666;
+    border-radius: 8px;
+}
+.container_review_all_positive_negative{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.container_review_all_positive_negative button{
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+.container_allPositiveNegative{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+.container_review_all_positive_negative button:focus{
+    border-bottom: 1px solid #7b1fa2;
+    font-size: 15px;
+    font-weight: 700;
+}
+.container_reviewList{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.btnReview{
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #DFE6E9;
+    background-color: #ab47bc;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 15px;
+}
+@media (max-width: 498px){
+    .container_review_average{
+        justify-content: center;
+    }
+    .container_average{
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+}
+
