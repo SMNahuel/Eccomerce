@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const session = require('express-session');
-const { passport } = require('./middlewares/authenticate');
+const { passport } = require('./middlewares/passport');
 
 require('./db.js');
 

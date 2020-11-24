@@ -18,6 +18,16 @@ module.exports = {
         .then(this.session)
     },
 
+    logingProvider: function (provider, providerId, name, email) {
+        return User.findOrCreate({
+            where: {provider, providerId},
+            defaults: {name, email, rolId: 3}
+        })
+        .then(u => u[0])
+        .then(this.checkBan)
+        .then(this.session)
+    },
+
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],
