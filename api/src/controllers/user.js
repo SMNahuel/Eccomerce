@@ -18,10 +18,10 @@ module.exports = {
         .then(this.session)
     },
 
-    logingGoogle: function ({id, displayName, emails}) {
+    logingProvider: function (provider, providerId, name, email) {
         User.findOrCreate({
-            where: {googleId: id},
-            defaults: {name: displayName, email: emails[0].value}
+            where: {provider, providerId},
+            defaults: {name, email}
         })
         .then(u => u[0])
         .then(this.checkBan)

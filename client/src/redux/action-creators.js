@@ -132,7 +132,7 @@ const actionCreators = {
     USER: "USER",
     login: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/login`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/auth/login`,
             data,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
@@ -140,14 +140,14 @@ const actionCreators = {
     },
     logout: function(){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/logout`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/auth/logout`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
     register: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/register`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/auth/register`,
             data,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
@@ -155,14 +155,14 @@ const actionCreators = {
     },
     getMe: function(){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/me`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/auth/me`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
     addImgUser: function(data){
         return dispatch => {
-            const promise = axios.post(`${process.env.REACT_APP_API_URL}/user/image`,
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/auth/image`,
             data,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
@@ -171,7 +171,7 @@ const actionCreators = {
     passwordChange: function(oldPassword, newPassword,){
         return dispatch => {
             console.log(oldPassword, newPassword)
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/password`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/auth/password`,
             {
             oldPassword,
             newPassword
@@ -185,14 +185,14 @@ const actionCreators = {
     USERS: "USERS",
     getUsers: function(){
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/admin`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
         }
     },
     promoteUser: function(id) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/promote`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/promote`,
             {id},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
@@ -200,7 +200,7 @@ const actionCreators = {
     },
     demoteUser: function(id) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/demote`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/demote`,
             {id},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
@@ -208,7 +208,7 @@ const actionCreators = {
     },
     banUser: function(id) {
         return dispatch => {
-            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/admin/ban`,
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/user/ban`,
             {id},
             {withCredentials: true})
             this._dispatchPromise(promise, this.USERS, dispatch)
@@ -249,7 +249,7 @@ const actionCreators = {
     PURCHASEDPRODUCTS: 'PURCHASEDPRODUCTS',
     getPurchased: function() {
         return dispatch => {
-            const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/purchased`,
+            const promise = axios.get(`${process.env.REACT_APP_API_URL}/auth/purchased`,
             {withCredentials: true})
             this._dispatchPromise(promise, this.PURCHASEDPRODUCTS, dispatch)
         }
