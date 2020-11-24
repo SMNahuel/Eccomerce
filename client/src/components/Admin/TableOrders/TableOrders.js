@@ -28,7 +28,7 @@ function TableOrders() {
         axios.put(`${process.env.REACT_APP_API_URL}/orders/process`,
         order,
         {withCredentials: true})
-        .then(({data})=>{setOrders(data) , endWare.sendEmail(user.email)})
+        .then(({data})=>setOrders(data))
     }
 
     return (
@@ -55,7 +55,7 @@ function TableOrders() {
                             <td>{order.createdAt}</td>
                             <td className={s.button_details}>
                                 { order.state === 'created' ? 
-                                    <button onClick={()=>onProcess(order)}>Procesar</button>:
+                                    <button onClick={()=>{onProcess(order), endWare.sendEmail(user.email)}}>Procesar</button>:
                                     order.state
                                 }
                             </td>

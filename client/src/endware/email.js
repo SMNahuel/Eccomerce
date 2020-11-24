@@ -3,22 +3,20 @@ const nodemailer = require("nodemailer");
 
 async function main() {
 
-  let testAccount = await nodemailer.createTestAccount();
-
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: "https://ecommerce-ft06-g08.herokuapp.com",
     port: 587,
     secure: false,
     auth: {
-      user: testAccount.user, 
-      pass: testAccount.pass,
+      user: 'wultur.company@gmail.com', 
+      pass: 'contrasena1234567',
     },
   });
 
-  const sendEmail = (email) => {
+  function sendEmail (email) {
     let info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <foo@example.com>', 
-      to: "bar@example.com, baz@example.com", 
+      from: '"Wultur Company" <wultur.company@gmail.com>', 
+      to: email, 
       subject: "Hello ✔",
       text: "Hello world?", 
       html: "<b>Hello world?</b>", 
@@ -31,3 +29,5 @@ async function main() {
 }
 
 main().catch(console.error);
+
+export default sendEmail;
