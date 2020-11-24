@@ -15,14 +15,15 @@ async function main() {
     },
   });
 
-  
-  let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', 
-    to: "bar@example.com, baz@example.com", 
-    subject: "Hello ✔",
-    text: "Hello world?", 
-    html: "<b>Hello world?</b>", 
-  });
+  const sendEmail = (email) => {
+    let info = await transporter.sendMail({
+      from: '"Fred Foo 👻" <foo@example.com>', 
+      to: "bar@example.com, baz@example.com", 
+      subject: "Hello ✔",
+      text: "Hello world?", 
+      html: "<b>Hello world?</b>", 
+    });
+  }
 
   console.log("Message sent: %s", info.messageId);
 
