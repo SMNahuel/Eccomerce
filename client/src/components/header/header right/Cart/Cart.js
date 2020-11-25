@@ -93,19 +93,24 @@ function Cart() {
             </div>
 
             {active && cart.products ?
+
                 <div className={s.container_absolute_main} ref={ref}>
                     <div className={s.container_main_table_button}>
+                        
                         <div className={s.container_button_onUnMount_table}>
                             <button onClick={onUnmount}><HighlightOffIcon fontSize="large" /></button>
                         </div>
+                        
                         <div className={s.container_table}>
                             <div className={s.containerThead}>
                                 <div>PRODUCTO</div>
                                 <div>SUBTOTAL</div>
                             </div>
+                            
                             <div className={s.lineStyle}>
                                 <hr />
                             </div>
+
                             <div >
                                 {cart.products && cart.products.map(product =>
                                     (quantities[product.id] !== 0) &&
@@ -142,13 +147,23 @@ function Cart() {
                                     <div className={s.hrDivProduct}>
                                             <hr/>
                                     </div>
-                                    </div>
+                                    </div>                                       
                                 )}
                             </div>
                         </div>
+                        <div className={s.totalPrice}>
+                            Subtotal : ${totalPrice()} 
+                        </div>
+                        <div className={s.lineStyle}>
+                            <hr />
+                        </div>
+                        <div className={s.container_input_button}>
+                            <input type="button" onClick={onBuy} value="COMPRAR" />
+                            <input type="button" onClick={onCancel} value="Cancelar Carrito" />
+                        </div>
                     </div>
                 </div>
-                : null
+                :null
             }
 
 

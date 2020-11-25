@@ -20,6 +20,16 @@
     align-items: center;
   
 }
+
+.totalPrice{
+    color: black;
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    font-family: fantasy;
+    font-size: 45px;
+}
+
 .container_main_table_button{
     position: relative;
     max-width: 1000px;
@@ -161,7 +171,7 @@
 }
 
 .container_input_button{
-    margin-top: 10px;
+    margin-top: 60px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -170,13 +180,15 @@
     width: 25%;
     margin-left: 1%;
     margin-right: 1%;
-    height: 30px;
-    border: none;
+    height: 50px;
+    border: ridge;
     outline: none;
-    border-radius: 8px;
-    color: #DFE6E9;
-    background-color: #ab47bc;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #2f0f35;
     cursor: pointer;
+    font-size: x-large;
+    font-family: serif;
 }
 .cartEmpty{
     display: flex;
