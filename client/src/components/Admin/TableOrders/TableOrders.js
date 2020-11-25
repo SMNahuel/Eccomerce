@@ -3,7 +3,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect} from 'react'
 import s from './TableOrders.module.css'
-import endWare from '../../../endware/email'
 
 function TableOrders() {
 
@@ -55,7 +54,7 @@ function TableOrders() {
                             <td>{order.createdAt}</td>
                             <td className={s.button_details}>
                                 { order.state === 'created' ? 
-                                    <button onClick={()=>onProcess(order), endWare.sendEmail(user.email)}>Procesar</button>:
+                                    <button onClick={()=>onProcess(order)}>Procesar</button>:
                                     order.state
                                 }
                             </td>

@@ -107,6 +107,7 @@ server.get('/facebook/success', loginFacebookSuccess, (req, res, next) => {
     }
 })
 
+
 //Rutas que permiten logearse con Github
 server.get('/github', loginGithub);
 server.get('/github/success', loginGithubSuccess, (req, res, next) => {
@@ -119,5 +120,13 @@ server.get('/github/success', loginGithubSuccess, (req, res, next) => {
         .catch(next);
     }
 })
+
+
+server.put('/update', (req, res, next) => {
+    user.updateChanges(req.user.id, req.body)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
 
 module.exports = server;
