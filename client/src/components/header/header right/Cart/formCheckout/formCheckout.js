@@ -11,7 +11,7 @@ export default function FormCheckout({items, price, user, onBack}){
         otroPais: user.pais === null ? "" :
             paises.includes(user.pais) ? "" : user.pais,
         provincia: user.provincia || "",
-        localidad: userr.localidad || "",
+        localidad: user.localidad || "",
         codigoPostal: user.codigoPostal || "",
         calle: user.calle || "",
         num: user.num || "",
