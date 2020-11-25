@@ -64,7 +64,6 @@ function Cart() {
             [id]: cant
         })
     }
-
     const totalPrice = () => {
         if (!cart.products) return 0
         return cart.products.reduce((acc, product) => 
@@ -83,12 +82,15 @@ function Cart() {
         ref.current.style.animation = s.containerUnmount + ' 450ms linear'
         setTimeout(onToggleActive, 400);
     };
-
     return (
         <>
             {redirect && <Redirect to="/login"/>}
-            <div className={s.container_button_toggle}>
-                <button onClick={onToggleActive}><ShoppingCartIcon fontSize="small"/></button>
+            <div className={s.container_button_toggle} onClick={onToggleActive}>
+                <button><ShoppingCartIcon fontSize="small"/></button>
+                {cart.products && cart.products.length >= 1 &&
+                    <div className={s.container_label_count}>
+                        <label>{cart.products ? cart.products.length : ""}</label>
+                    </div>}
             </div>
             {active && cart.products ?
                 <div className={s.container_absolute_main} ref={ref}>
