@@ -39,9 +39,9 @@
 }
 .container_button_onUnMount_table button{
     background-color: transparent;
-    outline: none;
+    outline: none;  
     border: none;
-    color: #7b1fa2;
+    color: #000000;
     cursor: pointer;
 }
 .container_table{
@@ -49,6 +49,8 @@
     margin: 0 auto;
     text-align: center;
 }
+
+/*-------------------------------*/
 .container_thead{
     color: #282C34;
     font-size: 15px;
@@ -81,14 +83,30 @@
     cursor: pointer;
 }
 .container_tbody tr td select option{
-    color: #282C34;
+    color: #000000;
 }
 .container_tbody tr td{
-    font-size: 14px;
+    font-size: 25px;
+}
+/*-------------------------------*/
+
+.containerThead{
+    display: flex;
+    color: black;
+    justify-content: space-around;
+    font-size: xx-large;
+    font-family: fantasy;
+}
+
+.lineStyle{
+    border: 0; 
+    height: 0; 
+    box-shadow: 0 1px 5px 1px purple;
+    margin: 15px;
 }
 
 .DeleteForeverIcon{
-    color: #e7231f;
+    color: #0c0b0b;
     cursor: pointer;
 }
 
