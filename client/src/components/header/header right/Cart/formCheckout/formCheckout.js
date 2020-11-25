@@ -9,8 +9,9 @@ export default function FormCheckout({items, price, user, onBack}){
     const [input, setInput] = useState({
         pais: user.pais === null ? "Argentina" : 
             paises.includes(user.pais) ? user.pais : "otro",
-        otroPais: user.pais !== "otro" ? "" : user.pais || "",
+        otroPais: "" ,
         provincia: user.provincia || "",
+        otraProvincia: "",
         localidad: user.localidad || "",
         codigoPostal: user.codigoPostal || "",
         calle: user.calle || "",
@@ -97,7 +98,7 @@ export default function FormCheckout({items, price, user, onBack}){
                         <br/>
                         <div className={s.input_provincia}>
                             <label>Provincia<em style={{color: "red"}}>* </em></label>
-                            {provincias[input.pais] && 
+                            {!!provincias[input.pais] &&
                                 <select name="provincia" value={input.provincia} onChange={onChange}>
                                     {
                                         provincias[input.pais].map(prov => (
@@ -107,7 +108,7 @@ export default function FormCheckout({items, price, user, onBack}){
                                 </select>
                             }
                             {input.pais === "otro" &&
-                                    <input type="text" name="provincia" value={input.provincia} onChange={onChange} placeholder="p.ej.:Madrid"/>
+                                    <input type="text" name="otraProvincia" value={input.otraProvincia} onChange={onChange} placeholder="p.ej.:Madrid"/>
                             }
                         </div>
                         <br/>
