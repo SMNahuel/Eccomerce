@@ -30,14 +30,21 @@ function Cart() {
         setActive(!active)
     }
 
+    const [form, setForm] = useState(false)
     const [redirect, setRedirect] = useState(false)
-    const onBuy = e => {
-        if (user.name) {
+    const onForm = e => {
+        /* if (user.name) {
             dispatch(api.confirmCart(cart))
             setActive(!active)
         } else {
             setRedirect(true)
-        }
+        } */
+        setForm(active)
+    }
+
+    const onBack = () => {
+        setForm(false)
+        setActive(!active)
     }
 
     const onCancel = e => {
@@ -137,15 +144,23 @@ function Cart() {
                                     </tr>
                                 </tfoot>
                             </table>
-                            <FormCheckout items={cart} price={totalPrice()} user={user}/>
                             <div className={s.container_input_button}>
-                                <input type="button" onClick={onBuy} value="Comprar!" />
+                                <input type="button" onClick={onForm} value="Comprar!" />
                                 <input type="button" onClick={onCancel} value="Cancelar Carrito" />
                             </div>
                         </div>
                     </div>
                 </div>
                 : null
+            }
+            {form &&
+                <div className={s.container_absolute_main} ref={ref}>
+                    <div className={s.container_main_table_button}>
+                        <div className={s.container_table}>
+                            <FormCheckout items={cart} price={totalPrice()} user={user} onBack={onBack}/>
+                        </div>
+                    </div>
+                </div>
             }
             {active && !cart.products ?
                 <div className={s.container_absolute_main} ref={ref}>

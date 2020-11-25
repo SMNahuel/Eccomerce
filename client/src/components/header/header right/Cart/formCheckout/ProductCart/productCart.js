@@ -6,7 +6,7 @@ export default function ProductCart({product}){
         <>
             <div className={s.container}>
                 <p>{product.name}</p>
-                <p>${product.order.price}</p>
+                <p>${product.order.price * product.order.quantity}</p>
             </div>
             <hr/>
         </>
