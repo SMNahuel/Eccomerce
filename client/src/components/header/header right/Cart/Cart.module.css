@@ -1,3 +1,30 @@
+.container_button_toggle{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ab47bc;
+    cursor: pointer;
+    margin: 0 5px;
+    position: relative;
+}
+.container_label_count{
+    position: absolute;
+    top: -7px;
+    right: -5px;
+    background-color: #e7231f;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container_label_count label{
+    color: #282C34;
+}
 .container_button_toggle button{
     background-color: transparent;
     outline: none;
