@@ -8,6 +8,9 @@ module.exports = (sequelize) => {
             values:['cart', 'created', 'processing', 'canceled', 'completed']
         }),
         defaultValue: 'cart'
+    },
+    emailTo:{
+      type: DataTypes.STRING
     }
   });
 };

@@ -87,7 +87,7 @@ module.exports = {
         .then(() => this.cartOf(userId))
     },
 
-    create: function(userId, {id, products}){
+    create: function(userId, {id, products, email}){
         return this.belongsTo(id, userId)
         .then(belongsToUser => {
             if (!belongsToUser){
@@ -95,7 +95,7 @@ module.exports = {
             }
             return Promise.all(products.map(p => order.updateWithActualPrices(id, p)))
         })
-        .then(() => Cart.update({state:'created'},{where:{id:id}}))
+        .then(() => Cart.update({state:'created', emailTo:email},{where:{id:id}}))
         .then(() => this.cartOf(userId))
     },
 

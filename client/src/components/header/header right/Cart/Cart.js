@@ -8,15 +8,31 @@ import { selectorValue } from '../../../../utils/selector'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import cartEmpty from '../../../../img/empty-cart.png'
 import { Redirect } from 'react-router-dom';
+import FormCheckout from './formCheckout/formCheckout'
+import { TextareaAutosize } from '@material-ui/core';
 
 function Cart() {
     const cart = useSelector(state => state.cart)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-
+    
     const [active, setActive] = useState(false)
     const onToggleActive = e => {
         if(!!Object.keys(user).length) dispatch(api.getCart())
+        /* if (active && Object.keys(quantities).length) {
+            for(let key in quantities) {
+                let id = Number(key)
+                cart.products.find(p => p.id === id)
+                .order.quantity = quantities[id]
+            }
+            dispatch(api.updateCart(cart))
+            setQuantities({})
+        } */
+        newQuantities()
+        setActive(!active)
+    }
+
+    const newQuantities = () =>{
         if (active && Object.keys(quantities).length) {
             for(let key in quantities) {
                 let id = Number(key)
@@ -26,17 +42,28 @@ function Cart() {
             dispatch(api.updateCart(cart))
             setQuantities({})
         }
-        setActive(!active)
     }
 
+    const [form, setForm] = useState(false)
     const [redirect, setRedirect] = useState(false)
-    const onBuy = e => {
-        if (user.name) {
+    const onForm = e => {
+        /* if (user.name) {
             dispatch(api.confirmCart(cart))
             setActive(!active)
         } else {
             setRedirect(true)
+        } */
+        if(user.name){
+            newQuantities()
+            setForm(active)
+        }else{
+            setRedirect(true)
         }
+    }
+
+    const onBack = () => {
+        setForm(false)
+        setActive(!active)
     }
 
     const onCancel = e => {
@@ -138,7 +165,7 @@ function Cart() {
                                 </tfoot>
                             </table>
                             <div className={s.container_input_button}>
-                                <input type="button" onClick={onBuy} value="Comprar!" />
+                                <input type="button" onClick={onForm} value="Comprar!" />
                                 <input type="button" onClick={onCancel} value="Cancelar Carrito" />
                             </div>
                         </div>
@@ -195,12 +222,21 @@ function Cart() {
                                 </tfoot>
                             </table>
                             <div className={s.container_input_button}>
-                                <input type="button" onClick={onBuy} value="Comprar!" />
+                                <input type="button" onClick={onForm} value="Comprar!" />
                                 <input type="button" onClick={onCancel} value="Cancelar Carrito" />
                             </div>
                         </div>
                     </div>
                                                 </div>*/}
+            {form &&
+                <div className={s.container_absolute_main} ref={ref}>
+                    <div className={s.container_main_table_button}>
+                        <div className={s.container_table}>
+                            <FormCheckout items={cart} price={totalPrice()} user={user} onBack={onBack}/>
+                        </div>
+                    </div>
+                </div>
+            }
                 
             {active && !cart.products ?
                 <div className={s.container_absolute_main} ref={ref}>
