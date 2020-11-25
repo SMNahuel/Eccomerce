@@ -15,7 +15,7 @@ function Cart() {
     const cart = useSelector(state => state.cart)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-
+    
     const [active, setActive] = useState(false)
     const onToggleActive = e => {
         if(!!Object.keys(user).length) dispatch(api.getCart())

@@ -187,5 +187,13 @@ module.exports = {
     addCart: function (userId, cartId) {
         return User.findByPk(userId)
         .then(user => user.addCart(cartId))
-    } 
+    },
+
+    updateChanges: function(userId, changes){
+        return User.update(
+            changes, 
+            { where: { id: userId } }
+        )
+        .then(() => this.getById(userId))
+    }
 }

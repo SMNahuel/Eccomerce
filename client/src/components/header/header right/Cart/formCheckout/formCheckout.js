@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import ProductCart from './ProductCart/productCart'
 import s from './formCheckout.module.css'
 import { paises, provincias } from '../../../../../utils/selectForm'
+import { useDispatch } from 'react-redux';
+import api from '../../../../../redux/action-creators'
 
 export default function FormCheckout({items, price, user, onBack}){
-    console.log(user)
     const [input, setInput] = useState({
         pais: user.pais === null ? "Argentina" : 
             paises.includes(user.pais) ? user.pais : "otro",
-        otroPais: user.pais === null ? "" :
-            paises.includes(user.pais) ? "" : user.pais,
+        otroPais: user.pais !== "otro" ? "" : user.pais || "",
         provincia: user.provincia || "",
         localidad: user.localidad || "",
         codigoPostal: user.codigoPostal || "",
@@ -20,6 +20,7 @@ export default function FormCheckout({items, price, user, onBack}){
         email: user.email
     })
     const [error, setError] = useState({})
+    const dispatch = useDispatch()
     
     //valido los campos
     const validate = (input) => {
@@ -35,7 +36,7 @@ export default function FormCheckout({items, price, user, onBack}){
         else if(input.calle.length < 4) error.calle = "La calle es invalida"
 
         if(!input.num) error.num = "Es necesario un número"
-        else if(input.num !== Number(input.num))error.num = "Solo se permiten números"
+        else if(isNaN(Number(input.num)))error.num = "Solo se permiten números"
 
         if(!input.email) error.email = "Es necesario un email"
         else if(!/\S+@\S+\.\S+/.test(input.email)) error.email = "El email es invalido"
@@ -57,7 +58,19 @@ export default function FormCheckout({items, price, user, onBack}){
 
     //si hay algun error no lo dejo seguirr con la compra
     const onBuy = () => {
-        console.log(error)
+        for(const key in error){
+            if(error[key])return alert(error[key])
+        }
+        var changes = {}
+        for(const key in input){
+            if(input[key] && input[key] !== user[key]) {
+                changes[key] = input[key]
+            }
+        }
+        if(changes.email) delete changes.email
+        dispatch(api.updateChanges(changes))
+        dispatch(api.confirmCart({items, email: input.email}))
+        onBack()
     }
     
     //valido los campos al entrar al formulario
@@ -99,7 +112,7 @@ export default function FormCheckout({items, price, user, onBack}){
                         </div>
                         <br/>
                     </div>
-                    <label>Localidad</label>
+                    <label>Localidad<em style={{color: "red"}}>* </em></label>
                     <input type="text" name="localidad" value={input.localidad} onChange={onChange} placeholder="p.ej.:Avellaneda"/>
                     <br/>
                     <label>Código postal</label>
