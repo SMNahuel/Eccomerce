@@ -5,7 +5,9 @@ const { forGuest } = require('../middlewares/authenticate')
 const {
     login,
     loginFacebook,
-    loginFacebookSuccess
+    loginFacebookSuccess,
+    loginGithub,
+    loginGithubSuccess
 } = require('../middlewares/passport')
 
 // Ruta que permite registrarse
@@ -95,6 +97,19 @@ server.get('/purchased', (req, res, next) => {
 // Rutas que permiten logearse con facebook
 server.get('/facebook', loginFacebook);
 server.get('/facebook/success', loginFacebookSuccess, (req, res, next) => {
+    const { cartId } = req.cookies
+    if (!cartId) {
+        return res.send(req.user);
+    } else {
+        return user.addCart(req.user.id, cartId)
+        .then(() => res.clearCookie('cartId').send(req.user))
+        .catch(next);
+    }
+})
+
+//Rutas que permiten logearse con Github
+server.get('/github', loginGithub);
+server.get('/github/success', loginGithubSuccess, (req, res, next) => {
     const { cartId } = req.cookies
     if (!cartId) {
         return res.send(req.user);
