@@ -28,9 +28,7 @@ export default function HeaderRight(){
                     </div>
                     <h3 className={s.h3_name}>{user.name}</h3>
                 </div>
-                <div className={s.container_cart}>
-                    <Cart/>
-                </div>
+                <Cart/>
                 <div className={s.container_arrow} onClick={toggle}>
                     <ArrowDropDownIcon />
                 </div>

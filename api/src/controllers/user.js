@@ -46,7 +46,7 @@ module.exports = {
 
     getById: function(userId){
         return User.findOne({
-            attributes: ['id', 'email', 'name', 'rolId'],
+            attributes: ['id', 'email', 'name', 'rolId', 'pais', 'provincia', 'localidad', 'codigoPostal', 'calle', 'num', 'departamento', 'telefono'],
             where:{ id: userId },
             include: [{
                 model:Rol,
@@ -126,7 +126,15 @@ module.exports = {
             name: user.name,
             rolId: user.rolId,
             rol: user.rol ? user.rol.name : 'guest',
-            image: user.image && user.image.url
+            image: user.image && user.image.url,
+            pais: user.pais,
+            provincia: user.provincia,
+            localidad: user.localidad,
+            codigoPostal: user.codigoPostal,
+            calle: user.calle,
+            num: user.num,
+            departamento: user.departamento,
+            telefono: user.telefono
         }
     },
     
@@ -179,5 +187,13 @@ module.exports = {
     addCart: function (userId, cartId) {
         return User.findByPk(userId)
         .then(user => user.addCart(cartId))
-    } 
+    },
+
+    updateChanges: function(userId, changes){
+        return User.update(
+            changes, 
+            { where: { id: userId } }
+        )
+        .then(() => this.getById(userId))
+    }
 }
