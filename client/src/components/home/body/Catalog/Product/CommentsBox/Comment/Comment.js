@@ -36,22 +36,28 @@ export default function Comment({comment, user, api}){
     }
     return (
         <div className={s.container_p}>
-            <p className={s.p_question}>{comment.user.name}</p>
-            {canUpdate && <button onClick={toggleUpdate}>{state.update ? <ArrowBackIcon/> : <EditIcon/>}</button>}
-            {canDelete && <button onClick={onDelete}><DeleteIcon/></button>}
-            {state.update ? 
-                <div>
-                    <input className={s.p_question} onChange={onChangeUpdateMessage} value={state.updateMessage}/>
-                    <button onClick={onUpdate}><SendIcon/></button>
-                </div>:
-                <p className={s.p_question}>{state.updateMessage}</p>
+            <p className={s.p_user_name}>{comment.user.name}</p>
+            <div className={s.container_edit_p_question}>
+                {canDelete && <button className={s.button_delete} onClick={onDelete}><DeleteIcon fontSize="small"/></button>}
+                {canUpdate && <button className={s.button_edit_arrow} onClick={toggleUpdate}>{state.update ? <ArrowBackIcon fontSize="large"/> : <EditIcon fontSize="small"/>}</button>}
+                {state.update ? 
+                    <div className={s.container_input_button_form}>
+                        <textarea className={s.p_question} onChange={onChangeUpdateMessage} value={state.updateMessage} autoFocus="true"/>
+                        <button onClick={onUpdate}><SendIcon fontSize="small"/></button>
+                    </div>:
+                    <p className={s.p_question_text}>{state.updateMessage}</p>
+                }
+                
+            </div>
+            {
+                user.name &&
+                <button className={s.button_respond} onClick={toggleNew}>Respond</button>
             }
-            <button onClick={toggleNew}>RESPONDER</button>
             {comment.responds.map(respond => <Respond key={respond.id}  respond={respond} user={user} api={api} toggleNew={toggleNew}/>)}
             {state.new && 
-                <div>
-                    <input className={s.p_question} onChange={onChangenewMessage} value={state.newMessage}/>
-                    <button onClick={onNewRespond}><SendIcon/></button>
+                <div className={s.container_input_button_form}>
+                    <textarea className={s.p_question} onChange={onChangenewMessage} value={state.newMessage} autoFocus="true"/>
+                    <button onClick={onNewRespond}><SendIcon fontSize="small"/></button>
                 </div>
             }
         </div>
