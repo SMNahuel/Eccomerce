@@ -87,11 +87,11 @@ function Cart() {
     return (
         <>
             {redirect && <Redirect to="/login" />}
-            
+
             <div className={s.container_button_toggle}>
                 <button onClick={onToggleActive}><ShoppingCartIcon fontSize="small" /></button>
             </div>
-            
+
             {active && cart.products ?
                 <div className={s.container_absolute_main} ref={ref}>
                     <div className={s.container_main_table_button}>
@@ -104,7 +104,40 @@ function Cart() {
                                 <div>SUBTOTAL</div>
                             </div>
                             <div className={s.lineStyle}>
-                                <hr/>                            
+                                <hr />
+                            </div>
+                            <div >
+                                {cart.products && cart.products.map(product =>
+                                    (quantities[product.id] !== 0) &&
+                                    <div>
+                                    <div className={s.containerProduct} key={product.id}>
+                                        <div className={s.containerProductRight}>
+                                            <div className={s.productName}>
+                                                {product.name}
+                                            </div>
+                                            <select
+                                                onChange={e => chengeQuantity(product.id, e.target.value)}
+                                                value={quantities[product.id] || product.order.quantity}>
+                                                {
+                                                    selectorValue && selectorValue.map(value =>
+                                                        <option key={value}>{value}</option>
+                                                    )
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className={s.containerProductLeft} >
+                                            <div className={s.subtotalVisibility}>
+                                                ${`${product.order.price * quantities[product.id] || product.order.price}`}
+                                            </div>
+                                        
+                                            <DeleteForeverIcon className={s.DeleteForeverIcon} onClick={() => onDelete(product.id)} />
+                                        </div>
+                                    </div>
+                                    <div className={s.hrDivProduct}>
+                                            <hr/>
+                                    </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
