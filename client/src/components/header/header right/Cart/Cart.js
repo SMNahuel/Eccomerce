@@ -113,9 +113,15 @@ function Cart() {
                                     <div className={s.containerProduct} key={product.id}>
                                         <div className={s.containerProductRight}>
                                             <div className={s.productName}>
-                                                {product.name}
+                                                <div>
+                                                    {product.name}
+                                                </div>
+                                                <div className={s.priceOrder}>
+                                                    ${product.order.price}
+                                                </div>
                                             </div>
                                             <select
+                                                className={s.selector}
                                                 onChange={e => chengeQuantity(product.id, e.target.value)}
                                                 value={quantities[product.id] || product.order.quantity}>
                                                 {
