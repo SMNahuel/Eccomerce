@@ -19,16 +19,16 @@ passport.deserializeUser(function(id, done) {
 const login = passport.authenticate('local')
 
 const loginGoogle = passport.authenticate('google', {scope: ['profile', 'email'], display: 'popup'}) 
-const loginGoogleSucces = passport.authenticate('google', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
+const loginGoogleSuccess = passport.authenticate('google', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
 const loginFacebook = passport.authenticate('facebook', {scope: ['email'], display: 'popup'})
 const loginFacebookSuccess = passport.authenticate('facebook', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
 const loginGithub = passport.authenticate('github', {scope: ['user:email'], display: 'popup'})
-const loginGithubSuccess = passport.authenticate('github', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
+const loginGithubSuccess = passport.authenticate('github', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`, failureRedirect: '/login'})
 
 module.exports = {
     login,
     loginGoogle, 
-    loginGoogleSucces,
+    loginGoogleSuccess,
     loginFacebook,
     loginFacebookSuccess,
     loginGithub,
