@@ -90,7 +90,7 @@ export default function Home({history}) {
                     <Product product={state.detailedProduct} onBack={handleBack} />
                 </div>
             }
-            <div className={s.container_home} style={state.detailedProduct || formRespond ? {height: "100.1vh"} : null}>
+            <div className={s.container_home} style={state.detailedProduct ? {height: "100.1vh"} : null}>
                 <div className={s.container_header}>
                     <Header history={history} handleSearch={handleSearch}/>
                 </div>
