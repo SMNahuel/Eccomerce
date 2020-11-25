@@ -2,24 +2,23 @@ import React, { useState } from 'react'
 import ProductCart from './ProductCart/productCart'
 import s from './formCheckout.module.css'
 import { paises, provincias } from '../../../../../utils/selectForm'
-import { textAlign } from '@material-ui/system'
 
 export default function FormCheckout({items, price, user, onBack}){
-    
+    console.log(user)
     const [input, setInput] = useState({
-        pais: "Argentina",
-        otroPais: "",
-        provincia: "",
-        otraProvincia: "",
-        localidad: "",
-        codigoPostal: "",
-        calle: "",
-        num: "",
-        departamento: "",
-        telefono: "",
+        pais: user.pais === null ? "Argentina" : 
+            paises.includes(user.pais) ? user.pais : "otro",
+        otroPais: user.pais === null ? "" :
+            paises.includes(user.pais) ? "" : user.pais,
+        provincia: user.provincia || "",
+        localidad: userr.localidad || "",
+        codigoPostal: user.codigoPostal || "",
+        calle: user.calle || "",
+        num: user.num || "",
+        departamento: user.departamento || "",
+        telefono: user.telefono || "",
         email: user.email
     })
-    console.log(input)
     const [error, setError] = useState({})
     
     //valido los campos
@@ -27,7 +26,6 @@ export default function FormCheckout({items, price, user, onBack}){
         error.localidad = ""
         error.calle = ""
         error.num = ""
-        error.telefono = ""
         error.email = ""
 
         if(!input.localidad) error.localidad = "Es necesaria una localidad"
@@ -38,8 +36,6 @@ export default function FormCheckout({items, price, user, onBack}){
 
         if(!input.num) error.num = "Es necesario un número"
         else if(input.num !== Number(input.num))error.num = "Solo se permiten números"
-
-        if(input.telefono !== Number(input.telefono)) error.telefono = "El telefono es invalido"
 
         if(!input.email) error.email = "Es necesario un email"
         else if(!/\S+@\S+\.\S+/.test(input.email)) error.email = "El email es invalido"
@@ -77,7 +73,7 @@ export default function FormCheckout({items, price, user, onBack}){
                             <label className={s.label_pais}>País<em style={{color: "red"}}>* </em></label>
                             <select name="pais" value={input.pais} onChange={onChange}>
                                 {paises && paises.map(pais => (
-                                    <option value={pais}>{pais}</option>
+                                    <option key={pais} value={pais}>{pais}</option>
                                 ))}
                                 <option value="otro">Otro</option>
                             </select>
@@ -92,13 +88,13 @@ export default function FormCheckout({items, price, user, onBack}){
                                 <select name="provincia" value={input.provincia} onChange={onChange}>
                                     {
                                         provincias[input.pais].map(prov => (
-                                            <option value={prov}>{prov}</option>
+                                            <option key={prov} value={prov}>{prov}</option>
                                         ))
                                     }
                                 </select>
                             }
                             {input.pais === "otro" &&
-                                    <input type="text" name="otraProvincia" value={input.otraProvincia} onChange={onChange} placeholder="p.ej.:Madrid"/>
+                                    <input type="text" name="provincia" value={input.provincia} onChange={onChange} placeholder="p.ej.:Madrid"/>
                             }
                         </div>
                         <br/>

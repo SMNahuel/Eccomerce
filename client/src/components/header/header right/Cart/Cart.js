@@ -18,6 +18,20 @@ function Cart() {
     const [active, setActive] = useState(false)
     const onToggleActive = e => {
         if(!!Object.keys(user).length) dispatch(api.getCart())
+        /* if (active && Object.keys(quantities).length) {
+            for(let key in quantities) {
+                let id = Number(key)
+                cart.products.find(p => p.id === id)
+                .order.quantity = quantities[id]
+            }
+            dispatch(api.updateCart(cart))
+            setQuantities({})
+        } */
+        newQuantities()
+        setActive(!active)
+    }
+
+    const newQuantities = () =>{
         if (active && Object.keys(quantities).length) {
             for(let key in quantities) {
                 let id = Number(key)
@@ -27,7 +41,6 @@ function Cart() {
             dispatch(api.updateCart(cart))
             setQuantities({})
         }
-        setActive(!active)
     }
 
     const [form, setForm] = useState(false)
@@ -39,7 +52,12 @@ function Cart() {
         } else {
             setRedirect(true)
         } */
-        setForm(active)
+        if(user.name){
+            newQuantities()
+            setForm(active)
+        }else{
+            setRedirect(true)
+        }
     }
 
     const onBack = () => {
