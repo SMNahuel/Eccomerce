@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
+// router.use('/mercadopago', require('./mercadopago.js'));
 router.use('/category', require('./category.js'));
 router.use('/question', require('./question.js'));
 router.use('/products', require('./product.js'));
