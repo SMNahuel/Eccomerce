@@ -23,6 +23,7 @@
     align-items: center;
 }
 .container_label_count label{
+    color: #282C34;
 }
 .container_button_toggle button{
     background-color: transparent;

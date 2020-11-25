@@ -9,7 +9,7 @@ export default ({product, onDetail}) => {
     `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
     imgNotFound
     const dispatch = useDispatch()
-    const [quantity, setQuantity] = useState(1)
+    const [quantity] = useState(1)
     const onAddToCart = e => {
         dispatch(api.addProduct(product.id, quantity))
       }

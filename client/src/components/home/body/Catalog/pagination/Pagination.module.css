@@ -4,6 +4,8 @@
     width: 100%;
     padding: 10px;
     background-color: #43435c;
+    display: flex;
+    position: relative;
 }
 .container_main button{
     cursor: pointer;
@@ -17,5 +19,18 @@
 }
 .container_main button:hover{
     font-size: 14px;
+}
+.button_up{
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #ab47bc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DFE6E9;
+    border-radius: 50%;
 }
 

@@ -19,7 +19,7 @@ export default function MercadoPago(){
     };
 
     function setPaymentMethod(status, response) {
-        if (status == 200) {
+        if (status === 200) {
             let paymentMethod = response[0];
             document.getElementById('paymentMethodId').value = paymentMethod.id;
 
@@ -36,7 +36,7 @@ export default function MercadoPago(){
      }
      
      function setIssuers(status, response) {
-        if (status == 200) {
+        if (status === 200) {
             let issuerSelect = document.getElementById('issuer');
             response.forEach( issuer => {
                 let opt = document.createElement('option');
@@ -63,7 +63,7 @@ export default function MercadoPago(){
      }
      
      function setInstallments(status, response){
-        if (status == 200) {
+        if (status === 200) {
             document.getElementById('installments').options.length = 0;
             response[0].payer_costs.forEach( payerCost => {
                 let opt = document.createElement('option');
@@ -90,7 +90,7 @@ export default function MercadoPago(){
     };
 
     function setCardTokenAndPay(status, response) {
-        if (status == 200 || status == 201) {
+        if (status === 200 || status === 201) {
             let form = document.getElementById('paymentForm');
             let card = document.createElement('input');
             card.setAttribute('name', 'token');
