@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import ReviewsBox from './ReviewsBox/ReviewsBox';
 import toStars from '../../../../../utils/toStars';
-import QuestionsAndAnswers from './questionAndAnswer/QuestionsAndAnswers';
-import Question from './questionAndAnswer/question/Question';
+import CommentsBox from './CommentsBox/CommentsBox';
 
 export default ({product, onBack}) => {
   const reviews = useSelector(state => state.reviews)
@@ -117,12 +116,7 @@ export default ({product, onBack}) => {
               <ReviewsBox productId={product.id}/>
             </div>
           </div>
-          <div className={s.container_question_answers}>
-              <QuestionsAndAnswers/>
-          </div>
-          <div className={s.container_question_answers}>
-              <Question/>
-          </div>
+          <CommentsBox productId={product.id}/>
         </div>
       </div>
     </div>

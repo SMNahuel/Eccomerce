@@ -162,15 +162,6 @@
 .container_description_review {
     padding: 10px;
 }
-.container_question_answers{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 90%;
-    padding: 10px;
-    margin: 0 auto;
-}
-
 @media (max-width: 768px){
     .container_img_title_flex{
         flex-direction: column;
@@ -192,8 +183,7 @@
 }
 @media (max-width: 521px){
     .container_description_product,
-    .container_description_review,
-    .container_question_answers {
+    .container_description_review{
     padding: 0px;
     }
 }

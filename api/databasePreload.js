@@ -1,5 +1,5 @@
 const cart = require('./src/controllers/cart.js');
-const { Product, Category, Image, User, Rol, Review } = require('./src/db.js');
+const { Product, Category, Image, User, Rol, Review, Comment, Respond } = require('./src/db.js');
 
 const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
 const roles = ['banned','anonymous','guest','admin','owner']
@@ -95,7 +95,9 @@ const createCarts = () => {
             productsIds.push(j)
         }
         productsIds.forEach(productId => {
-            p = p.then(()=>cart.addToCart(userId, {productId: productId, quantity: 1}))
+            p = p.then(() => (
+                cart.addToCart(userId, {productId: productId, quantity: 1})
+            ))
         })
         p = p.then(c => cart.process({id: c.id}))
         productsIds.forEach(productId => {
@@ -105,6 +107,33 @@ const createCarts = () => {
                 userId: userId,
                 productId: productId
             }))
+        })
+    })
+}
+
+const createComments = () => {
+    users.forEach((user, i) => {
+        let userId = i+1
+        let productsIds = []
+        for (let j = randomNumber(1, 3); j < categories.length * 5; j += randomNumber(1, 3)) {
+            productsIds.push(j)
+        }
+        productsIds.forEach(productId => {
+            p = p.then(()=>Comment.create({
+                userId, 
+                productId,
+                message: randomMessage(255)
+            }))
+            .then(comment => {
+                let numberTimes = randomNumber(0, 4)
+                for(let j = 0; j < numberTimes; j++) {
+                    Respond.create({
+                        commentId: comment.id,
+                        userId: randomNumber(1, 6),
+                        message: randomMessage(255)
+                    })
+                }
+            })
         })
     })
 }
@@ -124,6 +153,9 @@ module.exports = ()=> {
     log('products pre-charged')
     createCarts()
     log('carts and reviews pre-charged')
+    createComments()
+    log('comments pre-charged')
+    log('all preload completed')
 }
 
 

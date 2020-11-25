@@ -3,7 +3,6 @@ import s from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
 import axios from 'axios';
-import FormRespond from './body/Catalog/Product/questionAndAnswer/question/formRespond/FormRespond';
 import Header from '../header/Header';
 import Footer from './footer/Footer';
 import Body from './body/Body';
@@ -23,7 +22,6 @@ export default function Home({history}) {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
-    const formRespond = useSelector(state => state.formRespond)
     
     useEffect(() => {
         if (!categories.length){
@@ -102,11 +100,7 @@ export default function Home({history}) {
                     paginate={paginate}/>
                     <Footer/>
                 </div>
-            </div>  
-            {
-                formRespond &&
-                <FormRespond/>
-            }
+            </div>
         </>
     )
 
