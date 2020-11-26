@@ -27,4 +27,8 @@ server.put('/process', forAdmin, (req, res, next) => {
     .catch(next)
 })
 
+server.get('/process', forAdmin, (req, res, next) => {
+    
+})
+
 module.exports = server;
