@@ -26,6 +26,30 @@ module.exports = (sequelize) => {
         },
         providerId:{
             type: DataTypes.STRING
+        },
+        pais: {
+            type: DataTypes.STRING
+        },
+        provincia: {
+            type: DataTypes.STRING
+        },
+        localidad: {
+            type: DataTypes.STRING
+        },
+        codigoPostal: {
+            type: DataTypes.STRING
+        },
+        calle: {
+            type: DataTypes.STRING
+        },
+        num: {
+            type: DataTypes.STRING
+        },
+        departamento: {
+            type: DataTypes.STRING
+        },
+        telefono: {
+            type: DataTypes.STRING
         }
     })
 }

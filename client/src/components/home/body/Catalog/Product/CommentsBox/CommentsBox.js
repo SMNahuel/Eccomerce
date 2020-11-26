@@ -35,13 +35,13 @@ export default function CommentsBox({productId}){
         <>
             <div className={s.container_question_answers}>
                 <div className={s.container_question}>
-                    <h3>Comentarios</h3>
+                    <h3>Questions and answers</h3>
                     <form onSubmit={onSendComment} className={s.container_form}>
                         <div className={s.container_ask}>
-                            <p>Pregunta sobre el producto!</p>
+                            <p>Ask the seller</p>
                         </div>
                         <div className={s.container_textarea_button}>
-                            <input onChange={onChange} value={inputMessage} placeholder="Pregunta sobre el producto!" required maxLength="250" minLength="1" />
+                            <input onChange={onChange} value={inputMessage} placeholder="I wrote your question ..." required maxLength="250" minLength="1" />
                             <button type="submit"><SendIcon/></button>
                         </div>
                     </form>

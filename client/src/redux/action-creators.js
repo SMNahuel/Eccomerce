@@ -144,6 +144,15 @@ const actionCreators = {
             this._dispatchPromise(promise, this.USER, dispatch)
         }
     },
+    updateChanges: function(changes){
+        return dispatch => {
+            const promise = axios.put(`${process.env.REACT_APP_API_URL}/auth/update`,
+            changes,
+            {withCredentials: true}
+            )
+            this._dispatchPromise(promise, this.USER, dispatch)
+        }
+    },
 
     USERS: "USERS",
     getUsers: function(){

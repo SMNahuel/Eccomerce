@@ -48,11 +48,12 @@ server.put('/', forAnonym, (req, res, next) => {
 
 // ruta que crea(confirma para procesado) el carrito de un usuario
 server.put('/create', forGuest, (req, res, next) => {
-    const { id, products } = req.body
+    const { id, products } = req.body.items
+    const { email } = req.body
     if (!id || !products) {
         return res.status(400).send('A cart content is required to create a cart');
     }
-    cart.create(req.user.id, req.body)
+    cart.create(req.user.id, req.body.items, email)
     .then(r => res.send(r))
     .catch(next)
 })

@@ -7,6 +7,7 @@ import Header from '../header/Header';
 import Footer from './footer/Footer';
 import Body from './body/Body';
 import Product from './body/Catalog/Product/Product'
+import MercadoPago from './body/mercadoPagoForm/MercadoPago';
 
 export default function Home({history}) {
 
@@ -88,7 +89,7 @@ export default function Home({history}) {
                     <Product product={state.detailedProduct} onBack={handleBack} />
                 </div>
             }
-            <div className={s.container_home}>
+            <div className={s.container_home} style={state.detailedProduct ? {height: "100.1vh"} : null}>
                 <div className={s.container_header}>
                     <Header history={history} handleSearch={handleSearch}/>
                 </div>
@@ -96,7 +97,8 @@ export default function Home({history}) {
                     <Body 
                     categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory}
                     products={state.products || currentProduct || products} handleDetail={handleDetail}
-                    paginate={paginate}/>
+                    paginate={paginate} postsPerPage={postsPerPage}/>
+                    {/* <MercadoPago/> */}
                     <Footer/>
                 </div>
             </div>

@@ -24,8 +24,7 @@
     font-weight: 500;
     color: #DFE6E9;
 }
-.container_arrow,
-.container_cart{
+.container_arrow {
     display: flex;
     justify-content: center;
     align-items: center;
