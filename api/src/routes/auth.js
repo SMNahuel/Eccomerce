@@ -1,6 +1,7 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
 const { ProfileImageUploader } = require('../middlewares/uploadImg');
+const sendEmail = require('../utils/sendEmail')
 const { forGuest } = require('../middlewares/authenticate')
 const {
     login,
@@ -72,6 +73,17 @@ server.put('/password', forGuest, (req, res, next) => {
     }
     user.changePassword(req.user.id, oldPassword, newPassword)
     .then(r => res.send(r))
+    .catch(next)
+})
+
+// Ruta para cambiar de password como usuario
+server.put('/forgottenPassword', forGuest, (req, res, next) => {
+    const { email }= req.body;
+    if(!email){
+        return res.status(400).send('A email is needed to reset the password by email')
+    }
+    sendEmail.changePassword(email)
+    .then(r => res.send('Email sended'))
     .catch(next)
 })
 
