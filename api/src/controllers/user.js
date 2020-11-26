@@ -19,11 +19,11 @@ module.exports = {
     },
 
     logingProvider: function (provider, providerId, name, email) {
-        return User.findOrCreate({
-            where: {provider, providerId},
-            defaults: {name, email, rolId: 3}
+        return User.findOne({where:{email}})
+        .then(user => {
+            if (!user) return User.create({ email, name, rolId: 3, [provider + 'Id']: providerId})
+            return user.update({[provider + 'Id']: providerId})
         })
-        .then(u => u[0])
         .then(this.checkBan)
         .then(this.session)
     },

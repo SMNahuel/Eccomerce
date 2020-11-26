@@ -9,8 +9,7 @@ module.exports = new GoogleStrategy(
         passReqToCallback   : true
     },
     function(request, accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        user.logingProvider(profile.provider, profile.id, profile.displayName, profile.emails[0].value)
+        user.logingProvider('google', profile.id, profile.displayName, profile.emails[0].value)
         .then(user => done(null, user))
         .catch(err => done(err, false));
     }

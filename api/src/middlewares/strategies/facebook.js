@@ -9,8 +9,7 @@ module.exports = new FacebookStrategy(
     profileFields: ['displayName', 'photos', 'emails']
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    user.logingProvider(profile.provider, profile.id, profile.displayName, profile.emails[0].value)
+    user.logingProvider('facebook', profile.id, profile.displayName, profile.emails[0].value)
     .then(user => done(null, user))
     .catch(err => done(err, false));
   } 

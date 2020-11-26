@@ -8,9 +8,12 @@ module.exports = new GitHubStrategy({
     callbackURL: '/auth/github/success'
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    user.logingProvider(profile.provider, profile.id, profile.username, profile.email)
-    .then(user => done(null, user))
-    .catch(err => done(err, false));
+    if (profile.emails && profile.emails[0] && profile.emails[0].value) {
+      user.logingProvider('github', profile.id, profile.username, profile.emails[0].value)
+      .then(user => done(null, user))
+      .catch(err => done(err, false));
+    } else {
+      done('your github account does not have a public email', false)
+    }
   }
 )
