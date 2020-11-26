@@ -7,7 +7,7 @@ import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
-export default function Respond({respond, user, api, toggleNew}){
+export default function Respond({respond, user, HTTP, toggleNew}){
     const canUpdate = user && (respond.user.id === user.id)
     const canDelete = canUpdate || user.rolId > 3
     const [state, setState] = useState({
@@ -18,12 +18,12 @@ export default function Respond({respond, user, api, toggleNew}){
     const onChange = e => setState({...state, message: e.target.value});
     const onUpdate = e => {
         e.preventDefault();
-        api('put', `${process.env.REACT_APP_API_URL}/respond`, {id: respond.id, message: state.message})
+        HTTP('put', `${process.env.REACT_APP_API_URL}/respond`, {id: respond.id, message: state.message})
         setState({...state, update: false});
     }
     const onDelete = e => {
         e.preventDefault();
-        api('delete', `${process.env.REACT_APP_API_URL}/respond/${respond.id}`)
+        HTTP('delete', `${process.env.REACT_APP_API_URL}/respond/${respond.id}`)
         setState({...state, update: false});
     }
     return(
