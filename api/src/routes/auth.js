@@ -135,4 +135,11 @@ server.get('/google/success', loginGoogleSuccess, (req, res, next) => {
     }
 })
 
+server.put('/update', (req, res, next) => {
+    user.updateChanges(req.user.id, req.body)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
+
 module.exports = server;

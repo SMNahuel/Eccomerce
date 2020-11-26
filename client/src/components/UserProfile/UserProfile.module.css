@@ -54,3 +54,9 @@
     bottom: 25px;
     right: 85px;
 }
+
+.boton {
+    margin: 25px;
+    display: flex;
+    justify-content: center;
+}
