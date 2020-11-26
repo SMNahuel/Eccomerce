@@ -22,7 +22,7 @@ const loginGoogle = passport.authenticate('google', {scope: ['profile', 'email']
 const loginGoogleSuccess = passport.authenticate('google', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
 const loginFacebook = passport.authenticate('facebook', {scope: ['email'], display: 'popup'})
 const loginFacebookSuccess = passport.authenticate('facebook', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`})
-const loginGithub = passport.authenticate('github', {scope: ['user:email'], display: 'popup'})
+const loginGithub = passport.authenticate('github', {scope: ['user', 'email'], display: 'popup'})
 const loginGithubSuccess = passport.authenticate('github', {successRedirect: `${process.env.FRONT_URL}/AuthSuccess`, failureRedirect: '/login'})
 
 module.exports = {

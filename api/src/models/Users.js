@@ -7,24 +7,27 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
         email: {
-            type: DataTypes.STRING
-            /* unique: {
+            type: DataTypes.STRING,
+            unique: {
                 args: true,
                 msg: "Email address already in use!"
             },
             validate: {
                 isEmail: true,
                 notEmpty: true
-            } */
+            }
         },
         password: {
             type: DataTypes.STRING(30)
             //is: /^[0-9a-zA-Z]{7,30}$/i
         },
-        provider:{
+        googleId:{
             type: DataTypes.STRING
         },
-        providerId:{
+        facebookId:{
+            type: DataTypes.STRING
+        },
+        githubId:{
             type: DataTypes.STRING
         },
         pais: {
