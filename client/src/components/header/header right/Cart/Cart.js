@@ -64,8 +64,8 @@ function Cart() {
             ...quantities,
             [id]: 0
         })
+        chengeQuantity(id, 0)
         totalQuantity()
-        totalPrice()
     }
 
     const [quantities, setQuantities] = useState({})
@@ -75,12 +75,11 @@ function Cart() {
             [id]: cant
         })
     }
-
     const totalPrice = () => {
         if (!cart.products) return 0
         return cart.products.reduce((acc, product) =>
             acc + Number(product.order.price) * Number(quantities[product.id] || product.order.quantity)
-            , 0)
+            , 0)  
     }
     const totalQuantity = () => {
         if (!cart.products) return 0
@@ -94,15 +93,20 @@ function Cart() {
         ref.current.style.animation = s.containerUnmount + ' 450ms linear'
         setTimeout(onToggleActive, 400);
     };
-
+    
     return (
         <>
             {redirect && <Redirect to="/login" />}
 
-            <div className={s.container_button_toggle}>
-                <button onClick={onToggleActive}><ShoppingCartIcon fontSize="small" /></button>
+            <div className={s.container_button_toggle} onClick={onToggleActive}>
+                <button><ShoppingCartIcon fontSize="small" /></button>
+                {cart.products && cart.products.length >= 1 &&
+                    <div className={s.container_label_count}>
+                        <label>{cart.products.length}</label>
+                    </div>
+                }
             </div>
-            {active && cart.products ?
+            {active && cart.products && 
                 <div className={s.container_absolute_main} ref={ref}>
                     <div className={s.container_main_table_button}>
                         
@@ -111,8 +115,8 @@ function Cart() {
                         </div>                        
                         <div className={s.container_table}>
                             <div className={s.containerThead}>
-                                <div>PRODUCTO</div>
-                                <div>SUBTOTAL</div>
+                                <div>Product</div>
+                                <div>Total Value</div>
                             </div>                            
                             <div className={s.lineStyle}>
                                 <hr />
@@ -124,11 +128,11 @@ function Cart() {
                                     <div className={s.containerProduct} key={product.id}>
                                         <div className={s.containerProductRight}>
                                             <div className={s.productName}>
-                                                <div>
-                                                    {product.name}
+                                                <div className={s.container_product_name}>
+                                                    <p>{product.name}</p>
                                                 </div>
                                                 <div className={s.priceOrder}>
-                                                    ${product.order.price}
+                                                    <p>Unit Value: ${product.order.price}</p>
                                                 </div>
                                             </div>
                                             <select
@@ -158,29 +162,19 @@ function Cart() {
                             </div>
                         </div>
                         <div className={s.totalPrice}>
-                            Subtotal : ${totalPrice()} 
+                            Subtotal: ${totalPrice()} 
                         </div>
                         <div className={s.lineStyle}>
                             <hr />
                         </div>
                         <div className={s.container_input_button}>
-                            <input type="button" onClick={onForm} value="COMPRAR" />
-                            <input type="button" onClick={onCancel} value="Cancelar Carrito" />
-                        </div>
-                    </div>
-                </div>
-                :null
-            }
-            {form &&
-                <div className={s.container_absolute_main} ref={ref}>
-                    <div className={s.container_main_table_button}>
-                        <div className={s.container_table}>
-                            <FormCheckout items={cart} price={totalPrice()} user={user} onBack={onBack}/>
+                            <input type="button" onClick={onForm} value="Checkout" />
+                            <input type="button" onClick={onCancel} value="Remove All" />
                         </div>
                     </div>
                 </div>
             }
-            {active && !cart.products ?
+            {active && !cart.products &&
                 <div className={s.container_absolute_main} ref={ref}>
                     <div className={s.container_main_table_button}>
                         <div className={s.container_button_onUnMount_table}>
@@ -191,8 +185,17 @@ function Cart() {
                         </div>
                     </div>
                 </div>
-                : null
             }
+            {form &&
+                <div className={s.container_absolute_main} ref={ref}>
+                    <div className={s.container_main_table_button}>
+                        <div className={s.container_table}>
+                            <FormCheckout items={cart} price={totalPrice()} user={user} onBack={onBack} />
+                        </div>
+                    </div>
+                </div>
+            }
+           
         </>
     );
 }
