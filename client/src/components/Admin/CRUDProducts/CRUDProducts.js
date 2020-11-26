@@ -8,7 +8,7 @@ import DeleteProduct from './DeleteProduct/DeleteProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
 import dataURLtoFile from '../../../utils/dataURLtoFile';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 
 export default function CRUDProducts({history}){
     const [state, setState] = useState({
@@ -53,8 +53,7 @@ export default function CRUDProducts({history}){
         axios.post(
             `${process.env.REACT_APP_API_URL}/products/images/${id}`,
             formData,
-            {headers: {'Content-Type': 'multipart/form-data'},
-            withCredentials: true}
+            {headers: {'Content-Type': 'multipart/form-data'}}
         )
         setState({...state, action: null})
     }

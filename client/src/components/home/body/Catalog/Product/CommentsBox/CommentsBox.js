@@ -1,7 +1,7 @@
 import React, { useState ,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import s from './CommentsBox.module.css';
-import axios from 'axios';
+import axios from '../../../../../../utils/axios';
 import SendIcon from '@material-ui/icons/Send';
 import Comment from './Comment/Comment';
 
@@ -9,13 +9,8 @@ export default function CommentsBox({productId}){
     const user = useSelector(state => state.user)
     const [comments, setComments] = useState([])
     const api = (method, url, body) => {
-        let p
-        if (method === 'get' || method === 'delete') {
-            p = axios[method](url, {withCredentials: true})
-        } else {
-            p = axios[method](url, body, {withCredentials: true})
-        }
-        p.then(({data}) => setComments(data))
+        axios[method](url, body)
+        .then(({data}) => setComments(data))
         .catch(err => {
             if (err.response) {
                 alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
