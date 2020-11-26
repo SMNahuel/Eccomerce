@@ -12,21 +12,20 @@ import CommentsBox from './CommentsBox/CommentsBox';
 export default ({product, onBack}) => {
   const reviews = useSelector(state => state.reviews)
   const image = product.images[0] ?
-  `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
-  imgNotFound
+    `${process.env.REACT_APP_API_URL}${product.images[0].url}` :
+    imgNotFound
 
   const dispatch = useDispatch()
   const [state, setState] = useState({
     average: 0,
-    averageStars:"",
-    stars: [0,0,0,0,0],
+    averageStars: "",
+    stars: [0, 0, 0, 0, 0],
     reviews: reviews,
-})
+  })
 
-  
   const availableQuantities = (function () {
     let ret = [];
-    for (let i = 1; i <= product.stock; i++){
+    for (let i = 1; i <= product.stock; i++) {
       ret.push(i);
     };
     return ret;
@@ -43,25 +42,24 @@ export default ({product, onBack}) => {
     ref.current.style.animation = s.containerUnmount + ' 450ms linear'
     setTimeout(onBack, 400);
   };
-  useEffect(()=>{
+  useEffect(() => {
     if (reviews.length) {
-        let average = 0
-        let stars = [0,0,0,0,0]
-        reviews.forEach(review => {
-            average += review.qualification
-            stars[review.qualification - 1]++
-        })
-        average = (average / reviews.length).toFixed(1)
-        let averageStars = toStars(average)
-        setState(state => ({ ...state, average, averageStars, stars, reviews }))
+      let average = 0
+      let stars = [0, 0, 0, 0, 0]
+      reviews.forEach(review => {
+        average += review.qualification
+        stars[review.qualification - 1]++
+      })
+      average = (average / reviews.length).toFixed(1)
+      let averageStars = toStars(average)
+      setState(state => ({ ...state, average, averageStars, stars, reviews }))
     }
-}, [reviews])
-  
+  }, [reviews])
   return (
     <div className={s.container} ref={ref}>
       <div className={s.container_main}>
         <div className={s.container_button_close} onClick={onUnmount}>
-          <CloseIcon className={s.back} fontSize="default"/>
+          <CloseIcon className={s.back} fontSize="default" />
         </div>
         <div className={s.container_flex}>
           <div className={s.container_img_title_flex}>
@@ -113,10 +111,10 @@ export default ({product, onBack}) => {
           <div className={s.container_review}>
             <h3>Product reviews</h3>
             <div className={s.container_description_review}>
-              <ReviewsBox productId={product.id}/>
+              <ReviewsBox productId={product.id} />
             </div>
           </div>
-          <CommentsBox productId={product.id}/>
+          <CommentsBox productId={product.id} />
         </div>
       </div>
     </div>

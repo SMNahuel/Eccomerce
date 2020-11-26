@@ -14,10 +14,11 @@
     position: absolute;
     top: -7px;
     right: -5px;
+    z-index: 1;
     background-color: #e7231f;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,10 +103,13 @@
     box-shadow: 0 1px 5px 1px purple;
     margin: 20px;
 }
+.container_product_name p{
+    font-size: xx-large;
+}
 
 .productName{
     margin-top: -10px;
-    color: black;
+    color: #282C34;
 }
 
 .containerProduct{
@@ -123,9 +127,10 @@
 
 }
 
-.priceOrder{
-    font-family: fantasy;
-    font-size: small
+.priceOrder p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
 }
 
 .selector{
@@ -204,7 +209,22 @@
 }
 @media(max-width: 540px){
     .container_input_button input{
-        width: 40%;
+        width: 35%;
+        font-size: large;
+    }
+    .container_product_name p{
+        font-size: x-large;
+    }
+    .containerThead{
+        font-size: x-large;
+    }
+    .totalPrice{
+        font-size: 35px;
+    }
+    .priceOrder p {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
     }
 }
 @keyframes containerMount{
