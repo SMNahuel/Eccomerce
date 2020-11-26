@@ -1,21 +1,16 @@
 import React, { useState ,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import s from './CommentsBox.module.css';
-import axios from 'axios';
+import axios from '../../../../../../utils/axios';
 import SendIcon from '@material-ui/icons/Send';
 import Comment from './Comment/Comment';
 
 export default function CommentsBox({productId}){
     const user = useSelector(state => state.user)
     const [comments, setComments] = useState([])
-    const api = (method, url, body) => {
-        let p
-        if (method === 'get' || method === 'delete') {
-            p = axios[method](url, {withCredentials: true})
-        } else {
-            p = axios[method](url, body, {withCredentials: true})
-        }
-        p.then(({data}) => setComments(data))
+    const HTTP = (method, url, body) => {
+        axios[method](url, body)
+        .then(({data}) => setComments(data))
         .catch(err => {
             if (err.response) {
                 alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
@@ -25,14 +20,14 @@ export default function CommentsBox({productId}){
         })
     }
     useEffect(() => {
-        api('get', `${process.env.REACT_APP_API_URL}/comment/${productId}`)
+        HTTP('get', `${process.env.REACT_APP_API_URL}/comment/${productId}`)
     }, [productId])
 
     const [inputMessage, setInputMessage] = useState('');
     const onChange = e => setInputMessage(e.target.value);
     const onSendComment = e => {
         e.preventDefault()
-        api('post', `${process.env.REACT_APP_API_URL}/comment/${productId}`, {message: inputMessage})
+        HTTP('post', `${process.env.REACT_APP_API_URL}/comment/${productId}`, {message: inputMessage})
         setInputMessage('')
     }
 
@@ -53,7 +48,7 @@ export default function CommentsBox({productId}){
                 </div>
             </div>
             <div className={s.container_question_answers}>
-                {comments.map(comment => <Comment key={comment.id} comment={comment} user={user} api={api}/>)}
+                {comments.map(comment => <Comment key={comment.id} comment={comment} user={user} HTTP={HTTP}/>)}
             </div>
         </>
     );

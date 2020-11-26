@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect} from 'react'
@@ -11,8 +11,7 @@ function TableOrders() {
     const user = useSelector(state => state.user)
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`,
-        {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`)
         .then(({data})=>setOrders(data))
     }, []);
 
@@ -24,9 +23,7 @@ function TableOrders() {
     }
 
     const onProcess = order => {
-        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`,
-        order,
-        {withCredentials: true})
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
         .then(({data})=>setOrders(data))
     }
 

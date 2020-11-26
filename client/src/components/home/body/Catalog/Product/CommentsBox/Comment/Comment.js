@@ -6,7 +6,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export default function Comment({comment, user, api}){
+export default function Comment({comment, user, HTTP}){
     const canUpdate = user && (comment.user.id === user.id)
     const canDelete = canUpdate || user.rolId > 3
     const [state, setState] = useState({
@@ -21,17 +21,17 @@ export default function Comment({comment, user, api}){
     const onChangenewMessage = e => setState({...state, newMessage: e.target.value});
     const onUpdate = e => {
         e.preventDefault();
-        api('put', `${process.env.REACT_APP_API_URL}/comment`, {message: state.updateMessage, id: comment.id})
+        HTTP('put', `${process.env.REACT_APP_API_URL}/comment`, {message: state.updateMessage, id: comment.id})
         setState({...state, update: false});
     }
     const onDelete = e => {
         e.preventDefault();
-        api('delete', `${process.env.REACT_APP_API_URL}/comment/${comment.id}`)
+        HTTP('delete', `${process.env.REACT_APP_API_URL}/comment/${comment.id}`)
         setState({...state, update: false});
     }
     const onNewRespond = e => {
         e.preventDefault();
-        api('post', `${process.env.REACT_APP_API_URL}/respond/${comment.id}`, {message: state.newMessage})
+        HTTP('post', `${process.env.REACT_APP_API_URL}/respond/${comment.id}`, {message: state.newMessage})
         setState({...state, new: false, newMessage: ''});
     }
     return (
@@ -53,7 +53,9 @@ export default function Comment({comment, user, api}){
                 user.name &&
                 <button className={s.button_respond} onClick={toggleNew}>Respond</button>
             }
-            {comment.responds.map(respond => <Respond key={respond.id}  respond={respond} user={user} api={api} toggleNew={toggleNew}/>)}
+            <button onClick={toggleNew}>RESPONDER</button>
+            {comment.responds.map(respond => <Respond key={respond.id}  respond={respond} user={user} HTTP={HTTP} toggleNew={toggleNew}/>)}
+
             {state.new && 
                 <div className={s.container_input_button_form}>
                     <textarea className={s.p_question} onChange={onChangenewMessage} value={state.newMessage} autoFocus="true"/>

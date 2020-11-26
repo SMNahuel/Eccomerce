@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import s from './Home.module.css'; 
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import Header from '../header/Header';
 import Footer from './footer/Footer';
 import Body from './body/Body';
@@ -59,8 +59,7 @@ export default function Home({history}) {
     }
 
     const handleSearch = (key) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/products/search?key=${key}`,
-        {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_URL}/products/search?key=${key}`)
         .then(({data}) =>  setState({
             ...state, 
             products: data
