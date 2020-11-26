@@ -92,7 +92,7 @@ export default function FormCheckout({items, price, user, onBack}){
                                 <option value="otro">Otro</option>
                             </select>
                             {input.pais === "otro" &&
-                                <input type="text" name="otroPais" value={input.otroPais} onChange={onChange} placeholder="p.ej.:España"/>
+                                <input type="text" name="otroPais" value={input.otroPais} onChange={onChange} placeholder="p.ej.:Estados Unidos"/>
                             }
                         </div>
                         <br/>
@@ -108,7 +108,7 @@ export default function FormCheckout({items, price, user, onBack}){
                                 </select>
                             }
                             {input.pais === "otro" &&
-                                    <input type="text" name="otraProvincia" value={input.otraProvincia} onChange={onChange} placeholder="p.ej.:Madrid"/>
+                                    <input type="text" name="otraProvincia" value={input.otraProvincia} onChange={onChange} placeholder="p.ej.:Springfield"/>
                             }
                         </div>
                         <br/>

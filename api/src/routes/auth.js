@@ -108,7 +108,6 @@ server.get('/facebook/success', loginFacebookSuccess, (req, res, next) => {
         .catch(next);
     }
 })
-
 //Rutas que permiten logearse con Github
 server.get('/github', loginGithub);
 server.get('/github/success', loginGithubSuccess, (req, res, next) => {
@@ -121,7 +120,6 @@ server.get('/github/success', loginGithubSuccess, (req, res, next) => {
         .catch(next);
     }
 })
-
 //Rutas que permiten logearse con Google
 server.get('/google', loginGoogle);
 server.get('/google/success', loginGoogleSuccess, (req, res, next) => {
