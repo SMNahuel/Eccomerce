@@ -8,6 +8,7 @@ import { selectorValue } from '../../../../utils/selector'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import cartEmpty from '../../../../img/empty-cart.png'
 import { Redirect } from 'react-router-dom';
+import FormCheckout from './formCheckout/formCheckout'
 
 function Cart() {
     const cart = useSelector(state => state.cart)
@@ -17,6 +18,11 @@ function Cart() {
     const [active, setActive] = useState(false)
     const onToggleActive = e => {
         if (!!Object.keys(user).length) dispatch(api.getCart())
+        newQuantities()
+        setActive(!active)
+    }
+
+    const newQuantities= () => {
         if (active && Object.keys(quantities).length) {
             for (let key in quantities) {
                 let id = Number(key)
@@ -26,17 +32,22 @@ function Cart() {
             dispatch(api.updateCart(cart))
             setQuantities({})
         }
-        setActive(!active)
     }
 
+    const [form, setForm] = useState(false)
     const [redirect, setRedirect] = useState(false)
-    const onBuy = e => {
+    const onForm = e => {
         if (user.name) {
-            dispatch(api.confirmCart(cart))
-            setActive(!active)
+            newQuantities()
+            setForm(true)
         } else {
             setRedirect(true)
         }
+    }
+
+    const onBack = () => {
+        setForm(false)
+        setActive(!active)
     }
 
     const onCancel = e => {
@@ -153,12 +164,21 @@ function Cart() {
                             <hr />
                         </div>
                         <div className={s.container_input_button}>
-                            <input type="button" onClick={onBuy} value="COMPRAR" />
+                            <input type="button" onClick={onForm} value="COMPRAR" />
                             <input type="button" onClick={onCancel} value="Cancelar Carrito" />
                         </div>
                     </div>
                 </div>
                 :null
+            }
+            {form &&
+                <div className={s.container_absolute_main} ref={ref}>
+                    <div className={s.container_main_table_button}>
+                        <div className={s.container_table}>
+                            <FormCheckout items={cart} price={totalPrice()} user={user} onBack={onBack}/>
+                        </div>
+                    </div>
+                </div>
             }
             {active && !cart.products ?
                 <div className={s.container_absolute_main} ref={ref}>
