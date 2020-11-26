@@ -1,9 +1,8 @@
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect} from 'react'
 import s from './TableOrders.module.css'
-import endWare from '../../../endware/email'
 
 function TableOrders() {
 
@@ -12,8 +11,7 @@ function TableOrders() {
     const user = useSelector(state => state.user)
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`,
-        {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`)
         .then(({data})=>setOrders(data))
     }, []);
 
@@ -25,9 +23,7 @@ function TableOrders() {
     }
 
     const onProcess = order => {
-        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`,
-        order,
-        {withCredentials: true})
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
         .then(({data})=>setOrders(data))
     }
 
@@ -55,7 +51,7 @@ function TableOrders() {
                             <td>{order.createdAt}</td>
                             <td className={s.button_details}>
                                 { order.state === 'created' ? 
-                                    <button onClick={()=>onProcess(order), endWare.sendEmail(user.email)}>Procesar</button>:
+                                    <button onClick={()=>onProcess(order)}>Procesar</button>:
                                     order.state
                                 }
                             </td>

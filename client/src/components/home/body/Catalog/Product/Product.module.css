@@ -109,33 +109,38 @@
     margin: 10px 0 ;
     align-items: center;
 }
+.container_select_p_flex div label{
+    font-size: 18px;
+}
 .container_select{
     background-color: transparent;
     color: #282C34;
     outline: none;
     border: none;
     width: 50px;
+    font-size: 16px;
 }
 .p_stock_available{
-    font-size: 13px;
+    font-size: 16px;
     color: #786C64;
     margin-left: 10px;
 }
 .container_button{
     display: flex;
     justify-content: center;
-    max-width: 250px;
+    max-width: 400px;
     width: 100%;
     margin: 0 auto;
 }
 .container_button button{
     width: 100%;
-    height: 25px;
+    height: 35px;
     background-color: #7b1fa2;
     outline: none;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 10px;
     color: #DFE6E9;
 }
 .container_empty{
@@ -158,19 +163,13 @@
 .container_review h3{
     font-size: 22px;
 }
+.container_description_product{
+    font-size: 18px;
+}
 .container_description_product,
 .container_description_review {
     padding: 10px;
 }
-.container_question_answers{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 90%;
-    padding: 10px;
-    margin: 0 auto;
-}
-
 @media (max-width: 768px){
     .container_img_title_flex{
         flex-direction: column;
@@ -192,8 +191,7 @@
 }
 @media (max-width: 521px){
     .container_description_product,
-    .container_description_review,
-    .container_question_answers {
+    .container_description_review{
     padding: 0px;
     }
 }

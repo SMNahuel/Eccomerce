@@ -22,7 +22,7 @@ function SignIn(){
         e.preventDefault();
         dispatch(api.register(input));
     }
-    
+   
     return (
         <div className={s.container}>
             <div className={s.container_signIn}>

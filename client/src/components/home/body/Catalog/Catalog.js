@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import s from './Catalog.module.css'
 import ProductCard from './ProductCard/ProductCard';
 import CarouselSwiper from './swiper/CarouselSwiper';

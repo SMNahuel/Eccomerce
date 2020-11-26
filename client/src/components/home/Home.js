@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import s from './Home.module.css'; 
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../redux/action-creators';
-import axios from 'axios';
-import FormRespond from './body/Catalog/Product/questionAndAnswer/question/formRespond/FormRespond';
+import axios from '../../utils/axios';
 import Header from '../header/Header';
 import Footer from './footer/Footer';
 import Body from './body/Body';
 import Product from './body/Catalog/Product/Product'
+import MercadoPago from './body/mercadoPagoForm/MercadoPago';
 
 export default function Home({history}) {
 
@@ -23,7 +23,6 @@ export default function Home({history}) {
     const dispatch = useDispatch()
     const categories = useSelector(state=> state.categories)
     const products = useSelector(state => state.products)
-    const formRespond = useSelector(state => state.formRespond)
     
     useEffect(() => {
         if (!categories.length){
@@ -60,8 +59,7 @@ export default function Home({history}) {
     }
 
     const handleSearch = (key) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/products/search?key=${key}`,
-        {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_URL}/products/search?key=${key}`)
         .then(({data}) =>  setState({
             ...state, 
             products: data
@@ -91,7 +89,7 @@ export default function Home({history}) {
                     <Product product={state.detailedProduct} onBack={handleBack} />
                 </div>
             }
-            <div className={s.container_home}>
+            <div className={s.container_home} style={state.detailedProduct ? {height: "100.1vh"} : null}>
                 <div className={s.container_header}>
                     <Header history={history} handleSearch={handleSearch}/>
                 </div>
@@ -99,14 +97,11 @@ export default function Home({history}) {
                     <Body 
                     categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory}
                     products={state.products || currentProduct || products} handleDetail={handleDetail}
-                    paginate={paginate}/>
+                    paginate={paginate} postsPerPage={postsPerPage}/>
+                    {/* <MercadoPago/> */}
                     <Footer/>
                 </div>
-            </div>  
-            {
-                formRespond &&
-                <FormRespond/>
-            }
+            </div>
         </>
     )
 

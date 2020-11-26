@@ -1,15 +1,16 @@
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const user = require('../../controllers/user');
 
 module.exports = new GoogleStrategy(
     {
-        consumerKey: process.env.GOOGLE_CONSUMER_KEY,
-        consumerSecret: process.env.GOOGLE_CONSUMER_SECRET,
-        callbackURL: '/auth/google/redirect'
+        clientID: process.env.GOOGLE_CONSUMER_KEY,
+        clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
+        callbackURL: '/auth/google/success',
+        passReqToCallback   : true
     },
-    function(token, tokenSecret, profile, done) {
+    function(request, accessToken, refreshToken, profile, done) {
         console.log(profile);
-        user.logingGoogle(profile)
+        user.logingProvider(profile.provider, profile.id, profile.displayName, profile.emails[0].value)
         .then(user => done(null, user))
         .catch(err => done(err, false));
     }
