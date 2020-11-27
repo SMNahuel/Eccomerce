@@ -6,20 +6,29 @@
 
 .boxStyle{
     margin-top: 120px;
-    border: 2px solid white;
-    border-radius: 5%;
+    border: 2px solid rgba(255, 255, 255, .4);
+    border-radius: 15px;
     max-width: 400px;
     width: 100%;
-    background-color: #34b2b0;
-    -webkit-box-shadow: 0px -8px 61px 0px rgba(217,89,217,1);
-    -moz-box-shadow: 0px -8px 61px 0px rgba(217,89,217,1);
-    box-shadow: 0px -8px 61px 0px rgba(217,89,217,1);
+    background-color: transparent;
+    /* -webkit-box-shadow: 0px 0px 15px 1px rgba(255, 255, 255, .4);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(255, 255, 255, .4);
+    box-shadow: 0px 0px 15px 1px rgba(255, 255, 255, .4); */
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(217,89,217,1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(217,89,217,1);
+    box-shadow: 0px 0px 15px 0px rgba(217,89,217,1);
 }
 
 .input{
     display: none;
 }
-
+.container_Avatar{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .avatarSize{
     margin: 25px;
@@ -33,27 +42,41 @@
     display: flex;
     justify-content: center;
     margin: 25px;
-    color: #020620;
+    color: #DFE6E9;
     font-size: xx-large
 }
 
 .justifyAv{
-    position: relative;
+    
     display: flex;
     justify-content: center;
     width: 100%;    
+}
+.container_avatar_buttons{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
 }
 
 .button{    
     position: absolute;
     bottom: 20px;
-    right: 150px;
+    display: flex;
+    justify-content: center;
+}
+.container_label_camera{
+    position: absolute;
+    bottom: 42px;
+    right: 20px;
 }
 
 .cameraButton{
     position: absolute;
     bottom: 25px;
-    right: 85px;
+    right: 0px;
 }
 
 .boton {

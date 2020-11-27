@@ -54,7 +54,7 @@
         display: block;
     }
 }
-@media (min-width: 1390px){
+@media (min-width: 768px){
     .email{
         display: block;
     }

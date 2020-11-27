@@ -60,47 +60,44 @@ function UserProfile({history}) {
                         state.action ===  true && 
                         <ChangePassword showFormPassword={showFormPassword}/>
                     }
-                    {state.action === false &&<div>
-                    <div>
+                    {state.action === false &&
+                    <div className={s.container_avatar_buttons}>
                         <Avatar
                             className={s.avatarSize}
                             src={image}
                         />
-                    </div>
-                    <div className={s.cameraButton}>
-                        <input 
+                        <input
                             className={s.input}
                             onChange={selectImg}
                             accept="image/*"
                             id="file"
                             type="file"
                         />
-                        <label htmlFor="file">
-                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                <PhotoCamera fontSize="large" />
-                            </IconButton>
-                        </label>
-                    </div>
-                    <div className={s.button}>                            
-                        <Button onClick={onSubmit} variant="contained" color="primary" component="span">
-                            Upload
-                        </Button>
-
-                    </div>
-
+                        <div className={s.container_label_camera}>
+                            <label htmlFor="file">
+                                <IconButton color="primary" aria-label="upload picture" component="span" variant="contained">
+                                    <PhotoCamera fontSize="large" />
+                                </IconButton>
+                            </label>
+                        </div>
+                        <div className={s.button}>
+                            <Button onClick={onSubmit} variant="contained" color="primary" component="span">
+                                Upload
+                            </Button>
+                        </div>
                     </div>
                     }
                 </div>
                 <ThemeProvider theme={theme}>
                     <Typography className={s.text} variant="button">{user.name}</Typography>
                     <Typography className={s.text} >{user.email}</Typography>
-                    <Typography className={s.text} variant="overline">Usuario: {user.rol}</Typography>
+                    <Typography className={s.text} variant="overline">User: {user.rol}</Typography>
 
                 </ThemeProvider>  
                 <div className={s.boton}>
-                <Button onClick={showFormPassword} variant="contained" color="primary" component="span">
-                            Cambiar Contraseña
-                </Button>
+                    <Button onClick={showFormPassword} variant="contained" color="primary" component="span">
+                        Change Password
+                    </Button>
                 </div>
             </div>
         </div>
