@@ -36,7 +36,7 @@
 .filter{
     display:flex;
     justify-content: space-between;
-    width: 15%;
+    width: 20%;
 }
 .filter > select{
     border: none;
@@ -44,7 +44,7 @@
     background-color: transparent;
     font-size: 16px;
     color: white;
-    width: 80px;
+    width: 200px;
 }
 .filter > select option{
     background-color: grey;
@@ -52,4 +52,9 @@
 .container_filters{
     display: flex;
     justify-content: space-evenly;
+}
+@media(max-width: 540px){
+    .container_filters{
+        flex-direction: column;
+    }
 }
