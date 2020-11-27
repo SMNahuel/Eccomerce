@@ -26,3 +26,35 @@
     background-color: #ab47bc;
     
 }
+.filters{
+    background-color: #ab47bc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+}
+.filter{
+    display:flex;
+    justify-content: space-between;
+    width: 20%;
+}
+.filter > select{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: white;
+    width: 200px;
+}
+.filter > select option{
+    background-color: grey;
+}
+.container_filters{
+    display: flex;
+    justify-content: space-evenly;
+}
+@media(max-width: 540px){
+    .container_filters{
+        flex-direction: column;
+    }
+}
