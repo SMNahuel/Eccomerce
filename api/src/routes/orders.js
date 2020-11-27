@@ -1,5 +1,7 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
+const user = require('../controllers/user');
+const {checkout} = require('../utils/sendEmail')
 const { forAdmin, forGuest } = require('../middlewares/authenticate');
 
 // Ruta qque devuelve las ordenes de un usuario
@@ -24,6 +26,14 @@ server.put('/process', forAdmin, (req, res, next) => {
     }
     return cart.process(req.body)
     .then(r => res.send(r))
+    .catch(next)
+})
+
+server.post('/process', forAdmin, (req, res, next) => {
+    user.read(req.body)
+    .then(r=> user.getById(r.id))
+    .then(r => checkout(r.email, r.name))
+    .then(r => res.send('Email sended'))
     .catch(next)
 })
 
