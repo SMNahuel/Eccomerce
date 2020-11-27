@@ -1,8 +1,9 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
 const { ProfileImageUploader } = require('../middlewares/uploadImg');
-const sendEmail = require('../utils/sendEmail')
-const { forGuest } = require('../middlewares/authenticate')
+const sendEmail = require('../utils/sendEmail');
+const keysStore = require('../utils/keysStore');
+const { forGuest } = require('../middlewares/authenticate');
 const {
     login,
     loginFacebook,
@@ -11,7 +12,7 @@ const {
     loginGithubSuccess,
     loginGoogle,
     loginGoogleSuccess
-} = require('../middlewares/passport')
+} = require('../middlewares/passport');
 
 // Ruta que permite registrarse
 server.post('/register', (req, res, next) => {
@@ -77,13 +78,32 @@ server.put('/password', forGuest, (req, res, next) => {
 })
 
 // Ruta para cambiar de password como usuario
-server.put('/forgottenPassword', forGuest, (req, res, next) => {
+server.post('/forgottenPassword', (req, res, next) => {
     const { email }= req.body;
     if(!email){
         return res.status(400).send('A email is needed to reset the password by email')
     }
-    sendEmail.changePassword(email)
+    user.getByEmail(email)
+    .then(user => sendEmail.changePassword(email, {...user, key: keysStore.set(email)}))
     .then(r => res.send('Email sended'))
+    .catch(next)
+})
+
+// Ruta para cambiar de password como usuario
+server.put('/forgottenPassword', (req, res, next) => {
+    const {key, newPassword }= req.body;
+    if(!key){
+        return res.status(400).send('A key is needed to reset the password')
+    }
+    if(!newPassword){
+        return res.status(400).send('A newPassword is needed to reset the password')
+    }
+    const email = keysStore.get(key)
+    if(!email) {
+        return res.status(400).send("the key expired or doesn't match")
+    }
+    user.setNewPassword(email, newPassword)
+    .then(r => res.send(r))
     .catch(next)
 })
 

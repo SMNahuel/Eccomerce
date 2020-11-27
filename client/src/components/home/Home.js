@@ -7,7 +7,6 @@ import Header from '../header/Header';
 import Footer from './footer/Footer';
 import Body from './body/Body';
 import Product from './body/Catalog/Product/Product'
-import MercadoPago from './body/mercadoPagoForm/MercadoPago';
 
 export default function Home({history}) {
 
@@ -98,7 +97,6 @@ export default function Home({history}) {
                     categories={categories} onSelect={onSelect} onClear={onClear} selectedCategory={state.selectedCategory}
                     products={state.products || currentProduct || products} handleDetail={handleDetail}
                     paginate={paginate} postsPerPage={postsPerPage}/>
-                    {/* <MercadoPago/> */}
                     <Footer/>
                 </div>
             </div>
