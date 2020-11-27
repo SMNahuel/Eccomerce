@@ -147,3 +147,9 @@
 .container_link:hover{
     text-decoration: underline;
 }
+
+.butonChangePass {
+    margin-bottom: 25px;
+    border: none;
+    background-color: white;
+}
