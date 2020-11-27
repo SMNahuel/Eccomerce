@@ -90,7 +90,7 @@ function LogIn() {
                             <LockOutlinedIcon />
                             <label>Password</label>
                         </div>
-                        <button onClick={onForgottenPassword}>As olvidado tu contraseña?</button>
+                        <button className={s.butonChangePass} onClick={onForgottenPassword}>As olvidado tu contraseña?</button>
                         <div className={s.container_button}>
                             <button type="submit">Log In</button>
                         </div>

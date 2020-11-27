@@ -93,7 +93,7 @@ function UserProfile({history}) {
                 </div>
                 <ThemeProvider theme={theme}>
                     <Typography className={s.text} variant="button">{user.name}</Typography>
-                    <Typography className={s.text} variant="caption">{user.email}</Typography>
+                    <Typography className={s.text} >{user.email}</Typography>
                     <Typography className={s.text} variant="overline">Usuario: {user.rol}</Typography>
 
                 </ThemeProvider>  
