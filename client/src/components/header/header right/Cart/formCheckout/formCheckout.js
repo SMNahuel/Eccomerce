@@ -4,7 +4,7 @@ import s from './formCheckout.module.css'
 import { paises, provincias } from '../../../../../utils/selectForm'
 import { useDispatch } from 'react-redux';
 import api from '../../../../../redux/action-creators'
-import PayPal from './PayPal'
+import PayPal from './paypal/PayPal'
 
 export default function FormCheckout({items, price, user, onBack}){
     const [input, setInput] = useState({
@@ -154,7 +154,8 @@ export default function FormCheckout({items, price, user, onBack}){
                                 </div>
                             </div>
                             <div className={s.pago}>
-                                <h1>Metodo de pago</h1>
+                                <h2>Metodo de pago</h2>
+                                <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal"/>
                             </div>
                         </div>
                     </div>
@@ -164,7 +165,7 @@ export default function FormCheckout({items, price, user, onBack}){
                         <input type="button" onClick={() => onBack()} value="Seguir comprando" />
                     </div>
                 </div>
-                : <PayPal />}
+                : <PayPal setCheckout={setCheckout} checkout={checkout} price={price}/>}
         </>
     )
 }

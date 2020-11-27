@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import s from './PayPal.module.css'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-export default function PayPal(){
+export default function PayPal({ setCheckout, price, checkout }){
 
     const paypal = useRef();    
 
@@ -30,10 +32,17 @@ export default function PayPal(){
         })
         .render(paypal.current);
     }, []);
-  
+    console.log(price)
     return (
       <div>
-        <div ref={paypal}></div>
+        <div onClick={() => setCheckout(!checkout)} className={s.container_button_arrow}>
+          <ArrowBackIcon fontSize="large" />
+        </div>
+        <div className={s.container_price}>
+          <p>Total: ${price}</p>
+        </div>
+        <div ref={paypal} className={s.container_paypal}></div>
+
       </div>
     );
 }
