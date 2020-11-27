@@ -83,11 +83,11 @@ function TableOrders() {
     return (
         <>
         <div className={s.styleTableOrders}>
-{
-            activate.action === false &&
-
+        { activate.action === false &&
+        <div>
             <div className={s.filters}>
                 <h3>Filters: </h3>
+                
                 <div className={s.container_filters}>
                     <div className={s.filter}>
                         <h4>Estado:</h4>
@@ -117,6 +117,7 @@ function TableOrders() {
                         </select>
                     </div>
                 </div>
+                
             </div>
             <table className={s.container_table}>
                 <thead>
@@ -131,7 +132,6 @@ function TableOrders() {
                 </thead>
                 <tbody>
                 {orders && orders.map(order => 
-                    {filterOrders.carts && filterOrders.carts.map(order => 
                         <tr key={order.id}>
                             <td>{order.id}</td>
                             <td>{order.state}</td>
@@ -142,13 +142,16 @@ function TableOrders() {
                             <button onClick={() => changeState(order)}>Modificar Orden</button>
                             </td>
                         </tr> 
-                    )}
+                )}
                 </tbody>
+             
             </table>
-}
+        </div>
+        }
             {
                 activate.action === true && <ChangeState order={activate.order} onProcess={onProcess}/>  
             }
+            
         </div>
         </>
     );
