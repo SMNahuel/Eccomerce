@@ -7,12 +7,22 @@ import s from './TableOrders.module.css'
 function TableOrders() {
 
     const [orders , setOrders] = useState([])
+    const [filterOrders, setFilterOrders] = useState({
+        filter: "all",
+        carts: []
+    })
 
     const user = useSelector(state => state.user)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`)
-        .then(({data})=>setOrders(data))
+        .then(({data}) => {
+            setOrders(data)
+            setFilterOrders({
+                ...filterOrders,
+                carts: data
+            })
+        })
     }, []);
 
     const orderMount = order => {
@@ -27,9 +37,36 @@ function TableOrders() {
         .then(({data})=>setOrders(data))
     }
 
+    const change = value => {
+        value === "all" ? setFilterOrders({
+                filter: value,
+                carts: orders
+            }) :
+            setFilterOrders({
+                filter: value,
+                carts: orders.filter(order => order.state === value)
+            })
+    }
+
+    /* change("all") */
+
     return (
         <>
         <div className={s.styleTableOrders}>
+            <div className={s.filter}>
+                <h3>Filters: </h3>
+                <div className={s.filter_state}>
+                    <h4>Estado:</h4>
+                    <select name="filter" value={filterOrders.filter} onChange={(e) => change(e.target.value)}>
+                                <option value='all'>all</option>
+                                <option value='cart'>cart</option>
+                                <option value='created'>created</option>
+                                <option value='processing'>processing</option>
+                                <option value='canceled'>canceled</option>
+                                <option value='completed'>completed</option>
+                    </select>
+                </div>
+            </div>
             <table className={s.container_table}>
                 <thead>
                     <tr>
@@ -42,7 +79,7 @@ function TableOrders() {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders && orders.map(order => 
+                    {filterOrders.carts && filterOrders.carts.map(order => 
                         <tr key={order.id}>
                             <td>{order.id}</td>
                             <td>{order.state}</td>
