@@ -1,5 +1,6 @@
-const { Product, Category, Image } = require('../db.js');
+const { Product, Category, Image, Review, User } = require('../db.js');
 const { Op } = require("sequelize");
+
 
 module.exports = {
     read: function() {
@@ -20,6 +21,11 @@ module.exports = {
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Review,
+                    attributes: ['qualification'],
+                    group: "productId",
                 }
             ]
         })
@@ -60,7 +66,39 @@ module.exports = {
             product.setCategories(categories)
         ))
     },
+    addReview: function(id, message, idUser, qualification){
+        return Review.create({
+            productId: id, 
+            userId: idUser,
+            message: message,
+            qualification
+        })
+        .then(() => this.read())
+    },
 
+    deletedReview: function(id){
+        return Review.destroy({
+            where: {
+                id                
+            }
+        })
+        .then(() => this.read())
+    },
+
+    updateReview:function(id, {qualification, message}){
+        let atributesToUpdate = {};
+        if (qualification) atributesToUpdate.qualification = qualification;
+        if (message) atributesToUpdate.message = message;
+        return Review.update(
+            atributesToUpdate,
+            { 
+                where: { 
+                    id
+                }
+            }
+        )
+        .then(() => this.read());
+    },
 
     update: function(id, { name, description, price, stock, categories }) {
         let atributesToUpdate = {};
@@ -157,9 +195,14 @@ module.exports = {
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Review,
+                    attributes: ['id', 'qualification', 'message', 'productId', 'userId'],
                 }
             ]
         })
+
         .then(product => {
             if(!product) throw `product id: ${id} does not exist`
             return product

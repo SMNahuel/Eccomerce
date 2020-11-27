@@ -1,50 +1,46 @@
 const server = require('express').Router();
 const user = require('../controllers/user');
+const { forAdmin } = require('../middlewares/authenticate')
 
-server.get('/:id/orders', (req,res,next)=>{
-    const { id } = req.params;
-    if(!id){
-        return res.status(400).send('I need an id to Delete the User')
-    }
-    user.search(id)
+// Ruta que te devuelve todos los usuarios
+server.get('/', forAdmin, (req, res, next) => {
+    user.read()
     .then(r => res.send(r))
-    .catch(next);     
 })
 
-server.get('/', (req, res, next) => {
-    user.read(req.body)
-    .then(r => res.send(r))
-    .catch(next);
-})
-
-server.post('/', (req, res, next) => {
-    const { name, email, password } = req.body
-
-    if(!name || !email || !password){
-        return next(new Error('Body must have a name, email and password'))
-    }
-    user.create(req.body)
-    .then(r => res.send())
-})
-
-server.put('/:id', (req, res, next) => {
-    const { id } = req.params;
+// Ruta que permite promocionar a un usuario a admin
+server.put('/promote', forAdmin, (req, res, next) => {
+    const { id } = req.body;
     if(!id){
-        return res.status(400).send('I need an id to modify the User')
+
+        return res.status(400).send('an id is needed to promote a user')
     }
-    user.update(id, req.body)
+    user.setAdmin(id)
     .then(r => res.send(r))
     .catch(next)
 })
 
-server.delete('/:id', (req, res, next) => {
-    const { id } = req.params;
+// Ruta que permite demotear a un usuario a guest
+server.put('/demote', forAdmin, (req, res, next) => {
+    const { id } = req.body;
     if(!id){
-        return res.status(400).send('I need an id to Delete the User')
+        return res.status(400).send('an id is needed to demote a user')
     }
-    user.delete(id)
+    user.setGuest(id)
     .then(r => res.send(r))
-    .catch(next);
+    .catch(next)
 })
+
+// Ruta que permite banear a un usuario
+server.put('/ban', forAdmin, (req, res, next) => {
+    const { id } = req.body;
+    if(!id){
+        return res.status(400).send('an id is needed to ban a user')
+    }
+    user.ban(id)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
 
 module.exports = server;

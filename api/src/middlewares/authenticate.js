@@ -1,31 +1,46 @@
-const user = require('../controllers/user');
+const forOwner = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.status(400).send('You must be authenticated to access this route');
+    }
+    if (req.user.rolId < 5) {
+        return res.status(400).send('You must be a Owner to access this route');
+    }
+    next();
+}
+
+const forAdmin = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.status(400).send('You must be authenticated to access this route');
+    }
+    if (req.user.rolId < 4) {
+        return res.status(400).send('You must be a Admin to access this route');
+    }
+    next();
+}
+
+const forGuest = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.status(400).send('You must be authenticated to access this route');
+    }
+    if (req.user.rolId < 3) {
+        return res.status(400).send('You must be registered to access this route');
+    }
+    next();
+};
+
+const forAnonym = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.status(400).send('You must be authenticated to access this route');
+    }
+    if (req.user.rolId < 2) {
+        return res.status(400).send('Your account has been banned contact the company to recover your account');
+    }
+    next();
+};
 
 module.exports = {
-    forAdmin: (req, res, next) => {
-        if (!req.cookies.user) {
-            next(new Error('Debe estar autenticado para acceder a esta ruta'));
-        }
-        user.rol(req.cookies.user)
-        .then(r => {
-            if (r === 'admin') {
-                next();
-            } else {
-                next(new Error('Debe ser guest para acceder a esta ruta'));
-            }
-        })
-    },
-
-    onlyForGuest: (req, res, next) => {
-        if (!req.cookies.user) {
-            next(new Error('Debe estar autenticado para acceder a esta ruta'));
-        }
-        user.rol(req.cookies.user)
-        .then(r => {
-            if (r === 'guest') {
-                next();
-            } else {
-                next(new Error('Debe ser guest para acceder a esta ruta'));
-            }
-        })
-    }
+    forOwner,
+    forAdmin,
+    forGuest,
+    forAnonym
 }

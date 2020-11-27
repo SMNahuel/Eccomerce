@@ -57,6 +57,7 @@ export default function CreateProduct({handleCreate, categories}) {
                         name="name"
                         autoComplete="off"
                         onChange={onChange}
+                        value={input.name}
                         maxLength="100"
                         placeholder="Ingrese el nombre"
                         pattern="[A-Za-z0-9 ]{5,100}"
@@ -68,6 +69,7 @@ export default function CreateProduct({handleCreate, categories}) {
                         type="text"
                         name="price"
                         onChange={onChange}
+                        value={input.price}
                         pattern="[0-9]{1,10}"
                         placeholder="Ingrese el precio"
                         title="Only Numbers"
@@ -84,6 +86,7 @@ export default function CreateProduct({handleCreate, categories}) {
                         autoComplete="off"
                         title="Only Numbers"
                         onChange={onChange}
+                        value={input.stock}
                         placeholder="Ingrese el Stock"
                         required />
                     <label>Ingrese el Stock</label>
@@ -92,6 +95,7 @@ export default function CreateProduct({handleCreate, categories}) {
                     <textarea
                         type="text"
                         onChange={onChange}
+                        value={input.description}
                         name="description"
                         maxLength="200"
                         pattern="[A-Za-z0-9 ]{5,250}"

@@ -1,0 +1,239 @@
+.container_button_toggle{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ab47bc;
+    cursor: pointer;
+    margin: 0 5px;
+    position: relative;
+}
+.container_label_count{
+    position: absolute;
+    top: -7px;
+    right: -5px;
+    z-index: 1;
+    background-color: #e7231f;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container_label_count label{
+    color: #282C34;
+}
+.container_button_toggle button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #DFE6E9;
+}
+.container_absolute_main{
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.totalPrice{
+    color: black;
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    font-family: fantasy;
+    font-size: 45px;
+}
+
+.container_main_table_button{
+    position: relative;
+    max-width: 1000px;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: #DFE6E9;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.container_button_onUnMount_table{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+.container_button_onUnMount_table button{
+    background-color: transparent;
+    outline: none;  
+    border: none;
+    color: #000000;
+    cursor: pointer;
+}
+.container_table{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.containerThead{
+    display: flex;
+    color: black;
+    justify-content: space-around;
+    font-size: xx-large;
+    font-family: fantasy;
+}
+
+.lineStyle{
+    border: 0; 
+    height: 0; 
+    box-shadow: 0 1px 5px 1px purple;
+    margin: 20px;
+}
+.container_product_name p{
+    font-size: xx-large;
+}
+
+.productName{
+    margin-top: -10px;
+    color: #282C34;
+}
+
+.containerProduct{
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+}
+
+.containerProductRight{
+    font-size: xx-large;
+    font-family: ui-serif;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.priceOrder p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+}
+
+.selector{
+    height: 50%;
+}
+
+.containerProductLeft{
+    display: flex;
+    justify-content: space-between;
+    font-family: fantasy;
+    width: 40%;
+    font-size: x-large;
+
+}
+
+.subtotalVisibility{
+    color: black;
+}
+
+.hrDivProduct{
+    border: 3px solid #666; 
+    border-radius: 300px/10px; 
+    height: 0px; 
+    text-align: center;
+    margin-bottom: 20px ;
+}
+
+.DeleteForeverIcon{
+    color: rgb(85, 81, 81);
+    cursor: pointer;
+}
+
+.container_input_button{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} 
+.container_input_button input {
+    width: 25%;
+    margin-left: 1%;
+    margin-right: 1%;
+    height: 50px;
+    border: ridge;
+    outline: none;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #2f0f35;
+    cursor: pointer;
+    font-size: x-large;
+    font-family: serif;
+}
+.cartEmpty{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.cartEmpty img{
+    max-width: 800px;
+    max-height: 600px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.container_input_button input:hover{
+    background-color: #7b1fa2;
+}
+@media(max-width: 768px){
+    .container_absolute_main{
+        padding: 0px 0;
+    }
+    .container_table{
+        width: 100%;
+    }
+}
+@media(max-width: 540px){
+    .container_input_button input{
+        width: 35%;
+        font-size: large;
+    }
+    .container_product_name p{
+        font-size: x-large;
+    }
+    .containerThead{
+        font-size: x-large;
+    }
+    .totalPrice{
+        font-size: 35px;
+    }
+    .priceOrder p {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+    }
+}
+@keyframes containerMount{
+    0%   { opacity: 0; transform: scale(.5);}
+    50%  { opacity: 0;}
+    100% { opacity: 1; transform: scale(1);}
+}
+@keyframes containerUnmount{
+    0%   { opacity: 1; transform: scale(1);}
+    50%  { opacity: 0;}
+    100% { opacity: 0; transform: scale(.5);}
+}

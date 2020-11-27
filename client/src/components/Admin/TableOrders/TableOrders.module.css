@@ -1,5 +1,60 @@
 .styleTableOrders{
-    margin: 50px;
-    color: white;
+    width: 100%;
+    color: #fff;
     text-align: center;
+    margin-top: 90px;
+    
+}
+.container_table{
+    max-width: 768px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.button_details button{
+    background-color: transparent;
+    color: #DFE6E9;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.button_details button:hover{
+    background-color: #ab47bc;
+    
+}
+.filters{
+    background-color: #ab47bc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+}
+.filter{
+    display:flex;
+    justify-content: space-between;
+    width: 20%;
+}
+.filter > select{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: white;
+    width: 200px;
+}
+.filter > select option{
+    background-color: grey;
+}
+.container_filters{
+    display: flex;
+    justify-content: space-evenly;
+}
+@media(max-width: 540px){
+    .container_filters{
+        flex-direction: column;
+    }
 }

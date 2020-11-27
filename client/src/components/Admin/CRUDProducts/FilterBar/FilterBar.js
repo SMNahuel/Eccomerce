@@ -40,7 +40,7 @@ export default function FilterBar({ categories, handleSearch, handleSelect, hand
                     value={key} 
                     placeholder="Seach..."
                     required 
-                    pattern="[a-zA-Z0-9]{3,50}"
+                    pattern="[a-zA-Z0-9 ]{3,50}"
                     title="Min 3 character"
                     />
                     <button type="submit"><SearchIcon/></button>

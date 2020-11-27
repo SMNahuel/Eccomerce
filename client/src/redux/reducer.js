@@ -1,12 +1,16 @@
 import actionCreators from './action-creators';
-const {CATEGORIES, PRODUCTS, CART, ORDERS, USER} = actionCreators;
+const {CATEGORIES, PRODUCTS, CART, ORDERS, USER, USERS, FORMRESPOND, REVIEW, PURCHASEDPRODUCTS} = actionCreators;
 
 const initialState = {
     categories: [],
     products: [],
     cart:[],
     orders:[],
-    user: {}
+    user: {},
+    users: [],
+    formRespond: false,
+    reviews: [],
+    purchased: [],
 };
 
 export default (state = initialState, action) => {
@@ -36,6 +40,26 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            }
+        case USERS:
+            return {
+                ...state,
+                users: action.payload
+            }
+        case FORMRESPOND:
+            return {
+                ...state,
+                formRespond: action.payload
+            }
+        case REVIEW:
+            return {
+                ...state,
+                reviews: action.payload
+            }
+        case PURCHASEDPRODUCTS:
+            return {
+                ...state,
+                purchased: action.payload
             }
         default:
             return {...state}

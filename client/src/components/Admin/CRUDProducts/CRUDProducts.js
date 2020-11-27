@@ -8,9 +8,9 @@ import DeleteProduct from './DeleteProduct/DeleteProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../../redux/action-creators';
 import dataURLtoFile from '../../../utils/dataURLtoFile';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 
-export default function CRUDProducts(){
+export default function CRUDProducts({history}){
     const [state, setState] = useState({
         action: null,
         product: {},
@@ -31,6 +31,7 @@ export default function CRUDProducts(){
     }, [dispatch, products, categories])
     
     const onUpdate = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'update', 
@@ -51,12 +52,14 @@ export default function CRUDProducts(){
         )
         axios.post(
             `${process.env.REACT_APP_API_URL}/products/images/${id}`,
-            formData, {headers: {'Content-Type': 'multipart/form-data'}}
+            formData,
+            {headers: {'Content-Type': 'multipart/form-data'}}
         )
         setState({...state, action: null})
     }
 
     const onDelete = (id) => {
+        window.scroll(0,0)
         setState({
             ...state, 
             action: 'delete', 
@@ -95,25 +98,27 @@ export default function CRUDProducts(){
     }
 
     return(
-        <div className={s.form}>
-            <div>
-                {
-                    state.action === null &&
-                    <CreateProduct categories={categories}/>
-                }
-                {
-                    state.action === 'update' &&
-                    <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate}/>
-                }
-                {
-                    state.action === 'delete' &&
-                    <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure}/>
-                }
+        <>
+            <div className={s.form}>
+                <div>
+                    {
+                        state.action === null &&
+                        <CreateProduct categories={categories} />
+                    }
+                    {
+                        state.action === 'update' &&
+                        <UpdateProduct className={s.controls} product={state.product} categories={categories} handleUpdate={handleUpdate} />
+                    }
+                    {
+                        state.action === 'delete' &&
+                        <DeleteProduct className={s.controls} product={state.product} handleDelete={handleDelete} onNotSure={onNotSure} />
+                    }
+                </div>
+                <FilterBar categories={categories} handleSearch={handleSearch} handleSelect={handleSelect} handleClearFilters={handleClearFilters} />
+                <div>
+                    <TableProduct products={state.products || products} onUpdate={onUpdate} onDelete={onDelete} s={s} />
+                </div>
             </div>
-            <FilterBar categories={categories} handleSearch={handleSearch} handleSelect={handleSelect} handleClearFilters={handleClearFilters} />
-            <div>
-                <TableProduct products={state.products || products} onUpdate={onUpdate} onDelete={onDelete} s={s}/>
-            </div>
-        </div>
+        </>
     );
 };

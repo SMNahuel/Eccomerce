@@ -1,0 +1,37 @@
+.container_main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #43435c;
+    display: flex;
+    position: relative;
+}
+.container_main button{
+    cursor: pointer;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #ab47bc;
+    border: none;
+    outline: none;
+    color: #DFE6E9;
+}
+.container_main button:hover{
+    font-size: 14px;
+}
+.button_up{
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #ab47bc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DFE6E9;
+    border-radius: 50%;
+    cursor: pointer;
+}
+

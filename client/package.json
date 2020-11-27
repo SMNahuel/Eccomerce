@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "4.10.0",
+    "@material-ui/system": "4.9.14",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -14,13 +16,16 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.10.1",
+    "react-markdown": "^5.0.2",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-super-responsive-table": "^5.1.4",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "uuid": "^8.3.1"
+    "styled-components": "^5.2.1",
+    "swiper": "^6.3.5",
+    "uuid": "^8.3.1",
+    "nodemailer": "6.4.16"
   },
   "scripts": {
     "start": "react-scripts start",

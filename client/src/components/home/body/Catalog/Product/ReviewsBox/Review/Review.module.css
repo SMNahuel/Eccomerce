@@ -1,0 +1,73 @@
+.container_main{
+    margin: 32px 0px;
+}
+.h2_title{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    color: #282C34;
+}
+.p_description{
+    color: rgba(0, 0, 0, .8);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25em;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+.container_hands_up_down{
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+}
+.container_hands_up_down{
+    display: flex;
+    height: 20px;
+    align-items: center;
+    position: relative;
+}
+.container_up_down{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+.container_up_down button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px 0 10px;
+}
+.container_up_down_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 30px;
+}
+.container_up_down_2 button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.p_reviews{
+    color: #7b1fa2;
+    font-size: 20px;
+}
+.container_up_down button:focus{
+    color: #7b1fa2;
+}
+.container_up_down_2 button:focus{
+    color: #7b1fa2;
+}
+.container_delete button{
+    background-color: transparent;
+    color:red;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px 0 10px;
+}

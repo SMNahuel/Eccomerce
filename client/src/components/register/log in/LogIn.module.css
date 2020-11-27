@@ -1,3 +1,9 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: #282C34;
+    height: 80vh;
+}
 .container_signIn{
     position: relative;
     max-width: 600px;
@@ -41,8 +47,13 @@
     color: #DFE6E9;
     margin-top: 15px;
 }
+.container_icons img{
+    width: 24px;
+    cursor: pointer;
+}
 .icons{
     cursor: pointer;
+    height: 20px;
 }
 .container_signIn form{
     background-color: #fff;
@@ -128,12 +139,23 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
-   
 }
 .container_link{
     text-decoration: none;
     color: #DFE6E9;
 }
 .container_link:hover{
+    text-decoration: underline;
+}
+
+.butonChangePass {
+    margin-bottom: 25px;
+    border: none;
+    background-color: transparent;
+    color: #666;
+    cursor: pointer;
+    outline: none;
+}
+.butonChangePass:hover{
     text-decoration: underline;
 }

@@ -1,4 +1,4 @@
-const { Image, Product } = require('../db.js');
+const { Product } = require('../db.js');
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -10,14 +10,26 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ 
+var createProductUploader = multer({ 
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        const { mimetype} = file
+
+        const extensionSupported = /jpg|jpeg|png|svg/.test(mimetype);
+        if (!extensionSupported) cb(new Error('only extensions [.jpeg, .jpg, .png, .svg] are supported'))
+
+        cb(null, true)
+    }
+}).array('image')
+
+var updateProductUploader = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
         const { id } = req.params
-        const { mimetype, originalname} = file
+        const { mimetype } = file
 
-        const extensionSuported = /jpg|jpeg|png|svg/.test(mimetype);
-        if (!extensionSuported) cb(new Error('only extensions [.jpeg, .jpg, .png, .svg] are supported'))
+        const extensionSupported = /jpg|jpeg|png|svg/.test(mimetype);
+        if (!extensionSupported) cb(new Error('only extensions [.jpeg, .jpg, .png, .svg] are supported'))
 
         Product.findByPk(id)
         .then(product => {
@@ -26,6 +38,22 @@ var upload = multer({
         })
         .catch(cb)
     }
-})
+}).array('image')
 
-module.exports = upload.array('image')
+var ProfileImageUploader = multer({ 
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        const { mimetype} = file
+
+        const extensionSupported = /jpg|jpeg|png|svg/.test(mimetype);
+        if (!extensionSupported) cb(new Error('only extensions [.jpeg, .jpg, .png, .svg] are supported'))
+
+        cb(null, true)
+    }
+}).single('image')
+
+module.exports = {
+    createProductUploader,
+    updateProductUploader,
+    ProfileImageUploader
+}

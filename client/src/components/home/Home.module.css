@@ -1,25 +1,21 @@
-.container{
-    height: max-content;
+.container_home{
+    height: 100%;
     width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 1;
     background-color: var(--background);
-    
 }
-.navBar{
-    position: relative;
-    top: 0;
+.container_header{
+    position: sticky;
+    top: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     color: #DFE6E9;
-    z-index: 500;
+    z-index: 100;
 }
-.title{
-    margin: 10px 0;
-}
-.home{
-    margin-top: 145px;
+.container_absolute{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 150;
 }

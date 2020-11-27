@@ -1,11 +1,18 @@
+
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .imagesContainer{
     height: 100px;
-    width: 100%;
+    width: 95%;
     padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border: solid 2px whitesmoke;
+    border: 1px solid #ab47bc;
     border-radius: 5px;
 }
 .imagesContainer img{

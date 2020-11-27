@@ -1,0 +1,213 @@
+.container{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
+}
+.container_main{
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: #DFE6E9;
+    backdrop-filter: blur(5px) brightness(70%);
+    animation: containerMount .4s linear;
+    height: 100%;
+    padding: 10px;
+    overflow-y: auto;
+}
+.container_button_close{
+    position: absolute;
+    display: flex;
+    right: 10px;
+    top: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #ab47bc;
+    border-radius: 50%;
+}
+.back{
+    background-color: transparent;
+    color: #7b1fa2;
+    cursor: pointer;
+    color: #DFE6E9;
+}
+.container_flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+.container_img_title_flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+.container_background{
+    width: 65%;
+    box-sizing: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.container_about_product{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    height: 450px;
+    color: #282C34;
+    padding: 10px;
+    font-size: 20px;
+}
+.container_title_price_stock_ranking{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px;
+}
+.container_title_price_stock_ranking p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.container_title{
+    display: flex;
+    justify-content: center;
+    color: #282C34;
+    margin: 10px 0;
+}
+.name{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: normal;
+}
+.p_price{
+    font-size: 50px;
+    letter-spacing: 5px;
+}
+.p_reviews{
+    color: #7b1fa2;
+}
+.container_stock_select{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 16px;
+    width: 100%;
+}
+.container_select_p_flex{
+    display: flex;
+    width: 100%;
+    margin: 10px 0 ;
+    align-items: center;
+}
+.container_select_p_flex div label{
+    font-size: 18px;
+}
+.container_select{
+    background-color: transparent;
+    color: #282C34;
+    outline: none;
+    border: none;
+    width: 50px;
+    font-size: 16px;
+}
+.p_stock_available{
+    font-size: 16px;
+    color: #786C64;
+    margin-left: 10px;
+}
+.container_button{
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+.container_button button{
+    width: 100%;
+    height: 35px;
+    background-color: #7b1fa2;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+    color: #DFE6E9;
+}
+.container_empty{
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 1px solid #7b1fa2;
+    margin-top: 10px;
+}
+.container_description,
+.container_review{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    border-bottom: 1px solid #7b1fa2;
+}
+.container_description h3,
+.container_review h3{
+    font-size: 22px;
+}
+.container_description_product{
+    font-size: 18px;
+}
+.container_description_product,
+.container_description_review {
+    padding: 10px;
+}
+@media (max-width: 768px){
+    .container_img_title_flex{
+        flex-direction: column;
+    }
+    .container_background{
+        width: 100%;
+        height: 480px;
+    }
+    .container_about_product{
+        align-items: center;
+        width: 100%;
+    }
+    .container_stock_select{
+        align-items: center;
+    }
+    .container_select_p_flex{
+        justify-content: center;
+    }
+}
+@media (max-width: 521px){
+    .container_description_product,
+    .container_description_review{
+    padding: 0px;
+    }
+}
+
+@keyframes containerMount{
+    0%   { opacity: 0; transform: scale(.5);}
+    50%  { opacity: 0;}
+    100% { opacity: 1; transform: scale(1);}
+}
+@keyframes containerUnmount{
+    0%   { opacity: 1; transform: scale(1);}
+    50%  { opacity: 0;}
+    100% { opacity: 0; transform: scale(.5);}
+}
+@keyframes info{
+    0%   { opacity: 0; position: absolute; left: 50%;}
+    75%  { opacity: 0;}
+    100% { opacity: 1; position: absolute; left: 0%;}
+}

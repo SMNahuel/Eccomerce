@@ -1,0 +1,37 @@
+.container_main{
+    display: flex;
+    align-items: center;
+    width: 220px;
+}
+.container_arrowBack{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.container_input_buttons{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #DFE6E9;
+    padding: 0 10px;
+    border-radius: 15px;
+    margin: 0px 10px;
+}
+.container_input_buttons input{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: medium;
+}
+.container_input_buttons button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}

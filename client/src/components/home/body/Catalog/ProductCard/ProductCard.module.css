@@ -1,0 +1,107 @@
+.container{
+    position: relative;
+}
+.container_addToCart{
+    position: absolute;
+    bottom: 5px;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -10;
+    width: 100%;
+    opacity: 0;
+}
+.container_addToCart button {
+    width: 50%;
+    height: 25px;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.container_main:hover .container_addToCart{
+    visibility: visible;
+    z-index: 1;
+    opacity: 1;
+    transition: all .5s;
+}
+.container_main{
+    width: 250px;
+    margin: 15px;
+    height: 325px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    filter: brightness(90%);
+    box-shadow: 0px 0px 5px var(--green-primary);
+    -webkit-box-reflect: below 0 linear-gradient(transparent 95%, white);
+    position: relative;
+    overflow: hidden;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    color:  #ffffff;
+}
+.name{
+    font-size: 20px;
+    margin: 10px;
+}
+.ranking{
+    font-size: 16px;
+    margin: 10px;
+}
+.container_main:hover{
+    filter: brightness(110%);
+    cursor: pointer;
+}
+.container_absolute{
+    opacity: 0;
+    position: absolute;
+    background-color: rgba(171,71,188, .95);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    color: #DFE6E9;
+    top: 100px;
+    overflow-y: auto;
+    visibility: hidden;
+}
+.container_absolute::-webkit-scrollbar{
+    width: 5px;
+    background-color: #DFE6E9;
+}
+.container_absolute h1{
+    align-self: center;
+    font-size: 20px;
+    opacity: 1;
+}
+.container_absolute p{
+    font-size: 16px;
+    margin: 3px 0;
+}
+.container_absolute button{
+    width: 50%;
+    margin: 5px auto;
+    height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.container_main:hover .container_absolute{
+    visibility: visible;
+    transition: all .5s linear;
+    opacity: 1;
+    top: 0;
+}

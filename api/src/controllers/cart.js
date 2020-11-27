@@ -1,4 +1,4 @@
-const { Cart, Order, User, Product } = require('../db.js');
+const { Cart, Product, Image, Review, User} = require('../db.js');
 const order = require('./order');
 
 module.exports = {
@@ -19,26 +19,25 @@ module.exports = {
         })
     },
 
-    addToCartAnonimus: function({ productId, quantity }){
-        const userPromise = User.create()
-        const cartPromise = Cart.create()
+    addToCartAnonimus: function({ productId, quantity }, cartId){
+        const cartPromise = cartId ? Cart.findByPk(cartId) : Cart.create()
         const productPromise = Product.findByPk(productId)
-        return Promise.all([userPromise, cartPromise, productPromise])
-        .then(([user, cart, product]) => {
+        return Promise.all([cartPromise, productPromise])
+        .then(([cart, product]) => {
             let stockRest = product.stock - quantity
-            if (stockRest < 0) throw new Error('Not enough stock')
+            if (stockRest < 0) throw 'Not enough stock'
+            cartId = cart.id
             return Promise.all([
-                user.addCart(cart),
                 cart.addProduct(product, {
                     through: {
                         price: product.price,
                         quantity
                     }
                 }),
-                Product.update({stock:stockRest},{where:{id:productId}})
+                product.update({stock:stockRest})
             ])
         })
-        .then(([user]) => this.cartOf(user.id))
+        .then(() => this.getById(cartId))
     },
 
     addToCart: function(userId, { productId, quantity }){
@@ -53,7 +52,7 @@ module.exports = {
         return Promise.all([cartPromise, productPromise])
         .then(([cart, product]) => {
             let stockRest = product.stock - quantity
-            if (stockRest < 0) throw new Error('Not enough stock')
+            if (stockRest < 0) throw 'Not enough stock'
             return Promise.all([
                 cart.addProduct(product, {
                     through: {
@@ -78,20 +77,43 @@ module.exports = {
     },
 
     update: function(userId, {id, products}){
-        return Promise.all(products.map(p => order.update(id, p)))
+        return this.belongsTo(id, userId)
+        .then(belongsToUser => {
+            if (!belongsToUser){
+                throw 'The cart must belong to the user to be updated'
+            }
+            return Promise.all(products.map(p => order.update(id, p)))
+        })
         .then(() => this.cartOf(userId))
     },
 
-    create: function(userId, {id, products}){
-        return Promise.all(products.map(p => order.updateWithActualPrices(id, p)))
-        .then(() => Cart.update({state:'created'},{where:{id:id}}))
+    create: function(userId, {id, products, email}){
+        return this.belongsTo(id, userId)
+        .then(belongsToUser => {
+            if (!belongsToUser){
+                throw 'The cart must belong to the user to be created'
+            }
+            return Promise.all(products.map(p => order.updateWithActualPrices(id, p)))
+        })
+        .then(() => Cart.update({state:'created', emailTo:email},{where:{id:id}}))
         .then(() => this.cartOf(userId))
     },
 
     cancel: function(userId, {id, products}){
-        return Promise.all(products.map(p => order.release(id, p)))
+        return this.belongsTo(id, userId)
+        .then(belongsToUser => {
+            if (!belongsToUser){
+                throw 'The cart must belong to the user to be created'
+            }
+            return Promise.all(products.map(p => order.release(id, p)))
+        })
         .then(() => Cart.update({state:'canceled'},{where:{id:id}}))
         .then(() => this.cartOf(userId))
+    },
+
+    process: function({id}){
+        return Cart.update({state:'processing'},{where:{id:id}})
+        .then(() => this.getAll())
     },
 
     orders: function(userId){
@@ -104,6 +126,18 @@ module.exports = {
             include: {
                 model: Product,
                 attributes: ['id', 'name'],
+                include:[{
+                    model: Image,
+                    attributes: ["url"],
+                    through: {
+                        attributes: []
+                    }
+                },{
+                    model: Review,
+                    attributes: ["id","qualification","message"],
+                    where: {userId},
+                    required: false
+                }],
                 through: {
                     attributes: ['price', 'quantity']
                 }
@@ -128,17 +162,20 @@ module.exports = {
         })
     },
 
-    getAll : function(){
+    getAll: function(){
         return Cart.findAll({
             attributes: ['id', 'state', 'createdAt', 'updatedAt'],
             order: ['state'],
-            include: {
+            include: [{
                 model: Product,
                 attributes: ['id', 'name'],
                 through: {
                     attributes: ['price', 'quantity']
                 }
-            }
+            },{
+                model: User,
+                attributes: ['id','name', 'email']
+            }]
         })
     }
 }
