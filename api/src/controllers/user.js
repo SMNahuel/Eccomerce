@@ -195,5 +195,16 @@ module.exports = {
             { where: { id: userId } }
         )
         .then(() => this.getById(userId))
-    }
+    },
+
+    getByEmail: function(email){
+        return User.findOne({where: {email}, attributes: ['id', 'email', 'name', 'rolId']})
+        .then(this.session)
+    },
+
+    setNewPassword: function(email, newPassword){
+        return User.findOne({where: {email}})
+        .then(user => user.update({password: newPassword}))
+        .then(() => 'success')
+    },
 }

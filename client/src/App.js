@@ -10,8 +10,9 @@ import CRUDProducts from './components/Admin/CRUDProducts/CRUDProducts'
 import TableOrders from './components/Admin/TableOrders/TableOrders';
 import Orders from './components/Orders/Orders';
 import UserProfile from './components/UserProfile/UserProfile';
-import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers'
-import AuthSuccess from './components/AuthSuccess/AuthSuccess'
+import CRUDUsers from './components/Admin/CRUDUsers/CRUDUsers';
+import AuthSuccess from './components/AuthSuccess/AuthSuccess';
+import ForgotenPassword from './components/ForgotenPassword/ForgotenPassword';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/login" component={LogIn}/>
         <Route exact path="/AuthSuccess" component={AuthSuccess}/>
         <Route exact path="/" component={Home}/>
+        <Route exact path="/password/:key" render={({match}) => <ForgotenPassword passKey={match.params.key}/>}/>
         <Route path="/" render={()=>(
           <>
             <Header/>
