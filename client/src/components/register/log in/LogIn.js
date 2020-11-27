@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import s from './LogIn.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../../../redux/action-creators'
+import api from '../../../redux/action-creators';
 import { Redirect, Link } from 'react-router-dom';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import Google from '../../../img/Google.svg'
+import Google from '../../../img/Google.svg';
+import axios from '../../../utils/axios';
 
 
 function LogIn() {
@@ -30,6 +31,20 @@ function LogIn() {
             `Autenticate con ${provider}`,
             `width=${width},height=${height},top=${top},left=${left},toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no`
         );
+    }
+    const onForgottenPassword = e => {
+        if (input.email) {
+            axios.post(`${process.env.REACT_APP_API_URL}/auth/forgottenPassword`, {email: input.email})
+            .catch(err => {
+                if (err.response) {
+                    alert(`Error! \n Status: ${err.response.status}\n${err.response.data}`);
+                } else {
+                    alert(`Error! ${err}`);
+                }
+            })
+        } else {
+            alert('Ingresa un email\nPor favor')
+        }
     }
 
     return (
@@ -75,6 +90,7 @@ function LogIn() {
                             <LockOutlinedIcon />
                             <label>Password</label>
                         </div>
+                        <button onClick={onForgottenPassword}>As olvidado tu contraseña?</button>
                         <div className={s.container_button}>
                             <button type="submit">Log In</button>
                         </div>
