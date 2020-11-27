@@ -26,25 +26,30 @@
     background-color: #ab47bc;
     
 }
-.filter{
+.filters{
     background-color: #ab47bc;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 5px;
 }
-.filter_state{
+.filter{
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    width: 15%;
 }
-.filter_state > select{
+.filter > select{
     border: none;
     outline: none;
     background-color: transparent;
     font-size: 16px;
     color: white;
-    width: 50px;
+    width: 80px;
 }
-.filter_state > select option{
+.filter > select option{
     background-color: grey;
+}
+.container_filters{
+    display: flex;
+    justify-content: space-evenly;
 }
