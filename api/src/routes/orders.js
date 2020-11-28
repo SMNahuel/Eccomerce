@@ -17,7 +17,18 @@ server.get('/admin', forAdmin, (req,res,next)=>{
 	.then(r=> res.send(r))
 	.catch(next);
 })
+//Modificar una order
+server.put('/change', forAdmin, (req, res, next) => {
+    const {state} = req.body;
+    const {id} = req.body.order;
+    if (!id) {
+        return res.status(400).send('A cart content is required to process a cart');
+    }
 
+    return cart.changeState(id, state)
+    .then(r => res.send(r))
+    .catch(next)
+})
 // Ruta que permite procesar una orden
 server.put('/process', forAdmin, (req, res, next) => {
     const { id } = req.body
