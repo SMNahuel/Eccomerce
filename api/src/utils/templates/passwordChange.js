@@ -1,4 +1,4 @@
-module.exports = function ({name, key}) {
+module.exports = function (name, {key}) {
     return `
         <h1>Hola ${name}</h1>
         <span>Se a solicitado un cambio de password con tu email</span>

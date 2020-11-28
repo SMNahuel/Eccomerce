@@ -49,6 +49,7 @@ function TableOrders() {
         }
     }
     const onProcess = (order, state) => {
+<<<<<<< HEAD
         console.log(order)
         if(state === 'completed'){
             axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, order)
@@ -61,13 +62,31 @@ function TableOrders() {
         //.then(({data})=>setOrders(data))
         axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, {order, state})
         .then(({data})=>setOrders(data)) 
+=======
+        const price = orderMount(order)
+        const priceOrder = {
+            price: price,
+            order: order
+        }
+>>>>>>> f050a921494dbcc1f96509876b27ec8390799021
         setActivate({
             action: false,
             order: ''
         })
+<<<<<<< HEAD
         
     }
+=======
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, { order, state })
+            .then(({ data }) => setOrders(data))
+>>>>>>> f050a921494dbcc1f96509876b27ec8390799021
 
+        if (state === 'completed') {
+            axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, priceOrder)
+        }
+    }
+    
+    
     const change = value => {
         value === "all" ? setFilterOrders({
                 filter: value,
@@ -145,7 +164,7 @@ function TableOrders() {
                     </tr>
                 </thead>
                 <tbody>
-                {orders && orders.map(order => 
+                {filterOrders.carts && filterOrders.carts.map(order => 
                         <tr key={order.id}>
                             <td>{order.id}</td>
                             <td>{order.state}</td>
