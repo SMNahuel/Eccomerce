@@ -30,11 +30,10 @@ server.put('/process', forAdmin, (req, res, next) => {
 })
 
 server.post('/process', forAdmin, (req, res, next) => {
-    user.read(req.body)
-    .then(r=> user.getById(r.id))
-    .then(r => checkout(r.email, r.name))
-    .then(r => res.send('Email sended'))
-    .catch(next)
+    const {user} = req.body
+    checkout(user.email, user.name)    
+
+    res.send('Email sended')    
 })
 
 module.exports = server;
