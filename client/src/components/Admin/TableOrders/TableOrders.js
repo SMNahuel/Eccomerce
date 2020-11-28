@@ -49,9 +49,13 @@ function TableOrders() {
             })
         }
     }
-    const onProcess = (order) => {
-         axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order, user)
+    const onProcess = (order, state) => {
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, {order, state})
         .then(({data})=>setOrders(data)) 
+        setActivate({
+            action: false,
+            order: ''
+        })
     }
 
     const change = value => {
@@ -149,7 +153,7 @@ function TableOrders() {
         </div>
         }
             {
-                activate.action === true && <ChangeState order={activate.order} onProcess={onProcess}/>  
+                activate.action === true && <ChangeState order={activate.order} onProcess={onProcess} changeState={changeState}/>  
             }
             
         </div>
