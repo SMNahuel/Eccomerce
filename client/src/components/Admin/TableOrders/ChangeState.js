@@ -1,60 +1,94 @@
 import React from 'react';
 import style from './ChangeState.module.css';
-
-function ChangeState({ order, onProcess }) {
+import { useState} from 'react'
+function ChangeState({order, onProcess, changeState}) {
     let products = order.products;
-    let state = ['Processing', 'Completed', 'Canceled']
-    const onCheck = () => {
-        console.log('buena rey')
+    const [check, setCheck] = useState({
+        selected: order.state
+    })
+    const onCheck = (name, val) => {
+        setCheck({
+            selected: val
+        })
+
     }
-    const handleSumbit = function () {
-        onProcess(order)
+    const handleSumbit = function(){
+        onProcess(order, check.selected)
     }
     return (
         <div>
-            <h1>Orden numero {order.id}</h1>
-            <h2>Usuario: {order.user.name}</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products && products.map(product =>
-                        <tr key={product.id}>
+                <h1>Orden numero {order.id}</h1>
+                <h2>Usuario: {order.user.name}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>                    
+                    {products && products.map(product => 
+                        <tr key ={product.id}>
                             <td>{product.name}</td>
                             <td>${product.order.price}</td>
                             <td>{product.order.quantity}</td>
                         </tr>
                     )}
+                    </tbody>
+                </table>
 
-
-                </tbody>
-            </table>
-            <div className={style.formulario} >
-                {
-                    state.map(s =>
-                        <label
-                            className={style.checkbox}
-                            key={s}>
+                <div className={style.formulario} >
+                        <label 
+                        className={style.checkbox}
+                        >
+                            El estado actual es {check.selected} <br />
                             <input
-
-                                type='checkbox'
-                                name={s}
-                                id={s}
+                                checked={check.selected === 'processing'}
+                                id='processing'
+                                type='radio'
+                                name='processing'
+                                value='processing'
+                                onChange={(e) => onCheck('processing', e.target.value)}
                             />
-                            <label htmlFor={s}>
-                                {s}
+                            <label htmlFor='processing'>
+                                Processing
+                            </label>
+                        </label>                        
+                        <label 
+                        className={style.checkbox}
+                        >
+                            <input
+                                checked={check.selected === 'completed'}
+                                id='completed'
+                                type='radio'
+                                name='completed'
+                                value='completed'
+                                onChange={(e) => onCheck('completed', e.target.value)}
+                            />
+                            <label htmlFor='completed'>
+                                Completed
+                            </label>
+                        </label>                        
+                        <label 
+                        className={style.checkbox}
+                        >
+                            <input
+                                checked={check.selected === 'canceled'}
+                                id='canceled'
+                                type='radio'
+                                name='canceled'
+                                value='canceled'
+                                onChange={(e) => onCheck('canceled', e.target.value)}
+                            />
+                            <label htmlFor="canceled">
+                                Canceled
                             </label>
                         </label>
-                    )
-                }
-                <button onClick={handleSumbit}>ACEPTAR</button>
-            </div>
-        </div>
+                </div>
+            <button onClick={handleSumbit}>ACEPTAR</button>
+            <button onClick={changeState}>CANCELAR</button>
+        </div> 
     )
 }
 
