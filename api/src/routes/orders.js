@@ -42,9 +42,10 @@ server.put('/process', forAdmin, (req, res, next) => {
 })
 
 server.post('/process', forAdmin, (req, res, next) => {
-    const {user} = req.body
-    checkout(user.email, user.name)    
-
+    const { order } = req.body
+    const data = req.body;
+    // console.log(order.user.email, data)
+    checkout(order.user.email, data)    
     .then(r => res.send('Email sended'))
     .catch(next)
 })
