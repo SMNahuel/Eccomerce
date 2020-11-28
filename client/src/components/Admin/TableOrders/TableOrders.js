@@ -49,17 +49,24 @@ function TableOrders() {
         }
     }
     const onProcess = (order, state) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, {order, state})
-        .then(({data})=>setOrders(data)) 
+        const price = orderMount(order)
+        const priceOrder = {
+            price: price,
+            order: order
+        }
         setActivate({
             action: false,
             order: ''
         })
-        //axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
-        //.then(({data})=>setOrders(data))
-        axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, order)
-    }
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, { order, state })
+            .then(({ data }) => setOrders(data))
 
+        if (state === 'completed') {
+            axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, priceOrder)
+        }
+    }
+    
+    
     const change = value => {
         value === "all" ? setFilterOrders({
                 filter: value,
