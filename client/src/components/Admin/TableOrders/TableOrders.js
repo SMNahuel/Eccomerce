@@ -1,6 +1,5 @@
 import axios from '../../../utils/axios';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useState, useEffect} from 'react'
 import s from './TableOrders.module.css'
 import ChangeState from './ChangeState';
@@ -15,7 +14,7 @@ function TableOrders() {
         carts: []
     })
 
-    const user = useSelector(state => state.user)
+    
     const [activate, setActivate] = useState({
         action: false
     })

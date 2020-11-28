@@ -27,7 +27,7 @@ function ChangeState({order, onProcess, changeState}) {
                             <th>Cantidad</th>
                         </tr>
                     </thead>
-                    <tbody>                    
+                    <tbody className={style.filas}>                    
                     {products && products.map(product => 
                         <tr key ={product.id}>
                             <td>{product.name}</td>
@@ -38,9 +38,8 @@ function ChangeState({order, onProcess, changeState}) {
                     </tbody>
                 </table>
 
-                <div className={style.formulario} >
+                <div  className={style.contenedor}>
                         <label 
-                        className={style.checkbox}
                         >
                             El estado actual es {check.selected} <br />
                             <input
@@ -55,9 +54,7 @@ function ChangeState({order, onProcess, changeState}) {
                                 Processing
                             </label>
                         </label>                        
-                        <label 
-                        className={style.checkbox}
-                        >
+                        <label>
                             <input
                                 checked={check.selected === 'completed'}
                                 id='completed'
@@ -70,9 +67,7 @@ function ChangeState({order, onProcess, changeState}) {
                                 Completed
                             </label>
                         </label>                        
-                        <label 
-                        className={style.checkbox}
-                        >
+                        <label>
                             <input
                                 checked={check.selected === 'canceled'}
                                 id='canceled'
