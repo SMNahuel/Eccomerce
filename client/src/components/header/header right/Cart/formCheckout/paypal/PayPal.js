@@ -1,11 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import s from './PayPal.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import axios from 'axios';
 
 export default function PayPal({ user, setCheckout, price, checkout }){
 
-    const paypal = useRef();    
-
+    const paypal = useRef();  
+    const userPrice = {
+      price: price,
+      name: user.name,
+      email: user.email
+    }  
     useEffect(() => {
       window.paypal.Buttons({
           createOrder: (data, actions, err) => {
@@ -16,7 +21,7 @@ export default function PayPal({ user, setCheckout, price, checkout }){
                   description: "test description",
                   amount: {
                     currency_code: "USD",
-                    value: 1,
+                    value: 0.1,
                   },
                 },
               ],
@@ -24,7 +29,7 @@ export default function PayPal({ user, setCheckout, price, checkout }){
           },
           onApprove: async (data, actions) => {
             const order = await actions.order.capture();
-            console.log(order);
+            axios.post(`${process.env.REACT_APP_API_URL}/orders/confirmPay`, userPrice)
           },
           onError: (err) => {
             console.log(err);
@@ -32,7 +37,6 @@ export default function PayPal({ user, setCheckout, price, checkout }){
         })
         .render(paypal.current);
     }, []);
-    console.log(price)
     return (
       <div>
         <div onClick={() => setCheckout(!checkout)} className={s.container_button_arrow}>

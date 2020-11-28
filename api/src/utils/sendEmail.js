@@ -23,7 +23,7 @@ function checkout(email, data){
 }
 
 function confirmPay(email, data){
-  const template = require('./templates/checkout.js')
+  const template = require('./templates/confirmPay.js')
   return sendEmail(email, template(data), 'Wultur Checkout')
 }
 

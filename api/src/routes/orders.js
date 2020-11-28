@@ -1,8 +1,9 @@
 const server = require('express').Router();
 const cart = require('../controllers/cart');
 const user = require('../controllers/user');
-const {checkout} = require('../utils/sendEmail')
+const {checkout, confirmPay} = require('../utils/sendEmail')
 const { forAdmin, forGuest } = require('../middlewares/authenticate');
+
 
 // Ruta qque devuelve las ordenes de un usuario
 server.get('/', forGuest, (req,res,next)=>{
@@ -44,6 +45,14 @@ server.post('/process', forAdmin, (req, res, next) => {
     const {user} = req.body
     checkout(user.email, user.name)    
 
+    .then(r => res.send('Email sended'))
+    .catch(next)
+})
+
+server.post('/confirmPay', (req, res, next) =>{
+    const data = req.body;
+    console.log(data)
+    confirmPay(data.email, data)
     .then(r => res.send('Email sended'))
     .catch(next)
 })
