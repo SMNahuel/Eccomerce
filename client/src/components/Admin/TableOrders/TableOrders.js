@@ -55,6 +55,9 @@ function TableOrders() {
             action: false,
             order: ''
         })
+        //axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
+        //.then(({data})=>setOrders(data))
+        axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, order)
     }
 
     const change = value => {
