@@ -44,7 +44,8 @@ server.post('/process', forAdmin, (req, res, next) => {
     const {user} = req.body
     checkout(user.email, user.name)    
 
-    res.send('Email sended')    
+    .then(r => res.send('Email sended'))
+    .catch(next)
 })
 
 module.exports = server;

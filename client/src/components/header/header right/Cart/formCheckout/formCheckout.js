@@ -165,7 +165,7 @@ export default function FormCheckout({items, price, user, onBack}){
                         <input type="button" onClick={() => onBack()} value="Seguir comprando" />
                     </div>
                 </div>
-                : <PayPal setCheckout={setCheckout} checkout={checkout} price={price}/>}
+                : <PayPal setCheckout={setCheckout} user={user} checkout={checkout} price={price}/>}
         </>
     )
 }
