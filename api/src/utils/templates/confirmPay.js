@@ -1,3 +1,3 @@
-module.exports = function (name) {
-    return `<strong>Estimado ${name} su pago ha sido procesado por un total de: </strong>`
+module.exports = function ( data ) {
+    return `<strong>Estimado ${data.name} su pago ha sido procesado por un total de: ${data.price} USD</strong>`
 }
