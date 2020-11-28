@@ -15,7 +15,7 @@ function ChangeState({order, onProcess, changeState}) {
     const handleSumbit = function(){
         onProcess(order, check.selected)
     }
-    return(
+    return (
         <div>
                 <h1>Orden numero {order.id}</h1>
                 <h2>Usuario: {order.user.name}</h2>
@@ -35,10 +35,9 @@ function ChangeState({order, onProcess, changeState}) {
                             <td>{product.order.quantity}</td>
                         </tr>
                     )}
-                    
-
                     </tbody>
                 </table>
+
                 <div className={style.formulario} >
                         <label 
                         className={style.checkbox}
