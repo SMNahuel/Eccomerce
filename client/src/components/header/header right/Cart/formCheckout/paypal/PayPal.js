@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import s from './PayPal.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-export default function PayPal({ setCheckout, price, checkout }){
+export default function PayPal({ user, setCheckout, price, checkout }){
 
     const paypal = useRef();    
 
