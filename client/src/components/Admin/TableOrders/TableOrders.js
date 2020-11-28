@@ -50,15 +50,23 @@ function TableOrders() {
         }
     }
     const onProcess = (order, state) => {
+        console.log(order)
+        if(state === 'completed'){
+            axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, order)
+            setActivate({
+                action: false,
+                order: ''
+            })
+        }else{
+        //axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
+        //.then(({data})=>setOrders(data))
         axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, {order, state})
         .then(({data})=>setOrders(data)) 
         setActivate({
             action: false,
             order: ''
         })
-        //axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
-        //.then(({data})=>setOrders(data))
-        axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, order)
+        }
     }
 
     const change = value => {
