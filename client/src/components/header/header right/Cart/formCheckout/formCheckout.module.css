@@ -114,6 +114,7 @@
     .container{
         display: flex;
         justify-content: center;
+        flex-direction: column;
     }
     .products{
         display: none;
@@ -135,5 +136,8 @@
     }
     .container_num{
         margin-top: 20px;
+    }
+    .pago{
+        margin-top: 30px;
     }
 }
