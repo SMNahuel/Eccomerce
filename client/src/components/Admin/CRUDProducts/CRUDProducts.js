@@ -46,15 +46,17 @@ export default function CRUDProducts({history}){
             stock: product.stock,
             categories: product.categories
         }))
-        var formData = new FormData();
-        product.images.forEach(img => 
-            formData.append("image", dataURLtoFile(img.src), img.name)
-        )
-        axios.post(
-            `${process.env.REACT_APP_API_URL}/products/images/${id}`,
-            formData,
-            {headers: {'Content-Type': 'multipart/form-data'}}
-        )
+        if(product.images.length > 0){
+            var formData = new FormData();
+            product.images.forEach(img => 
+                formData.append("image", dataURLtoFile(img.src), img.name)
+            )
+            axios.post(
+                `${process.env.REACT_APP_API_URL}/products/images/${id}`,
+                formData,
+                {headers: {'Content-Type': 'multipart/form-data'}}
+            )
+        }
         setState({...state, action: null})
     }
 
