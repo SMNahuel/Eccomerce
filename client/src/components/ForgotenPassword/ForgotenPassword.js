@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import s from './ForgotenPassword.module.css';
 import axios from '../../utils/axios';
+import Logo from '../header/header left/Logo/Logo'
 
 export default function ForgotenPassword({passKey}) {
 
@@ -23,28 +24,47 @@ export default function ForgotenPassword({passKey}) {
         })
     };
 
-    const error = e => alert('¿Vos sos o te haces?');
-
     return (
-        redirect ? <Redirect to="/login"/>:
-        <div className={s.justifyDiv}>
-            <div className={s.boxStyle}>
-                <form onSubmit={sendPassword} className={s.formPassword}>
-                    <input onChange={onChange} name="newPassword" type="password" required pattern="[A-Za-z0-9 ]{5,100}" maxLength="100" autoComplete="off" placeholder="Escriba su nueva contraseña"/>
-                    <input onChange={onChange} name="newPassword2" type="password" required pattern="[A-Za-z0-9 ]{5,100}" maxLength="100" autoComplete="off" placeholder="Vuelve a escribir la Contraseña"/>
-
-                    {password.newPassword === password.newPassword2 ? 
-                        <button variant="contained" color="primary" type="submit">Aceptar</button>:
-                        <button variant="contained" color="primary" onClick={error}>Aceptar</button>
+        redirect ? <Redirect to="/login" /> :
+            <div className={s.container}>
+                <form onSubmit={sendPassword}>
+                    <Logo />
+                    <div className={s.container_inputs_label}>
+                        <input
+                            placeholder="Escriba su nueva contraseña"
+                            onChange={onChange}
+                            name="newPassword"
+                            type="password"
+                            required
+                            pattern="[A-Za-z0-9 ]{5,100}"
+                            maxLength="100"
+                            autoComplete="off"
+                            required />
+                        <label>Escriba su nueva contraseña</label>
+                    </div>
+                    <div className={s.container_inputs_label}>
+                        <input
+                            placeholder="Vuelve a escribir la contraseña"
+                            onChange={onChange}
+                            name="newPassword2"
+                            type="password"
+                            required
+                            pattern="[A-Za-z0-9 ]{5,100}"
+                            maxLength="100"
+                            autoComplete="off"
+                            required />
+                        <label>Vuelve a escribir la contraseña</label>
+                    </div>
+                    {password.newPassword === password.newPassword2 ?
+                        <button type="submit">Aceptar</button>
+                        : <button type="submit" disabled>Aceptar</button>
                     }
-
-                    <div className={password.activate}>
-                        {password.newPassword !== password.newPassword2 && 
+                    <div className={s.activate}>
+                        {password.newPassword !== password.newPassword2 &&
                             <label className={s.on}>No coinciden las nuevas contraseñas</label>
                         }
                     </div>
                 </form>
             </div>
-        </div>
     );
 };

@@ -1,7 +1,9 @@
 .container{
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     font-size: 18px;
     padding: 5px;
+    border: double;
+    border-color: gold;        
 }

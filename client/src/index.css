@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding-top: 70px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -16,4 +17,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.swiper-container {
+  width: 100%;
+  margin: 0 auto;
+  background-image: linear-gradient(#282C34, #5b657a, #282C34);
+}
+.swiper-slide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

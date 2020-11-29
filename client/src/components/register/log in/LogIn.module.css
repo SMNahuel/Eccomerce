@@ -138,7 +138,7 @@
 .container_have_account{
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 .container_link{
     text-decoration: none;
@@ -149,10 +149,11 @@
 }
 
 .butonChangePass {
-    margin-bottom: 25px;
+    margin-top: 10px;
     border: none;
     background-color: transparent;
-    color: #666;
+    color: #bFb6b9;
+    font-family: inherit;
     cursor: pointer;
     outline: none;
 }

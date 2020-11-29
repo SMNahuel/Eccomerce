@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import { useDispatch} from 'react-redux';
 import s from './passwordChange.module.css';
 import api from '../../redux/action-creators';
@@ -18,20 +17,22 @@ function ChangePassword({showFormPassword}){
             [e.target.name]: e.target.value
         })
     }
-    const sendPassword = function(){
+    const sendPassword = e =>{
+        e.preventDefault();
+        if(password.newPassword !== password.newPassword2){
+            alert("Las password son distintas")
+            return;
+        }
         const {oldPassword, newPassword} = password;
         dispatch(api.passwordChange(oldPassword, newPassword))
         showFormPassword()
     }
-    const error = function(){
-        alert('¿Vos sos o te haces?')
-    }
     return (
-        <div>
-                <form onSubmit={sendPassword} className={s.formPassword}>
-                    <div>
-                        <input 
-                        placeholder="Ingrese su anterior contraseña"
+        <div className={s.container}>
+            <form onSubmit={sendPassword}>
+                <div className={s.container_inputs_label}>
+                    <input
+                        placeholder="Ingrese su contraseña anterior"
                         type="password"
                         name="oldPassword"
                         onChange={onChange}
@@ -39,11 +40,12 @@ function ChangePassword({showFormPassword}){
                         maxLength="100"
                         autoComplete="off"
                         required
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <input 
+                    >
+                    </input>
+                    <label>Ingrese su contraseña anterior</label>
+                </div>
+                <div className={s.container_inputs_label}>
+                    <input
                         placeholder="Escriba su nueva contraseña"
                         type="password"
                         name="newPassword"
@@ -52,12 +54,13 @@ function ChangePassword({showFormPassword}){
                         maxLength="100"
                         autoComplete="off"
                         required
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <input 
-                        placeholder="Vuelve a escribir la Contraseña"
+                    >
+                    </input>
+                    <label>Escriba su nueva contraseña</label>
+                </div>
+                <div className={s.container_inputs_label}>
+                    <input
+                        placeholder="Vuelve a escribir su nueva contraseña"
                         type="password"
                         name="newPassword2"
                         onChange={onChange}
@@ -65,23 +68,19 @@ function ChangePassword({showFormPassword}){
                         maxLength="100"
                         autoComplete="off"
                         required
-                        >
-                        </input>
-                    </div>
-                    {
-                        (password.newPassword !== password.newPassword2) === true && 
-                            <Button variant="contained" color="primary" onClick={error}>Aceptar</Button>
-                    }
-                    {
-                    (password.newPassword !== password.newPassword2) === false &&
-                    <Button variant="contained" color="primary" type="submit">Aceptar</Button>
-                    }
-                    <Button variant="contained" color="secondary" onClick={showFormPassword} >Cancelar</Button>
-                    <div className={password.activate}>
-                        {(password.newPassword !== password.newPassword2) === true && 
+                    >
+                    </input>
+                    <label>Vuelve a escribir su nueva contraseña</label>
+                </div>
+                <div className={s.container_button}>
+                    <button className={s.button_accept} type="submit">Aceptar</button>
+                    <button className={s.button_cancel} onClick={showFormPassword} >Cancelar</button>
+                </div>
+                {/* <div className={password.activate}>
+                    {(password.newPassword !== password.newPassword2) === true &&
                         <label className={s.on}>No coinciden las nuevas contraseñas</label>}
-                    </div>
-                </form>
+                </div> */}
+            </form>
         </div>
     );
 }

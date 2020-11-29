@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import CheckCategory from '../CheckCategory/CheckCategory';
 import api from '../../../../redux/action-creators';
 
+
 import s from './CreateProduct.module.css'
 
 export default function CreateProduct({handleCreate, categories}) {
@@ -70,7 +71,7 @@ export default function CreateProduct({handleCreate, categories}) {
                         name="price"
                         onChange={onChange}
                         value={input.price}
-                        pattern="[0-9]{1,10}"
+                        pattern="[0-9,]{1,10}"
                         placeholder="Ingrese el precio"
                         title="Only Numbers"
                         autoComplete="off"

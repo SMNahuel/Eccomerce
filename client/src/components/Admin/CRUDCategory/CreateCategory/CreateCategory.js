@@ -37,7 +37,7 @@ function CreateCategory(){
                     placeholder="Nombre" 
                     required 
                     maxLength="50"
-                    pattern ="[A-Za-z0-9 ]{3,50}"
+                    pattern ="[0-9a-zA-ZÀ-ÿ\u00f1\u00d1 ]{3,50}"
                     autoComplete="off"
                     />
                     <label>Nombre</label>

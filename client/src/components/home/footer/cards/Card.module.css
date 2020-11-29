@@ -20,6 +20,9 @@
     justify-content: center;
     align-items: center;
 }
+.links a p:hover{
+    font-size: 17px;
+}
 .links a p{
     display: none;
 }
