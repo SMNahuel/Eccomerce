@@ -25,7 +25,6 @@
 }
 .logo,.logoLoading{
     transition: 1.5s;
-    cursor: pointer;
 }
 .backgroudLoading{
     opacity: 1;

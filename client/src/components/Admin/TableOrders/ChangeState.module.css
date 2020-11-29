@@ -13,6 +13,8 @@
 }
 .table{
     text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 .button_cancel,
 .button_accept{
