@@ -115,7 +115,11 @@ module.exports = {
         return Cart.update({state:'processing'},{where:{id:id}})
         .then(() => this.getAll())
     },
+    changeState: function(id, state){
 
+        return Cart.update({state:state},{where:{id:id}})
+        .then(() => this.getAll())
+    },
     orders: function(userId){
         return Cart.findAll({
             where:{
