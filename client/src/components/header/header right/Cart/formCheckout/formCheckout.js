@@ -82,7 +82,7 @@ export default function FormCheckout({items, price, user, onBack}){
     return(
         <>
             { !checkout ?
-                <div >
+                <div>
                     <div className={s.container}>
                         <div className={s.form}>
                             <p style={{ color: "grey", textAlign: "center" }}>los campos con <em style={{ color: "red" }}>* </em> son obligatorios</p><br />
