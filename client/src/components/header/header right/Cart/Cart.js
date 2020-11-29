@@ -93,7 +93,6 @@ function Cart() {
         ref.current.style.animation = s.containerUnmount + ' 450ms linear'
         setTimeout(onToggleActive, 400);
     };
-    
     return (
         <>
             {redirect && <Redirect to="/login" />}

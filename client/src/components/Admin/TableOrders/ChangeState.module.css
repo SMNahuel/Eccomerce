@@ -1,0 +1,37 @@
+.contenedor label{
+    font-size: 20px;
+    margin: 0px 10px;
+}
+
+.filas{
+    font-size: 20px;
+}
+.contenedor p{
+    font-size: 22px;
+    margin: 10px 0;
+    letter-spacing: 1.4px;
+}
+.table{
+    text-align: center;
+}
+.button_cancel,
+.button_accept{
+    width: 20%;
+    height: 30px;
+    margin: 10px 10px;
+    cursor: pointer;
+    border: 1px solid #DFE6E9;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #DFE6E9;
+}
+.button_accept:hover{
+    background-color: #ab47bc;
+    border-color: #ab47bc;
+}
+.button_cancel:hover{
+    background-color: #7b1fa2;
+    border-color: #7b1fa2;
+}

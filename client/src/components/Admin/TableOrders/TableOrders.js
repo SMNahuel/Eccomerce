@@ -1,8 +1,8 @@
 import axios from '../../../utils/axios';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useState, useEffect} from 'react'
 import s from './TableOrders.module.css'
+import ChangeState from './ChangeState';
 
 function TableOrders() {
 
@@ -14,8 +14,10 @@ function TableOrders() {
         carts: []
     })
 
-    const user = useSelector(state => state.user)
-
+    
+    const [activate, setActivate] = useState({
+        action: false
+    })
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/orders/admin`)
         .then(({data}) => {
@@ -33,12 +35,38 @@ function TableOrders() {
             acc + Number(product.order.price) * Number(product.order.quantity)
         , 0)
     }
-
-    const onProcess = order => {
-        axios.put(`${process.env.REACT_APP_API_URL}/orders/process`, order)
-        .then(({data})=>setOrders(data))
+    const changeState = function(){
+        if(activate.action === false){
+            setActivate({
+                action: true,
+                order: arguments[0]
+            })
+        }else{
+            setActivate({
+                action: false,
+                order: ''
+            })
+        }
     }
+    const onProcess = (order, state) => {
+        const price = orderMount(order)
+        const priceOrder = {
+            price: price,
+            order: order
+        }
+        setActivate({
+            action: false,
+            order: ''
+        })
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/change`, { order, state })
+            .then(({ data }) => setOrders(data))
 
+        if (state === 'completed') {
+            axios.post(`${process.env.REACT_APP_API_URL}/orders/process`, priceOrder)
+        }
+    }
+    
+    
     const change = value => {
         value === "all" ? setFilterOrders({
                 filter: value,
@@ -68,8 +96,11 @@ function TableOrders() {
     return (
         <>
         <div className={s.styleTableOrders}>
+        { activate.action === false &&
+        <div>
             <div className={s.filters}>
                 <h3>Filters: </h3>
+                
                 <div className={s.container_filters}>
                     <div className={s.filter}>
                         <h4>Estado:</h4>
@@ -99,6 +130,7 @@ function TableOrders() {
                         </select>
                     </div>
                 </div>
+                
             </div>
             <table className={s.container_table}>
                 <thead>
@@ -112,7 +144,7 @@ function TableOrders() {
                     </tr>
                 </thead>
                 <tbody>
-                    {filterOrders.carts && filterOrders.carts.map(order => 
+                {filterOrders.carts && filterOrders.carts.map(order => 
                         <tr key={order.id}>
                             <td>{order.id}</td>
                             <td>{order.state}</td>
@@ -120,15 +152,19 @@ function TableOrders() {
                             <td>{order.updatedAt}</td>
                             <td>{order.createdAt}</td>
                             <td className={s.button_details}>
-                                { order.state === 'created' ? 
-                                    <button onClick={()=>onProcess(order)}>Procesar</button>:
-                                    order.state
-                                }
+                            <button onClick={() => changeState(order)}>Modificar Orden</button>
                             </td>
                         </tr> 
-                    )}
+                )}
                 </tbody>
+             
             </table>
+        </div>
+        }
+            {
+                activate.action === true && <ChangeState order={activate.order} onProcess={onProcess} changeState={changeState}/>  
+            }
+            
         </div>
         </>
     );
