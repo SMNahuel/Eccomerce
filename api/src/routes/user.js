@@ -7,7 +7,6 @@ server.get('/', forAdmin, (req, res, next) => {
     user.read()
     .then(r => res.send(r))
 })
-
 // Ruta que permite promocionar a un usuario a admin
 server.put('/promote', forAdmin, (req, res, next) => {
     const { id } = req.body;
@@ -19,7 +18,6 @@ server.put('/promote', forAdmin, (req, res, next) => {
     .then(r => res.send(r))
     .catch(next)
 })
-
 // Ruta que permite demotear a un usuario a guest
 server.put('/demote', forAdmin, (req, res, next) => {
     const { id } = req.body;
@@ -30,7 +28,6 @@ server.put('/demote', forAdmin, (req, res, next) => {
     .then(r => res.send(r))
     .catch(next)
 })
-
 // Ruta que permite banear a un usuario
 server.put('/ban', forAdmin, (req, res, next) => {
     const { id } = req.body;
@@ -41,7 +38,6 @@ server.put('/ban', forAdmin, (req, res, next) => {
     .then(r => res.send(r))
     .catch(next)
 })
-
 //Ruta que permite consultar usuario por email
 server.post('/email', (req, res, next) =>{
     const {email} = req.body;

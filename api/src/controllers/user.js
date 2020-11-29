@@ -17,7 +17,6 @@ module.exports = {
         .then(this.checkBan)
         .then(this.session)
     },
-
     logingProvider: function (provider, providerId, name, email) {
         return User.findOne({where:{email}})
         .then(user => {
@@ -27,7 +26,6 @@ module.exports = {
         .then(this.checkBan)
         .then(this.session)
     },
-
     register: function ({ email, name, password}) {
         return User.findOne({
             attributes: ['id'],
@@ -39,11 +37,9 @@ module.exports = {
         })
         .then(user => this.getById(user.id))
     },
-
     anonymous: function () {
         return User.create({rolId: 2})
     },
-
     getById: function(userId){
         return User.findOne({
             attributes: ['id', 'email', 'name', 'rolId', 'pais', 'provincia', 'localidad', 'codigoPostal', 'calle', 'num', 'departamento', 'telefono'],
@@ -58,7 +54,6 @@ module.exports = {
         })
         .then(this.session)
     },
-
     exists: function(id){
         return User.findByPk(id)
         .then(r => !!r)

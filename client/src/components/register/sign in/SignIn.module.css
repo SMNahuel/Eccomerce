@@ -15,7 +15,7 @@
     height: 100%;
     padding: 10px 10px;
 }
-.container_signIn .form{
+.container_signIn form{
     background-color: #fff;
     border-radius: 10px;
     height: 430px;

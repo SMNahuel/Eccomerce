@@ -85,7 +85,7 @@ function SignIn(){
                         <img src={Google} alt="Google Logo" onClick={()=>loginProvider('google')}/>
                     </div>
                 </div>
-                <div className={s.form}>
+                <form >
                     <div className={s.container_inputs_signIn}>
                         <form onSubmit={register}>
                         <div className={s.container_inputs}>
@@ -130,7 +130,7 @@ function SignIn(){
                             <label>Password</label>
                         </div>
                         <div className={s.container_button}>
-                            <button type="sumbit">Sign Up</button>
+                            <button type="submit">Sign Up</button>
                         </div>
                         </form> 
 
