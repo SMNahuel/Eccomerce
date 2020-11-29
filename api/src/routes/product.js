@@ -3,6 +3,13 @@ const product = require('../controllers/product');
 const { createProductUploader, updateProductUploader } = require('../middlewares/uploadImg')
 const { forAdmin } = require('../middlewares/authenticate');
 
+//rutaa que trae los 5 productos de mejora rating
+server.get('/top', (req, res, next) => {
+	product.top()
+	.then(r => res.send(r))
+	.catch(next);
+})
+
 // Ruta que trae todos los productos
 server.get('/', (req, res, next) => {
 	product.read()

@@ -50,7 +50,7 @@ server.post('/process', forAdmin, (req, res, next) => {
     const { order } = req.body
     const data = req.body;
     // console.log(order.user.email, data)
-    checkout(order.user.email, data)    
+    checkout(order.user.email, data)
     .then(r => res.send('Email sended'))
     .catch(next)
 })

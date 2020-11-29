@@ -1,11 +1,12 @@
-const { Product, Category, Image, Review, User } = require('../db.js');
+const { Product, Category, Image, Review, conn } = require('../db.js');
 const { Op } = require("sequelize");
 
 
 module.exports = {
     read: function() {
         return Product.findAll({
-            attributes: ['id', 'name', 'description', 'price', 'stock'],
+            attributes: ['id', 'name', 'description', 'price', 'stock', [conn.fn('AVG', conn.col('reviews.qualification')), 'qualification']],
+            group: ['product.id', 'categories.id', 'images.id'],
             order: ["id"],
             include: [
                 {
@@ -24,11 +25,40 @@ module.exports = {
                 },
                 {
                     model: Review,
-                    attributes: ['qualification'],
-                    group: "productId",
+                    attributes: []
                 }
             ]
         })
+    },
+
+    top: function() {
+        return Product.findAll({
+            attributes: ['id', 'name', 'description', 'price', 'stock', [conn.fn('AVG', conn.col('reviews.qualification')), 'qualification_avg'], [conn.fn('COUNT', conn.col('reviews.id')), 'reviews_cant']],
+            group: ['product.id', 'categories.id', 'images.id'],
+            order: [[conn.fn('AVG', conn.col('reviews.qualification')), 'DESC'], [conn.fn('COUNT', conn.col('reviews.id')), 'DESC']],
+            include: [
+                {
+                    model: Category,
+                    attributes: ['id', 'name', 'description'],
+                    through: {
+                        attributes: []
+                    }
+                },
+                {
+                    model: Image,
+                    attributes: ['id', 'url'],
+                    through: {
+                        attributes: []
+                    }
+                },
+                {
+                    model: Review,
+                    attributes: [],
+                    required: true
+                }
+            ]
+        })
+        .then(r => r.slice(0, 5))
     },
 
     create: function({ name, description, price, stock, categories }) {
