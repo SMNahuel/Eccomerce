@@ -28,7 +28,6 @@ function SignIn(){
             `width=${width},height=${height},top=${top},left=${left},toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no`
         );
     }
-
     async function checked(){
         const verify = await axios.post(`${process.env.REACT_APP_API_URL}/user/email`, input)
         console.log(verify)
