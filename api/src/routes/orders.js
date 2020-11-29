@@ -4,12 +4,7 @@ const user = require('../controllers/user');
 const {checkout, confirmPay} = require('../utils/sendEmail')
 const { forAdmin, forGuest } = require('../middlewares/authenticate');
 
-<<<<<<< HEAD
 // Ruta que devuelve las ordenes de un usuario
-=======
-
-// Ruta qque devuelve las ordenes de un usuario
->>>>>>> f050a921494dbcc1f96509876b27ec8390799021
 server.get('/', forGuest, (req,res,next)=>{
 	cart.orders(req.user.id)
 	.then(r=> res.send(r))
@@ -46,13 +41,12 @@ server.put('/change', forAdmin, (req, res, next) => {
 }) */
 
 server.post('/process', forAdmin, (req, res, next) => {
-<<<<<<< HEAD
+
     const {user} = req.body
     checkout(user.email, user.name)
     .then(r => res.send('Email sended'))
     .catch(next)
-     
-=======
+    
     const { order } = req.body
     const data = req.body;
     // console.log(order.user.email, data)
@@ -67,7 +61,7 @@ server.post('/confirmPay', (req, res, next) =>{
     confirmPay(data.email, data)
     .then(r => res.send('Email sended'))
     .catch(next)
->>>>>>> f050a921494dbcc1f96509876b27ec8390799021
+
 })
 
 module.exports = server;

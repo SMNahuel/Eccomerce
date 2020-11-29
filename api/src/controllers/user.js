@@ -207,4 +207,8 @@ module.exports = {
         .then(user => user.update({password: newPassword}))
         .then(() => 'success')
     },
+    userByEmail: function(email){
+        return User.findOne({where: {email}, attributes: ['email','id']})
+        .then(r => r )
+    },
 }

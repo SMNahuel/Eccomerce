@@ -42,5 +42,16 @@ server.put('/ban', forAdmin, (req, res, next) => {
     .catch(next)
 })
 
+//Ruta que permite consultar usuario por email
+server.post('/email', (req, res, next) =>{
+    const {email} = req.body;
+    if(!email){
+        return res.status(400).send('an email is need');
+    }
+    user.userByEmail(email)
+    .then(r => res.send(r))
+    .catch(next)
+})
+
 
 module.exports = server;
