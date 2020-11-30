@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Catalog.module.css'
 import ProductCard from './ProductCard/ProductCard';
-import CarouselSwiper from './swiper/CarouselSwiper';
+/* import CarouselSwiper from './swiper/CarouselSwiper'; */
 
 export default function Catalog({products, handleDetail}) {
     return(
