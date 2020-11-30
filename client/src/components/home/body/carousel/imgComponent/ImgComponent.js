@@ -7,7 +7,7 @@ export default function ImgComponent({ product, onDetail }) {
     const image = product.images[0] ?
     `${process.env.REACT_APP_API_URL}${product.images[0].url}`:
     imgNotFound
-    console.log(product);
+    // console.log(product);
     return (
         <div className={s.container} style={{backgroundImage: `url(${image})`}}>
             <button onClick={onDetail}>GO!</button>

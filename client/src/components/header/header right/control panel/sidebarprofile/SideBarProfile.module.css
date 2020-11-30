@@ -12,6 +12,7 @@
     margin: 10px auto;
     border-bottom: 1px solid #F2AED4;
 }
+
 .container_flex{
     display: flex;
     flex-direction: column;
@@ -29,13 +30,7 @@
     border-radius: 10px;
 }
 .title_h4{
+    margin-left: 5px;
     color: #DFE6E9;
 }
-/* .container_cart{
-    display: none;
-} */
-/* @media (max-width: 375px){
-    .container_cart{
-        display: flex;
-    }
-} */
+

@@ -28,7 +28,7 @@ export default function PayPal({ user, setCheckout, price, checkout, onBuy }){
             });
           },
           onApprove: async (data, actions) => {
-            const order = await actions.order.capture();
+            // const order = await actions.order.capture();
             axios.post(`${process.env.REACT_APP_API_URL}/orders/confirmPay`, userPrice)
             onBuy()
           },
