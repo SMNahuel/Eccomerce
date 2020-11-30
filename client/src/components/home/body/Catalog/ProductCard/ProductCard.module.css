@@ -35,7 +35,6 @@
     border-radius: 10px;
     filter: brightness(90%);
     box-shadow: 0px 0px 5px var(--green-primary);
-    -webkit-box-reflect: below 0 linear-gradient(transparent 95%, white);
     position: relative;
     overflow: hidden;
 }
