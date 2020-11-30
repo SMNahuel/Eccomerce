@@ -21,8 +21,13 @@ export default function Carousel({onDetail}){
             autoplay={{ delay: 5000 }}
             slidesPerView= {1}
             effect={'coverflow'}
-            coverflowEffect={{rotate: 30, slideShadows: false, stretch: 500}}
+            coverflowEffect={{rotate: 30, slideShadows: false}}
             pagination={{ clickable: true }}
+            breakpoints={{
+                320: { spaceBetween: -100 },
+                480: { spaceBetween: -300 },
+                640: { spaceBetween: -500 }
+            }}
         >
             {products.map(product => (
                     <SwiperSlide key={product.id}>
