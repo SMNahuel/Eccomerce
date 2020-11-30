@@ -5,7 +5,8 @@ const { Op } = require("sequelize");
 module.exports = {
     read: function() {
         return Product.findAll({
-            attributes: ['id', 'name', 'description', 'price', 'stock'],
+            attributes: ['id', 'name', 'description', 'price', 'stock', [conn.fn('AVG', conn.col('reviews.qualification')), 'qualification']],
+            group: ['product.id', 'categories.id', 'images.id'],
             order: ["id"],
             include: [
                 {
@@ -24,8 +25,7 @@ module.exports = {
                 },
                 {
                     model: Review,
-                    attributes: ['qualification'],
-                    group: "productId",
+                    attributes: []
                 }
             ]
         })

@@ -1,7 +1,7 @@
 const cart = require('./src/controllers/cart.js');
 const { Product, Category, Image, User, Rol, Review, Comment, Respond } = require('./src/db.js');
 
-const categories = ["Css", "Html", "JavaScript", "Python", "Java", "React", "Angular", "Ruby"];
+const categories = ["React", "Angular", "Ruby", "Python", "Java", "JavaScript", "Css", "Html"];
 const roles = ['banned','anonymous','guest','admin','owner']
 const users = [
     { rolId: 5, password: "1234567", imageId: categories.length + 1, name: "Maico Loncomilla", email: "maicoloncomilla@gmail.com" },
