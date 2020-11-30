@@ -116,7 +116,7 @@ function TableOrders() {
                     <div className={s.filter}>
                         <h4>Antiguedad:</h4>
                         <select name="createdAt" value={filterOrders.createdAt} onChange={(e) => onOrder(e.target.value, e.target.name)}>
-                                    <option value='disorder'>Seleccione una opción</option>
+                                    <option value='disorder'>disorder</option>
                                     <option value='antiguos'>antiguos</option>
                                     <option value='recientes'>recientes</option>
                         </select>
@@ -124,7 +124,7 @@ function TableOrders() {
                     <div className={s.filter}>
                         <h4>Modificacion:</h4>
                         <select name="updatedAt" value={filterOrders.updatedAt} onChange={(e) => onOrder(e.target.value, e.target.name)}>
-                                    <option value='disorder'>Seleccione una opción</option>
+                                    <option value='disorder'>disorder</option>
                                     <option value='antiguos'>antiguos</option>
                                     <option value='recientes'>recientes</option>
                         </select>
