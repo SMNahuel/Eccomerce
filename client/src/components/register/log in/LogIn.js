@@ -42,6 +42,7 @@ function LogIn() {
                     alert(`Error! ${err}`);
                 }
             })
+            alert("Email enviado")
         } else {
             alert('Ingresa un email\nPor favor')
         }
