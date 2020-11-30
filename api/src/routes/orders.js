@@ -4,8 +4,7 @@ const user = require('../controllers/user');
 const {checkout, confirmPay} = require('../utils/sendEmail')
 const { forAdmin, forGuest } = require('../middlewares/authenticate');
 
-
-// Ruta qque devuelve las ordenes de un usuario
+// Ruta que devuelve las ordenes de un usuario
 server.get('/', forGuest, (req,res,next)=>{
 	cart.orders(req.user.id)
 	.then(r=> res.send(r))
@@ -31,7 +30,7 @@ server.put('/change', forAdmin, (req, res, next) => {
     .catch(next)
 })
 // Ruta que permite procesar una orden
-server.put('/process', forAdmin, (req, res, next) => {
+/* server.put('/process', forAdmin, (req, res, next) => {
     const { id } = req.body
     if (!id) {
         return res.status(400).send('A cart content is required to process a cart');
@@ -39,9 +38,15 @@ server.put('/process', forAdmin, (req, res, next) => {
     return cart.process(req.body)
     .then(r => res.send(r))
     .catch(next)
-})
+}) */
 
 server.post('/process', forAdmin, (req, res, next) => {
+
+    const {user} = req.body
+    checkout(user.email, user.name)
+    .then(r => res.send('Email sended'))
+    .catch(next)
+    
     const { order } = req.body
     const data = req.body;
     // console.log(order.user.email, data)
@@ -56,6 +61,7 @@ server.post('/confirmPay', (req, res, next) =>{
     confirmPay(data.email, data)
     .then(r => res.send('Email sended'))
     .catch(next)
+
 })
 
 module.exports = server;
