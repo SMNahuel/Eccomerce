@@ -90,12 +90,12 @@ function LogIn() {
                             <LockOutlinedIcon />
                             <label>Password</label>
                         </div>
-                        <button className={s.butonChangePass} onClick={onForgottenPassword}>Have you forgotten the password?</button>
                         <div className={s.container_button}>
                             <button type="submit">Log In</button>
                         </div>
                     </div>
                 </form>
+                <button className={s.butonChangePass} onClick={onForgottenPassword}>Have you forgotten the password?</button>
                 <div className={s.container_have_account}>
                     <Link to="/register" className={s.container_link}><p>Create a new account</p></Link>
                 </div>
