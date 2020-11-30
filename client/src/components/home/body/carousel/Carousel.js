@@ -13,7 +13,7 @@ export default function Carousel({onDetail}){
         axios.get(`${process.env.REACT_APP_API_URL}/products/top`)
         .then(({data}) => setProducts(data))
     }, [])
-    console.log(products);
+    // console.log(products);
     return(
         <div className={s.container_swiper}>
             <Swiper

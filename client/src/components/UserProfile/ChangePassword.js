@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import { useDispatch} from 'react-redux';
 import s from './passwordChange.module.css';
 import api from '../../redux/action-creators';

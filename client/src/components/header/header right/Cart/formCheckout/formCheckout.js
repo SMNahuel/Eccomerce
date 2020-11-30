@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ProductCart from './ProductCart/productCart'
 import s from './formCheckout.module.css'
-import { paises, provincias } from '../../../../../utils/selectForm'
+// import { paises, provincias } from '../../../../../utils/selectForm'
 import { useDispatch } from 'react-redux';
 import api from '../../../../../redux/action-creators'
 import PayPal from './paypal/PayPal'
