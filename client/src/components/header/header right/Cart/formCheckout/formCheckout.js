@@ -60,7 +60,7 @@ export default function FormCheckout({items, price, user, onBack}){
     // }
 
     //si hay algun error no lo dejo seguirr con la compra
-    // const onBuy = () => {
+    const onBuy = () => {
     //     for(const key in error){
     //         if(error[key])return alert(error[key])
     //     }
@@ -72,9 +72,9 @@ export default function FormCheckout({items, price, user, onBack}){
     //     }
     //     if(changes.email) delete changes.email
     //     dispatch(api.updateChanges(changes))
-    //     dispatch(api.confirmCart({items, email: input.email}))
-    //     onBack()
-    // }
+        dispatch(api.confirmCart({items, email: input.email}))
+        onBack()
+    }
     
     //valido los campos al entrar al formulario
     //validate(input)
@@ -195,7 +195,7 @@ export default function FormCheckout({items, price, user, onBack}){
                         /* <input type="button" onClick={() => onBack()} value="Seguir comprando" />
                     </div>
                 </div> */
-                : <PayPal setCheckout={setCheckout} user={user} checkout={checkout} price={price}/>}
+                : <PayPal setCheckout={setCheckout} user={user} checkout={checkout} price={price} onBuy={onBuy}/>}
         </>
     )
 }
