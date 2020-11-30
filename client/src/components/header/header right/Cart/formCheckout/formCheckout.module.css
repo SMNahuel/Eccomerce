@@ -1,7 +1,17 @@
+.text1{
+    font-size: xx-large;
+    margin: 50px;
+    background-color: aquamarine;
+}
+.text{
+    font-size: xx-large;
+    margin: 50px;
+}
+
 .container{
     color: black;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    justify-content: center;
     margin-top: 5%;
     cursor: auto;
 }
@@ -36,6 +46,8 @@
     bottom: 5%;
 }
 .container_buttons > input{
+    width: 200px;
+    height: 60px;
     margin: 10px;
     margin-top: 10%;
     padding: 10px;
@@ -49,14 +61,16 @@
     cursor: pointer;
 }
 .container_buttons > input:hover{
+    
     background-color: #7b1fa2;
 }
 .total{
     display: flex;
     width: 100%;
-    justify-content: space-between;
-    font-size: 20px;
+    justify-content: space-around;
     padding: 5px;
+    font-family: fantasy;
+    font-size: xxx-large;
 }
 .error{
     color: red;
@@ -118,6 +132,11 @@
     }
     .products{
         display: none;
+        border: double;
+        border-color: gold;
+        border: double;
+        display: inline-flex;
+        justify-content: space-around;
     }
     .container_pais_provincia{
         width: 200px;
