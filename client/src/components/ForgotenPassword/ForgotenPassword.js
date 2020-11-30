@@ -28,18 +28,36 @@ export default function ForgotenPassword({passKey}) {
         redirect ? <Redirect to="/login" /> :
             <div className={s.container}>
                 <form onSubmit={sendPassword}>
-                    <Logo/>
+                    <Logo />
                     <div className={s.container_inputs_label}>
-                        <input onChange={onChange} name="newPassword" type="password" required pattern="[A-Za-z0-9 ]{5,100}" maxLength="100" autoComplete="off" required/>
+                        <input
+                            placeholder="Escriba su nueva contraseña"
+                            onChange={onChange}
+                            name="newPassword"
+                            type="password"
+                            required
+                            pattern="[A-Za-z0-9 ]{5,100}"
+                            maxLength="100"
+                            autoComplete="off"
+                            required />
                         <label>Escriba su nueva contraseña</label>
                     </div>
                     <div className={s.container_inputs_label}>
-                        <input onChange={onChange} name="newPassword2" type="password" required pattern="[A-Za-z0-9 ]{5,100}" maxLength="100" autoComplete="off" required/>
+                        <input
+                            placeholder="Vuelve a escribir la contraseña"
+                            onChange={onChange}
+                            name="newPassword2"
+                            type="password"
+                            required
+                            pattern="[A-Za-z0-9 ]{5,100}"
+                            maxLength="100"
+                            autoComplete="off"
+                            required />
                         <label>Vuelve a escribir la contraseña</label>
                     </div>
                     {password.newPassword === password.newPassword2 ?
                         <button type="submit">Aceptar</button>
-                        :<button type="submit" disabled>Aceptar</button>
+                        : <button type="submit" disabled>Aceptar</button>
                     }
                     <div className={s.activate}>
                         {password.newPassword !== password.newPassword2 &&
