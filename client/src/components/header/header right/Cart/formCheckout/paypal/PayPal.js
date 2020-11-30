@@ -3,7 +3,7 @@ import s from './PayPal.module.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import axios from 'axios';
 
-export default function PayPal({ user, setCheckout, price, checkout }){
+export default function PayPal({ user, setCheckout, price, checkout, onBuy }){
 
     const paypal = useRef();  
     const userPrice = {
@@ -30,6 +30,7 @@ export default function PayPal({ user, setCheckout, price, checkout }){
           onApprove: async (data, actions) => {
             const order = await actions.order.capture();
             axios.post(`${process.env.REACT_APP_API_URL}/orders/confirmPay`, userPrice)
+            onBuy()
           },
           onError: (err) => {
             console.log(err);
