@@ -13,7 +13,7 @@ const initialState = {
     purchased: [],
 };
 
-export default (state = initialState, action) => {
+function reducer (state = initialState, action) {
     // console.log(action.payload)
     switch (action.type) {
         case CATEGORIES:
@@ -65,3 +65,4 @@ export default (state = initialState, action) => {
             return {...state}
     }
 };
+export default reducer;

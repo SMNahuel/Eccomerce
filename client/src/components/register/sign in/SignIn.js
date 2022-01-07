@@ -85,7 +85,8 @@ function SignIn(){
                         <img src={Google} alt="Google Logo" onClick={()=>loginProvider('google')}/>
                     </div>
                 </div>
-                <form >
+                <div>
+                    
                     <div className={s.container_inputs_signIn}>
                         <form onSubmit={register}>
                         <div className={s.container_inputs}>
@@ -133,7 +134,6 @@ function SignIn(){
                             <button type="submit">Sign Up</button>
                         </div>
                         </form> 
-
                     </div>
                 </div>
                 <div className={s.container_have_account}>
